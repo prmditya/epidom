@@ -139,8 +139,7 @@ function Section({ items, label }: { items: Item[]; label: string }) {
 export default function DataPage() {
   const { t } = useI18n()
   return (
-    <div className="grid gap-6 w-full overflow-hidden">
-      <Tabs defaultValue="materials">
+      <Tabs defaultValue="materials" className="grid gap-6 w-full overflow-hidden">
         <TabsList className="w-full justify-start overflow-x-auto whitespace-nowrap rounded-lg p-1.5 bg-muted/50 backdrop-blur-sm shadow-sm -mx-4 px-4 sm:mx-0 sm:px-1.5">
           <TabsTrigger className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all" value="materials">
             {t("pages.materialsList")}
@@ -175,6 +174,5 @@ export default function DataPage() {
           <DataManageView />
         </TabsContent>
       </Tabs>
-    </div>
   )
 }
