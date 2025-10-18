@@ -65,7 +65,7 @@ export function Topbar() {
           </div>
 
           {/* Center: Search (hidden on mobile, centered on md+) */}
-          <div className="flex w-full items-center justify-center hidden md:flex">
+          <div className="w-full items-center justify-center hidden md:flex">
             <div className="relative w-80 max-w-xl sm:max-w-2xl">
               <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-black" />
               <Input
