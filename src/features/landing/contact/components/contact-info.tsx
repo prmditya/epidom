@@ -1,6 +1,7 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export function ContactInfo() {
   const { t } = useI18n();
@@ -16,39 +17,77 @@ export function ContactInfo() {
       </h1>
 
       {/* Description */}
-      <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">
+      <p className="text-lg sm:text-xl md:text-2xl leading-relaxed" style={{ color: '#444444' }}>
         {t("contact.subtitle")}
       </p>
 
       {/* Contact Information */}
-      <div className="space-y-6 sm:space-y-8">
-        <div className="text-foreground">
-          <p className="text-base sm:text-lg md:text-xl">
-            {t("contact.info.address.line1")}
-            <br />
-            {t("contact.info.address.line2")}
-          </p>
+      <div className="space-y-4 sm:space-y-5">
+        {/* Address */}
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 mt-1">
+            <MapPin className="w-5 h-5" style={{ color: '#444444' }} />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Address
+            </h3>
+            <div className="space-y-0.5">
+              <p className="text-sm sm:text-base md:text-lg" style={{ color: '#444444' }}>
+                {t("contact.info.address.line1")}
+              </p>
+              <p className="text-sm sm:text-base md:text-lg" style={{ color: '#444444' }}>
+                {t("contact.info.address.line2")}
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="text-foreground">
-          <p className="text-base sm:text-lg md:text-xl">
-            {t("contact.info.phone.number")}
-          </p>
+        {/* Phone */}
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 mt-1">
+            <Phone className="w-5 h-5" style={{ color: '#444444' }} />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Phone
+            </h3>
+            <a
+              href={`tel:${t("contact.info.phone.number").replace(/[^\d+]/g, '')}`}
+              className="text-sm sm:text-base md:text-lg hover:opacity-70 transition-opacity block"
+              style={{ color: '#444444' }}
+            >
+              {t("contact.info.phone.number")}
+            </a>
+          </div>
         </div>
 
-        <div className="space-y-3">
-          <a
-            href={`mailto:${t("contact.info.email.address")}`}
-            className="text-base sm:text-lg md:text-xl text-foreground hover:text-muted-foreground transition-colors block"
-          >
-            {t("contact.info.email.address")}
-          </a>
-          <a
-            href="mailto:evancao@gmail.com"
-            className="text-base sm:text-lg md:text-xl text-foreground hover:text-muted-foreground transition-colors block"
-          >
-            evancao@gmail.com
-          </a>
+        {/* Email */}
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 mt-1">
+            <Mail className="w-5 h-5" style={{ color: '#444444' }} />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Email
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+              <a
+                href={`mailto:${t("contact.info.email.address")}`}
+                className="text-sm sm:text-base md:text-lg hover:opacity-70 transition-opacity"
+                style={{ color: '#444444' }}
+              >
+                {t("contact.info.email.address")}
+              </a>
+              <a
+                href="mailto:evancao@gmail.com"
+                className="text-sm sm:text-base md:text-lg hover:opacity-70 transition-opacity"
+                style={{ color: '#444444' }}
+              >
+                evancao@gmail.com
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ export const fr = {
       menu: "Menu",
       navTitle: "Navigation",
       openMenu: "Ouvrir le menu",
+      closeMenu: "Fermer le menu",
       homepage: "Page d'accueil",
     },
     language: {
@@ -49,9 +50,7 @@ export const fr = {
     waitlistText: "Soyez le premier à savoir quand nous lançons!",
   },
   services: {
-    heroTitle: "UNE SOLUTION POUR VOTRE GESTION DE STOCK ALIMENTAIRE",
-    heroTitleLine1: "UNE SOLUTION POUR VOTRE",
-    heroTitleLine2: "GESTION DE STOCK ALIMENTAIRE",
+    heroTitle: "Une solution pour votre gestion de stock alimentaire",
     heroDesc:
       "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
     featureBlock: { management: "Gestion", tracking: "Suivi", data: "Données" },
@@ -172,8 +171,7 @@ export const fr = {
   },
   pricing: {
     heroTitle: "Une solution pour la gestion de votre stock alimentaire",
-    heroDesc:
-      "La gestion des stocks alimentaires est le processus de suivi des ingrédients achetés et non consommés. Cette pratique est essentielle pour éviter le gaspillage et optimiser vos opérations de restaurant.",
+    heroDescription: "La gestion des stocks alimentaires est le processus de suivi des ingrédients achetés et non consommés. Cette pratique est essentielle pour éviter le gaspillage et optimiser vos opérations de restaurant.",
     plans: {
       starter: {
         title: "Débutant",

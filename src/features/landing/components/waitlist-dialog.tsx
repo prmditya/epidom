@@ -166,15 +166,15 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
         className="sm:max-w-md"
       >
         <DialogHeader>
-          <DialogTitle className="text-xl">{t("waitlist.title")}</DialogTitle>
-          <DialogDescription id="waitlist-description" className="text-base">
+          <DialogTitle className="text-xl" style={{ color: '#444444' }}>{t("waitlist.title")}</DialogTitle>
+          <DialogDescription id="waitlist-description" className="text-base" style={{ color: '#444444' }}>
             {t("waitlist.description")}
           </DialogDescription>
         </DialogHeader>
 
         <form ref={formRef} onSubmit={handleSubmit} className="grid gap-5 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="name" className="font-semibold">
+            <Label htmlFor="name" className="font-semibold" style={{ color: '#444444' }}>
               {t("waitlist.fields.name")}
             </Label>
             <Input
@@ -198,7 +198,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email" className="font-semibold">
+            <Label htmlFor="email" className="font-semibold" style={{ color: '#444444' }}>
               {t("waitlist.fields.email")}
             </Label>
             <Input
@@ -223,7 +223,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="company" className="font-semibold">
+            <Label htmlFor="company" className="font-semibold" style={{ color: '#444444' }}>
               {t("waitlist.fields.company")}
             </Label>
             <Input
@@ -248,6 +248,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
             <Button
               type="submit"
               className="rounded-full px-6 font-semibold btn-smooth"
+              style={{ backgroundColor: '#444444', color: 'white' }}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : t("waitlist.submit")}

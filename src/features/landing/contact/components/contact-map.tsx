@@ -7,7 +7,7 @@ export function ContactMap() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full h-80 sm:h-96 lg:h-[500px] bg-gray-200 rounded-lg flex items-center justify-center">
+      <div className="w-full h-80 sm:h-96 lg:h-[512px] bg-gray-200 rounded-lg flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg

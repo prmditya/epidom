@@ -7,14 +7,26 @@ import { AlertsSection } from "@/features/landing/services/components/alerts-sec
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-white text-foreground pt-12 sm:pt-16">
+    <main className="min-h-screen bg-white pt-24 sm:pt-32" style={{ color: '#444444' }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="animate-slide-up">
         <HeroSection />
+      </div>
+      <div className="animate-slide-up-delayed">
         <DashboardSection />
+      </div>
+      <div className="animate-slide-up-delayed-2">
         <ManagementSection />
+      </div>
+      <div className="animate-slide-up-delayed-3">
         <TrackingSection />
+      </div>
+      <div className="animate-slide-up-delayed-3">
         <DataSection />
+      </div>
+      <div className="animate-slide-up-delayed-3">
         <AlertsSection />
+      </div>
       </div>
     </main>
   );

@@ -10,6 +10,7 @@ export const id = {
       menu: "Menu",
       navTitle: "Navigasi",
       openMenu: "Buka menu",
+      closeMenu: "Tutup menu",
       homepage: "Halaman utama",
     },
     language: {
@@ -49,9 +50,7 @@ export const id = {
     waitlistText: "Jadilah yang pertama tahu saat kami meluncur!",
   },
   services: {
-    heroTitle: "SOLUSI UNTUK MANAJEMEN STOK MAKANAN ANDA",
-    heroTitleLine1: "SOLUSI UNTUK",
-    heroTitleLine2: "MANAJEMEN STOK MAKANAN ANDA",
+    heroTitle: "Solusi untuk manajemen stok makanan Anda",
     heroDesc:
       "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
     featureBlock: {
@@ -176,8 +175,7 @@ export const id = {
   },
   pricing: {
     heroTitle: "Solusi untuk manajemen persediaan makanan Anda",
-    heroDesc:
-      "Manajemen persediaan makanan adalah proses melacak bahan yang dibeli dan tidak dikonsumsi. Praktik ini penting untuk mencegah pemborosan dan mengoptimalkan operasional restoran Anda.",
+    heroDescription: "Manajemen persediaan makanan adalah proses melacak bahan yang dibeli dan tidak dikonsumsi. Praktik ini penting untuk mencegah pemborosan dan mengoptimalkan operasional restoran Anda.",
     plans: {
       starter: {
         title: "Starter",

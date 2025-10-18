@@ -14,7 +14,7 @@ export function HeroSection() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
             style={{ color: "#444444" }}
           >
-            {t("services.heroTitleLine1")} {t("services.heroTitleLine2")}
+            {t("services.heroTitle")}
           </h1>
 
           <p

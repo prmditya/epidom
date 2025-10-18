@@ -10,6 +10,7 @@ export const en = {
       menu: "Menu",
       navTitle: "Navigation",
       openMenu: "Open menu",
+      closeMenu: "Close menu",
       homepage: "Homepage",
     },
     language: {
@@ -49,9 +50,7 @@ export const en = {
     waitlistText: "Be the first to know when we launch!",
   },
   services: {
-    heroTitle: "A SOLUTION FOR YOUR FOOD STOCK MANAGEMENT",
-    heroTitleLine1: "A SOLUTION FOR YOUR",
-    heroTitleLine2: "FOOD STOCK MANAGEMENT",
+    heroTitle: "A solution for your food stock management",
     heroDesc:
       "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
     featureBlock: {
@@ -173,8 +172,7 @@ export const en = {
   },
   pricing: {
     heroTitle: "A solution for your food stock management",
-    heroDesc:
-      "Food stock management is the process of tracking purchased and unconsumed ingredients. This practice is essential to prevent waste and optimize your restaurant operations.",
+    heroDescription: "Food stock management is the process of tracking purchased and unconsumed ingredients. This practice is essential to prevent waste and optimize your restaurant operations.",
     plans: {
       starter: {
         title: "Starter",
