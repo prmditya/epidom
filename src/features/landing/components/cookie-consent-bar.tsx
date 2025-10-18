@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import { useI18n } from "@/components/lang/i18n-provider";
 import { Button } from "@/components/ui/button";
 
 export function CookieConsentBar() {

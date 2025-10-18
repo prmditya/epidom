@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { WaitlistDialog } from "./waitlist-dialog";
-import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import { useI18n } from "@/components/lang/i18n-provider";
 import React from "react";
 
 export const Hero = React.memo(function Hero() {

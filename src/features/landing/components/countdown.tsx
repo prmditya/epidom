@@ -1,7 +1,7 @@
 "use client";
 
 import Countdown from "react-countdown";
-import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import { useI18n } from "@/components/lang/i18n-provider";
 import { WaitlistDialog } from "@/features/landing/components/waitlist-dialog";
 import { Mail, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";

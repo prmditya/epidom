@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuth } from "@/components/auth-provider";
 import {
   CardContent,
   CardHeader,
@@ -22,9 +21,16 @@ import { useState } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";
 
 export default function ProfilePage() {
-  const { user } = useAuth();
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+
+  // Mock user data - replace with real auth later
+  const user = {
+    name: "Demo User",
+    email: "demo@epidom.com",
+    businessName: "Epidom Bakery",
+    address: "123 Main St, Paris",
+  };
 
   return (
     <div className="w-full space-y-6">

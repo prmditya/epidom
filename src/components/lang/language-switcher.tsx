@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import { useI18n } from "@/components/lang/i18n-provider";
 import { ChevronDown } from "lucide-react";
 
 export function LanguageSwitcher() {
-  const { lang, setLang, t } = useI18n();
+  const { locale, setLocale, t } = useI18n();
   const labelId = React.useId();
 
   return (
@@ -18,8 +18,8 @@ export function LanguageSwitcher() {
           id={labelId}
           className="appearance-none h-10 rounded-full bg-white text-gray-900 px-6 pr-8 text-sm font-semibold focus:outline-none cursor-pointer hover:bg-gray-50 transition-colors min-w-[60px]"
           aria-label={t("common.language.label")}
-          value={lang}
-          onChange={(e) => setLang(e.target.value as any)}
+          value={locale}
+          onChange={(e) => setLocale(e.target.value as any)}
         >
           <option value="en">EN</option>
           <option value="fr">FR</option>

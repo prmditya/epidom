@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Read(//c/**)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm install:*)",
+      "Bash(xargs sed:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

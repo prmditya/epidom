@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 export function SiteFooter() {
   const { t } = useI18n();

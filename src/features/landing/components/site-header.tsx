@@ -13,7 +13,7 @@ import {
 import { WaitlistDialog } from "@/features/landing/components/waitlist-dialog";
 import { usePathname } from "next/navigation";
 import { LanguageSwitcher } from "@/components/lang/language-switcher";
-import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 export function SiteHeader() {
   const pathname = usePathname();

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/features/landing/components/site-header";
 import { SiteFooter } from "@/features/landing/components/site-footer";
 import { Suspense } from "react";
-import { I18nProviderIlmi } from "@/components/lang/i18n-provider-ilmi";
+import { I18nProvider } from "@/components/lang/i18n-provider";
 import { CookieConsentBar } from "@/features/landing/components/cookie-consent-bar";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { Lato } from "next/font/google";
@@ -28,12 +28,12 @@ export default function LandingLayout({
   return (
     <ErrorBoundary>
       <Suspense fallback={<div>Loading...</div>}>
-        <I18nProviderIlmi>
+        <I18nProvider>
           <SiteHeader />
           <main className="min-h-screen">{children}</main>
           <SiteFooter />
           <CookieConsentBar />
-        </I18nProviderIlmi>
+        </I18nProvider>
       </Suspense>
     </ErrorBoundary>
   );
