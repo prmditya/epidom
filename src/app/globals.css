@@ -135,3 +135,34 @@
     min-height: 100vh;
   }
 }
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md;
+  }
+
+  .btn-smooth {
+    @apply transition-all duration-200 active:scale-95;
+  }
+
+  /* Mobile navbar improvements */
+  .mobile-navbar {
+    @apply fixed top-0 left-0 right-0 z-50 shadow-lg;
+    background-color: #444444;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Ensure navbar content is crisp */
+  .mobile-navbar * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

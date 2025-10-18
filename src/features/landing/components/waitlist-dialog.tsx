@@ -1,0 +1,262 @@
+"use client";
+
+import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { useI18n } from "@/components/lang/i18n-provider-ilmi";
+import {
+  validateWaitlistForm,
+  waitlistRateLimiter,
+  type ValidationError,
+} from "@/lib/validation";
+
+interface WaitlistDialogProps {
+  variant?: "default" | "home" | "sidebar";
+}
+
+export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
+  const [open, setOpen] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [errors, setErrors] = React.useState<ValidationError[]>([]);
+  const { toast } = useToast();
+  const formRef = React.useRef<HTMLFormElement>(null);
+  const { t } = useI18n();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrors([]);
+
+    const fd = new FormData(e.currentTarget);
+    const fullName = String(fd.get("name") || "");
+    const email = String(fd.get("email") || "");
+    const company = String(fd.get("company") || "");
+
+    // Validate form data
+    const validation = validateWaitlistForm({
+      name: fullName,
+      email: email,
+      company: company,
+    });
+
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      setIsSubmitting(false);
+      toast({
+        title: "Validation Error",
+        description: "Please check the form and try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check rate limiting
+    const clientId = email; // Use email as identifier
+    if (!waitlistRateLimiter.isAllowed(clientId)) {
+      const remainingTime = Math.ceil(
+        waitlistRateLimiter.getRemainingTime(clientId) / 60000
+      );
+      setIsSubmitting(false);
+      toast({
+        title: "Too Many Attempts",
+        description: `Please wait ${remainingTime} minutes before trying again.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const nameParts = fullName.split(" ");
+    const formData = {
+      name: fullName,
+      email: email,
+      company: company,
+      timestamp: new Date().toLocaleString(),
+    };
+
+    console.log("📝 Submitting waitlist data:", formData);
+
+    try {
+      // Send to external API that handles email + spreadsheet
+      const response = await fetch(
+        "https://api.alphaomegamensgrooming.com/api/form-submissions",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            formData: {
+              firstName: nameParts[0] || "",
+              lastName: nameParts.slice(1).join(" ") || "",
+              company: formData.company,
+              phone: "", // Waitlist form doesn't have phone
+              email: formData.email,
+            },
+            spreadsheetUrl:
+              "https://docs.google.com/spreadsheets/d/1yyI_EgH-MaQF6IRdtfWy5VZKcsdtiXWDAOIUbiQUftM/edit?gid=0#gid=0",
+            emailReceiver: "evancau@gmail.com",
+            metadata: {
+              formType: "waitlist-form",
+              subject: `New Waitlist Registration - ${formData.name}`,
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+
+      console.log("✅ Form submitted successfully");
+
+      toast({
+        title: t("waitlist.successTitle"),
+        description: t("waitlist.successDesc"),
+      });
+      formRef.current?.reset();
+      setOpen(false);
+    } catch (error) {
+      console.error("❌ Error submitting waitlist:", error);
+
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to submit. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          size="lg"
+          className={`h-10 rounded-full px-6 font-semibold transition-colors ${
+            variant === "home"
+              ? "text-white hover:bg-gray-700"
+              : variant === "sidebar"
+              ? "bg-gray-900 text-white hover:bg-gray-800"
+              : "bg-white text-gray-900 hover:bg-gray-100"
+          }`}
+          style={variant === "home" ? { backgroundColor: "#444444" } : {}}
+          aria-label={t("waitlist.openButtonAria")}
+        >
+          {t("waitlist.openButton")}
+        </Button>
+      </DialogTrigger>
+      <DialogContent
+        aria-describedby="waitlist-description"
+        className="sm:max-w-md"
+      >
+        <DialogHeader>
+          <DialogTitle className="text-xl">{t("waitlist.title")}</DialogTitle>
+          <DialogDescription id="waitlist-description" className="text-base">
+            {t("waitlist.description")}
+          </DialogDescription>
+        </DialogHeader>
+
+        <form ref={formRef} onSubmit={handleSubmit} className="grid gap-5 py-4">
+          <div className="grid gap-2">
+            <Label htmlFor="name" className="font-semibold">
+              {t("waitlist.fields.name")}
+            </Label>
+            <Input
+              id="name"
+              name="name"
+              placeholder={t("waitlist.placeholders.name")}
+              required
+              autoComplete="name"
+              className={`transition-colors focus:ring-2 ${
+                errors.some((e) => e.field === "name")
+                  ? "border-red-500 focus:ring-red-500"
+                  : ""
+              }`}
+              disabled={isSubmitting}
+            />
+            {errors.some((e) => e.field === "name") && (
+              <p className="text-sm text-red-500">
+                {errors.find((e) => e.field === "name")?.message}
+              </p>
+            )}
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="email" className="font-semibold">
+              {t("waitlist.fields.email")}
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder={t("waitlist.placeholders.email")}
+              required
+              autoComplete="email"
+              className={`transition-colors focus:ring-2 ${
+                errors.some((e) => e.field === "email")
+                  ? "border-red-500 focus:ring-red-500"
+                  : ""
+              }`}
+              disabled={isSubmitting}
+            />
+            {errors.some((e) => e.field === "email") && (
+              <p className="text-sm text-red-500">
+                {errors.find((e) => e.field === "email")?.message}
+              </p>
+            )}
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="company" className="font-semibold">
+              {t("waitlist.fields.company")}
+            </Label>
+            <Input
+              id="company"
+              name="company"
+              placeholder={t("waitlist.placeholders.company")}
+              className={`transition-colors focus:ring-2 ${
+                errors.some((e) => e.field === "company")
+                  ? "border-red-500 focus:ring-red-500"
+                  : ""
+              }`}
+              disabled={isSubmitting}
+            />
+            {errors.some((e) => e.field === "company") && (
+              <p className="text-sm text-red-500">
+                {errors.find((e) => e.field === "company")?.message}
+              </p>
+            )}
+          </div>
+
+          <DialogFooter className="mt-4">
+            <Button
+              type="submit"
+              className="rounded-full px-6 font-semibold btn-smooth"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : t("waitlist.submit")}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export default WaitlistDialog;
