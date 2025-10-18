@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PillsList } from "./pillsList";
-import { DetailsPanel } from "./detailsPanel";
+import { PillsList } from "./pills-list";
+import { DetailsPanel } from "./details-panel";
 
 type Item = { id: string; name: string; note?: string };
 

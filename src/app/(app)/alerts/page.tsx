@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AlertsToggle } from "@/features/app/alerts/components/alerts-toggle";
-import { OrdersView } from "@/features/app/alerts/components/ordersView";
+import { OrdersView } from "@/features/app/alerts/components/orders-view";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";

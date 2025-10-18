@@ -5,9 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RecipeProductionCard } from "@/features/app/management/components/recipe-production";
 import { ProductionHistoryCard } from "@/features/app/management/components/production-history";
 import { EditStockCard } from "@/features/app/management/components/edit-stock";
-import { OrdersTable } from "@/features/app/management/components/ordersTable";
-import { OrderDetails } from "@/features/app/management/components/orderDetails";
-import { UsersTable } from "@/features/app/management/components/usersTable";
+import { OrdersTable } from "@/features/app/management/components/orders-table";
+import { OrderDetails } from "@/features/app/management/components/order-details";
+import { UsersTable } from "@/features/app/management/components/users-table";
 import { useI18n } from "@/components/lang/i18n-provider";
 
 type Order = {
