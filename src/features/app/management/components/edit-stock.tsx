@@ -1,23 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useI18n } from "@/components/epidom/i18n-provider"
+import { useState } from "react";
+import { useI18n } from "@/components/lang/i18n-provider";
 
-const ITEMS = Array.from({ length: 12 }).map((_, i) => `Ingredient ${i + 1}`)
+const ITEMS = Array.from({ length: 12 }).map((_, i) => `Ingredient ${i + 1}`);
 
 export function EditStockCard() {
-  const [q, setQ] = useState("")
-  const { t } = useI18n()
-  const filtered = ITEMS.filter((r) => r.toLowerCase().includes(q.toLowerCase()))
+  const [q, setQ] = useState("");
+  const { t } = useI18n();
+  const filtered = ITEMS.filter((r) =>
+    r.toLowerCase().includes(q.toLowerCase())
+  );
 
-  const locale = (typeof navigator !== "undefined" && navigator.language) || "en"
+  const locale =
+    (typeof navigator !== "undefined" && navigator.language) || "en";
   const nf2 = new Intl.NumberFormat(locale, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })
-  const fmt2 = (n: number) => nf2.format(n)
-  const unitKg = "Kg"
-  const currency = "€"
+  });
+  const fmt2 = (n: number) => nf2.format(n);
+  const unitKg = "Kg";
+  const currency = "€";
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-[320px_1fr]">
@@ -35,7 +38,10 @@ export function EditStockCard() {
         </div>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-1">
           {filtered.map((name) => (
-            <button key={name} className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted">
+            <button
+              key={name}
+              className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted"
+            >
               {name}
             </button>
           ))}
@@ -46,7 +52,9 @@ export function EditStockCard() {
         <div className="flex items-center gap-3">
           <div className="h-12 w-12 rounded bg-muted" aria-hidden />
           <div>
-            <p className="text-sm text-muted-foreground">{t("pages.ingredient")}</p>
+            <p className="text-sm text-muted-foreground">
+              {t("pages.ingredient")}
+            </p>
             <h3 className="text-lg font-semibold">Sample Ingredient</h3>
           </div>
         </div>
@@ -93,5 +101,5 @@ export function EditStockCard() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,19 +1,30 @@
-"use client"
+"use client";
 
-import { useAuth } from "@/components/epidom/auth-provider"
-import { CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { useState } from "react"
-import { useI18n } from "@/components/epidom/i18n-provider"
+import { useAuth } from "@/components/auth-provider";
+import {
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useState } from "react";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 export default function ProfilePage() {
-  const { user } = useAuth()
-  const { t } = useI18n()
-  const [open, setOpen] = useState(false)
+  const { user } = useAuth();
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="w-full space-y-6">
@@ -24,13 +35,17 @@ export default function ProfilePage() {
           </AvatarFallback>
         </Avatar>
         <div className="space-y-1 flex-1">
-          <CardTitle className="text-2xl font-bold">{user?.name ?? "User"}</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            {user?.name ?? "User"}
+          </CardTitle>
           <CardDescription className="text-base">{user?.email}</CardDescription>
         </div>
         <div className="sm:ml-auto">
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button className="shadow-md hover:shadow-lg transition-all">{t("actions.editProfile")}</Button>
+              <Button className="shadow-md hover:shadow-lg transition-all">
+                {t("actions.editProfile")}
+              </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -39,9 +54,9 @@ export default function ProfilePage() {
               <form
                 className="space-y-3"
                 onSubmit={(e) => {
-                  e.preventDefault()
-                  alert(t("messages.profileUpdated"))
-                  setOpen(false)
+                  e.preventDefault();
+                  alert(t("messages.profileUpdated"));
+                  setOpen(false);
                 }}
               >
                 <div className="grid gap-3">
@@ -64,14 +79,18 @@ export default function ProfilePage() {
       </CardHeader>
       <CardContent className="grid gap-4 sm:grid-cols-2 px-0">
         <div className="rounded-xl border p-5 bg-gradient-to-br from-card to-muted/20 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t("profile.businessName")}</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+            {t("profile.businessName")}
+          </p>
           <p className="font-semibold text-lg">{user?.businessName ?? "—"}</p>
         </div>
         <div className="rounded-xl border p-5 bg-gradient-to-br from-card to-muted/20 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t("profile.address")}</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+            {t("profile.address")}
+          </p>
           <p className="font-semibold text-lg">{user?.address ?? "—"}</p>
         </div>
       </CardContent>
     </div>
-  )
+  );
 }

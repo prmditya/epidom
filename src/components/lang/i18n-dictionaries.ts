@@ -1,6 +1,6 @@
-export type Locale = "en" | "fr" | "id"
+export type Locale = "en" | "fr" | "id";
 
-type Dict = Record<string, any>
+type Dict = Record<string, any>;
 
 export const dictionaries: Record<Locale, Dict> = {
   en: {
@@ -143,7 +143,7 @@ export const dictionaries: Record<Locale, Dict> = {
       stockUtilization: "Stock utilization",
       percentUsed: "used",
       openOrders: "Open orders awaiting production",
-      plusToday: "+2 today",
+      plusToday: "today",
       recipesUsedWeek: "Recipes used this week",
       upFromLastWeek: "Up from 29 last week",
       currentWorkflow: "Current workflow",
@@ -305,7 +305,7 @@ export const dictionaries: Record<Locale, Dict> = {
       stockUtilization: "Utilisation du stock",
       percentUsed: "utilisé",
       openOrders: "Commandes ouvertes en attente de production",
-      plusToday: "+2 aujourd'hui",
+      plusToday: "aujourd'hui",
       recipesUsedWeek: "Recettes utilisées cette semaine",
       upFromLastWeek: "En hausse depuis 29 la semaine dernière",
       currentWorkflow: "Workflow actuel",
@@ -467,7 +467,7 @@ export const dictionaries: Record<Locale, Dict> = {
       stockUtilization: "Penggunaan stok",
       percentUsed: "digunakan",
       openOrders: "Pesanan terbuka menunggu produksi",
-      plusToday: "+2 hari ini",
+      plusToday: "hari ini",
       recipesUsedWeek: "Resep digunakan minggu ini",
       upFromLastWeek: "Naik dari 29 minggu lalu",
       currentWorkflow: "Alur kerja saat ini",
@@ -489,4 +489,4 @@ export const dictionaries: Record<Locale, Dict> = {
       orderPlaced: "Pesanan ditempatkan",
     },
   },
-}
+};

@@ -1,10 +1,10 @@
 "use client";
 
-import { useRequireAuth } from "@/components/epidom/auth-provider";
+import { useRequireAuth } from "@/components/auth-provider";
 
 function AuthGate({ children }: { children: React.ReactNode }) {
-  useRequireAuth("/login")
-  return <>{children}</>
+  useRequireAuth("/login");
+  return <>{children}</>;
 }
 
 export default function Home() {

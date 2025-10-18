@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { useAuth } from "./auth-provider"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useAuth } from "./auth-provider";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,29 +14,36 @@ import {
   DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Search, Menu } from "lucide-react"
-import { Sidebar } from "./sidebar"
-import { useI18n } from "./i18n-provider"
-import LangSwitcher from "./lang-switcher"
-import { LogOut } from "lucide-react"
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Search, Menu } from "lucide-react";
+import { Sidebar } from "./sidebar";
+import { useI18n } from "./lang/i18n-provider";
+import LangSwitcher from "./lang/lang-switcher";
+import { LogOut } from "lucide-react";
 
 export function Topbar() {
-  const router = useRouter()
-  const { user, logout } = useAuth()
-  const [menuOpen, setMenuOpen] = useState(false)
-  const { t } = useI18n()
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useI18n();
 
   return (
-    <header role="banner" className="sticky top-0 z-40 w-full bg-primary text-primary-foreground shadow rounded-none">
+    <header
+      role="banner"
+      className="sticky top-0 z-40 w-full bg-primary text-primary-foreground shadow rounded-none"
+    >
       <div className="mx-auto max-w-7xl px-3">
         <div className="grid h-14 grid-cols-[1fr_minmax(220px,720px)_1fr] items-center gap-3">
           {/* Left: Mobile menu + Logo */}
           <div className="flex items-center gap-2">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden text-primary-foreground hover:bg-white/10">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden text-primary-foreground hover:bg-white/10"
+                >
                   <Menu className="size-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
@@ -75,28 +82,39 @@ export function Topbar() {
             <LangSwitcher className="hidden sm:inline-block bg-white text-foreground border" />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="gap-2 text-primary-foreground hover:bg-white/10">
+                <Button
+                  variant="ghost"
+                  className="gap-2 text-primary-foreground hover:bg-white/10"
+                >
                   <Avatar className="size-6">
                     <AvatarFallback className="text-xs bg-white text-foreground">
                       {user?.name?.[0]?.toUpperCase() ?? "U"}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden sm:inline">{user?.name ?? "User"}</span>
+                  <span className="hidden sm:inline">
+                    {user?.name ?? "User"}
+                  </span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel className="max-w-[220px] truncate">{user?.email}</DropdownMenuLabel>
+                <DropdownMenuLabel className="max-w-[220px] truncate">
+                  {user?.email}
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push("/profile")}>{t("nav.profile")}</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => router.push("/dashboard")}>{t("nav.dashboard")}</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push("/profile")}>
+                  {t("nav.profile")}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push("/dashboard")}>
+                  {t("nav.dashboard")}
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <Button
               size="sm"
               variant="destructive"
               onClick={() => {
-                logout()
-                router.replace("/login")
+                logout();
+                router.replace("/login");
               }}
             >
               <LogOut className="size-4 mr-1" />
@@ -106,5 +124,5 @@ export function Topbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }

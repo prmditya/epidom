@@ -1,21 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useI18n } from "@/components/epidom/i18n-provider"
+import { useState } from "react";
+import { useI18n } from "@/components/lang/i18n-provider";
 
-const RECIPES = Array.from({ length: 12 }).map((_, i) => `Recipe ${i + 1}`)
+const RECIPES = Array.from({ length: 12 }).map((_, i) => `Recipe ${i + 1}`);
 const INGREDIENTS = [
   { name: "Flour", current: "20.00 Kg", used: "-0.75 Kg" },
   { name: "Sugar", current: "10.00 Kg", used: "-0.12 Kg" },
   { name: "Milk", current: "6.00 L", used: "-0.20 L" },
   { name: "Eggs", current: "60 units", used: "-06.00 units" },
   { name: "Dark chocolate", current: "12.40 Kg", used: "-0.45 Kg" },
-]
+];
 
 export function RecipeProductionCard() {
-  const { t } = useI18n()
-  const [q, setQ] = useState("")
-  const filtered = RECIPES.filter((r) => r.toLowerCase().includes(q.toLowerCase()))
+  const { t } = useI18n();
+  const [q, setQ] = useState("");
+  const filtered = RECIPES.filter((r) =>
+    r.toLowerCase().includes(q.toLowerCase())
+  );
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-[320px_1fr]">
@@ -33,7 +35,10 @@ export function RecipeProductionCard() {
         </div>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-1">
           {filtered.map((name, idx) => (
-            <button key={idx} className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted">
+            <button
+              key={idx}
+              className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted"
+            >
               {name}
             </button>
           ))}
@@ -53,7 +58,9 @@ export function RecipeProductionCard() {
           <div className="grid grid-cols-3 bg-muted px-3 py-2 text-sm font-medium">
             <span>{t("pages.ingredient")}</span>
             <span className="text-right">{t("pages.currentQty")}</span>
-            <span className="text-right text-destructive">{t("pages.usedQty")}</span>
+            <span className="text-right text-destructive">
+              {t("pages.usedQty")}
+            </span>
           </div>
           <ul className="divide-y">
             {INGREDIENTS.map((it) => (
@@ -67,5 +74,5 @@ export function RecipeProductionCard() {
         </div>
       </div>
     </div>
-  )
+  );
 }

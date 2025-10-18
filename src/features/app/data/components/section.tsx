@@ -1,0 +1,36 @@
+"use client";
+
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PillsList } from "./pillsList";
+import { DetailsPanel } from "./detailsPanel";
+
+type Item = { id: string; name: string; note?: string };
+
+interface SectionProps {
+  items: Item[];
+  label: string;
+}
+
+export function Section({ items, label }: SectionProps) {
+  const [selected, setSelected] = useState<string | undefined>(items[0]?.id);
+  const selectedItem = items.find((i) => i.id === selected);
+
+  return (
+    <div className="grid gap-4 lg:grid-cols-[1fr_380px] w-full">
+      <Card className="shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-lg">{label}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PillsList
+            items={items}
+            onSelect={setSelected}
+            selectedId={selected}
+          />
+        </CardContent>
+      </Card>
+      <DetailsPanel item={selectedItem} />
+    </div>
+  );
+}
