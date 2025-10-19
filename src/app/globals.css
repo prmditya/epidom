@@ -21,6 +21,77 @@ header.navbar-no-transition *,
   transform: none !important;
 }
 
+/* More aggressive prevention of navbar animations */
+header[role="banner"],
+header[role="banner"] *,
+.sticky.top-0,
+.sticky.top-0 * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Override any slide-up animations on navbar */
+header.animate-slide-up,
+header.animate-slide-up-delayed,
+header.animate-slide-up-delayed-2,
+header.animate-slide-up-delayed-3 {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Prevent any page-level animations from affecting navbar */
+body header,
+html header,
+#__next header,
+main header,
+.page-transition-container header {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure navbar is always visible and static */
+.navbar-static {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Override any Next.js page transition animations on navbar */
+[data-nextjs-scroll-focus-boundary] header,
+[data-nextjs-scroll-focus-boundary] .navbar-static,
+.next-page-transition header,
+.next-page-transition .navbar-static {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Force navbar to be immediately visible on page load */
+header[role="banner"] {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+}
+
 /* Fix for dialog scrollbar issue - prevent navbar shift when modal opens */
 /* This prevents the layout shift when scrollbar disappears */
 html {
