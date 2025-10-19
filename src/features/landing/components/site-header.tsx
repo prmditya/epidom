@@ -21,11 +21,11 @@ export const SiteHeader = memo(function SiteHeader() {
   const { t } = useI18n();
 
   return (
-    <header className="mobile-navbar animate-slide-up" style={{ color: 'white' }}>
+    <header className="mobile-navbar" style={{ color: 'white' }}>
       <nav aria-label="Main" className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center gap-4 sm:gap-8">
           {/* Logo */}
-          <Link href="/" className="block transition-opacity hover:opacity-80 animate-slide-up-delayed" aria-label={t("common.nav.homepage")}>
+          <Link href="/" className="block transition-opacity hover:opacity-80" aria-label={t("common.nav.homepage")}>
             <Image
               src="/images/logo-white.png"
               alt="EPIDOM logo"
@@ -39,8 +39,8 @@ export const SiteHeader = memo(function SiteHeader() {
           </Link>
 
           {/* Desktop navigation */}
-          <ul className="hidden items-center gap-6 sm:gap-8 md:flex animate-slide-up-delayed">
-            <li className="animate-slide-up-delayed-2">
+          <ul className="hidden items-center gap-6 sm:gap-8 md:flex">
+            <li>
               <Link
                 href="/"
                 aria-current={pathname === "/" ? "page" : undefined}
@@ -51,7 +51,7 @@ export const SiteHeader = memo(function SiteHeader() {
                 {t("common.nav.home")}
               </Link>
             </li>
-            <li className="animate-slide-up-delayed-2">
+            <li>
               <Link
                 href="/services"
                 aria-current={pathname === "/services" ? "page" : undefined}
@@ -62,7 +62,7 @@ export const SiteHeader = memo(function SiteHeader() {
                 {t("common.nav.services")}
               </Link>
             </li>
-            <li className="animate-slide-up-delayed-2">
+            <li>
               <Link
                 href="/pricing"
                 aria-current={pathname === "/pricing" ? "page" : undefined}
@@ -73,7 +73,7 @@ export const SiteHeader = memo(function SiteHeader() {
                 {t("common.nav.pricing")}
               </Link>
             </li>
-            <li className="animate-slide-up-delayed-2">
+            <li>
               <Link
                 href="/contact"
                 aria-current={pathname === "/contact" ? "page" : undefined}
@@ -88,11 +88,11 @@ export const SiteHeader = memo(function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden md:flex items-center gap-3 animate-slide-up-delayed-2">
-            <div className="animate-slide-up-delayed-3">
+          <div className="hidden md:flex items-center gap-3">
+            <div>
             <LanguageSwitcher />
             </div>
-            <div className="animate-slide-up-delayed-3">
+            <div>
             <WaitlistDialog />
             </div>
           </div>
@@ -102,7 +102,7 @@ export const SiteHeader = memo(function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden hover:bg-white/20 transition-colors rounded-lg h-9 w-9 animate-slide-up-delayed-3"
+                className="md:hidden hover:bg-white/20 transition-colors rounded-lg h-9 w-9"
                 aria-label={t("common.nav.openMenu")}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
