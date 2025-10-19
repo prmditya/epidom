@@ -8,10 +8,11 @@ export function FeatureComparison() {
 
   return (
     <section className="pb-12 sm:pb-16 md:pb-20">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
-        {t("pricing.compare.title")}
-      </h2>
-      <div className="overflow-x-auto rounded-lg border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
+          {t("pricing.compare.title")}
+        </h2>
+        <div className="overflow-x-auto rounded-lg border">
         <table className="w-full text-sm">
           <thead className="bg-muted/60">
             <tr className="text-left">
@@ -21,7 +22,7 @@ export function FeatureComparison() {
               <th className="p-3 sm:p-4 font-semibold text-center">
                 {t("pricing.compare.headers.starter")}
               </th>
-              <th className="p-3 sm:p-4 font-semibold text-center border-l-2 border-primary">
+              <th className="p-3 sm:p-4 font-semibold text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 {t("pricing.compare.headers.pro")}
               </th>
               <th className="p-3 sm:p-4 font-semibold text-center">
@@ -37,7 +38,7 @@ export function FeatureComparison() {
               <td className="p-3 sm:p-4 text-center">
                 <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
               </td>
-              <td className="p-3 sm:p-4 text-center border-l-2 border-primary">
+              <td className="p-3 sm:p-4 text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
               </td>
               <td className="p-3 sm:p-4 text-center">
@@ -49,7 +50,7 @@ export function FeatureComparison() {
                 {t("pricing.compare.rows.multiSite.name")}
               </td>
               <td className="p-3 sm:p-4 text-center">—</td>
-              <td className="p-3 sm:p-4 text-center border-l-2 border-primary">
+              <td className="p-3 sm:p-4 text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
               </td>
               <td className="p-3 sm:p-4 text-center">
@@ -61,7 +62,7 @@ export function FeatureComparison() {
                 {t("pricing.compare.rows.supplierManagement.name")}
               </td>
               <td className="p-3 sm:p-4 text-center">—</td>
-              <td className="p-3 sm:p-4 text-center border-l-2 border-primary">
+              <td className="p-3 sm:p-4 text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
               </td>
               <td className="p-3 sm:p-4 text-center">
@@ -73,7 +74,7 @@ export function FeatureComparison() {
                 {t("pricing.compare.rows.reports.name")}
               </td>
               <td className="p-3 sm:p-4 text-center">—</td>
-              <td className="p-3 sm:p-4 text-center border-l-2 border-primary">
+              <td className="p-3 sm:p-4 text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
               </td>
               <td className="p-3 sm:p-4 text-center">
@@ -87,7 +88,7 @@ export function FeatureComparison() {
               <td className="p-3 sm:p-4 text-center">
                 {t("pricing.compare.rows.support.starter")}
               </td>
-              <td className="p-3 sm:p-4 text-center border-l-2 border-primary">
+              <td className="p-3 sm:p-4 text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 {t("pricing.compare.rows.support.pro")}
               </td>
               <td className="p-3 sm:p-4 text-center">
@@ -96,6 +97,7 @@ export function FeatureComparison() {
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </section>
   );

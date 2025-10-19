@@ -13,10 +13,11 @@ export function PricingFaq() {
 
   return (
     <section className="pb-12 sm:pb-16 md:pb-20">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
-        {t("pricing.faq.title")}
-      </h2>
-      <Accordion type="single" collapsible className="w-full">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
+          {t("pricing.faq.title")}
+        </h2>
+        <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-base font-semibold">
             {t("pricing.faq.q1")}
@@ -41,7 +42,8 @@ export function PricingFaq() {
             {t("pricing.faq.a3")}
           </AccordionContent>
         </AccordionItem>
-      </Accordion>
+        </Accordion>
+      </div>
     </section>
   );
 }

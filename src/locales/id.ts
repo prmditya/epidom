@@ -10,6 +10,7 @@ export const id = {
       menu: "Menu",
       navTitle: "Navigasi",
       openMenu: "Buka menu",
+      closeMenu: "Tutup menu",
       homepage: "Halaman utama",
     },
     language: {
@@ -49,9 +50,7 @@ export const id = {
     waitlistText: "Jadilah yang pertama tahu saat kami meluncur!",
   },
   services: {
-    heroTitle: "SOLUSI UNTUK MANAJEMEN STOK MAKANAN ANDA",
-    heroTitleLine1: "SOLUSI UNTUK",
-    heroTitleLine2: "MANAJEMEN STOK MAKANAN ANDA",
+    heroTitle: "Solusi untuk manajemen stok makanan Anda",
     heroDesc:
       "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
     featureBlock: {
@@ -176,8 +175,7 @@ export const id = {
   },
   pricing: {
     heroTitle: "Solusi untuk manajemen persediaan makanan Anda",
-    heroDesc:
-      "Manajemen persediaan makanan adalah proses melacak bahan yang dibeli dan tidak dikonsumsi. Praktik ini penting untuk mencegah pemborosan dan mengoptimalkan operasional restoran Anda.",
+    heroDescription: "Manajemen persediaan makanan adalah proses melacak bahan yang dibeli dan tidak dikonsumsi. Praktik ini penting untuk mencegah pemborosan dan mengoptimalkan operasional restoran Anda.",
     plans: {
       starter: {
         title: "Starter",
@@ -251,6 +249,90 @@ export const id = {
   paymentsPage: {
     title: "Pembayaran",
     desc: "Kelola langganan dan preferensi pembayaran Anda. Ini adalah demo; semua tindakan disimulasikan.",
+  },
+  payments: {
+    backToPricing: "Kembali ke Harga",
+    hero: {
+      title: "Selesaikan Langganan Anda",
+      subtitle: "Pemrosesan pembayaran aman dengan enkripsi standar industri"
+    },
+    billing: {
+      title: "Informasi Penagihan",
+      firstName: "Nama Depan",
+      firstNamePlaceholder: "Masukkan nama depan Anda",
+      lastName: "Nama Belakang", 
+      lastNamePlaceholder: "Masukkan nama belakang Anda",
+      email: "Alamat Email",
+      emailPlaceholder: "email.anda@contoh.com",
+      company: "Perusahaan (Opsional)",
+      companyPlaceholder: "Nama perusahaan Anda"
+    },
+    payment: {
+      title: "Informasi Pembayaran",
+      cardNumber: "Nomor Kartu",
+      expiryMonth: "Bulan",
+      expiryYear: "Tahun",
+      cvv: "CVV"
+    },
+    terms: {
+      text: "Saya setuju dengan",
+      link: "Syarat Layanan dan Kebijakan Privasi"
+    },
+    processing: "Memproses...",
+    completePayment: "Selesaikan Pembayaran",
+    summary: {
+      title: "Ringkasan Pesanan",
+      selected: "Dipilih",
+      subtotal: "Subtotal",
+      tax: "Pajak",
+      total: "Total",
+      included: "Yang termasuk:",
+      billingInfo1: "Anda akan ditagih setiap bulan",
+      billingInfo2: "Batalkan kapan saja dari dashboard Anda"
+    },
+    security: {
+      title: "Pembayaran Aman",
+      ssl: {
+        title: "Terenkripsi SSL",
+        description: "Enkripsi SSL 256-bit"
+      },
+      encryption: {
+        title: "Pemrosesan Aman",
+        description: "Sesuai standar PCI DSS"
+      },
+      pci: {
+        title: "Bersertifikat PCI",
+        description: "Kepatuhan PCI level 1"
+      },
+      guarantee: {
+        title: "Jaminan Uang Kembali",
+        description: "Jaminan uang kembali 30 hari"
+      },
+      footer: "Informasi pembayaran Anda aman dan terenkripsi"
+    },
+    enterprise: {
+      hero: {
+        title: "Hubungi Tim Penjualan Kami",
+        subtitle: "Dapatkan penawaran khusus untuk kebutuhan enterprise Anda"
+      },
+      included: "Yang termasuk:",
+      form: {
+        title: "Dapatkan Penawaran Khusus Anda",
+        personalInfo: "Informasi Pribadi",
+        companyInfo: "Informasi Perusahaan",
+        requirements: "Kebutuhan Anda",
+        requirementsDesc: "Ceritakan tentang kebutuhan spesifik Anda:",
+        requirementsPlaceholder: "Jelaskan ukuran bisnis Anda, jumlah lokasi, fitur khusus yang dibutuhkan, persyaratan integrasi, dll.",
+        phone: "Nomor Telepon",
+        phonePlaceholder: "+62 812-3456-7890",
+        submit: "Minta Penawaran",
+        submitting: "Mengirim Permintaan..."
+      },
+      contact: {
+        title: "Lebih suka berbicara langsung?",
+        description: "Tim penjualan kami siap membantu Anda menemukan solusi yang tepat."
+      }
+    }
   },
   choosePlan: {
     title: "Pilih paket Anda",

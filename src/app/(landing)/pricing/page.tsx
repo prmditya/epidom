@@ -6,12 +6,20 @@ import { PricingCta } from "@/features/landing/pricing/components/pricing-cta";
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-background pt-12 sm:pt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-white pt-24 sm:pt-32" style={{ color: '#444444' }}>
+      <div className="animate-slide-up">
         <PricingHero />
+      </div>
+      <div className="animate-slide-up-delayed">
         <PricingCards />
+      </div>
+      <div className="animate-slide-up-delayed-2">
         <FeatureComparison />
+      </div>
+      <div className="animate-slide-up-delayed-3">
         <PricingFaq />
+      </div>
+      <div className="animate-slide-up-delayed-3">
         <PricingCta />
       </div>
     </main>

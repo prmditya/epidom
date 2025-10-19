@@ -33,6 +33,26 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
   const formRef = React.useRef<HTMLFormElement>(null);
   const { t } = useI18n();
 
+  // Fix for scrollbar issue - prevent navbar shift when dialog opens
+  React.useEffect(() => {
+    if (open) {
+      // Calculate scrollbar width
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      // Set CSS custom property for scrollbar width
+      document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+      
+      // Add class to body to apply our custom styles
+      document.body.classList.add('dialog-open');
+      
+      return () => {
+        // Clean up when dialog closes
+        document.body.classList.remove('dialog-open');
+        document.documentElement.style.removeProperty('--scrollbar-width');
+      };
+    }
+  }, [open]);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsSubmitting(true);
@@ -84,7 +104,6 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
       timestamp: new Date().toLocaleString(),
     };
 
-    console.log("📝 Submitting waitlist data:", formData);
 
     try {
       // Send to external API that handles email + spreadsheet
@@ -119,16 +138,24 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
         throw new Error("Failed to submit form");
       }
 
-      console.log("✅ Form submitted successfully");
 
       toast({
         title: t("waitlist.successTitle"),
         description: t("waitlist.successDesc"),
       });
+      
+      // Track conversion for analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'waitlist_signup', {
+          event_category: 'engagement',
+          event_label: 'pricing_cta',
+          value: 1
+        });
+      }
+      
       formRef.current?.reset();
       setOpen(false);
     } catch (error) {
-      console.error("❌ Error submitting waitlist:", error);
 
       toast({
         title: "Error",
@@ -152,10 +179,10 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
             variant === "home"
               ? "text-white hover:bg-gray-700"
               : variant === "sidebar"
-              ? "bg-gray-900 text-white hover:bg-gray-800"
-              : "bg-white text-gray-900 hover:bg-gray-100"
+              ? "text-white hover:opacity-80"
+              : "bg-white hover:bg-gray-100"
           }`}
-          style={variant === "home" ? { backgroundColor: "#444444" } : {}}
+          style={variant === "home" ? { backgroundColor: "#444444" } : variant === "sidebar" ? { backgroundColor: "#444444" } : { color: "#444444" }}
           aria-label={t("waitlist.openButtonAria")}
         >
           {t("waitlist.openButton")}
@@ -166,15 +193,15 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
         className="sm:max-w-md"
       >
         <DialogHeader>
-          <DialogTitle className="text-xl">{t("waitlist.title")}</DialogTitle>
-          <DialogDescription id="waitlist-description" className="text-base">
+          <DialogTitle className="text-xl" style={{ color: '#444444' }}>{t("waitlist.title")}</DialogTitle>
+          <DialogDescription id="waitlist-description" className="text-base" style={{ color: '#444444' }}>
             {t("waitlist.description")}
           </DialogDescription>
         </DialogHeader>
 
         <form ref={formRef} onSubmit={handleSubmit} className="grid gap-5 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="name" className="font-semibold">
+            <Label htmlFor="name" className="font-semibold" style={{ color: '#444444' }}>
               {t("waitlist.fields.name")}
             </Label>
             <Input
@@ -198,7 +225,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email" className="font-semibold">
+            <Label htmlFor="email" className="font-semibold" style={{ color: '#444444' }}>
               {t("waitlist.fields.email")}
             </Label>
             <Input
@@ -223,7 +250,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="company" className="font-semibold">
+            <Label htmlFor="company" className="font-semibold" style={{ color: '#444444' }}>
               {t("waitlist.fields.company")}
             </Label>
             <Input
@@ -248,6 +275,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
             <Button
               type="submit"
               className="rounded-full px-6 font-semibold btn-smooth"
+              style={{ backgroundColor: '#444444', color: 'white' }}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : t("waitlist.submit")}

@@ -10,6 +10,7 @@ export const en = {
       menu: "Menu",
       navTitle: "Navigation",
       openMenu: "Open menu",
+      closeMenu: "Close menu",
       homepage: "Homepage",
     },
     language: {
@@ -49,9 +50,7 @@ export const en = {
     waitlistText: "Be the first to know when we launch!",
   },
   services: {
-    heroTitle: "A SOLUTION FOR YOUR FOOD STOCK MANAGEMENT",
-    heroTitleLine1: "A SOLUTION FOR YOUR",
-    heroTitleLine2: "FOOD STOCK MANAGEMENT",
+    heroTitle: "A solution for your food stock management",
     heroDesc:
       "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
     featureBlock: {
@@ -173,8 +172,7 @@ export const en = {
   },
   pricing: {
     heroTitle: "A solution for your food stock management",
-    heroDesc:
-      "Food stock management is the process of tracking purchased and unconsumed ingredients. This practice is essential to prevent waste and optimize your restaurant operations.",
+    heroDescription: "Food stock management is the process of tracking purchased and unconsumed ingredients. This practice is essential to prevent waste and optimize your restaurant operations.",
     plans: {
       starter: {
         title: "Starter",
@@ -248,6 +246,90 @@ export const en = {
   paymentsPage: {
     title: "Payments",
     desc: "Manage your subscription and billing preferences. This is a demo; all actions are simulated.",
+  },
+  payments: {
+    backToPricing: "Back to Pricing",
+    hero: {
+      title: "Complete Your Subscription",
+      subtitle: "Secure payment processing with industry-standard encryption"
+    },
+    billing: {
+      title: "Billing Information",
+      firstName: "First Name",
+      firstNamePlaceholder: "Enter your first name",
+      lastName: "Last Name", 
+      lastNamePlaceholder: "Enter your last name",
+      email: "Email Address",
+      emailPlaceholder: "your.email@example.com",
+      company: "Company (Optional)",
+      companyPlaceholder: "Your company name"
+    },
+    payment: {
+      title: "Payment Information",
+      cardNumber: "Card Number",
+      expiryMonth: "Month",
+      expiryYear: "Year",
+      cvv: "CVV"
+    },
+    terms: {
+      text: "I agree to the",
+      link: "Terms of Service and Privacy Policy"
+    },
+    processing: "Processing...",
+    completePayment: "Complete Payment",
+    summary: {
+      title: "Order Summary",
+      selected: "Selected",
+      subtotal: "Subtotal",
+      tax: "Tax",
+      total: "Total",
+      included: "What's included:",
+      billingInfo1: "You will be charged monthly",
+      billingInfo2: "Cancel anytime from your dashboard"
+    },
+    security: {
+      title: "Secure Payment",
+      ssl: {
+        title: "SSL Encrypted",
+        description: "256-bit SSL encryption"
+      },
+      encryption: {
+        title: "Secure Processing",
+        description: "PCI DSS compliant"
+      },
+      pci: {
+        title: "PCI Certified",
+        description: "Level 1 PCI compliance"
+      },
+      guarantee: {
+        title: "Money Back",
+        description: "30-day money back guarantee"
+      },
+      footer: "Your payment information is secure and encrypted"
+    },
+    enterprise: {
+      hero: {
+        title: "Contact Our Sales Team",
+        subtitle: "Get a custom quote for your enterprise needs"
+      },
+      included: "What's included:",
+      form: {
+        title: "Get Your Custom Quote",
+        personalInfo: "Personal Information",
+        companyInfo: "Company Information",
+        requirements: "Your Requirements",
+        requirementsDesc: "Tell us about your specific needs:",
+        requirementsPlaceholder: "Describe your business size, number of locations, specific features needed, integration requirements, etc.",
+        phone: "Phone Number",
+        phonePlaceholder: "+1 (555) 123-4567",
+        submit: "Request Quote",
+        submitting: "Sending Request..."
+      },
+      contact: {
+        title: "Prefer to talk directly?",
+        description: "Our sales team is ready to help you find the perfect solution."
+      }
+    }
   },
   choosePlan: {
     title: "Choose your plan",

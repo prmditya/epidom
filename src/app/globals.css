@@ -1,6 +1,33 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth scrolling works on all elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Fix for dialog scrollbar issue - prevent navbar shift when modal opens */
+/* This prevents the layout shift when scrollbar disappears */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Ensure consistent layout when dialog is open */
+body.dialog-open {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+/* Prevent Radix UI from adding its own scroll lock styles that cause layout shift */
+[data-radix-scroll-area-viewport] {
+  scrollbar-gutter: stable;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -136,6 +163,134 @@
   }
 }
 
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md;
+  }
+
+  .btn-smooth {
+    @apply transition-all duration-200 active:scale-95;
+  }
+
+  /* Mobile navbar improvements */
+  .mobile-navbar {
+    @apply fixed top-0 left-0 right-0 z-50 shadow-lg;
+    background-color: #444444;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Ensure navbar content is crisp */
+  .mobile-navbar * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ========================================
+   CAROUSEL STYLES
+   ======================================== */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* ========================================
+   PAGE ENTRANCE ANIMATIONS
+   ======================================== */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFadeInDelayed {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpFadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up-delayed {
+  animation: slideUpFadeInDelayed 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delayed-2 {
+  animation: slideUpFadeInDelayed 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delayed-3 {
+  animation: slideUpFadeInDelayed 0.6s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+/* ========================================
+   MARKETING PAGES TYPOGRAPHY STANDARDS
+   ======================================== */
+  /* 
+   * For Services, Pricing, Contact pages:
+   * 
+   * Top Spacing: py-8 sm:py-12 (first section)
+   * Container: mx-auto max-w-7xl px-4 sm:px-6 lg:px-8
+   * 
+   * H1: text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight
+   *     Color: style={{ color: '#444444' }}
+   * 
+   * H2: text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight
+   *     Color: style={{ color: '#444444' }}
+   * 
+   * Main Paragraph: text-lg sm:text-xl md:text-2xl leading-relaxed
+   *                 Color: style={{ color: '#444444' }}
+   * 
+   * Secondary Text: text-base sm:text-lg md:text-xl
+   *                 Color: style={{ color: '#444444' }}
+   * 
+   * Muted Text: text-muted-foreground (Tailwind class, no inline style)
+   * 
+   * Title-Description Spacing: space-y-4 sm:space-y-6 (between H1 and main paragraph)
+   * 
+   * Note: Home page intentionally uses smaller compact sizes
+   * 
+   * IMAGE SIZE STANDARDS:
+   * 
+   * Large Images: aspect-video lg:aspect-[4/3] (main featured images)
+   * Medium Images: h-1/2 (half height of large, used in 3-image layouts)
+   * Small Images: h-1/2 (half height of large, used in 3-image layouts)
+   * 
+   * 3-Image Layout: flex flex-col gap-4 h-full
+   * - Large: 70% width, full height
+   * - Medium: 30% width, half height (top)
+   * - Small: 30% width, half height (bottom)
+   * 
+   * All images use: rounded-lg overflow-hidden for consistent styling
+   */
+
+/* Enhanced card shadows and hover effects */
 @layer components {
   .card-hover {
     @apply transition-all duration-300 hover:shadow-md;

@@ -26,15 +26,17 @@ export default function LandingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<div>Loading...</div>}>
-        <I18nProvider>
-          <SiteHeader />
-          <main className="min-h-screen">{children}</main>
-          <SiteFooter />
-          <CookieConsentBar />
-        </I18nProvider>
-      </Suspense>
-    </ErrorBoundary>
+    <div className={`${lato.variable} font-lato`}>
+      <ErrorBoundary>
+        <Suspense fallback={<div>Loading...</div>}>
+          <I18nProvider>
+            <SiteHeader />
+            <main className="min-h-screen">{children}</main>
+            <SiteFooter />
+            <CookieConsentBar />
+          </I18nProvider>
+        </Suspense>
+      </ErrorBoundary>
+    </div>
   );
 }
