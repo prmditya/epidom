@@ -30,11 +30,11 @@ export const SiteFooter = memo(function SiteFooter() {
               {t("footer.addressHeading")}
             </h4>
             <p className="text-sm sm:text-base opacity-80">
-              {t("footer.addressLines.0")}
+              {t("footer.addressLines")[0]}
               <br />
-              {t("footer.addressLines.1")}
+              {t("footer.addressLines")[1]}
               <br />
-              {t("footer.addressLines.2")}
+              {t("footer.addressLines")[2]}
             </p>
           </div>
 
