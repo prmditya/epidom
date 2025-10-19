@@ -7,22 +7,23 @@ export function ContactInfo() {
   const { t } = useI18n();
 
   return (
-    <div className="space-y-6 sm:space-y-8">
-      {/* Title */}
-      <h1
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-        style={{ color: "#444444" }}
-      >
-        {t("contact.title")}
-      </h1>
+    <div className="py-8 pb-4 sm:py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Title */}
+        <h1
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 sm:mb-8"
+          style={{ color: "#444444" }}
+        >
+          {t("contact.title")}
+        </h1>
 
-      {/* Description */}
-      <p className="text-lg sm:text-xl md:text-2xl leading-relaxed" style={{ color: '#444444' }}>
-        {t("contact.subtitle")}
-      </p>
+        {/* Description */}
+        <p className="text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 sm:mb-8" style={{ color: '#444444' }}>
+          {t("contact.subtitle")}
+        </p>
 
-      {/* Contact Information */}
-      <div className="space-y-4 sm:space-y-5">
+        {/* Contact Information */}
+        <div className="space-y-4 sm:space-y-5">
         {/* Address */}
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0 mt-1">
@@ -89,6 +90,7 @@ export function ContactInfo() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

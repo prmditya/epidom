@@ -18,9 +18,10 @@ export function PricingCards() {
   const { t } = useI18n();
 
   return (
-    <section className="pb-20 sm:pb-24 md:pb-28">
-      {/* Desktop Layout */}
-      <div className="hidden lg:grid gap-6 lg:grid-cols-3">
+    <section className="pb-20 sm:pb-24 md:pb-28" data-section="pricing-cards">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid gap-6 lg:grid-cols-3">
         {/* Starter Plan */}
         <Card className="rounded-2xl border-2 flex flex-col">
           <CardHeader className="pb-4">
@@ -125,10 +126,10 @@ export function PricingCards() {
             </ul>
           </CardContent>
         </Card>
-      </div>
+        </div>
 
-      {/* Mobile/Tablet Carousel Layout */}
-      <div className="lg:hidden pt-8 pb-16">
+        {/* Mobile/Tablet Carousel Layout */}
+        <div className="lg:hidden pt-8 pb-16">
         <Carousel showArrows={true} showDots={true} defaultCenterIndex={1} className="max-w-sm mx-auto min-h-[600px]">
           {/* Starter Plan */}
           <Card className="rounded-2xl border-2 flex flex-col mt-6">
@@ -235,6 +236,7 @@ export function PricingCards() {
             </CardContent>
           </Card>
         </Carousel>
+        </div>
       </div>
     </section>
   );

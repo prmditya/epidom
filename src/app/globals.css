@@ -1,6 +1,33 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth scrolling works on all elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Fix for dialog scrollbar issue - prevent navbar shift when modal opens */
+/* This prevents the layout shift when scrollbar disappears */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Ensure consistent layout when dialog is open */
+body.dialog-open {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+/* Prevent Radix UI from adding its own scroll lock styles that cause layout shift */
+[data-radix-scroll-area-viewport] {
+  scrollbar-gutter: stable;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

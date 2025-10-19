@@ -246,6 +246,90 @@ export const fr = {
     title: "Paiements",
     desc: "Gérez votre abonnement et vos préférences de facturation. C'est un démonstration ; toutes les actions sont simulées.",
   },
+  payments: {
+    backToPricing: "Retour aux Tarifs",
+    hero: {
+      title: "Finalisez Votre Abonnement",
+      subtitle: "Traitement de paiement sécurisé avec chiffrement de niveau industrie"
+    },
+    billing: {
+      title: "Informations de Facturation",
+      firstName: "Prénom",
+      firstNamePlaceholder: "Entrez votre prénom",
+      lastName: "Nom de Famille", 
+      lastNamePlaceholder: "Entrez votre nom de famille",
+      email: "Adresse Email",
+      emailPlaceholder: "votre.email@exemple.com",
+      company: "Entreprise (Optionnel)",
+      companyPlaceholder: "Nom de votre entreprise"
+    },
+    payment: {
+      title: "Informations de Paiement",
+      cardNumber: "Numéro de Carte",
+      expiryMonth: "Mois",
+      expiryYear: "Année",
+      cvv: "CVV"
+    },
+    terms: {
+      text: "J'accepte les",
+      link: "Conditions d'Utilisation et Politique de Confidentialité"
+    },
+    processing: "Traitement...",
+    completePayment: "Finaliser le Paiement",
+    summary: {
+      title: "Résumé de la Commande",
+      selected: "Sélectionné",
+      subtotal: "Sous-total",
+      tax: "Taxe",
+      total: "Total",
+      included: "Ce qui est inclus :",
+      billingInfo1: "Vous serez facturé mensuellement",
+      billingInfo2: "Annulez à tout moment depuis votre tableau de bord"
+    },
+    security: {
+      title: "Paiement Sécurisé",
+      ssl: {
+        title: "Chiffré SSL",
+        description: "Chiffrement SSL 256-bit"
+      },
+      encryption: {
+        title: "Traitement Sécurisé",
+        description: "Conforme PCI DSS"
+      },
+      pci: {
+        title: "Certifié PCI",
+        description: "Conformité PCI niveau 1"
+      },
+      guarantee: {
+        title: "Remboursement",
+        description: "Garantie de remboursement 30 jours"
+      },
+      footer: "Vos informations de paiement sont sécurisées et chiffrées"
+    },
+    enterprise: {
+      hero: {
+        title: "Contactez Notre Équipe Commerciale",
+        subtitle: "Obtenez un devis personnalisé pour vos besoins d'entreprise"
+      },
+      included: "Ce qui est inclus :",
+      form: {
+        title: "Obtenez Votre Devis Personnalisé",
+        personalInfo: "Informations Personnelles",
+        companyInfo: "Informations de l'Entreprise",
+        requirements: "Vos Besoins",
+        requirementsDesc: "Parlez-nous de vos besoins spécifiques :",
+        requirementsPlaceholder: "Décrivez la taille de votre entreprise, le nombre d'emplacements, les fonctionnalités spécifiques nécessaires, les exigences d'intégration, etc.",
+        phone: "Numéro de Téléphone",
+        phonePlaceholder: "+33 7 81 73 23 86",
+        submit: "Demander un Devis",
+        submitting: "Envoi de la Demande..."
+      },
+      contact: {
+        title: "Préférez-vous parler directement ?",
+        description: "Notre équipe commerciale est prête à vous aider à trouver la solution parfaite."
+      }
+    }
+  },
   choosePlan: {
     title: "Choisissez votre plan",
     desc: "Comparez les plans et passez à Premium depuis la page Tarifs.",

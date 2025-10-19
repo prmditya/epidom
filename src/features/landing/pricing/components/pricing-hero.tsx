@@ -18,7 +18,11 @@ export function PricingHero() {
               width={120}
               height={32}
               className="h-8 w-auto mx-auto"
-              style={{ width: "auto", height: "auto" }}
+              style={{ 
+                width: "auto", 
+                height: "auto",
+                filter: "invert(27%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(96%) contrast(80%)"
+              }}
             />
           </div>
 

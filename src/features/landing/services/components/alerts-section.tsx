@@ -7,8 +7,8 @@ export function AlertsSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white">
-      <div className="py-8 sm:py-12">
+    <section className="bg-white py-8 sm:py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title di luar box */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#444444' }}>
           {t("services.alertsTitle")}
