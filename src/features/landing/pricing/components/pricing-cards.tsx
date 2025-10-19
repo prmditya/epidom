@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,7 @@ import { useI18n } from "@/components/lang/i18n-provider";
 import { Check } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
 
-export function PricingCards() {
+export const PricingCards = memo(function PricingCards() {
   const { t } = useI18n();
 
   return (
@@ -25,13 +26,13 @@ export function PricingCards() {
         {/* Starter Plan */}
         <Card className="rounded-2xl border-2 flex flex-col">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.starter.title")}</CardTitle>
+            <CardTitle className="text-2xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.starter.title")}</CardTitle>
             <CardDescription className="text-sm">{t("pricing.plans.starter.description")}</CardDescription>
           </CardHeader>
           <CardContent className="flex-1 space-y-6">
             <div>
-              <div className="text-4xl font-bold" style={{ color: '#444444' }}>€29</div>
-              <p className="text-sm" style={{ color: '#444444' }}>{t("pricing.plans.starter.billing")}</p>
+              <div className="text-4xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>€29</div>
+              <p className="text-sm" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.starter.billing")}</p>
             </div>
             <Button asChild className="w-full rounded-lg bg-transparent" variant="outline">
               <Link href="/payments?plan=starter">{t("pricing.plans.starter.select")}</Link>
@@ -62,13 +63,13 @@ export function PricingCards() {
             </span>
           </div>
           <CardHeader className="pb-4 pt-8">
-            <CardTitle className="text-2xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.pro.title")}</CardTitle>
+            <CardTitle className="text-2xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.pro.title")}</CardTitle>
             <CardDescription className="text-sm">{t("pricing.plans.pro.description")}</CardDescription>
           </CardHeader>
           <CardContent className="flex-1 space-y-6">
             <div>
-              <div className="text-4xl font-bold" style={{ color: '#444444' }}>€79</div>
-              <p className="text-sm" style={{ color: '#444444' }}>{t("pricing.plans.pro.billing")}</p>
+              <div className="text-4xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>€79</div>
+              <p className="text-sm" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.pro.billing")}</p>
             </div>
             <Button asChild className="w-full rounded-lg">
               <Link href="/payments?plan=pro">{t("pricing.plans.pro.select")}</Link>
@@ -98,13 +99,13 @@ export function PricingCards() {
         {/* Enterprise Plan */}
         <Card className="rounded-2xl border-2 flex flex-col">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.enterprise.title")}</CardTitle>
+            <CardTitle className="text-2xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.enterprise.title")}</CardTitle>
             <CardDescription className="text-sm">{t("pricing.plans.enterprise.description")}</CardDescription>
           </CardHeader>
           <CardContent className="flex-1 space-y-6">
             <div>
-              <div className="text-3xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.enterprise.price")}</div>
-              <p className="text-sm" style={{ color: '#444444' }}>{t("pricing.plans.enterprise.billing")}</p>
+              <div className="text-3xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.enterprise.price")}</div>
+              <p className="text-sm" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.enterprise.billing")}</p>
             </div>
             <Button asChild className="w-full rounded-lg bg-transparent" variant="outline">
               <Link href="/payments?plan=enterprise">{t("pricing.plans.enterprise.select")}</Link>
@@ -134,13 +135,13 @@ export function PricingCards() {
           {/* Starter Plan */}
           <Card className="rounded-2xl border-2 flex flex-col mt-6">
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.starter.title")}</CardTitle>
+              <CardTitle className="text-2xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.starter.title")}</CardTitle>
               <CardDescription className="text-sm">{t("pricing.plans.starter.description")}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 space-y-6">
               <div>
-                <div className="text-4xl font-bold" style={{ color: '#444444' }}>€29</div>
-                <p className="text-sm" style={{ color: '#444444' }}>{t("pricing.plans.starter.billing")}</p>
+                <div className="text-4xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>€29</div>
+                <p className="text-sm" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.starter.billing")}</p>
               </div>
               <Button asChild className="w-full rounded-lg bg-transparent" variant="outline">
                 <Link href="/payments?plan=starter">{t("pricing.plans.starter.select")}</Link>
@@ -171,13 +172,13 @@ export function PricingCards() {
               </span>
             </div>
             <CardHeader className="pb-4 pt-8">
-              <CardTitle className="text-2xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.pro.title")}</CardTitle>
+              <CardTitle className="text-2xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.pro.title")}</CardTitle>
               <CardDescription className="text-sm">{t("pricing.plans.pro.description")}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 space-y-6">
               <div>
-                <div className="text-4xl font-bold" style={{ color: '#444444' }}>€79</div>
-                <p className="text-sm" style={{ color: '#444444' }}>{t("pricing.plans.pro.billing")}</p>
+                <div className="text-4xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>€79</div>
+                <p className="text-sm" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.pro.billing")}</p>
               </div>
               <Button asChild className="w-full rounded-lg">
                 <Link href="/payments?plan=pro">{t("pricing.plans.pro.select")}</Link>
@@ -207,13 +208,13 @@ export function PricingCards() {
           {/* Enterprise Plan */}
           <Card className="rounded-2xl border-2 flex flex-col mt-6">
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.enterprise.title")}</CardTitle>
+              <CardTitle className="text-2xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.enterprise.title")}</CardTitle>
               <CardDescription className="text-sm">{t("pricing.plans.enterprise.description")}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 space-y-6">
               <div>
-                <div className="text-3xl font-bold" style={{ color: '#444444' }}>{t("pricing.plans.enterprise.price")}</div>
-                <p className="text-sm" style={{ color: '#444444' }}>{t("pricing.plans.enterprise.billing")}</p>
+                <div className="text-3xl font-bold" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.enterprise.price")}</div>
+                <p className="text-sm" style={{ color: 'var(--color-brand-primary)' }}>{t("pricing.plans.enterprise.billing")}</p>
               </div>
               <Button asChild className="w-full rounded-lg bg-transparent" variant="outline">
                 <Link href="/payments?plan=enterprise">{t("pricing.plans.enterprise.select")}</Link>
@@ -240,4 +241,4 @@ export function PricingCards() {
       </div>
     </section>
   );
-}
+});

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";
+import { logger } from "@/lib/logger";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,9 +24,9 @@ export function ContactSalesForm() {
       // Simulate form submission
       await new Promise(resolve => setTimeout(resolve, 2000));
       // Handle success here
-      console.log('Form submitted successfully');
+      logger.info('Form submitted successfully');
     } catch (error) {
-      console.error('Form submission error:', error);
+      logger.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
     }

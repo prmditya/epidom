@@ -10,7 +10,7 @@ export function TrackingSection() {
     <section className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6 sm:mb-8" style={{ color: '#444444' }}>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6 sm:mb-8" style={{ color: 'var(--color-brand-primary)' }}>
           {t("services.trackingTitle")}
         </h2>
         

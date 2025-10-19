@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { I18nProvider } from "@/components/lang/i18n-provider";
+import { ErrorBoundary } from "@/components/error-boundary";
 import PageShell from "@/features/dashboard/components/page-shell";
 
 export const metadata: Metadata = {
@@ -20,11 +21,13 @@ export default function Layout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <I18nProvider>
-            <PageShell>{children}</PageShell>
-          </I18nProvider>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<div>Loading...</div>}>
+            <I18nProvider>
+              <PageShell>{children}</PageShell>
+            </I18nProvider>
+          </Suspense>
+        </ErrorBoundary>
         <Analytics />
       </body>
     </html>

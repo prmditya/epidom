@@ -11,10 +11,10 @@ export function ContactMap() {
         <div className="text-center">
           <div className="w-full h-80 sm:h-96 lg:h-[496px] bg-gray-200 rounded-lg flex items-center justify-center">
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl mb-4" style={{ color: "#444444" }}>
+              <div className="text-4xl sm:text-5xl mb-4" style={{ color: "var(--color-brand-primary)" }}>
                 🗺️
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-2" style={{ color: "#444444" }}>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2" style={{ color: "var(--color-brand-primary)" }}>
                 Interactive Map
               </h3>
               <p

@@ -57,6 +57,7 @@ export function Topbar() {
                 width={56}
                 height={24}
                 className="h-5 w-auto object-contain"
+                sizes="(max-width: 768px) 56px, 56px"
                 priority
               />
             </div>

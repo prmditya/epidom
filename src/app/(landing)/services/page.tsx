@@ -7,7 +7,7 @@ import { AlertsSection } from "@/features/landing/services/components/alerts-sec
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 sm:pt-32" style={{ color: '#444444' }}>
+    <main className="min-h-screen bg-white pt-24 sm:pt-32" style={{ color: 'var(--color-brand-primary)' }}>
       <div className="animate-slide-up">
         <HeroSection />
       </div>

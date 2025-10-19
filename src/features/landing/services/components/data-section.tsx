@@ -10,7 +10,7 @@ export function DataSection() {
     <section className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title di luar box */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center lg:text-right" style={{ color: '#444444' }}>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center lg:text-right" style={{ color: 'var(--color-brand-primary)' }}>
           {t("services.dataTitle")}
         </h2>
         

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { WaitlistDialog } from "@/features/landing/components/waitlist-dialog";
+import { DynamicWaitlistDialog } from "@/lib/dynamic-imports.client";
 import { useI18n } from "@/components/lang/i18n-provider";
 
 export function PricingCta() {
@@ -46,11 +46,11 @@ export function PricingCta() {
           {t("pricing.finalCta.desc")}
         </p>
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
-          <WaitlistDialog />
+          <DynamicWaitlistDialog />
           <Button 
             variant="secondary" 
             className="rounded-lg transition-colors duration-200 hover:bg-gray-200 hover:shadow-md" 
-            style={{ color: "#444444" }}
+            style={{ color: "var(--color-brand-primary)" }}
             onClick={handleViewPlansClick}
           >
             {t("pricing.finalCta.goPayments")}

@@ -1,12 +1,13 @@
 "use client";
 
+import { memo } from "react";
 import Countdown from "react-countdown";
 import { useI18n } from "@/components/lang/i18n-provider";
 import { WaitlistDialog } from "@/features/landing/components/waitlist-dialog";
 import { Mail, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export function CountdownComponent() {
+export const CountdownComponent = memo(function CountdownComponent() {
   const { t } = useI18n();
   const [isClient, setIsClient] = useState(false);
   const targetDate = new Date("2025-11-12T00:00:00");
@@ -21,7 +22,7 @@ export function CountdownComponent() {
         {/* Content wrapper - ultra compact design */}
         <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 py-4 sm:py-6 animate-slide-up">
           {/* Main heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: '#444444' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: 'var(--color-brand-primary)' }}>
             {t("countdown.title")}
           </h1>
 
@@ -61,22 +62,22 @@ export function CountdownComponent() {
           {/* Contact information - ultra compact */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-sm sm:text-base">
             <div className="flex items-center gap-2">
-              <Mail className="w-5 h-5" style={{ color: '#444444' }} />
+              <Mail className="w-5 h-5" style={{ color: 'var(--color-brand-primary)' }} />
               <a
                 className="underline hover:no-underline transition-all duration-200 font-medium"
                 href="mailto:evancau@gmail.com"
-                style={{ color: '#444444' }}
+                style={{ color: 'var(--color-brand-primary)' }}
               >
                 {t("countdown.email")}
               </a>
             </div>
             
             <div className="flex items-center gap-2">
-              <MessageCircle className="w-5 h-5" style={{ color: '#444444' }} />
+              <MessageCircle className="w-5 h-5" style={{ color: 'var(--color-brand-primary)' }} />
               <a
                 className="underline hover:no-underline transition-all duration-200 font-medium"
                 href="https://wa.me/6281234567890"
-                style={{ color: '#444444' }}
+                style={{ color: 'var(--color-brand-primary)' }}
               >
                 {t("countdown.whatsapp")}
               </a>
@@ -96,7 +97,7 @@ export function CountdownComponent() {
       </div>
     </main>
   );
-}
+});
 
 // Flip-board style unit with EPIDOM branding - responsive version
 function FlipUnit({ value, label }: { value: number; label: string }) {
@@ -126,7 +127,7 @@ function FlipUnit({ value, label }: { value: number; label: string }) {
       </div>
       <span 
         className="mt-2 text-sm sm:text-xs font-semibold tracking-wider uppercase"
-        style={{ color: '#444444' }}
+        style={{ color: 'var(--color-brand-primary)' }}
       >
         {label}
       </span>

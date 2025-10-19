@@ -19,7 +19,7 @@ export default async function PaymentsPage({ searchParams }: PaymentsPageProps) 
   const selectedPlan = isValidPlan ? plan : "starter";
 
   return (
-    <main className="min-h-screen bg-white pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 lg:pb-24" style={{ color: '#444444' }}>
+    <main className="min-h-screen bg-white pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 lg:pb-24" style={{ color: 'var(--color-brand-primary)' }}>
       <div className="animate-slide-up">
         <PaymentHero plan={selectedPlan} />
       </div>

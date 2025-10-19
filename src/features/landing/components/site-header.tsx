@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -15,7 +16,7 @@ import { usePathname } from "next/navigation";
 import { LanguageSwitcher } from "@/components/lang/language-switcher";
 import { useI18n } from "@/components/lang/i18n-provider";
 
-export function SiteHeader() {
+export const SiteHeader = memo(function SiteHeader() {
   const pathname = usePathname();
   const { t } = useI18n();
 
@@ -32,6 +33,7 @@ export function SiteHeader() {
               height={32}
               className="h-7 sm:h-8 w-auto"
               style={{ width: "auto", height: "auto" }}
+              sizes="(max-width: 768px) 120px, 120px"
               priority
             />
           </Link>
@@ -125,7 +127,8 @@ export function SiteHeader() {
                             width: "auto", 
                             height: "auto",
                             filter: "invert(27%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(96%) contrast(80%)"
-                          }} 
+                          }}
+                    sizes="(max-width: 768px) 120px, 120px"
                   />
                   <span className="sr-only">{t("common.brand")}</span>
                 </Link>
@@ -248,4 +251,4 @@ export function SiteHeader() {
       </nav>
     </header>
   );
-}
+});

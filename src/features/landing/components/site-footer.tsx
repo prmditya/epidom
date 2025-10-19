@@ -1,9 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/lang/i18n-provider";
 
-export function SiteFooter() {
+export const SiteFooter = memo(function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer
@@ -65,6 +66,6 @@ export function SiteFooter() {
       </div>
     </footer>
   );
-}
+});
 
 export default SiteFooter;

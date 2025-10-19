@@ -18,6 +18,7 @@ export const Hero = React.memo(function Hero() {
             width={1600}
             height={1066}
             className="h-full w-full object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority
           />
         </div>
@@ -25,13 +26,13 @@ export const Hero = React.memo(function Hero() {
           <div>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
-              style={{ color: "#444444" }}
+              style={{ color: "var(--color-brand-primary)" }}
             >
               {t("hero.title")}
             </h1>
             <p
               className="mt-3 sm:mt-4 text-balance text-lg sm:text-xl md:text-2xl font-semibold leading-snug"
-              style={{ color: "#444444" }}
+              style={{ color: "var(--color-brand-primary)" }}
             >
               {t("hero.subtitle")}
             </p>

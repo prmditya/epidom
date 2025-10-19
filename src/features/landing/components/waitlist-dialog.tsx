@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { memo } from "react";
 import {
   Dialog,
   DialogContent,
@@ -25,7 +26,7 @@ interface WaitlistDialogProps {
   variant?: "default" | "home" | "sidebar";
 }
 
-export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
+export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
   const [open, setOpen] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [errors, setErrors] = React.useState<ValidationError[]>([]);
@@ -193,15 +194,15 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
         className="sm:max-w-md"
       >
         <DialogHeader>
-          <DialogTitle className="text-xl" style={{ color: '#444444' }}>{t("waitlist.title")}</DialogTitle>
-          <DialogDescription id="waitlist-description" className="text-base" style={{ color: '#444444' }}>
+          <DialogTitle className="text-xl" style={{ color: 'var(--color-brand-primary)' }}>{t("waitlist.title")}</DialogTitle>
+          <DialogDescription id="waitlist-description" className="text-base" style={{ color: 'var(--color-brand-primary)' }}>
             {t("waitlist.description")}
           </DialogDescription>
         </DialogHeader>
 
         <form ref={formRef} onSubmit={handleSubmit} className="grid gap-5 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="name" className="font-semibold" style={{ color: '#444444' }}>
+            <Label htmlFor="name" className="font-semibold" style={{ color: 'var(--color-brand-primary)' }}>
               {t("waitlist.fields.name")}
             </Label>
             <Input
@@ -225,7 +226,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email" className="font-semibold" style={{ color: '#444444' }}>
+            <Label htmlFor="email" className="font-semibold" style={{ color: 'var(--color-brand-primary)' }}>
               {t("waitlist.fields.email")}
             </Label>
             <Input
@@ -250,7 +251,7 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="company" className="font-semibold" style={{ color: '#444444' }}>
+            <Label htmlFor="company" className="font-semibold" style={{ color: 'var(--color-brand-primary)' }}>
               {t("waitlist.fields.company")}
             </Label>
             <Input
@@ -285,6 +286,6 @@ export function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
       </DialogContent>
     </Dialog>
   );
-}
+});
 
 export default WaitlistDialog;

@@ -13,14 +13,14 @@ export function HeroSection() {
         <div className="space-y-6 sm:space-y-8 lg:col-span-8">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
-            style={{ color: "#444444" }}
+            style={{ color: "var(--color-brand-primary)" }}
           >
             {t("services.heroTitle")}
           </h1>
 
           <p
             className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl"
-            style={{ color: "#444444" }}
+            style={{ color: "var(--color-brand-primary)" }}
           >
             {t("services.heroDesc")}
           </p>

@@ -28,11 +28,11 @@ export function DashboardSection() {
           {/* Text Section - 30% width on desktop, full width on mobile/tablet */}
           <div className="md:col-span-1 lg:col-span-3 bg-white flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 order-2 md:order-2">
             <div className="space-y-3 sm:space-y-4 md:space-y-6 text-left w-full">
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed" style={{ color: '#444444', fontWeight: '300' }}>
+              <p className="text-base sm:text-lg md:text-xl leading-relaxed" style={{ color: 'var(--color-brand-primary)', fontWeight: '300' }}>
                 {t("services.dashboardDesc1")}
               </p>
               
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed" style={{ color: '#444444', fontWeight: '300' }}>
+              <p className="text-base sm:text-lg md:text-xl leading-relaxed" style={{ color: 'var(--color-brand-primary)', fontWeight: '300' }}>
                 {t("services.dashboardDesc2")}
               </p>
             </div>

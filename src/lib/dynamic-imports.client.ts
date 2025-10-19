@@ -55,6 +55,11 @@ export const LazyHero = dynamic(
   }
 );
 
+export const DynamicWaitlistDialog = dynamic(
+  () => import('@/features/landing/components/waitlist-dialog').then(mod => ({ default: mod.WaitlistDialog })),
+  { ssr: false, loading: () => null }
+);
+
 export const LazyWaitlistDialog = dynamic(
   () =>
     import("@/features/landing/components/waitlist-dialog").then((mod) => ({

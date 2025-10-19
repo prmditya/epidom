@@ -27,12 +27,12 @@ export function PricingHero() {
           </div>
 
           {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4 sm:mb-6" style={{ color: '#444444' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4 sm:mb-6" style={{ color: 'var(--color-brand-primary)' }}>
             {t("pricing.heroTitle")}
           </h1>
 
           {/* Description */}
-          <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto" style={{ color: '#444444' }}>
+          <p className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto" style={{ color: 'var(--color-brand-primary)' }}>
             {t("pricing.heroDescription")}
           </p>
         </div>

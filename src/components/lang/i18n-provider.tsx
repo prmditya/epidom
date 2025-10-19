@@ -14,10 +14,14 @@ type I18nContextType = {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
-function get(obj: any, path: string): any {
+type TranslationValue = string | number | ((arg: number) => string);
+type TranslationObject = { [key: string]: TranslationValue | TranslationObject };
+
+function get(obj: TranslationObject, path: string): TranslationValue | undefined {
   return path
     .split(".")
-    .reduce((acc: any, key) => (acc ? acc[key] : undefined), obj)
+    .reduce((acc: TranslationObject | TranslationValue | undefined, key) => 
+      (acc && typeof acc === 'object' && !Array.isArray(acc) ? acc[key] : undefined), obj) as TranslationValue | undefined;
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
