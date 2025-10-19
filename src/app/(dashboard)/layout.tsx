@@ -18,15 +18,13 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <I18nProvider>
-            <PageShell>{children}</PageShell>
-          </I18nProvider>
-        </Suspense>
-        <Analytics />
-      </body>
-    </html>
+    <div className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <I18nProvider>
+          <PageShell>{children}</PageShell>
+        </I18nProvider>
+      </Suspense>
+      <Analytics />
+    </div>
   );
 }

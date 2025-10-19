@@ -17,13 +17,11 @@ export default function LoginLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <I18nProvider>{children}</I18nProvider>
-        </Suspense>
-        <Analytics />
-      </body>
-    </html>
+    <div className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <I18nProvider>{children}</I18nProvider>
+      </Suspense>
+      <Analytics />
+    </div>
   );
 }

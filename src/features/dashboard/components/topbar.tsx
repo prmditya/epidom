@@ -50,13 +50,13 @@ export function Topbar() {
                 <Sidebar mode="mobile" />
               </SheetContent>
             </Sheet>
-            <div className="flex h-8 w-14 items-center justify-center rounded-md bg-transparent">
+            <div className="flex w-auto items-center justify-center rounded-md bg-transparent">
               <Image
-                src="/images/logo2.png"
+                src="/images/logo-white.png"
                 alt="EPIDOM logo"
-                width={56}
-                height={24}
-                className="h-5 w-auto object-contain"
+                width={80}
+                height={100}
+                className="w-auto object-contain"
                 priority
               />
             </div>
