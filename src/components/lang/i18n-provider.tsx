@@ -58,7 +58,8 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       if (typeof value === "function") {
         return value(new Date().getFullYear())
       }
-      return value ?? key
+      // Convert number to string if needed
+      return String(value ?? key)
     },
     [locale],
   )
