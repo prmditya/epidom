@@ -29,7 +29,7 @@ export function Topbar() {
   return (
     <header
       role="banner"
-      className="sticky top-0 z-40 w-full bg-primary text-primary-foreground shadow rounded-none"
+      className="sticky top-0 z-40 w-full bg-primary text-primary-foreground shadow rounded-none navbar-no-transition"
     >
       <div className="mx-auto max-w-7xl px-3">
         <div className="grid h-14 grid-cols-[1fr_minmax(220px,720px)_1fr] items-center gap-3">
