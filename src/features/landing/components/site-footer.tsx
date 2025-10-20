@@ -47,7 +47,7 @@ export const SiteFooter = memo(function SiteFooter() {
               <li>
                 <Link
                   href="mailto:info@epidom.com"
-                  className="underline underline-offset-4 hover:opacity-80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-background/70 transition-opacity"
+                  className="no-underline hover:opacity-80 transition-opacity text-white/80 hover:text-white"
                 >
                   info@epidom.com
                 </Link>
@@ -55,7 +55,7 @@ export const SiteFooter = memo(function SiteFooter() {
               <li>
                 <Link
                   href="mailto:mrcaoevan@gmail.com"
-                  className="underline underline-offset-4 hover:opacity-80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-background/70 transition-opacity"
+                  className="no-underline hover:opacity-80 transition-opacity text-white/80 hover:text-white"
                 >
                   mrcaoevan@gmail.com
                 </Link>
