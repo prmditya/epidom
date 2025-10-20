@@ -29,13 +29,11 @@ export const SiteFooter = memo(function SiteFooter() {
             <h4 className="text-pretty text-base sm:text-lg font-semibold">
               {t("footer.addressHeading")}
             </h4>
-            <p className="text-sm sm:text-base leading-7 opacity-80">
-              {t("contact.info.address.line1")}
-              <br />
-              {t("contact.info.address.line2")}
-              <br />
-              {t("contact.info.phone.number")}
-            </p>
+            <div className="text-sm sm:text-base text-white/80 space-y-2">
+              <div>{t("contact.info.address.line1")}</div>
+              <div>{t("contact.info.address.line2")}</div>
+              <div>{t("contact.info.phone.number")}</div>
+            </div>
           </div>
 
           {/* Right: contact */}
