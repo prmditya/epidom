@@ -37,7 +37,7 @@ model User {
   updatedAt     DateTime  @updatedAt
 
   accounts      Account[]
-  sessions      Session[]
+  business      Business?
   subscription  Subscription?
   alerts        Alert[]
 
@@ -64,23 +64,42 @@ model Account {
   @@map("accounts")
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+// ============================================
+// BUSINESS (1-to-1 with User)
+// ============================================
 
-  @@map("sessions")
-}
+model Business {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
+  // Business info
+  name        String
+  address     String?
+  city        String?
+  country     String?
+  phone       String?
+  email       String?
+  logo        String?
+  website     String?
 
-  @@unique([identifier, token])
-  @@map("verification_tokens")
+  // Business settings
+  currency    String   @default("EUR")
+  timezone    String   @default("UTC")
+  locale      String   @default("en")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations - all business data
+  products         Product[]
+  ingredients      Ingredient[]
+  recipes          Recipe[]
+  suppliers        Supplier[]
+  orders           Order[]
+  productionBatches ProductionBatch[]
+
+  @@map("businesses")
 }
 
 // ============================================
@@ -97,7 +116,6 @@ enum SubscriptionStatus {
   ACTIVE
   CANCELED
   PAST_DUE
-  TRIALING
   INCOMPLETE
 }
 
@@ -113,7 +131,7 @@ model Subscription {
 
   // Subscription details
   plan                 SubscriptionPlan   @default(STARTER)
-  status               SubscriptionStatus @default(TRIALING)
+  status               SubscriptionStatus @default(INCOMPLETE)
 
   currentPeriodStart   DateTime?
   currentPeriodEnd     DateTime?
@@ -131,6 +149,9 @@ model Subscription {
 
 model Product {
   id              String    @id @default(cuid())
+  businessId      String
+  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
   sku             String    @unique
   name            String
   description     String?
@@ -160,6 +181,7 @@ model Product {
   productionBatches ProductionBatch[]
   orderItems      OrderItem[]
 
+  @@index([businessId])
   @@index([category])
   @@index([isActive])
   @@map("products")
@@ -167,6 +189,9 @@ model Product {
 
 model Ingredient {
   id              String    @id @default(cuid())
+  businessId      String
+  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
   sku             String    @unique
   name            String
   description     String?
@@ -193,6 +218,7 @@ model Ingredient {
   recipeIngredients RecipeIngredient[]
   stockMovements  StockMovement[]
 
+  @@index([businessId])
   @@index([category])
   @@index([supplierId])
   @@index([isActive])
@@ -205,6 +231,9 @@ model Ingredient {
 
 model Recipe {
   id              String    @id @default(cuid())
+  businessId      String
+  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
   productId       String    @unique
   product         Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
 
@@ -218,6 +247,7 @@ model Recipe {
   ingredients     RecipeIngredient[]
   productionBatches ProductionBatch[]
 
+  @@index([businessId])
   @@map("recipes")
 }
 
@@ -247,6 +277,9 @@ enum ProductionStatus {
 
 model ProductionBatch {
   id              String            @id @default(cuid())
+  businessId      String
+  business        Business          @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
   batchNumber     String            @unique
   productId       String
   product         Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -269,6 +302,7 @@ model ProductionBatch {
 
   stockMovements  StockMovement[]
 
+  @@index([businessId])
   @@index([productId])
   @@index([status])
   @@index([scheduledDate])
@@ -326,6 +360,9 @@ model StockMovement {
 
 model Supplier {
   id              String    @id @default(cuid())
+  businessId      String
+  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
   name            String
   contactPerson   String?
   email           String?
@@ -344,6 +381,7 @@ model Supplier {
 
   ingredients     Ingredient[]
 
+  @@index([businessId])
   @@index([isActive])
   @@map("suppliers")
 }
@@ -363,6 +401,9 @@ enum OrderStatus {
 
 model Order {
   id              String        @id @default(cuid())
+  businessId      String
+  business        Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
   orderNumber     String        @unique
 
   // Customer info (simplified - no separate customer table)
@@ -390,6 +431,7 @@ model Order {
   items           OrderItem[]
   stockMovements  StockMovement[]
 
+  @@index([businessId])
   @@index([status])
   @@index([orderDate])
   @@index([dueDate])

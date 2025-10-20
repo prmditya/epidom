@@ -15,7 +15,7 @@ Table users {
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   accounts accounts [not null]
-  sessions sessions [not null]
+  business businesses
   subscription subscriptions
   alerts alerts [not null]
 }
@@ -40,22 +40,29 @@ Table accounts {
   }
 }
 
-Table sessions {
+Table businesses {
   id String [pk]
-  sessionToken String [unique, not null]
-  userId String [not null]
-  expires DateTime [not null]
+  userId String [unique, not null]
   user users [not null]
-}
-
-Table verification_tokens {
-  identifier String [not null]
-  token String [unique, not null]
-  expires DateTime [not null]
-
-  indexes {
-    (identifier, token) [unique]
-  }
+  name String [not null]
+  address String
+  city String
+  country String
+  phone String
+  email String
+  logo String
+  website String
+  currency String [not null, default: 'EUR']
+  timezone String [not null, default: 'UTC']
+  locale String [not null, default: 'en']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  products products [not null]
+  ingredients ingredients [not null]
+  recipes recipes [not null]
+  suppliers suppliers [not null]
+  orders orders [not null]
+  productionBatches production_batches [not null]
 }
 
 Table subscriptions {
@@ -66,7 +73,7 @@ Table subscriptions {
   stripeSubscriptionId String [unique]
   stripePriceId String
   plan SubscriptionPlan [not null, default: 'STARTER']
-  status SubscriptionStatus [not null, default: 'TRIALING']
+  status SubscriptionStatus [not null, default: 'INCOMPLETE']
   currentPeriodStart DateTime
   currentPeriodEnd DateTime
   cancelAtPeriodEnd Boolean [not null, default: false]
@@ -76,6 +83,8 @@ Table subscriptions {
 
 Table products {
   id String [pk]
+  businessId String [not null]
+  business businesses [not null]
   sku String [unique, not null]
   name String [not null]
   description String
@@ -100,6 +109,8 @@ Table products {
 
 Table ingredients {
   id String [pk]
+  businessId String [not null]
+  business businesses [not null]
   sku String [unique, not null]
   name String [not null]
   description String
@@ -121,6 +132,8 @@ Table ingredients {
 
 Table recipes {
   id String [pk]
+  businessId String [not null]
+  business businesses [not null]
   productId String [unique, not null]
   product products [not null]
   batchSize Decimal [not null]
@@ -150,6 +163,8 @@ Table recipe_ingredients {
 
 Table production_batches {
   id String [pk]
+  businessId String [not null]
+  business businesses [not null]
   batchNumber String [unique, not null]
   productId String [not null]
   product products [not null]
@@ -187,6 +202,8 @@ Table stock_movements {
 
 Table suppliers {
   id String [pk]
+  businessId String [not null]
+  business businesses [not null]
   name String [not null]
   contactPerson String
   email String
@@ -203,6 +220,8 @@ Table suppliers {
 
 Table orders {
   id String [pk]
+  businessId String [not null]
+  business businesses [not null]
   orderNumber String [unique, not null]
   customerName String [not null]
   customerEmail String
@@ -261,7 +280,6 @@ Enum SubscriptionStatus {
   ACTIVE
   CANCELED
   PAST_DUE
-  TRIALING
   INCOMPLETE
 }
 
@@ -306,17 +324,25 @@ Enum AlertSeverity {
 
 Ref: accounts.userId > users.id [delete: Cascade]
 
-Ref: sessions.userId > users.id [delete: Cascade]
+Ref: businesses.userId - users.id [delete: Cascade]
 
 Ref: subscriptions.userId - users.id [delete: Cascade]
 
+Ref: products.businessId > businesses.id [delete: Cascade]
+
+Ref: ingredients.businessId > businesses.id [delete: Cascade]
+
 Ref: ingredients.supplierId > suppliers.id [delete: Set Null]
+
+Ref: recipes.businessId > businesses.id [delete: Cascade]
 
 Ref: recipes.productId - products.id [delete: Cascade]
 
 Ref: recipe_ingredients.recipeId > recipes.id [delete: Cascade]
 
 Ref: recipe_ingredients.ingredientId > ingredients.id [delete: Cascade]
+
+Ref: production_batches.businessId > businesses.id [delete: Cascade]
 
 Ref: production_batches.productId > products.id [delete: Cascade]
 
@@ -329,6 +355,10 @@ Ref: stock_movements.ingredientId > ingredients.id [delete: Cascade]
 Ref: stock_movements.orderId > orders.id [delete: Set Null]
 
 Ref: stock_movements.productionBatchId > production_batches.id [delete: Set Null]
+
+Ref: suppliers.businessId > businesses.id [delete: Cascade]
+
+Ref: orders.businessId > businesses.id [delete: Cascade]
 
 Ref: order_items.orderId > orders.id [delete: Cascade]
 
