@@ -45,7 +45,7 @@ export const en = {
     minutes: "Minutes",
     seconds: "Seconds",
     targetDate: "Launch Date: November 12th, 2025",
-    email: "evancau@gmail.com",
+    email: "mrcaoevan@gmail.com",
     whatsapp: "WhatsApp",
     waitlistText: "Be the first to know when we launch!",
   },
@@ -163,7 +163,7 @@ export const en = {
         number: "Tel (+33) 7 81 73 23 86",
       },
       email: {
-        address: "info@epidom.com",
+        address: "mrcaoevan@gmail.com",
       },
     },
     map: {

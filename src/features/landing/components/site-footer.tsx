@@ -30,11 +30,11 @@ export const SiteFooter = memo(function SiteFooter() {
               {t("footer.addressHeading")}
             </h4>
             <p className="text-sm sm:text-base opacity-80">
-              {t("footer.addressLines.0")}
+              {t("contact.info.address.line1")}
               <br />
-              {t("footer.addressLines.1")}
+              {t("contact.info.address.line2")}
               <br />
-              {t("footer.addressLines.2")}
+              {t("contact.info.phone.number")}
             </p>
           </div>
 
@@ -54,10 +54,10 @@ export const SiteFooter = memo(function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="mailto:evanco@gmail.com"
+                  href="mailto:mrcaoevan@gmail.com"
                   className="underline underline-offset-4 hover:opacity-80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-background/70 transition-opacity"
                 >
-                  evanco@gmail.com
+                  mrcaoevan@gmail.com
                 </Link>
               </li>
             </ul>

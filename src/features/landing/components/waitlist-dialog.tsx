@@ -126,7 +126,7 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
             },
             spreadsheetUrl:
               "https://docs.google.com/spreadsheets/d/1yyI_EgH-MaQF6IRdtfWy5VZKcsdtiXWDAOIUbiQUftM/edit?gid=0#gid=0",
-            emailReceiver: "evancau@gmail.com",
+            emailReceiver: "mrcaoevan@gmail.com",
             metadata: {
               formType: "waitlist-form",
               subject: `New Waitlist Registration - ${formData.name}`,

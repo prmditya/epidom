@@ -197,7 +197,7 @@ export function generateStructuredData(
       "@type": "ContactPoint",
       telephone: "+1-555-EPIDOM",
       contactType: "customer service",
-      email: "support@epidom.com",
+      email: "mrcaoevan@gmail.com",
     },
     address: {
       "@type": "PostalAddress",

@@ -65,7 +65,7 @@ export const CountdownComponent = memo(function CountdownComponent() {
               <Mail className="w-5 h-5" style={{ color: 'var(--color-brand-primary)' }} />
               <a
                 className="underline hover:no-underline transition-all duration-200 font-medium"
-                href="mailto:evancau@gmail.com"
+                href="mailto:mrcaoevan@gmail.com"
                 style={{ color: 'var(--color-brand-primary)' }}
               >
                 {t("countdown.email")}
@@ -76,7 +76,7 @@ export const CountdownComponent = memo(function CountdownComponent() {
               <MessageCircle className="w-5 h-5" style={{ color: 'var(--color-brand-primary)' }} />
               <a
                 className="underline hover:no-underline transition-all duration-200 font-medium"
-                href="https://wa.me/6281234567890"
+                href="http://wa.me/33781732386"
                 style={{ color: 'var(--color-brand-primary)' }}
               >
                 {t("countdown.whatsapp")}
