@@ -29,12 +29,12 @@ export function Topbar() {
   return (
     <header
       role="banner"
-      className="sticky top-0 z-40 w-full bg-primary text-primary-foreground shadow rounded-none navbar-no-transition navbar-static"
-      style={{ 
-        animation: 'none !important',
-        transition: 'none !important',
-        transform: 'none !important',
-        opacity: '1 !important'
+      className="sticky top-0 z-10 w-full bg-primary text-primary-foreground shadow rounded-none navbar-no-transition navbar-static"
+      style={{
+        animation: "none !important",
+        transition: "none !important",
+        transform: "none !important",
+        opacity: "1 !important",
       }}
     >
       <div className="mx-auto max-w-7xl px-3">
@@ -60,10 +60,9 @@ export function Topbar() {
               <Image
                 src="/images/logo-white.png"
                 alt="EPIDOM logo"
-                width={56}
+                width={90}
                 height={24}
-                className="h-5 w-auto object-contain"
-                sizes="(max-width: 768px) 56px, 56px"
+                className="w-auto object-contain"
                 priority
               />
             </div>

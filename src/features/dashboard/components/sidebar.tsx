@@ -23,18 +23,18 @@ const itemDefs = [
   { href: "/alerts", key: "nav.alerts", icon: Bell },
 ] as const;
 
+function isMobile(mode: string) {
+  return mode === "mobile"
+    ? "flex md:hidden h-full mt-12"
+    : "hidden md:flex w-full";
+}
+
 export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
   const pathname = usePathname();
   const { t } = useI18n();
 
   return (
-    <aside
-      className={
-        mode === "mobile"
-          ? "flex md:hidden h-full mt-12"
-          : "hidden md:flex w-full"
-      }
-    >
+    <aside className={cn(isMobile(mode))}>
       <div className="flex h-[100%] w-full flex-col overflow-y-auto rounded-xl border bg-card shadow-sm">
         {mode === "mobile" && (
           <div className="p-3 border-b">
