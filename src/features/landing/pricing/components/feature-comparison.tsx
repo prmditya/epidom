@@ -61,7 +61,9 @@ export function FeatureComparison() {
               <td className="p-3 sm:p-4">
                 {t("pricing.compare.rows.supplierManagement.name")}
               </td>
-              <td className="p-3 sm:p-4 text-center">—</td>
+              <td className="p-3 sm:p-4 text-center">
+                <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
+              </td>
               <td className="p-3 sm:p-4 text-center border-l-2" style={{ borderLeftColor: '#444444' }}>
                 <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mx-auto" />
               </td>

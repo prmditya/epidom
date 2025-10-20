@@ -29,13 +29,11 @@ export const SiteFooter = memo(function SiteFooter() {
             <h4 className="text-pretty text-base sm:text-lg font-semibold">
               {t("footer.addressHeading")}
             </h4>
-            <p className="text-sm sm:text-base opacity-80">
-              {t("footer.addressLines")[0]}
-              <br />
-              {t("footer.addressLines")[1]}
-              <br />
-              {t("footer.addressLines")[2]}
-            </p>
+            <div className="text-sm sm:text-base text-white/80 space-y-2">
+              <div>{t("contact.info.address.line1")}</div>
+              <div>{t("contact.info.address.line2")}</div>
+              <div>{t("contact.info.phone.number")}</div>
+            </div>
           </div>
 
           {/* Right: contact */}
@@ -43,21 +41,21 @@ export const SiteFooter = memo(function SiteFooter() {
             <h4 className="text-pretty text-base sm:text-lg font-semibold">
               {t("footer.contact")}
             </h4>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <ul className="space-y-2 text-sm sm:text-base leading-7">
               <li>
                 <Link
                   href="mailto:info@epidom.com"
-                  className="underline underline-offset-4 hover:opacity-80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-background/70 transition-opacity"
+                  className="no-underline hover:opacity-80 transition-opacity text-white/80 hover:text-white"
                 >
                   info@epidom.com
                 </Link>
               </li>
               <li>
                 <Link
-                  href="mailto:evanco@gmail.com"
-                  className="underline underline-offset-4 hover:opacity-80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-background/70 transition-opacity"
+                  href="mailto:mrcaoevan@gmail.com"
+                  className="no-underline hover:opacity-80 transition-opacity text-white/80 hover:text-white"
                 >
-                  evanco@gmail.com
+                  mrcaoevan@gmail.com
                 </Link>
               </li>
             </ul>

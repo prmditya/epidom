@@ -45,7 +45,7 @@ export const fr = {
     minutes: "Minutes",
     seconds: "Secondes",
     targetDate: "Date de Lancement: 12 Novembre 2025",
-    email: "evancau@gmail.com",
+    email: "mrcaoevan@gmail.com",
     whatsapp: "WhatsApp",
     waitlistText: "Soyez le premier à savoir quand nous lançons!",
   },
@@ -162,7 +162,7 @@ export const fr = {
         number: "Tel (+33) 7 81 73 23 86",
       },
       email: {
-        address: "info@epidom.com",
+        address: "mrcaoevan@gmail.com",
       },
     },
     map: {
@@ -174,7 +174,7 @@ export const fr = {
     heroDescription: "La gestion des stocks alimentaires est le processus de suivi des ingrédients achetés et non consommés. Cette pratique est essentielle pour éviter le gaspillage et optimiser vos opérations de restaurant.",
     plans: {
       starter: {
-        title: "Débutant",
+        title: "Starter",
         description: "Parfait pour les restaurants à un seul emplacement",
         price: "€29",
         billing: "par mois",
@@ -210,7 +210,7 @@ export const fr = {
       title: "Comparer les plans",
       headers: {
         feature: "Fonctionnalité",
-        starter: "Débutant",
+        starter: "Starter",
         pro: "Pro",
         enterprise: "Entreprise",
       },

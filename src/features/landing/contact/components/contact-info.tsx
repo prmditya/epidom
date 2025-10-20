@@ -81,11 +81,11 @@ export function ContactInfo() {
                 {t("contact.info.email.address")}
               </a>
               <a
-                href="mailto:evancao@gmail.com"
+                href="mailto:info@epidom.com"
                 className="text-sm sm:text-base md:text-lg hover:opacity-70 transition-opacity"
                 style={{ color: 'var(--color-brand-primary)' }}
               >
-                evancao@gmail.com
+                info@epidom.com
               </a>
             </div>
           </div>

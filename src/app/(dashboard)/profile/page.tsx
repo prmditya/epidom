@@ -27,7 +27,7 @@ export default function ProfilePage() {
   // Mock user data - replace with real auth later
   const user = {
     name: "Demo User",
-    email: "demo@epidom.com",
+    email: "mrcaoevan@gmail.com",
     businessName: "Epidom Bakery",
     address: "123 Main St, Paris",
   };

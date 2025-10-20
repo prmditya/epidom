@@ -45,7 +45,7 @@ export const id = {
     minutes: "Menit",
     seconds: "Detik",
     targetDate: "Tanggal Peluncuran: 12 November 2025",
-    email: "evancau@gmail.com",
+    email: "mrcaoevan@gmail.com",
     whatsapp: "WhatsApp",
     waitlistText: "Jadilah yang pertama tahu saat kami meluncur!",
   },
@@ -166,7 +166,7 @@ export const id = {
         number: "Tel (+33) 7 81 73 23 86",
       },
       email: {
-        address: "info@epidom.com",
+        address: "mrcaoevan@gmail.com",
       },
     },
     map: {
