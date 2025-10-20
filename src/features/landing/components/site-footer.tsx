@@ -29,7 +29,7 @@ export const SiteFooter = memo(function SiteFooter() {
             <h4 className="text-pretty text-base sm:text-lg font-semibold">
               {t("footer.addressHeading")}
             </h4>
-            <p className="text-sm sm:text-base opacity-80">
+            <p className="text-sm sm:text-base leading-7 opacity-80">
               {t("contact.info.address.line1")}
               <br />
               {t("contact.info.address.line2")}
@@ -43,7 +43,7 @@ export const SiteFooter = memo(function SiteFooter() {
             <h4 className="text-pretty text-base sm:text-lg font-semibold">
               {t("footer.contact")}
             </h4>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <ul className="space-y-2 text-sm sm:text-base leading-7">
               <li>
                 <Link
                   href="mailto:info@epidom.com"
