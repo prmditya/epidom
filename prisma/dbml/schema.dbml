@@ -4,36 +4,72 @@
 
 Table users {
   id String [pk]
+  name String
   email String [unique, not null]
-  name String [not null]
-  passwordHash String [not null]
-  avatar String
+  emailVerified DateTime
+  image String
   phone String
   locale String [not null, default: 'en']
+  timezone String [not null, default: 'UTC']
+  currency String [not null, default: 'EUR']
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  business businesses
+  accounts accounts [not null]
+  sessions sessions [not null]
+  subscription subscriptions
   alerts alerts [not null]
 }
 
-Table businesses {
+Table accounts {
+  id String [pk]
+  userId String [not null]
+  type String [not null]
+  provider String [not null]
+  providerAccountId String [not null]
+  refresh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  user users [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table sessions {
+  id String [pk]
+  sessionToken String [unique, not null]
+  userId String [not null]
+  expires DateTime [not null]
+  user users [not null]
+}
+
+Table verification_tokens {
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Table subscriptions {
   id String [pk]
   userId String [unique, not null]
   user users [not null]
-  name String [not null]
-  registrationNo String
-  taxId String
-  address String
-  city String
-  country String
-  postalCode String
-  phone String
-  email String
-  website String
-  logo String
-  currency String [not null, default: 'USD']
-  timezone String [not null, default: 'UTC']
-  language String [not null, default: 'en']
+  stripeCustomerId String [unique, not null]
+  stripeSubscriptionId String [unique]
+  stripePriceId String
+  plan SubscriptionPlan [not null, default: 'STARTER']
+  status SubscriptionStatus [not null, default: 'TRIALING']
+  currentPeriodStart DateTime
+  currentPeriodEnd DateTime
+  cancelAtPeriodEnd Boolean [not null, default: false]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
 }
@@ -47,18 +83,40 @@ Table products {
   image String
   costPrice Decimal [not null]
   sellingPrice Decimal [not null]
+  currentStock Decimal [not null, default: 0]
   unit String [not null, default: 'piece']
-  minStockLevel Int [not null, default: 0]
-  maxStockLevel Int
+  minStockLevel Decimal [not null, default: 0]
+  criticalLevel Decimal
   productionTime Int
   shelfLife Int
   isActive Boolean [not null, default: true]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   recipe recipes
-  inventory inventory [not null]
+  stockMovements stock_movements [not null]
   productionBatches production_batches [not null]
   orderItems order_items [not null]
+}
+
+Table ingredients {
+  id String [pk]
+  sku String [unique, not null]
+  name String [not null]
+  description String
+  category String
+  image String
+  unit String [not null, default: 'kg']
+  unitCost Decimal [not null]
+  currentStock Decimal [not null, default: 0]
+  minStockLevel Decimal [not null, default: 0]
+  criticalLevel Decimal
+  supplierId String
+  supplier suppliers
+  isActive Boolean [not null, default: true]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  recipeIngredients recipe_ingredients [not null]
+  stockMovements stock_movements [not null]
 }
 
 Table recipes {
@@ -71,27 +129,7 @@ Table recipes {
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   ingredients recipe_ingredients [not null]
-}
-
-Table ingredients {
-  id String [pk]
-  sku String [unique, not null]
-  name String [not null]
-  description String
-  category String
-  unit String [not null, default: 'kg']
-  unitCost Decimal [not null]
-  minStockLevel Decimal [not null, default: 0]
-  maxStockLevel Decimal
-  supplierId String
-  supplier suppliers
-  supplierSku String
-  isActive Boolean [not null, default: true]
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [not null]
-  recipeIngredients recipe_ingredients [not null]
-  inventory inventory [not null]
-  purchaseOrderItems purchase_order_items [not null]
+  productionBatches production_batches [not null]
 }
 
 Table recipe_ingredients {
@@ -110,64 +148,45 @@ Table recipe_ingredients {
   }
 }
 
-Table inventory {
-  id String [pk]
-  productId String
-  product products
-  ingredientId String
-  ingredient ingredients
-  quantity Decimal [not null]
-  unit String [not null]
-  location String
-  batchNumber String
-  expiryDate DateTime
-  lastStockTake DateTime
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [not null]
-  transactions inventory_transactions [not null]
-}
-
-Table inventory_transactions {
-  id String [pk]
-  inventoryId String [not null]
-  inventory inventory [not null]
-  type TransactionType [not null]
-  quantity Decimal [not null]
-  unit String [not null]
-  productionBatchId String
-  productionBatch production_batches
-  orderId String
-  order orders
-  purchaseOrderId String
-  purchaseOrder purchase_orders
-  notes String
-  createdAt DateTime [default: `now()`, not null]
-}
-
 Table production_batches {
   id String [pk]
   batchNumber String [unique, not null]
   productId String [not null]
   product products [not null]
+  recipeId String
+  recipe recipes
   plannedQuantity Decimal [not null]
   actualQuantity Decimal
   unit String [not null]
   status ProductionStatus [not null, default: 'PLANNED']
-  scheduledStart DateTime [not null]
-  scheduledEnd DateTime
-  actualStart DateTime
-  actualEnd DateTime
-  quality String
-  productionCost Decimal
+  scheduledDate DateTime [not null]
+  completedDate DateTime
   notes String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  transactions inventory_transactions [not null]
+  stockMovements stock_movements [not null]
+}
+
+Table stock_movements {
+  id String [pk]
+  productId String
+  product products
+  ingredientId String
+  ingredient ingredients
+  type MovementType [not null]
+  quantity Decimal [not null]
+  unit String [not null]
+  balanceAfter Decimal [not null]
+  orderId String
+  order orders
+  productionBatchId String
+  productionBatch production_batches
+  notes String
+  createdAt DateTime [default: `now()`, not null]
 }
 
 Table suppliers {
   id String [pk]
-  code String [unique, not null]
   name String [not null]
   contactPerson String
   email String
@@ -175,50 +194,11 @@ Table suppliers {
   address String
   city String
   country String
-  postalCode String
-  paymentTerms String
-  taxId String
+  notes String
   isActive Boolean [not null, default: true]
-  rating Int [default: 0]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   ingredients ingredients [not null]
-  purchaseOrders purchase_orders [not null]
-}
-
-Table purchase_orders {
-  id String [pk]
-  orderNumber String [unique, not null]
-  supplierId String [not null]
-  supplier suppliers [not null]
-  status PurchaseOrderStatus [not null, default: 'DRAFT']
-  orderDate DateTime [default: `now()`, not null]
-  expectedDate DateTime
-  receivedDate DateTime
-  subtotal Decimal [not null]
-  tax Decimal [not null, default: 0]
-  shipping Decimal [not null, default: 0]
-  total Decimal [not null]
-  notes String
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [not null]
-  items purchase_order_items [not null]
-  transactions inventory_transactions [not null]
-}
-
-Table purchase_order_items {
-  id String [pk]
-  purchaseOrderId String [not null]
-  purchaseOrder purchase_orders [not null]
-  ingredientId String [not null]
-  ingredient ingredients [not null]
-  quantity Decimal [not null]
-  unit String [not null]
-  unitPrice Decimal [not null]
-  total Decimal [not null]
-  receivedQuantity Decimal
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [not null]
 }
 
 Table orders {
@@ -240,7 +220,7 @@ Table orders {
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   items order_items [not null]
-  transactions inventory_transactions [not null]
+  stockMovements stock_movements [not null]
 }
 
 Table order_items {
@@ -268,27 +248,21 @@ Table alerts {
   entityType String
   entityId String
   isRead Boolean [not null, default: false]
-  isDismissed Boolean [not null, default: false]
   createdAt DateTime [default: `now()`, not null]
 }
 
-Table settings {
-  id String [pk]
-  key String [unique, not null]
-  value String [not null]
-  description String
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [not null]
+Enum SubscriptionPlan {
+  STARTER
+  PRO
+  ENTERPRISE
 }
 
-Enum TransactionType {
-  PURCHASE
-  PRODUCTION_IN
-  PRODUCTION_OUT
-  SALE
-  ADJUSTMENT
-  WASTE
-  RETURN
+Enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+  INCOMPLETE
 }
 
 Enum ProductionStatus {
@@ -298,12 +272,13 @@ Enum ProductionStatus {
   CANCELLED
 }
 
-Enum PurchaseOrderStatus {
-  DRAFT
-  SENT
-  CONFIRMED
-  RECEIVED
-  CANCELLED
+Enum MovementType {
+  PURCHASE
+  PRODUCTION_IN
+  PRODUCTION_OUT
+  SALE
+  ADJUSTMENT
+  WASTE
 }
 
 Enum OrderStatus {
@@ -317,10 +292,9 @@ Enum OrderStatus {
 
 Enum AlertType {
   LOW_STOCK
-  EXPIRING_SOON
-  EXPIRED
-  PRODUCTION_DELAYED
+  CRITICAL_STOCK
   ORDER_DUE
+  PRODUCTION_DUE
   SYSTEM
 }
 
@@ -330,35 +304,31 @@ Enum AlertSeverity {
   CRITICAL
 }
 
-Ref: businesses.userId - users.id [delete: Cascade]
+Ref: accounts.userId > users.id [delete: Cascade]
 
-Ref: recipes.productId - products.id [delete: Cascade]
+Ref: sessions.userId > users.id [delete: Cascade]
+
+Ref: subscriptions.userId - users.id [delete: Cascade]
 
 Ref: ingredients.supplierId > suppliers.id [delete: Set Null]
+
+Ref: recipes.productId - products.id [delete: Cascade]
 
 Ref: recipe_ingredients.recipeId > recipes.id [delete: Cascade]
 
 Ref: recipe_ingredients.ingredientId > ingredients.id [delete: Cascade]
 
-Ref: inventory.productId > products.id [delete: Cascade]
-
-Ref: inventory.ingredientId > ingredients.id [delete: Cascade]
-
-Ref: inventory_transactions.inventoryId > inventory.id [delete: Cascade]
-
-Ref: inventory_transactions.productionBatchId > production_batches.id [delete: Set Null]
-
-Ref: inventory_transactions.orderId > orders.id [delete: Set Null]
-
-Ref: inventory_transactions.purchaseOrderId > purchase_orders.id [delete: Set Null]
-
 Ref: production_batches.productId > products.id [delete: Cascade]
 
-Ref: purchase_orders.supplierId > suppliers.id [delete: Cascade]
+Ref: production_batches.recipeId > recipes.id [delete: Set Null]
 
-Ref: purchase_order_items.purchaseOrderId > purchase_orders.id [delete: Cascade]
+Ref: stock_movements.productId > products.id [delete: Cascade]
 
-Ref: purchase_order_items.ingredientId > ingredients.id [delete: Cascade]
+Ref: stock_movements.ingredientId > ingredients.id [delete: Cascade]
+
+Ref: stock_movements.orderId > orders.id [delete: Set Null]
+
+Ref: stock_movements.productionBatchId > production_batches.id [delete: Set Null]
 
 Ref: order_items.orderId > orders.id [delete: Cascade]
 

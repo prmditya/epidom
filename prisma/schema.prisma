@@ -1,16 +1,15 @@
 // Epidom Dashboard MVP - Database Schema
-// Food Manufacturer ERP for Single Bakery/Business
-// No RBAC - Single account system
+// Food Inventory & Production Management System
+// Next-auth (JWT) + Stripe Subscriptions
 
-// generator client {
-//  provider = "prisma-client-js"
-// }
+generator client {
+  provider = "prisma-client-js"
+}
 
 generator dbml {
   provider = "prisma-dbml-generator"
   output   = "./dbml"
 }
-
 
 datasource db {
   provider = "postgresql"
@@ -18,56 +17,116 @@ datasource db {
 }
 
 // ============================================
-// AUTHENTICATION & BUSINESS
+// NEXT-AUTH (JWT-based)
 // ============================================
 
 model User {
   id            String    @id @default(cuid())
+  name          String?
   email         String    @unique
-  name          String
-  passwordHash  String
-  avatar        String?
+  emailVerified DateTime?
+  image         String?
+
+  // Profile settings
   phone         String?
   locale        String    @default("en") // en, fr, id
+  timezone      String    @default("UTC")
+  currency      String    @default("EUR")
+
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  business      Business?
+  accounts      Account[]
+  sessions      Session[]
+  subscription  Subscription?
   alerts        Alert[]
 
   @@map("users")
 }
 
-model Business {
-  id              String    @id @default(cuid())
-  userId          String    @unique
-  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
-  name            String
-  registrationNo  String?
-  taxId           String?
-  address         String?
-  city            String?
-  country         String?
-  postalCode      String?
-  phone           String?
-  email           String?
-  website         String?
-  logo            String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // Business settings
-  currency        String    @default("USD")
-  timezone        String    @default("UTC")
-  language        String    @default("en")
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("businesses")
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
 }
 
 // ============================================
-// PRODUCT MANAGEMENT
+// STRIPE SUBSCRIPTIONS
+// ============================================
+
+enum SubscriptionPlan {
+  STARTER     // €29/month
+  PRO         // €79/month
+  ENTERPRISE  // Custom pricing
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+  INCOMPLETE
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Stripe data
+  stripeCustomerId     String             @unique
+  stripeSubscriptionId String?            @unique
+  stripePriceId        String?
+
+  // Subscription details
+  plan                 SubscriptionPlan   @default(STARTER)
+  status               SubscriptionStatus @default(TRIALING)
+
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@map("subscriptions")
+}
+
+// ============================================
+// INVENTORY MANAGEMENT
 // ============================================
 
 model Product {
@@ -82,10 +141,11 @@ model Product {
   costPrice       Decimal   @db.Decimal(10, 2)
   sellingPrice    Decimal   @db.Decimal(10, 2)
 
-  // Inventory
+  // Stock
+  currentStock    Decimal   @db.Decimal(10, 2) @default(0)
   unit            String    @default("piece") // piece, kg, box, etc.
-  minStockLevel   Int       @default(0)
-  maxStockLevel   Int?
+  minStockLevel   Decimal   @db.Decimal(10, 2) @default(0)
+  criticalLevel   Decimal?  @db.Decimal(10, 2) // for alerts
 
   // Production
   productionTime  Int?      // in minutes
@@ -96,7 +156,7 @@ model Product {
   updatedAt       DateTime  @updatedAt
 
   recipe          Recipe?
-  inventory       Inventory[]
+  stockMovements  StockMovement[]
   productionBatches ProductionBatch[]
   orderItems      OrderItem[]
 
@@ -104,6 +164,44 @@ model Product {
   @@index([isActive])
   @@map("products")
 }
+
+model Ingredient {
+  id              String    @id @default(cuid())
+  sku             String    @unique
+  name            String
+  description     String?
+  category        String?   // flour, dairy, sugar, etc.
+  image           String?
+
+  // Purchasing
+  unit            String    @default("kg") // kg, liter, piece, etc.
+  unitCost        Decimal   @db.Decimal(10, 2)
+
+  // Stock
+  currentStock    Decimal   @db.Decimal(10, 2) @default(0)
+  minStockLevel   Decimal   @db.Decimal(10, 2) @default(0)
+  criticalLevel   Decimal?  @db.Decimal(10, 2)
+
+  // Supplier info
+  supplierId      String?
+  supplier        Supplier? @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  recipeIngredients RecipeIngredient[]
+  stockMovements  StockMovement[]
+
+  @@index([category])
+  @@index([supplierId])
+  @@index([isActive])
+  @@map("ingredients")
+}
+
+// ============================================
+// PRODUCTION & RECIPES
+// ============================================
 
 model Recipe {
   id              String    @id @default(cuid())
@@ -118,42 +216,9 @@ model Recipe {
   updatedAt       DateTime  @updatedAt
 
   ingredients     RecipeIngredient[]
+  productionBatches ProductionBatch[]
 
   @@map("recipes")
-}
-
-model Ingredient {
-  id              String    @id @default(cuid())
-  sku             String    @unique
-  name            String
-  description     String?
-  category        String?   // flour, dairy, sugar, etc.
-
-  // Purchasing
-  unit            String    @default("kg") // kg, liter, piece, etc.
-  unitCost        Decimal   @db.Decimal(10, 2)
-
-  // Inventory
-  minStockLevel   Decimal   @db.Decimal(10, 2) @default(0)
-  maxStockLevel   Decimal?  @db.Decimal(10, 2)
-
-  // Supplier info
-  supplierId      String?
-  supplier        Supplier? @relation(fields: [supplierId], references: [id], onDelete: SetNull)
-  supplierSku     String?
-
-  isActive        Boolean   @default(true)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  recipeIngredients RecipeIngredient[]
-  inventory       Inventory[]
-  purchaseOrderItems PurchaseOrderItem[]
-
-  @@index([category])
-  @@index([supplierId])
-  @@index([isActive])
-  @@map("ingredients")
 }
 
 model RecipeIngredient {
@@ -164,7 +229,7 @@ model RecipeIngredient {
   ingredient      Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
 
   quantity        Decimal    @db.Decimal(10, 3)
-  unit            String     // should match ingredient unit
+  unit            String
 
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
@@ -172,80 +237,6 @@ model RecipeIngredient {
   @@unique([recipeId, ingredientId])
   @@map("recipe_ingredients")
 }
-
-// ============================================
-// INVENTORY MANAGEMENT
-// ============================================
-
-model Inventory {
-  id              String    @id @default(cuid())
-
-  // Polymorphic relation - either product OR ingredient
-  productId       String?
-  product         Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  ingredientId    String?
-  ingredient      Ingredient? @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
-
-  quantity        Decimal   @db.Decimal(10, 3)
-  unit            String
-  location        String?   // warehouse location, shelf, etc.
-
-  // Expiry tracking
-  batchNumber     String?
-  expiryDate      DateTime?
-
-  lastStockTake   DateTime?
-
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  transactions    InventoryTransaction[]
-
-  @@index([productId])
-  @@index([ingredientId])
-  @@index([expiryDate])
-  @@map("inventory")
-}
-
-enum TransactionType {
-  PURCHASE        // Receiving from supplier
-  PRODUCTION_IN   // Finished goods from production
-  PRODUCTION_OUT  // Ingredients used in production
-  SALE            // Products sold
-  ADJUSTMENT      // Manual adjustment
-  WASTE           // Spoilage, damage
-  RETURN          // Customer return
-}
-
-model InventoryTransaction {
-  id              String          @id @default(cuid())
-  inventoryId     String
-  inventory       Inventory       @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
-
-  type            TransactionType
-  quantity        Decimal         @db.Decimal(10, 3)
-  unit            String
-
-  // References to related records
-  productionBatchId String?
-  productionBatch ProductionBatch? @relation(fields: [productionBatchId], references: [id], onDelete: SetNull)
-  orderId         String?
-  order           Order?          @relation(fields: [orderId], references: [id], onDelete: SetNull)
-  purchaseOrderId String?
-  purchaseOrder   PurchaseOrder?  @relation(fields: [purchaseOrderId], references: [id], onDelete: SetNull)
-
-  notes           String?
-  createdAt       DateTime        @default(now())
-
-  @@index([inventoryId])
-  @@index([type])
-  @@index([createdAt])
-  @@map("inventory_transactions")
-}
-
-// ============================================
-// PRODUCTION MANAGEMENT
-// ============================================
 
 enum ProductionStatus {
   PLANNED
@@ -259,6 +250,8 @@ model ProductionBatch {
   batchNumber     String            @unique
   productId       String
   product         Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
+  recipeId        String?
+  recipe          Recipe?           @relation(fields: [recipeId], references: [id], onDelete: SetNull)
 
   plannedQuantity Decimal           @db.Decimal(10, 2)
   actualQuantity  Decimal?          @db.Decimal(10, 2)
@@ -266,36 +259,73 @@ model ProductionBatch {
 
   status          ProductionStatus  @default(PLANNED)
 
-  // Scheduling
-  scheduledStart  DateTime
-  scheduledEnd    DateTime?
-  actualStart     DateTime?
-  actualEnd       DateTime?
+  scheduledDate   DateTime
+  completedDate   DateTime?
 
-  // Quality & Cost
-  quality         String?           // A, B, C grade
-  productionCost  Decimal?          @db.Decimal(10, 2)
-
-  notes           String?           @db.Text
+  notes           String?
 
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
 
-  transactions    InventoryTransaction[]
+  stockMovements  StockMovement[]
 
   @@index([productId])
   @@index([status])
-  @@index([scheduledStart])
+  @@index([scheduledDate])
   @@map("production_batches")
 }
 
 // ============================================
-// SUPPLIER & PURCHASING
+// STOCK TRACKING
+// ============================================
+
+enum MovementType {
+  PURCHASE        // Receiving from supplier
+  PRODUCTION_IN   // Finished goods from production
+  PRODUCTION_OUT  // Ingredients used in production
+  SALE            // Products sold to customer
+  ADJUSTMENT      // Manual stock adjustment
+  WASTE           // Spoilage, damage, expired
+}
+
+model StockMovement {
+  id              String        @id @default(cuid())
+
+  // Polymorphic relation - either product OR ingredient
+  productId       String?
+  product         Product?      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  ingredientId    String?
+  ingredient      Ingredient?   @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  type            MovementType
+  quantity        Decimal       @db.Decimal(10, 3)
+  unit            String
+
+  // Balance after this movement
+  balanceAfter    Decimal       @db.Decimal(10, 3)
+
+  // Optional references
+  orderId         String?
+  order           Order?        @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  productionBatchId String?
+  productionBatch ProductionBatch? @relation(fields: [productionBatchId], references: [id], onDelete: SetNull)
+
+  notes           String?
+  createdAt       DateTime      @default(now())
+
+  @@index([productId])
+  @@index([ingredientId])
+  @@index([type])
+  @@index([createdAt])
+  @@map("stock_movements")
+}
+
+// ============================================
+// SUPPLIERS
 // ============================================
 
 model Supplier {
   id              String    @id @default(cuid())
-  code            String    @unique
   name            String
   contactPerson   String?
   email           String?
@@ -304,87 +334,22 @@ model Supplier {
   address         String?
   city            String?
   country         String?
-  postalCode      String?
 
-  paymentTerms    String?   // Net 30, Net 60, etc.
-  taxId           String?
+  notes           String?
 
   isActive        Boolean   @default(true)
-  rating          Int?      @default(0) // 0-5 stars
 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
   ingredients     Ingredient[]
-  purchaseOrders  PurchaseOrder[]
 
   @@index([isActive])
   @@map("suppliers")
 }
 
-enum PurchaseOrderStatus {
-  DRAFT
-  SENT
-  CONFIRMED
-  RECEIVED
-  CANCELLED
-}
-
-model PurchaseOrder {
-  id              String              @id @default(cuid())
-  orderNumber     String              @unique
-  supplierId      String
-  supplier        Supplier            @relation(fields: [supplierId], references: [id], onDelete: Cascade)
-
-  status          PurchaseOrderStatus @default(DRAFT)
-
-  orderDate       DateTime            @default(now())
-  expectedDate    DateTime?
-  receivedDate    DateTime?
-
-  subtotal        Decimal             @db.Decimal(10, 2)
-  tax             Decimal             @db.Decimal(10, 2) @default(0)
-  shipping        Decimal             @db.Decimal(10, 2) @default(0)
-  total           Decimal             @db.Decimal(10, 2)
-
-  notes           String?             @db.Text
-
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
-
-  items           PurchaseOrderItem[]
-  transactions    InventoryTransaction[]
-
-  @@index([supplierId])
-  @@index([status])
-  @@index([orderDate])
-  @@map("purchase_orders")
-}
-
-model PurchaseOrderItem {
-  id              String        @id @default(cuid())
-  purchaseOrderId String
-  purchaseOrder   PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
-  ingredientId    String
-  ingredient      Ingredient    @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
-
-  quantity        Decimal       @db.Decimal(10, 3)
-  unit            String
-  unitPrice       Decimal       @db.Decimal(10, 2)
-  total           Decimal       @db.Decimal(10, 2)
-
-  receivedQuantity Decimal?     @db.Decimal(10, 3)
-
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-
-  @@index([purchaseOrderId])
-  @@index([ingredientId])
-  @@map("purchase_order_items")
-}
-
 // ============================================
-// SALES & ORDERS
+// CUSTOMER ORDERS
 // ============================================
 
 enum OrderStatus {
@@ -400,7 +365,7 @@ model Order {
   id              String        @id @default(cuid())
   orderNumber     String        @unique
 
-  // Customer info (simplified - no separate customer table for MVP)
+  // Customer info (simplified - no separate customer table)
   customerName    String
   customerEmail   String?
   customerPhone   String?
@@ -417,13 +382,13 @@ model Order {
   delivery        Decimal       @db.Decimal(10, 2) @default(0)
   total           Decimal       @db.Decimal(10, 2)
 
-  notes           String?       @db.Text
+  notes           String?
 
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
   items           OrderItem[]
-  transactions    InventoryTransaction[]
+  stockMovements  StockMovement[]
 
   @@index([status])
   @@index([orderDate])
@@ -456,12 +421,11 @@ model OrderItem {
 // ============================================
 
 enum AlertType {
-  LOW_STOCK
-  EXPIRING_SOON
-  EXPIRED
-  PRODUCTION_DELAYED
-  ORDER_DUE
-  SYSTEM
+  LOW_STOCK       // Stock below minimum level
+  CRITICAL_STOCK  // Stock below critical level
+  ORDER_DUE       // Order due date approaching
+  PRODUCTION_DUE  // Production scheduled
+  SYSTEM          // System notifications
 }
 
 enum AlertSeverity {
@@ -479,36 +443,18 @@ model Alert {
   severity        AlertSeverity @default(INFO)
 
   title           String
-  message         String        @db.Text
+  message         String
 
   // Optional reference to related entity
-  entityType      String?       // product, ingredient, order, etc.
+  entityType      String?       // product, ingredient, order, production
   entityId        String?
 
   isRead          Boolean       @default(false)
-  isDismissed     Boolean       @default(false)
 
   createdAt       DateTime      @default(now())
 
-  @@index([userId])
+  @@index([userId, isRead])
   @@index([type])
-  @@index([isRead])
   @@index([createdAt])
   @@map("alerts")
-}
-
-// ============================================
-// SYSTEM SETTINGS
-// ============================================
-
-model Setting {
-  id              String    @id @default(cuid())
-  key             String    @unique
-  value           String    @db.Text
-  description     String?
-
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  @@map("settings")
 }
