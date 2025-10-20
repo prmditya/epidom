@@ -88,7 +88,7 @@ export function Topbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="gap-2 text-primary-foreground hover:bg-white/10"
+                  className="gap-2 text-primary-foreground hover:bg-white/10 hover:text-white"
                 >
                   <Avatar className="size-6">
                     <AvatarFallback className="text-xs bg-white text-foreground">
@@ -100,7 +100,7 @@ export function Topbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel className="max-w-[220px] truncate">
-                  {"email"}
+                  {"admin@email.com"}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => router.push("/profile")}>

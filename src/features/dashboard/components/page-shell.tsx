@@ -9,7 +9,7 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       <Topbar />
       <div className="mx-auto grid max-w-[1600px] items-start gap-4 mt-14 p-3 md:grid-cols-[280px_1fr] md:gap-6 md:p-6 lg:px-8">
         {/* Sidebar column (desktop only) */}
-        <div className="hidden md:flex md:sticky md:top-[4.5rem]">
+        <div className="hidden md:flex md:sticky md:top-[4.5rem] h-full">
           <Sidebar mode="desktop" />
         </div>
         {/* Content column */}
