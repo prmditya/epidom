@@ -29,7 +29,13 @@ export function Topbar() {
   return (
     <header
       role="banner"
-      className="sticky top-0 z-40 w-full bg-primary text-primary-foreground shadow rounded-none"
+      className="sticky top-0 z-10 w-full bg-primary text-primary-foreground shadow rounded-none navbar-no-transition navbar-static"
+      style={{
+        animation: "none !important",
+        transition: "none !important",
+        transform: "none !important",
+        opacity: "1 !important",
+      }}
     >
       <div className="mx-auto max-w-7xl px-3">
         <div className="grid h-14 grid-cols-[1fr_minmax(220px,720px)_1fr] items-center gap-3">
@@ -50,14 +56,13 @@ export function Topbar() {
                 <Sidebar mode="mobile" />
               </SheetContent>
             </Sheet>
-            <div className="flex h-8 w-14 items-center justify-center rounded-md bg-transparent">
+            <div className="flex w-auto items-center justify-center rounded-md bg-transparent">
               <Image
-                src="/images/logo2.png"
+                src="/images/logo-white.png"
                 alt="EPIDOM logo"
-                width={56}
+                width={90}
                 height={24}
-                className="h-5 w-auto object-contain"
-                sizes="(max-width: 768px) 56px, 56px"
+                className="w-auto object-contain"
                 priority
               />
             </div>
@@ -83,7 +88,7 @@ export function Topbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="gap-2 text-primary-foreground hover:bg-white/10"
+                  className="gap-2 text-primary-foreground hover:bg-white/10 hover:text-white"
                 >
                   <Avatar className="size-6">
                     <AvatarFallback className="text-xs bg-white text-foreground">
@@ -95,7 +100,7 @@ export function Topbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel className="max-w-[220px] truncate">
-                  {"email"}
+                  {"admin@email.com"}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => router.push("/profile")}>
