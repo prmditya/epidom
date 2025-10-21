@@ -9,7 +9,7 @@ export function DashboardSection() {
   return (
     <section className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 lg:gap-0 rounded-2xl overflow-hidden bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 lg:gap-4 rounded-2xl overflow-hidden bg-white">
           {/* Image Section - 70% width on desktop, full width on mobile/tablet */}
           <div className="md:col-span-1 lg:col-span-7 order-1 md:order-1">
             <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[4/3] w-full overflow-hidden rounded-lg">

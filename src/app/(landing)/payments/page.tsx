@@ -19,12 +19,12 @@ export default async function PaymentsPage({ searchParams }: PaymentsPageProps) 
   const selectedPlan = isValidPlan ? plan : "starter";
 
   return (
-    <main className="min-h-screen bg-white pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 lg:pb-24" style={{ color: 'var(--color-brand-primary)' }}>
+    <main className="min-h-screen bg-white pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-24" style={{ color: 'var(--color-brand-primary)' }}>
       <div className="animate-slide-up">
         <PaymentHero plan={selectedPlan} />
       </div>
       <div className="animate-slide-up-delayed">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8">
           {selectedPlan === "enterprise" ? (
             // Enterprise plan - show contact sales form
             <div className="max-w-4xl mx-auto">
@@ -32,12 +32,12 @@ export default async function PaymentsPage({ searchParams }: PaymentsPageProps) 
             </div>
           ) : (
             // Starter and Pro plans - show payment form
-            <div className="grid gap-6 lg:gap-8 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 lg:gap-8 grid-cols-1 md:grid-cols-1 lg:grid-cols-3 lg:grid-rows-1" style={{ gridTemplateRows: '1fr' }}>
               <div className="lg:col-span-2 order-2 lg:order-1">
                 <PaymentForm plan={selectedPlan} />
               </div>
               <div className="lg:col-span-1 order-1 lg:order-2">
-                <div className="lg:sticky lg:top-8 space-y-4 lg:space-y-6">
+                <div className="lg:sticky lg:top-8 space-y-4 lg:space-y-6 h-full">
                   <PaymentSummary plan={selectedPlan} />
                   <PaymentSecurity />
                 </div>

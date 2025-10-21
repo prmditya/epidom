@@ -35,7 +35,7 @@ export function PaymentForm({ plan }: PaymentFormProps) {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6 h-full">
       {/* Billing Information */}
       <Card className="rounded-xl sm:rounded-2xl border-2">
         <CardHeader className="pb-4">
@@ -116,7 +116,7 @@ export function PaymentForm({ plan }: PaymentFormProps) {
             </div>
           </div>
           
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <div className="space-y-2">
               <Label htmlFor="expiryMonth" className="text-sm font-medium">{t("payments.payment.expiryMonth")}</Label>
               <Input 
@@ -153,20 +153,59 @@ export function PaymentForm({ plan }: PaymentFormProps) {
 
       {/* Terms and Conditions */}
       <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50">
-        <CardContent className="pt-4 sm:pt-6">
-          <div className="flex items-start gap-3">
-            <input 
-              type="checkbox" 
-              id="terms" 
-              className="mt-1 h-4 w-4 text-primary flex-shrink-0"
-              required
-            />
-            <Label htmlFor="terms" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              {t("payments.terms.text")}{" "}
-              <a href="#" className="text-primary hover:underline">
-                {t("payments.terms.link")}
-              </a>
-            </Label>
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
+            Syarat dan Ketentuan
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex items-start gap-2 sm:gap-3">
+              <input 
+                type="checkbox" 
+                id="terms" 
+                className="mt-1 h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0"
+                required
+              />
+              <Label htmlFor="terms" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Saya setuju dengan{" "}
+                <a href="/terms" target="_blank" className="text-primary hover:underline font-medium break-words">
+                  Syarat Layanan
+                </a>{" "}
+                dan{" "}
+                <a href="/privacy" target="_blank" className="text-primary hover:underline font-medium break-words">
+                  Kebijakan Privasi
+                </a>
+              </Label>
+            </div>
+            
+            <div className="flex items-start gap-2 sm:gap-3">
+              <input 
+                type="checkbox" 
+                id="billing" 
+                className="mt-1 h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0"
+                required
+              />
+              <Label htmlFor="billing" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Saya memahami bahwa pembayaran akan diproses secara otomatis setiap bulan dan dapat dibatalkan kapan saja
+              </Label>
+            </div>
+            
+            <div className="flex items-start gap-2 sm:gap-3">
+              <input 
+                type="checkbox" 
+                id="refund" 
+                className="mt-1 h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0"
+                required
+              />
+              <Label htmlFor="refund" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Saya telah membaca dan menyetujui{" "}
+                <a href="/refund-policy" target="_blank" className="text-primary hover:underline font-medium break-words">
+                  Kebijakan Pengembalian Dana
+                </a>
+              </Label>
+            </div>
           </div>
         </CardContent>
       </Card>
