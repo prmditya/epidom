@@ -12,6 +12,9 @@ interface PaymentSummaryProps {
 
 export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
   const { t } = useI18n();
+  
+  // Debug log to ensure component is rendering
+  console.log("PaymentSummary rendering with plan:", plan);
 
   const planDetails = {
     starter: {
@@ -50,7 +53,7 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
   const selectedPlan = planDetails[plan];
 
   return (
-    <Card className="border border-gray-200 shadow-sm">
+    <Card className="border-2 border-red-500 shadow-sm bg-yellow-50">
       <CardHeader className="pb-6">
         <CardTitle className="flex items-center gap-3 text-xl font-semibold">
           <div className="p-2 bg-purple-50 rounded-lg">
