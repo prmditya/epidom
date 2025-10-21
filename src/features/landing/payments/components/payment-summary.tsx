@@ -103,7 +103,7 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
         <Separator />
 
         {/* Billing Info */}
-        <div className="text-xs text-gray-500 space-y-1">
+        <div className="text-xs text-gray-500 space-y-2">
           <p className="text-xs">{t("payments.summary.billingInfo1")}</p>
           <p className="text-xs">{t("payments.summary.billingInfo2")}</p>
         </div>

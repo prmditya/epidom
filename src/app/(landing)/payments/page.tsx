@@ -32,7 +32,7 @@ export default async function PaymentsPage({ searchParams }: PaymentsPageProps) 
             </div>
           ) : (
             // Starter and Pro plans - show payment form
-            <div className="grid gap-6 lg:gap-8 lg:grid-cols-3">
+            <div className="grid gap-6 lg:gap-8 lg:grid-cols-3 lg:items-start">
               <div className="lg:col-span-2 order-2 lg:order-1">
                 <PaymentForm plan={selectedPlan} />
               </div>

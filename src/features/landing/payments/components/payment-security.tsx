@@ -49,7 +49,7 @@ export function PaymentSecurity() {
           </div>
         ))}
         
-        <div className="pt-2 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <p className="text-xs text-gray-500 text-center leading-relaxed">
             {t("payments.security.footer")}
           </p>
