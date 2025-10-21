@@ -10,57 +10,44 @@ export function PaymentSecurity() {
   const securityFeatures = [
     {
       icon: Shield,
-      title: t("payments.security.ssl.title"),
-      description: t("payments.security.ssl.description")
-    },
-    {
-      icon: Lock,
-      title: t("payments.security.encryption.title"),
-      description: t("payments.security.encryption.description")
+      title: "Stripe Security",
+      description: "Powered by Stripe's industry-leading security"
     },
     {
       icon: CreditCard,
-      title: t("payments.security.pci.title"),
-      description: t("payments.security.pci.description")
+      title: "PCI DSS Compliant",
+      description: "Your card data is never stored on our servers"
     },
     {
-      icon: CheckCircle,
-      title: t("payments.security.guarantee.title"),
-      description: t("payments.security.guarantee.description")
+      icon: Lock,
+      title: "256-bit SSL Encryption",
+      description: "All transactions are encrypted end-to-end"
     }
   ];
 
   return (
-    <Card className="border border-gray-200 shadow-sm">
-      <CardHeader className="pb-6">
-        <CardTitle className="flex items-center gap-3 text-xl font-semibold">
-          <div className="p-2 bg-green-50 rounded-lg">
-            <Shield className="h-5 w-5 text-green-600" />
-          </div>
+    <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50">
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+          <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
           {t("payments.security.title")}
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-5">
-          {securityFeatures.map((feature, index) => (
-            <div key={index} className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <feature.icon className="h-5 w-5 text-green-600" />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-semibold text-sm text-gray-900 mb-1">{feature.title}</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
+      <CardContent className="space-y-3 sm:space-y-4">
+        {securityFeatures.map((feature, index) => (
+          <div key={index} className="flex items-start gap-2 sm:gap-3">
+            <feature.icon className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h4 className="font-semibold text-xs sm:text-sm">{feature.title}</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">{feature.description}</p>
             </div>
-          ))}
-        </div>
-        
-        <div className="pt-4 border-t border-gray-200">
-          <div className="bg-gray-50 rounded-lg p-4">
-            <p className="text-sm text-gray-600 text-center leading-relaxed">
-              {t("payments.security.footer")}
-            </p>
           </div>
+        ))}
+        
+        <div className="pt-2 border-t border-gray-200">
+          <p className="text-xs text-gray-500 text-center leading-relaxed">
+            {t("payments.security.footer")}
+          </p>
         </div>
       </CardContent>
     </Card>

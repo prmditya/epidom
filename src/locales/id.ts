@@ -301,8 +301,8 @@ export const id = {
         description: "Sesuai standar PCI DSS"
       },
       pci: {
-        title: "Didukung oleh Stripe",
-        description: "Stripe adalah Penyedia Layanan PCI Level 1"
+        title: "Bersertifikat PCI",
+        description: "Kepatuhan PCI level 1"
       },
       guarantee: {
         title: "Jaminan Uang Kembali",

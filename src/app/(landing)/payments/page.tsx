@@ -32,15 +32,12 @@ export default async function PaymentsPage({ searchParams }: PaymentsPageProps) 
             </div>
           ) : (
             // Starter and Pro plans - show payment form
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
-              {/* Left Section - Payment Form */}
-              <div className="lg:col-span-2">
+            <div className="grid gap-6 lg:gap-8 lg:grid-cols-3 lg:grid-rows-1" style={{ gridTemplateRows: '1fr' }}>
+              <div className="lg:col-span-2 order-2 lg:order-1">
                 <PaymentForm plan={selectedPlan} />
               </div>
-              
-              {/* Right Section - Summary & Security */}
-              <div className="lg:col-span-1">
-                <div className="space-y-6">
+              <div className="lg:col-span-1 order-1 lg:order-2">
+                <div className="lg:sticky lg:top-8 space-y-4 lg:space-y-6 h-full">
                   <PaymentSummary plan={selectedPlan} />
                   <PaymentSecurity />
                 </div>
