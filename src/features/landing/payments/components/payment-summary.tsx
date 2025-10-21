@@ -50,62 +50,69 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
   const selectedPlan = planDetails[plan];
 
   return (
-    <Card className="rounded-xl sm:rounded-2xl border-2">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-lg sm:text-xl">{t("payments.summary.title")}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {/* Plan Selection */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div>
-            <h3 className="font-semibold text-base sm:text-lg">{selectedPlan.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-600">{selectedPlan.period}</p>
+    <Card className="border border-gray-200 shadow-sm">
+      <CardHeader className="pb-6">
+        <CardTitle className="flex items-center gap-3 text-xl font-semibold">
+          <div className="p-2 bg-purple-50 rounded-lg">
+            <div className="w-5 h-5 bg-purple-600 rounded"></div>
           </div>
-          <Badge variant="secondary" className="bg-gray-100 text-gray-700 w-fit">
+          {t("payments.summary.title")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {/* Plan Selection */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900">{selectedPlan.title}</h3>
+            <p className="text-sm text-gray-600">{selectedPlan.period}</p>
+          </div>
+          <Badge className="bg-green-100 text-green-800 border-green-200">
             {t("payments.summary.selected")}
           </Badge>
         </div>
 
-        <Separator />
+        <Separator className="bg-gray-200" />
 
         {/* Pricing */}
-        <div className="space-y-2">
+        <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <span className="text-xs sm:text-sm text-gray-600">{t("payments.summary.subtotal")}</span>
-            <span className="font-semibold text-sm sm:text-base">{selectedPlan.price}</span>
+            <span className="text-sm text-gray-600">{t("payments.summary.subtotal")}</span>
+            <span className="font-semibold text-gray-900">{selectedPlan.price}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-xs sm:text-sm text-gray-600">{t("payments.summary.tax")}</span>
-            <span className="font-semibold text-sm sm:text-base">€0.00</span>
+            <span className="text-sm text-gray-600">{t("payments.summary.tax")}</span>
+            <span className="font-semibold text-gray-900">€0.00</span>
           </div>
-          <Separator />
-          <div className="flex justify-between items-center text-base sm:text-lg font-bold">
+          <Separator className="bg-gray-200" />
+          <div className="flex justify-between items-center text-xl font-bold text-gray-900">
             <span>{t("payments.summary.total")}</span>
-            <span>{selectedPlan.price}</span>
+            <span className="text-2xl">{selectedPlan.price}</span>
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-gray-200" />
 
         {/* Features */}
-        <div className="space-y-3">
-          <h4 className="font-semibold text-xs sm:text-sm">{t("payments.summary.included")}</h4>
-          <ul className="space-y-2">
+        <div className="space-y-4">
+          <h4 className="font-semibold text-sm text-gray-900">{t("payments.summary.included")}</h4>
+          <ul className="space-y-3">
             {selectedPlan.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
+              <li key={index} className="flex items-start gap-3">
+                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="h-3 w-3 text-green-600" />
+                </div>
+                <span className="text-sm text-gray-700 leading-relaxed">{feature}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <Separator />
+        <Separator className="bg-gray-200" />
 
         {/* Billing Info */}
-        <div className="text-xs text-gray-500 space-y-2">
-          <p className="text-xs">{t("payments.summary.billingInfo1")}</p>
-          <p className="text-xs">{t("payments.summary.billingInfo2")}</p>
+        <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+          <p className="text-xs text-blue-800 font-medium">{t("payments.summary.billingInfo1")}</p>
+          <p className="text-xs text-blue-700">{t("payments.summary.billingInfo2")}</p>
         </div>
       </CardContent>
     </Card>

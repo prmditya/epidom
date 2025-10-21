@@ -31,30 +31,36 @@ export function PaymentSecurity() {
   ];
 
   return (
-    <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50 h-full flex flex-col">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-          <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+    <Card className="border border-gray-200 shadow-sm">
+      <CardHeader className="pb-6">
+        <CardTitle className="flex items-center gap-3 text-xl font-semibold">
+          <div className="p-2 bg-green-50 rounded-lg">
+            <Shield className="h-5 w-5 text-green-600" />
+          </div>
           {t("payments.security.title")}
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3 sm:space-y-4 flex-1 flex flex-col">
-        <div className="space-y-3 sm:space-y-4">
+      <CardContent className="space-y-6">
+        <div className="space-y-5">
           {securityFeatures.map((feature, index) => (
-            <div key={index} className="flex items-start gap-2 sm:gap-3">
-              <feature.icon className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-semibold text-xs sm:text-sm">{feature.title}</h4>
-                <p className="text-xs text-gray-600 leading-relaxed">{feature.description}</p>
+            <div key={index} className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <feature.icon className="h-5 w-5 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-sm text-gray-900 mb-1">{feature.title}</h4>
+                <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="pt-3 border-t border-gray-200 mt-auto">
-          <p className="text-xs text-gray-500 text-center leading-relaxed">
-            {t("payments.security.footer")}
-          </p>
+        <div className="pt-4 border-t border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-600 text-center leading-relaxed">
+              {t("payments.security.footer")}
+            </p>
+          </div>
         </div>
       </CardContent>
     </Card>
