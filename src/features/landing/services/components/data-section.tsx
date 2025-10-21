@@ -15,7 +15,7 @@ export function DataSection() {
         </h2>
         
         {/* Box dengan dua bagian - DIBALIK dari ManagementSection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 lg:gap-0 rounded-2xl overflow-hidden bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 lg:gap-4 rounded-2xl overflow-hidden bg-white">
           {/* Kiri 70% - Gambar besar (sebelumnya kanan) */}
           <div className="md:col-span-1 lg:col-span-7 order-1">
             <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[4/3] w-full rounded-lg overflow-hidden">
@@ -56,7 +56,7 @@ export function DataSection() {
         </div>
         
         {/* 3 Gambar dengan layout khusus */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 rounded-2xl overflow-hidden bg-white mt-6 sm:mt-8 md:mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 lg:gap-4 rounded-2xl overflow-hidden bg-white mt-6 sm:mt-8 md:mt-12">
           {/* Kiri 70% - Gambar full */}
           <div className="md:col-span-1 lg:col-span-7 order-1">
             <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[4/3] w-full rounded-lg overflow-hidden">

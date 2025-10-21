@@ -15,7 +15,7 @@ export function ManagementSection() {
         </h2>
         
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-0 rounded-2xl overflow-hidden bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-4 rounded-2xl overflow-hidden bg-white">
           {/* Text Section - 40% width on desktop, full width on mobile/tablet */}
           <div className="lg:col-span-4 bg-white flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 order-2 lg:order-1">
             <div className="space-y-3 sm:space-y-4 md:space-y-6 text-left w-full">

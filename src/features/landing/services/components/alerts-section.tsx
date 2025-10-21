@@ -15,7 +15,7 @@ export function AlertsSection() {
         </h2>
         
         {/* Box dengan dua bagian - SAMA seperti ManagementSection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-0 rounded-2xl overflow-hidden bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-4 rounded-2xl overflow-hidden bg-white">
           {/* Kiri 40% - Text dan gambar kecil */}
           <div className="md:col-span-1 lg:col-span-2 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-0 order-2 md:order-1">
             {/* Text paragraf */}
