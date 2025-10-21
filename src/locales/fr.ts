@@ -297,8 +297,8 @@ export const fr = {
         description: "Conforme PCI DSS"
       },
       pci: {
-        title: "Certifié PCI",
-        description: "Conformité PCI niveau 1"
+        title: "Propulsé par Stripe",
+        description: "Stripe est un fournisseur de services PCI de niveau 1"
       },
       guarantee: {
         title: "Remboursement",

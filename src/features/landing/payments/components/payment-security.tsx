@@ -31,7 +31,7 @@ export function PaymentSecurity() {
   ];
 
   return (
-    <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50">
+    <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50 h-full">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
           <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />

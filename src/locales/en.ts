@@ -298,8 +298,8 @@ export const en = {
         description: "PCI DSS compliant"
       },
       pci: {
-        title: "PCI Certified",
-        description: "Level 1 PCI compliance"
+        title: "Powered by Stripe",
+        description: "Stripe is a PCI Level 1 Service Provider"
       },
       guarantee: {
         title: "Money Back",
