@@ -11,7 +11,7 @@ export function DataRowOne() {
       <div className="services-narrow-container">
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 lg:gap-8 items-start lg:items-center">
           {/* Left Column (60%) - 2 Large Mockups */}
-          <div className="lg:col-span-6 space-y-4">
+          <div className="lg:col-span-6 space-y-4 order-2 lg:order-1">
             {/* Mockup 1 - Large */}
             <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
               <Image
@@ -36,7 +36,7 @@ export function DataRowOne() {
           </div>
 
           {/* Right Column (40%) - Title + Description + 2 Small Mockups */}
-          <div className="lg:col-span-4 space-y-10">
+          <div className="lg:col-span-4 space-y-10 order-1 lg:order-2">
             {/* Title */}
             <h2 
               className="text-section-title"
