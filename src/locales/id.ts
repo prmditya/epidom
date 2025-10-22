@@ -827,6 +827,12 @@ export const id = {
     noResults: "Tidak ada hasil ditemukan",
     profileUpdated: "Profil berhasil diperbarui",
     selectOrder: "Pilih pesanan untuk melihat detail",
+    invalidCredentials: "Email atau kata sandi tidak valid",
+    loginFailed: "Login gagal. Silakan coba lagi.",
+    loggingIn: "Sedang login...",
+    registrationSuccessful: "Registrasi berhasil! Silakan login.",
+    userAlreadyExists: "Pengguna dengan email ini sudah ada.",
+    registrationFailed: "Registrasi gagal. Silakan coba lagi.",
   },
   alerts: {
     orderPlaced: "Pesanan berhasil dibuat",

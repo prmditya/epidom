@@ -20,11 +20,17 @@ import { Sidebar } from "./sidebar";
 import { useI18n } from "../../../components/lang/i18n-provider";
 import LangSwitcher from "../../../components/lang/lang-switcher";
 import { LogOut } from "lucide-react";
+import { useUser } from "@/lib/auth-client";
+import { signOut } from "next-auth/react";
 
 export function Topbar() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useI18n();
+
+  const { user, loading } = useUser();
+
+  if (loading) return null;
 
   return (
     <header
@@ -92,15 +98,15 @@ export function Topbar() {
                 >
                   <Avatar className="size-6">
                     <AvatarFallback className="text-xs bg-white text-foreground">
-                      {"U"}
+                      {user?.name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? "U"}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden sm:inline">{"User"}</span>
+                  <span className="hidden sm:inline">{user?.name ?? user?.email}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel className="max-w-[220px] truncate">
-                  {"admin@email.com"}
+                  {user?.name ?? user?.email}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => router.push("/profile")}>
@@ -115,7 +121,7 @@ export function Topbar() {
               size="sm"
               variant="destructive"
               onClick={() => {
-                router.replace("/login");
+                signOut();
               }}
             >
               <LogOut className="size-4 mr-1" />

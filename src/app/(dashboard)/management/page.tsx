@@ -84,12 +84,6 @@ export default function ManagementPage() {
         >
           {t("tabs.editStock")}
         </TabsTrigger>
-        <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
-          value="permissions"
-        >
-          {t("tabs.managePermissions")}
-        </TabsTrigger>
       </TabsList>
 
       <TabsContent
@@ -114,10 +108,6 @@ export default function ManagementPage() {
 
       <TabsContent value="stock">
         <EditStockCard />
-      </TabsContent>
-
-      <TabsContent value="permissions" className="w-full">
-        <UsersTable users={users} />
       </TabsContent>
     </Tabs>
   );

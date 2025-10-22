@@ -836,6 +836,12 @@ export const fr = {
     noResults: "Aucun résultat trouvé",
     profileUpdated: "Profil mis à jour avec succès",
     selectOrder: "Sélectionnez une commande pour voir les détails",
+    invalidCredentials: "Email ou mot de passe invalide",
+    loginFailed: "La connexion a échoué. Veuillez réessayer.",
+    loggingIn: "Connexion en cours...",
+    registrationSuccessful: "Inscription réussie ! Veuillez vous connecter.",
+    userAlreadyExists: "Un utilisateur avec cet email existe déjà.",
+    registrationFailed: "L'inscription a échoué. Veuillez réessayer.",
   },
   alerts: {
     orderPlaced: "Commande passée avec succès",

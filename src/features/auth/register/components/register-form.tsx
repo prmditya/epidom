@@ -20,14 +20,42 @@ export function RegisterForm() {
   const { t } = useI18n();
 
   async function onSubmit(formData: FormData) {
-    const password = String(formData.get("password") || "");
-    const confirm = String(formData.get("confirm") || "");
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const confirm = formData.get("confirm") as string;
+    const businessName = formData.get("businessName") as string;
+    const address = formData.get("address") as string;
+
     if (password !== confirm) {
       alert(t("messages.passwordsDoNotMatch"));
       return;
     }
-    // Auth will be implemented later - for now redirect to login
-    router.replace("/login");
+
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          businessName,
+          address,
+        }),
+      });
+
+      if (response.ok) {
+        alert(t("messages.registrationSuccessful"));
+        router.push("/login");
+      } else if (response.status === 409) {
+        alert(t("messages.userAlreadyExists"));
+      }
+    } catch (error) {
+      alert(t("messages.registrationFailed"));
+    }
   }
 
   return (
@@ -66,21 +94,11 @@ export function RegisterForm() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">{t("auth.password")}</Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                />
+                <Input id="password" name="password" type="password" required />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirm">{t("auth.confirmPassword")}</Label>
-                <Input
-                  id="confirm"
-                  name="confirm"
-                  type="password"
-                  required
-                />
+                <Input id="confirm" name="confirm" type="password" required />
               </div>
             </div>
           </section>
@@ -91,9 +109,7 @@ export function RegisterForm() {
             <h3 className="font-medium">{t("auth.businessInfo")}</h3>
             <div className="grid gap-4">
               <div className="space-y-2">
-                <Label htmlFor="businessName">
-                  {t("auth.businessName")}
-                </Label>
+                <Label htmlFor="businessName">{t("auth.businessName")}</Label>
                 <Input
                   id="businessName"
                   name="businessName"
