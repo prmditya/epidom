@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import 'leaflet/dist/leaflet.css';
 
 /* Smooth scroll behavior */
 html {
@@ -101,11 +102,11 @@ html {
 /* Typography Standards for Services Sections */
 
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4 sm:mb-10;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-5 sm:mb-5 sm:mb-10;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-4 sm:mb-10;
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-5 sm:mb-5 sm:mb-10;
 }
 
 .text-description {
@@ -114,12 +115,12 @@ html {
 
 /* Padding Standards for Services Sections */
 .services-section-padding {
-  @apply px-1 sm:px-2 lg:px-4;
+  @apply px-0 sm:px-2 lg:px-4;
 }
 
 /* Narrow Container for Services Sections */
 .services-narrow-container {
-  @apply mx-auto max-w-[1400px] px-1 sm:px-2 lg:px-4 w-full;
+  @apply mx-auto max-w-[1400px] px-0 sm:px-2 lg:px-4 w-full;
 }
 
 /* Ensure consistent layout when dialog is open */
@@ -474,11 +475,11 @@ body.dialog-open {
 /* Typography Standards for Services Sections */
 
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4 sm:mb-10;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-5 sm:mb-5 sm:mb-10;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-4 sm:mb-10;
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-5 sm:mb-5 sm:mb-10;
 }
 
 .text-description {
@@ -487,19 +488,15 @@ body.dialog-open {
 
 /* Padding Standards for Services Sections */
 .services-section-padding {
-  @apply px-1 sm:px-2 lg:px-4;
+  @apply px-0 sm:px-2 lg:px-4;
 }
 
 /* Narrow Container for Services Sections */
 .services-narrow-container {
-  @apply mx-auto max-w-[1400px] px-1 sm:px-2 lg:px-4 w-full;
+  @apply mx-auto max-w-[1400px] px-0 sm:px-2 lg:px-4 w-full;
 }
 
-    @apply border-border outline-ring/50;
-
-  }
-
-  body {
+body {
 
     @apply text-foreground;
 
@@ -534,8 +531,6 @@ body.dialog-open {
     min-height: 100vh;
 
   }
-
-}
 
 
 
@@ -899,11 +894,11 @@ body.dialog-open {
 
 /* Typography Standards for Services Sections */
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-10;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-5 sm:mb-10;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-10;
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-5 sm:mb-10;
 }
 
 .text-description {
@@ -912,10 +907,10 @@ body.dialog-open {
 
 /* Padding Standards for Services Sections */
 .services-section-padding {
-  @apply px-1 sm:px-2 lg:px-4;
+  @apply px-0 sm:px-2 lg:px-4;
 }
 
 /* Narrow Container for Services Sections */
 .services-narrow-container {
-  @apply mx-auto max-w-[1400px] px-1 sm:px-2 lg:px-4 w-full;
+  @apply mx-auto max-w-[1400px] px-0 sm:px-2 lg:px-4 w-full;
 }
