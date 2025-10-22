@@ -99,12 +99,13 @@ html {
 }
 
 /* Typography Standards for Services Sections */
+
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-10;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4 sm:mb-10;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-10;
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-4 sm:mb-10;
 }
 
 .text-description {
@@ -471,12 +472,13 @@ body.dialog-open {
 }
 
 /* Typography Standards for Services Sections */
+
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-10;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4 sm:mb-10;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-10;
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-4 sm:mb-10;
 }
 
 .text-description {

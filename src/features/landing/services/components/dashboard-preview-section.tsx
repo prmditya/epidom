@@ -29,7 +29,7 @@ export function DashboardPreviewSection() {
 
           {/* Right Column - Text Content (30%) */}
           <div className="lg:col-span-3 order-1 lg:order-2">
-            <div className="space-y-10 text-left">
+            <div className="space-y-4 sm:space-y-10 text-left">
               {/* Subtitle */}
               <h2 
                 className="text-subtitle"

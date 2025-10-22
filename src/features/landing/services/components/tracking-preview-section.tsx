@@ -11,7 +11,7 @@ export function TrackingPreviewSection() {
       <div className="services-narrow-container">
         {/* Title - Centered */}
         <h2 
-          className="text-section-title text-center mb-6 sm:mb-8 lg:mb-12"
+          className="text-section-title text-center mb-4 sm:mb-8 lg:mb-12"
           style={{ color: "var(--color-brand-primary)" }}
         >
           {t("services.tracking.title")}

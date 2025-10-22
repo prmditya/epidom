@@ -36,7 +36,7 @@ export function DataRowOne() {
           </div>
 
           {/* Right Column (40%) - Title + Description + 2 Small Mockups */}
-          <div className="lg:col-span-4 space-y-10 order-1 lg:order-2">
+          <div className="lg:col-span-4 space-y-4 sm:space-y-10 order-1 lg:order-2">
             {/* Title */}
             <h2 
               className="text-section-title"

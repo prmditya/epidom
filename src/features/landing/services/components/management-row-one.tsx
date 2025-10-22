@@ -17,7 +17,7 @@ export function ManagementRowOne() {
       <div className="services-narrow-container">
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 lg:gap-8 items-start lg:items-center">
           {/* Left Column (40%) - Text + Small Mockup */}
-          <div className="lg:col-span-4 space-y-10">
+          <div className="lg:col-span-4 space-y-4 sm:space-y-10">
             {/* Title */}
             <h2 
               className="text-section-title"
