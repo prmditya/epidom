@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeImage } from "@/components/lang/safe-image";
+import Image from "next/image";
 
 export function DataRowTwo() {
   return (
@@ -10,25 +10,23 @@ export function DataRowTwo() {
           {/* Left Column (25%) - 2 Small Mockups */}
           <div className="lg:col-span-3 space-y-4">
             {/* Small Mockup 1 */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/data-tab.png"
-                alt="Data management small interface 1"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/data-supplier.png"
+                alt="Supplier data interface"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Small 1"
                 quality={80}
               />
             </div>
             
             {/* Small Mockup 2 */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/data-tab.png"
-                alt="Data management small interface 2"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/data-material.png"
+                alt="Material data interface"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Small 2"
                 quality={80}
               />
             </div>
@@ -36,13 +34,12 @@ export function DataRowTwo() {
 
           {/* Right Column (75%) - 1 Large Mockup */}
           <div className="lg:col-span-9">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
-              <SafeImage
-                src="/images/data-tab.png"
-                alt="Data management large interface"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+              <Image
+                src="/images/data-manage.png"
+                alt="Data management overview interface"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Large Interface"
                 priority={true}
                 quality={90}
               />

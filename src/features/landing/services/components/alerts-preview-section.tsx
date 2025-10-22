@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
-import { SafeImage } from "@/components/lang/safe-image";
+import Image from "next/image";
 
 export function AlertsPreviewSection() {
   const { t } = useI18n();
@@ -29,13 +29,12 @@ export function AlertsPreviewSection() {
             </p>
             
             {/* Small Mockup */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/alert-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/alert-1.png"
                 alt="Alerts interface small preview"
                 fill
                 className="object-cover"
-                placeholderText="Alerts Interface Small"
                 quality={85}
               />
             </div>
@@ -43,13 +42,12 @@ export function AlertsPreviewSection() {
 
           {/* Right Column (60%) - Large Mockup */}
           <div className="lg:col-span-6">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
-              <SafeImage
-                src="/images/alert-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+              <Image
+                src="/images/alert-2.png"
                 alt="Alerts interface large preview"
                 fill
                 className="object-cover"
-                placeholderText="Alerts Interface Large"
                 priority={true}
                 quality={90}
               />

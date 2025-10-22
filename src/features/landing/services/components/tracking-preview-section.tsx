@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
-import { SafeImage } from "@/components/lang/safe-image";
+import Image from "next/image";
 
 export function TrackingPreviewSection() {
   const { t } = useI18n();
@@ -18,13 +18,12 @@ export function TrackingPreviewSection() {
         </h2>
         
         {/* Large Mockup - Almost full width */}
-        <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
-          <SafeImage
-            src="/images/tracking-tab.png"
+        <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+          <Image
+            src="/images/tracking.png"
             alt="Active stock tracking interface"
             fill
             className="object-cover"
-            placeholderText="Active Stock Tracking Interface"
             priority={true}
             quality={90}
           />

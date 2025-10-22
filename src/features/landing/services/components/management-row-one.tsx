@@ -1,13 +1,19 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
-import { SafeImage } from "@/components/lang/safe-image";
+import Image from "next/image";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 export function ManagementRowOne() {
   const { t } = useI18n();
+  const { ref, hasIntersected } = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '50px',
+    triggerOnce: true
+  });
 
   return (
-    <section className="bg-white py-4 flex items-center overflow-visible relative z-10">
+    <section ref={ref} className="bg-white py-4 flex items-center overflow-visible relative z-10">
       <div className="services-narrow-container">
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 lg:gap-8 items-start lg:items-center">
           {/* Left Column (40%) - Text + Small Mockup */}
@@ -37,30 +43,36 @@ export function ManagementRowOne() {
             </p>
             
             {/* Small Mockup */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/management-tab.png"
-                alt="Management interface small preview"
-                fill
-                className="object-cover"
-                placeholderText="Management Interface Small"
-                quality={85}
-              />
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              {hasIntersected && (
+                <Image
+                  src="/images/management-history.png"
+                  alt="Production history interface"
+                  fill
+                  className="object-cover"
+                  quality={80}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 30vw"
+                  loading="lazy"
+                />
+              )}
             </div>
           </div>
 
           {/* Right Column (60%) - Large Mockup */}
           <div className="lg:col-span-6 flex items-center">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
-              <SafeImage
-                src="/images/management-tab.png"
-                alt="Management interface large preview"
-                fill
-                className="object-cover"
-                placeholderText="Management Interface Large"
-                priority={true}
-                quality={90}
-              />
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+              {hasIntersected && (
+                <Image
+                  src="/images/management-editstock.png"
+                  alt="Edit stock interface"
+                  fill
+                  className="object-cover"
+                  priority={false}
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 45vw"
+                  loading="lazy"
+                />
+              )}
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
-import { SafeImage } from "@/components/lang/safe-image";
+import Image from "next/image";
 
 export function DashboardPreviewSection() {
   const { t } = useI18n();
@@ -12,15 +12,17 @@ export function DashboardPreviewSection() {
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 lg:gap-8 items-center">
           {/* Left Column - Dashboard Image (70%) */}
           <div className="lg:col-span-7 order-2 lg:order-1">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
-              <SafeImage
-                src="/images/dashboard-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+              <Image
+                src="/images/dashboard.png"
                 alt="Dashboard interface preview"
                 fill
                 className="object-cover"
-                placeholderText="Dashboard Interface"
                 priority={true}
-                quality={90}
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 50vw"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
               />
             </div>
           </div>

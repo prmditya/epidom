@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
-import { SafeImage } from "@/components/lang/safe-image";
+import Image from "next/image";
 
 export function DataRowOne() {
   const { t } = useI18n();
@@ -13,25 +13,23 @@ export function DataRowOne() {
           {/* Left Column (60%) - 2 Large Mockups */}
           <div className="lg:col-span-6 space-y-4">
             {/* Mockup 1 - Large */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/data-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/data-manage.png"
                 alt="Data management interface 1"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Interface 1"
                 quality={85}
               />
             </div>
             
             {/* Mockup 2 - Large */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/data-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/data-material.png"
                 alt="Data management interface 2"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Interface 2"
                 quality={85}
               />
             </div>
@@ -64,25 +62,23 @@ export function DataRowOne() {
             </p>
             
             {/* Small Mockup 1 */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/data-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/data-product.png"
                 alt="Data management small interface 1"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Small 1"
                 quality={80}
               />
             </div>
             
             {/* Small Mockup 2 */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-              <SafeImage
-                src="/images/data-tab.png"
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/images/data-recipe.png"
                 alt="Data management small interface 2"
                 fill
                 className="object-cover"
-                placeholderText="Data Management Small 2"
                 quality={80}
               />
             </div>
