@@ -8,7 +8,7 @@ export function ContactInfo() {
 
   return (
     <div className="py-8 sm:py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <h1
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 sm:mb-8"
