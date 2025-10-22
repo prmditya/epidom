@@ -7,9 +7,9 @@ export function DashboardPreviewSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white py-8 sm:py-12 min-h-screen flex items-center overflow-visible relative z-10">
+    <section className="bg-white py-6 sm:py-12 sm:min-h-screen flex items-center overflow-visible relative z-10">
       <div className="services-narrow-container">
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-8 lg:gap-8 items-center">
           {/* Left Column - Dashboard Image (70%) */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
@@ -29,7 +29,7 @@ export function DashboardPreviewSection() {
 
           {/* Right Column - Text Content (30%) */}
           <div className="lg:col-span-3 order-1 lg:order-2">
-            <div className="space-y-10 text-left">
+            <div className="space-y-3 sm:space-y-10 text-left">
               {/* Subtitle */}
               <h2 
                 className="text-subtitle"

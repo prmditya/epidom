@@ -7,7 +7,7 @@ export function TrackingPreviewSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white py-8 sm:py-12 min-h-screen flex items-center overflow-visible relative z-10">
+    <section className="bg-white py-6 sm:py-12 sm:min-h-screen flex items-center overflow-visible relative z-10">
       <div className="services-narrow-container">
         {/* Title - Centered */}
         <h2 
