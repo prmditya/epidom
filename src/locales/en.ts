@@ -58,6 +58,27 @@ export const en = {
       tracking: "Tracking",
       data: "Data",
     },
+    dashboard: {
+      subtitle: "Food stock management is the process of tracking purchased and unconsumed food products.",
+      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+    },
+    management: {
+      title: "Efficient Management",
+      subtitle: "Food stock management is the process of tracking purchased and unconsumed food products.",
+      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+    },
+    tracking: {
+      title: "Active Stock Tracking"
+    },
+    data: {
+      title: "Complete Data Tracking",
+      description1: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
+      description2: "Food stock management is the process of tracking purchased and unconsumed food products."
+    },
+    alerts: {
+      title: "Visible and Accessible Alerts",
+      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+    },
     dashboardDesc1:
       "Food stock management is the process of tracking purchased and unconsumed food products.",
     dashboardDesc2:
@@ -272,8 +293,12 @@ export const en = {
       cvv: "CVV"
     },
     terms: {
+      title: "Terms and Conditions",
       text: "I agree to the",
-      link: "Terms of Service and Privacy Policy"
+      link: "Terms of Service and Privacy Policy",
+      billing: "I understand that payment will be processed automatically every month and can be cancelled at any time",
+      refund: "I have read and agree to the",
+      refundLink: "Refund Policy"
     },
     processing: "Processing...",
     completePayment: "Complete Payment",
@@ -289,21 +314,17 @@ export const en = {
     },
     security: {
       title: "Secure Payment",
-      ssl: {
-        title: "SSL Encrypted",
-        description: "256-bit SSL encryption"
+      feature1: {
+        title: "Stripe Security",
+        description: "Powered by Stripe's industry-leading security"
       },
-      encryption: {
-        title: "Secure Processing",
-        description: "PCI DSS compliant"
+      feature2: {
+        title: "PCI DSS Compliant",
+        description: "Your card data is never stored on our servers"
       },
-      pci: {
-        title: "PCI Certified",
-        description: "Level 1 PCI compliance"
-      },
-      guarantee: {
-        title: "Money Back",
-        description: "30-day money back guarantee"
+      feature3: {
+        title: "256-bit SSL Encryption",
+        description: "All transactions are encrypted end-to-end"
       },
       footer: "Your payment information is secure and encrypted"
     },

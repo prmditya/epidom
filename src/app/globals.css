@@ -98,6 +98,29 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Typography Standards for Services Sections */
+.text-section-title {
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-10;
+}
+
+.text-subtitle {
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-10;
+}
+
+.text-description {
+  @apply text-base sm:text-lg lg:text-xl font-light leading-relaxed;
+}
+
+/* Padding Standards for Services Sections */
+.services-section-padding {
+  @apply px-1 sm:px-2 lg:px-4;
+}
+
+/* Narrow Container for Services Sections */
+.services-narrow-container {
+  @apply mx-auto max-w-[1400px] px-1 sm:px-2 lg:px-4 w-full;
+}
+
 /* Ensure consistent layout when dialog is open */
 body.dialog-open {
   overflow: hidden;
@@ -423,3 +446,49 @@ body.dialog-open {
    * 
    * All images use: rounded-lg overflow-hidden for consistent styling
    */
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Optimize animations for better performance */
+.animate-slide-up,
+.animate-slide-up-delayed,
+.animate-slide-up-delayed-2,
+.animate-slide-up-delayed-3 {
+  will-change: transform, opacity;
+}
+
+/* Performance optimizations for services sections */
+.services-narrow-container {
+  contain: layout style paint;
+}
+
+/* Optimize image containers */
+.relative.aspect-video {
+  contain: layout style paint;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Typography Standards for Services Sections */
+.text-section-title {
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-10;
+}
+
+.text-subtitle {
+  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-10;
+}
+
+.text-description {
+  @apply text-base sm:text-lg lg:text-xl font-light leading-relaxed;
+}
+
+/* Padding Standards for Services Sections */
+.services-section-padding {
+  @apply px-1 sm:px-2 lg:px-4;
+}
+
+/* Narrow Container for Services Sections */
+.services-narrow-container {
+  @apply mx-auto max-w-[1400px] px-1 sm:px-2 lg:px-4 w-full;
+}
