@@ -15,7 +15,7 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
           <div className="hidden md:flex md:sticky md:top-[4.5rem] h-full">
             <Sidebar mode="desktop" />
           </div>
-          {/* Content column */}
+          {/* Content */}
           <main className="min-w-0 w-full rounded-xl border bg-card/80 backdrop-blur-md p-4 sm:p-6 shadow-lg page-content md:top-[4.5rem] ">
             {children}
           </main>
