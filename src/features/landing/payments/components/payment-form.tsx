@@ -156,7 +156,7 @@ export function PaymentForm({ plan }: PaymentFormProps) {
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
             <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
-            Syarat dan Ketentuan
+            {t("payments.terms.title")}
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
@@ -169,13 +169,9 @@ export function PaymentForm({ plan }: PaymentFormProps) {
                 required
               />
               <Label htmlFor="terms" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Saya setuju dengan{" "}
+                {t("payments.terms.text")}{" "}
                 <a href="/terms" target="_blank" className="text-primary hover:underline font-medium break-words">
-                  Syarat Layanan
-                </a>{" "}
-                dan{" "}
-                <a href="/privacy" target="_blank" className="text-primary hover:underline font-medium break-words">
-                  Kebijakan Privasi
+                  {t("payments.terms.link")}
                 </a>
               </Label>
             </div>
@@ -188,7 +184,7 @@ export function PaymentForm({ plan }: PaymentFormProps) {
                 required
               />
               <Label htmlFor="billing" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Saya memahami bahwa pembayaran akan diproses secara otomatis setiap bulan dan dapat dibatalkan kapan saja
+                {t("payments.terms.billing")}
               </Label>
             </div>
             
@@ -200,9 +196,9 @@ export function PaymentForm({ plan }: PaymentFormProps) {
                 required
               />
               <Label htmlFor="refund" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Saya telah membaca dan menyetujui{" "}
+                {t("payments.terms.refund")}{" "}
                 <a href="/refund-policy" target="_blank" className="text-primary hover:underline font-medium break-words">
-                  Kebijakan Pengembalian Dana
+                  {t("payments.terms.refundLink")}
                 </a>
               </Label>
             </div>

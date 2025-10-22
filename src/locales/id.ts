@@ -296,8 +296,12 @@ export const id = {
       cvv: "CVV"
     },
     terms: {
+      title: "Syarat dan Ketentuan",
       text: "Saya setuju dengan",
-      link: "Syarat Layanan dan Kebijakan Privasi"
+      link: "Syarat Layanan dan Kebijakan Privasi",
+      billing: "Saya memahami bahwa pembayaran akan diproses secara otomatis setiap bulan dan dapat dibatalkan kapan saja",
+      refund: "Saya telah membaca dan menyetujui",
+      refundLink: "Kebijakan Pengembalian Dana"
     },
     processing: "Memproses...",
     completePayment: "Selesaikan Pembayaran",
@@ -313,21 +317,17 @@ export const id = {
     },
     security: {
       title: "Pembayaran Aman",
-      ssl: {
-        title: "Terenkripsi SSL",
-        description: "Enkripsi SSL 256-bit"
+      feature1: {
+        title: "Keamanan Stripe",
+        description: "Didukung oleh keamanan terdepan industri Stripe"
       },
-      encryption: {
-        title: "Pemrosesan Aman",
-        description: "Sesuai standar PCI DSS"
+      feature2: {
+        title: "Sesuai Standar PCI DSS",
+        description: "Data kartu Anda tidak pernah disimpan di server kami"
       },
-      pci: {
-        title: "Bersertifikat PCI",
-        description: "Kepatuhan PCI level 1"
-      },
-      guarantee: {
-        title: "Jaminan Uang Kembali",
-        description: "Jaminan uang kembali 30 hari"
+      feature3: {
+        title: "Enkripsi SSL 256-bit",
+        description: "Semua transaksi dienkripsi dari ujung ke ujung"
       },
       footer: "Informasi pembayaran Anda aman dan terenkripsi"
     },

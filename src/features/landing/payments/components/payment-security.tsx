@@ -10,18 +10,18 @@ export function PaymentSecurity() {
   const securityFeatures = [
     {
       icon: Shield,
-      title: "Stripe Security",
-      description: "Powered by Stripe's industry-leading security"
+      title: t("payments.security.feature1.title"),
+      description: t("payments.security.feature1.description")
     },
     {
       icon: CreditCard,
-      title: "PCI DSS Compliant",
-      description: "Your card data is never stored on our servers"
+      title: t("payments.security.feature2.title"),
+      description: t("payments.security.feature2.description")
     },
     {
       icon: Lock,
-      title: "256-bit SSL Encryption",
-      description: "All transactions are encrypted end-to-end"
+      title: t("payments.security.feature3.title"),
+      description: t("payments.security.feature3.description")
     }
   ];
 
