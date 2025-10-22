@@ -6,7 +6,7 @@ export function HeroSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white py-8 sm:py-12 overflow-visible relative z-10">
+    <section className="bg-white py-4 sm:py-12 overflow-visible relative z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-8 sm:gap-12 lg:grid-cols-12">
           {/* Left Column - Text Content */}

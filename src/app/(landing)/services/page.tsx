@@ -16,11 +16,11 @@ export default function ServicesPage() {
       <div className="animate-slide-up-delayed">
         <DashboardPreviewSection />
       </div>
-      <div className="animate-slide-up-delayed-2 mb-8 sm:mb-12">
+      <div className="animate-slide-up-delayed-2 mb-4 sm:mb-12">
         <ManagementRowOne />
         <ManagementRowTwo />
       </div>
-      <div className="animate-slide-up-delayed-3 mb-8 sm:mb-12">
+      <div className="animate-slide-up-delayed-3 mb-4 sm:mb-12">
         <TrackingPreviewSection />
       </div>
       <DataRowOne />

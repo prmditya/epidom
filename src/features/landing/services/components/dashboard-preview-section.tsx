@@ -7,7 +7,7 @@ export function DashboardPreviewSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white py-8 sm:py-12 min-h-screen flex items-center overflow-visible relative z-10">
+    <section className="bg-white py-4 sm:py-12 sm:min-h-screen flex items-center overflow-visible relative z-10">
       <div className="services-narrow-container">
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 sm:gap-8 lg:gap-8 items-center">
           {/* Left Column - Dashboard Image (70%) */}
