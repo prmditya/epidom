@@ -58,6 +58,27 @@ export const en = {
       tracking: "Tracking",
       data: "Data",
     },
+    dashboard: {
+      subtitle: "Food stock management is the process of tracking purchased and unconsumed food products.",
+      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+    },
+    management: {
+      title: "Efficient Management",
+      subtitle: "Food stock management is the process of tracking purchased and unconsumed food products.",
+      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+    },
+    tracking: {
+      title: "Active Stock Tracking"
+    },
+    data: {
+      title: "Complete Data Tracking",
+      description1: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
+      description2: "Food stock management is the process of tracking purchased and unconsumed food products."
+    },
+    alerts: {
+      title: "Visible and Accessible Alerts",
+      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+    },
     dashboardDesc1:
       "Food stock management is the process of tracking purchased and unconsumed food products.",
     dashboardDesc2:

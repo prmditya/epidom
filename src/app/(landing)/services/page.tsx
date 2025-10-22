@@ -1,9 +1,11 @@
 import { HeroSection } from "@/features/landing/services/components/hero-section";
-import { DashboardSection } from "@/features/landing/services/components/dashboard-section";
-import { ManagementSection } from "@/features/landing/services/components/management-section";
-import { TrackingSection } from "@/features/landing/services/components/tracking-section";
-import { DataSection } from "@/features/landing/services/components/data-section";
-import { AlertsSection } from "@/features/landing/services/components/alerts-section";
+import { DashboardPreviewSection } from "@/features/landing/services/components/dashboard-preview-section";
+import { ManagementRowOne } from "@/features/landing/services/components/management-row-one";
+import { ManagementRowTwo } from "@/features/landing/services/components/management-row-two";
+import { TrackingPreviewSection } from "@/features/landing/services/components/tracking-preview-section";
+import { DataRowOne } from "@/features/landing/services/components/data-row-one";
+import { DataRowTwo } from "@/features/landing/services/components/data-row-two";
+import { AlertsPreviewSection } from "@/features/landing/services/components/alerts-preview-section";
 
 export default function ServicesPage() {
   return (
@@ -12,19 +14,19 @@ export default function ServicesPage() {
         <HeroSection />
       </div>
       <div className="animate-slide-up-delayed">
-        <DashboardSection />
+        <DashboardPreviewSection />
       </div>
-      <div className="animate-slide-up-delayed-2">
-        <ManagementSection />
+      <div className="animate-slide-up-delayed-2 mb-8 sm:mb-12">
+        <ManagementRowOne />
+        <ManagementRowTwo />
       </div>
+      <div className="animate-slide-up-delayed-3 mb-8 sm:mb-12">
+        <TrackingPreviewSection />
+      </div>
+      <DataRowOne />
+      <DataRowTwo />
       <div className="animate-slide-up-delayed-3">
-        <TrackingSection />
-      </div>
-      <div className="animate-slide-up-delayed-3">
-        <DataSection />
-      </div>
-      <div className="animate-slide-up-delayed-3">
-        <AlertsSection />
+        <AlertsPreviewSection />
       </div>
     </main>
   );

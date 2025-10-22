@@ -54,6 +54,27 @@ export const fr = {
     heroDesc:
       "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
     featureBlock: { management: "Gestion", tracking: "Suivi", data: "Données" },
+    dashboard: {
+      subtitle: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
+      description: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration."
+    },
+    management: {
+      title: "Gestion efficace",
+      subtitle: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
+      description: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration."
+    },
+    tracking: {
+      title: "Un suivi des stocks actifs"
+    },
+    data: {
+      title: "Un suivi des données complet",
+      description1: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
+      description2: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés."
+    },
+    alerts: {
+      title: "Alertes visibles et accessibles",
+      description: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration."
+    },
     dashboardDesc1:
       "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
     dashboardDesc2:

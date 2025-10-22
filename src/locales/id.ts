@@ -58,6 +58,27 @@ export const id = {
       tracking: "Pelacakan",
       data: "Data",
     },
+    dashboard: {
+      subtitle: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
+      description: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda."
+    },
+    management: {
+      title: "Manajemen Efisien",
+      subtitle: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
+      description: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda."
+    },
+    tracking: {
+      title: "Pelacakan Stok Aktif"
+    },
+    data: {
+      title: "Pelacakan Data Lengkap",
+      description1: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
+      description2: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi."
+    },
+    alerts: {
+      title: "Peringatan yang Terlihat dan Dapat Diakses",
+      description: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda."
+    },
     dashboardDesc1:
       "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
     dashboardDesc2:
