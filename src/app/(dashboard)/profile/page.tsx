@@ -1,102 +1,100 @@
 "use client";
 
-import {
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { useState } from "react";
-import { useI18n } from "@/components/lang/i18n-provider";
+import { useEffect, useState } from "react";
+import { useUser } from "@/lib/auth-client";
+import { ProfileHeader } from "@/features/dashboard/profile/components/profile-header";
+import { PersonalInfoCard } from "@/features/dashboard/profile/components/personal-info-card";
+import { BusinessInfoCard } from "@/features/dashboard/profile/components/business-info-card";
+import { SubscriptionInfoCard } from "@/features/dashboard/profile/components/subscription-info-card";
+
+interface ProfileData {
+  user: {
+    id: string;
+    name: string | null;
+    email: string;
+    image: string | null;
+    phone: string | null;
+    locale: string;
+    timezone: string;
+    currency: string;
+    createdAt: Date;
+  };
+  business?: {
+    id: string;
+    name: string;
+    address: string | null;
+    city: string | null;
+    country: string | null;
+    phone: string | null;
+    email: string | null;
+    website: string | null;
+  } | null;
+  subscription?: {
+    plan: string;
+    status: string;
+    currentPeriodStart: Date | null;
+    currentPeriodEnd: Date | null;
+    cancelAtPeriodEnd: boolean;
+  } | null;
+}
 
 export default function ProfilePage() {
-  const { t } = useI18n();
-  const [open, setOpen] = useState(false);
+  const { user: sessionUser, loading: sessionLoading } = useUser();
+  const [profileData, setProfileData] = useState<ProfileData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Mock user data - replace with real auth later
-  const user = {
-    name: "Demo User",
-    email: "mrcaoevan@gmail.com",
-    businessName: "Epidom Bakery",
-    address: "123 Main St, Paris",
+  const fetchProfileData = async () => {
+    try {
+      const response = await fetch("/api/user/profile");
+      if (!response.ok) throw new Error("Failed to fetch profile");
+      const data = await response.json();
+      setProfileData(data);
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    if (!sessionLoading && sessionUser) {
+      fetchProfileData();
+    }
+  }, [sessionLoading, sessionUser]);
+
+  if (sessionLoading || loading) {
+    return (
+      <div className="w-full flex items-center justify-center py-12">
+        <p className="text-muted-foreground">Loading profile...</p>
+      </div>
+    );
+  }
+
+  if (!sessionUser || !profileData) {
+    return (
+      <div className="w-full flex items-center justify-center py-12">
+        <p className="text-muted-foreground">Failed to load profile</p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full space-y-6">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 px-0 bg-gradient-to-r from-primary/5 to-transparent p-6 rounded-xl">
-        <Avatar className="size-16 sm:size-20 ring-4 ring-primary/10">
-          <AvatarFallback className="text-2xl font-bold bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
-            {user?.name?.[0]?.toUpperCase() ?? "U"}
-          </AvatarFallback>
-        </Avatar>
-        <div className="space-y-1 flex-1">
-          <CardTitle className="text-2xl font-bold">
-            {user?.name ?? "User"}
-          </CardTitle>
-          <CardDescription className="text-base">{user?.email}</CardDescription>
-        </div>
-        <div className="sm:ml-auto">
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button className="shadow-md hover:shadow-lg transition-all">
-                {t("actions.editProfile")}
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>{t("profile.updateProfile")}</DialogTitle>
-              </DialogHeader>
-              <form
-                className="space-y-3"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert(t("messages.profileUpdated"));
-                  setOpen(false);
-                }}
-              >
-                <div className="grid gap-3">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="name">{t("auth.name")}</Label>
-                    <Input id="name" defaultValue={user?.name} />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">{t("auth.email")}</Label>
-                    <Input id="email" defaultValue={user?.email} />
-                  </div>
-                </div>
-                <Button type="submit" className="w-full">
-                  {t("actions.save")}
-                </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
-      </CardHeader>
-      <CardContent className="grid gap-4 sm:grid-cols-2 px-0">
-        <div className="rounded-xl border p-5 bg-gradient-to-br from-card to-muted/20 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-            {t("profile.businessName")}
-          </p>
-          <p className="font-semibold text-lg">{user?.businessName ?? "—"}</p>
-        </div>
-        <div className="rounded-xl border p-5 bg-gradient-to-br from-card to-muted/20 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-            {t("profile.address")}
-          </p>
-          <p className="font-semibold text-lg">{user?.address ?? "—"}</p>
-        </div>
-      </CardContent>
+      <ProfileHeader
+        user={profileData.user}
+        subscription={profileData.subscription}
+      />
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <PersonalInfoCard user={profileData.user} onUpdate={fetchProfileData} />
+        <SubscriptionInfoCard subscription={profileData.subscription} />
+      </div>
+
+      <BusinessInfoCard
+        business={profileData.business}
+        userId={profileData.user.id}
+        onUpdate={fetchProfileData}
+      />
     </div>
   );
 }

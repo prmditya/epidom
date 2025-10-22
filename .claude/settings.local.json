@@ -6,7 +6,10 @@
       "Bash(pnpm build:*)",
       "Bash(pnpm install:*)",
       "Bash(xargs sed:*)",
-      "Bash(npx prisma generate)"
+      "Bash(npx prisma generate)",
+      "Bash(test -f .env)",
+      "Bash(cat .env)",
+      "Bash(npx prisma db push)"
     ],
     "deny": [],
     "ask": []

@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { I18nProvider } from "@/components/lang/i18n-provider";
 import { ErrorBoundary } from "@/components/error-boundary";
 import PageShell from "@/features/dashboard/components/page-shell";
+import { SessionProvider } from "@/components/providers/session-provider";
 
 export const metadata: Metadata = {
   title: "Epidom - Admin Dashboard",
@@ -19,17 +20,17 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <ErrorBoundary>
-          <Suspense fallback={<div>Loading...</div>}>
+    <div className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <ErrorBoundary>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SessionProvider>
             <I18nProvider>
               <PageShell>{children}</PageShell>
             </I18nProvider>
-          </Suspense>
-        </ErrorBoundary>
-        <Analytics />
-      </body>
-    </html>
+          </SessionProvider>
+        </Suspense>
+      </ErrorBoundary>
+      <Analytics />
+    </div>
   );
 }

@@ -14,14 +14,52 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useI18n } from "@/components/lang/i18n-provider";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export function LoginForm() {
   const router = useRouter();
   const { t } = useI18n();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function onSubmit(formData: FormData) {
-    // Auth will be implemented later
-    router.replace("/dashboard");
+    setLoading(true);
+    setError("");
+
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    console.log("Attempting login with email:", email);
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      console.log("SignIn result:", result);
+
+      if (result?.error) {
+        console.error("Login error:", result.error);
+        setError(t("messages.invalidCredentials") || "Invalid email or password");
+        setLoading(false);
+      } else if (result?.ok) {
+        // Login successful
+        console.log("Login successful, redirecting to dashboard");
+        router.push("/dashboard");
+        router.refresh();
+      } else {
+        console.error("Unexpected result:", result);
+        setError(t("messages.loginFailed") || "Login failed. Please try again.");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Login exception:", error);
+      setError(t("messages.loginFailed") || "Login failed. Please try again.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -36,6 +74,11 @@ export function LoginForm() {
       </CardHeader>
       <CardContent>
         <form action={onSubmit} className="space-y-4">
+          {error && (
+            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive border border-destructive/20">
+              {error}
+            </div>
+          )}
           <div className="space-y-2">
             <Label htmlFor="email">{t("auth.email")}</Label>
             <Input
@@ -44,11 +87,18 @@ export function LoginForm() {
               name="email"
               placeholder="you@bakery.com"
               required
+              disabled={loading}
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">{t("auth.password")}</Label>
-            <Input type="password" id="password" name="password" required />
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              required
+              disabled={loading}
+            />
           </div>
           <div className="flex items-center justify-between">
             <Link
@@ -61,8 +111,9 @@ export function LoginForm() {
           <Button
             type="submit"
             className="w-full shadow-md hover:shadow-lg transition-all"
+            disabled={loading}
           >
-            {t("auth.loginButton")}
+            {loading ? t("messages.loggingIn") || "Logging in..." : t("auth.loginButton")}
           </Button>
         </form>
         <Separator className="my-6" />

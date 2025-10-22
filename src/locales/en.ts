@@ -796,6 +796,12 @@ export const en = {
     noResults: "No results found",
     profileUpdated: "Profile updated successfully",
     selectOrder: "Select an order to view details",
+    invalidCredentials: "Invalid email or password",
+    loginFailed: "Login failed. Please try again.",
+    loggingIn: "Logging in...",
+    registrationSuccessful: "Registration successful! Please login.",
+    userAlreadyExists: "User with this email already exists.",
+    registrationFailed: "Registration failed. Please try again.",
   },
   alerts: {
     orderPlaced: "Order placed successfully",
