@@ -47,9 +47,8 @@ export function ContactMap() {
 
   return (
     <div className="py-8 sm:py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <div className="w-full h-80 sm:h-96 lg:h-[496px] rounded-lg overflow-hidden shadow-lg">
+      <div className="text-center">
+        <div className="w-full h-80 sm:h-96 lg:h-[496px] rounded-lg overflow-hidden shadow-lg">
             <MapContainer
               center={position}
               zoom={15}
@@ -79,7 +78,6 @@ export function ContactMap() {
             </MapContainer>
           </div>
         </div>
-      </div>
     </div>
   );
 }
