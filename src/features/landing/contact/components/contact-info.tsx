@@ -7,7 +7,7 @@ export function ContactInfo() {
   const { t } = useI18n();
 
   return (
-    <div className="py-8 pb-4 sm:py-12">
+    <div className="py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <h1

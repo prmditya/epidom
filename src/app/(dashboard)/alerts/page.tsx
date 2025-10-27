@@ -7,6 +7,7 @@ import { OrdersView } from "@/features/dashboard/alerts/components/orders-view";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";
+import { useAlertsCount } from "@/hooks/use-alerts-count";
 
 export default function AlertsPage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function AlertsPage() {
   const searchParams = useSearchParams();
   const isOrders = searchParams.get("view") === "orders";
   const { t } = useI18n();
+  const alertsCount = useAlertsCount();
 
   const handleToggle = useCallback(() => {
     const params = new URLSearchParams(searchParams);
@@ -29,8 +31,13 @@ export default function AlertsPage() {
     <>
       <Card className="border-0 bg-transparent shadow-none">
         <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-0 sm:px-1 py-4">
-          <CardTitle className="text-xl md:text-2xl font-bold">
-            {isOrders ? t("pages.ordersTitle") : t("pages.alertsTitle")}
+          <CardTitle className="text-xl md:text-2xl font-bold flex items-center gap-2">
+            <span>{isOrders ? t("pages.ordersTitle") : t("pages.alertsTitle")}</span>
+            {!isOrders && alertsCount > 0 && (
+              <span className="text-lg md:text-xl font-bold text-muted-foreground">
+                ({alertsCount})
+              </span>
+            )}
           </CardTitle>
           <Button
             size="sm"
