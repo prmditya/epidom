@@ -845,6 +845,14 @@ export const id = {
     businessName: "Nama Bisnis",
     updateProfile: "Perbarui Profil",
   },
+  stores: {
+    title: "Toko Anda",
+    createStore: "Buat toko",
+    storeName: "Nama Toko",
+    city: "Kota",
+    noStores: "Belum ada toko",
+    createFirst: "Buat toko pertama Anda untuk memulai",
+  },
   tabs: {
     delivery: "Pengiriman",
     recipeProduction: "Produksi Resep",

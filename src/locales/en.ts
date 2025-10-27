@@ -835,6 +835,14 @@ export const en = {
     businessName: "Business Name",
     updateProfile: "Update Profile",
   },
+  stores: {
+    title: "Your Stores",
+    createStore: "Create a store",
+    storeName: "Store Name",
+    city: "City",
+    noStores: "No stores yet",
+    createFirst: "Create your first store to get started",
+  },
   tabs: {
     delivery: "Delivery",
     recipeProduction: "Recipe Production",

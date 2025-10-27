@@ -16,9 +16,22 @@ import { usePathname } from "next/navigation";
 import { LanguageSwitcher } from "@/components/lang/language-switcher";
 import { useI18n } from "@/components/lang/i18n-provider";
 
-export const SiteHeader = memo(function SiteHeader() {
+interface SiteHeaderProps {
+  variant?: "landing" | "authenticated";
+  showNav?: boolean;
+}
+
+export const SiteHeader = memo(function SiteHeader({ 
+  variant = "landing",
+  showNav = true 
+}: SiteHeaderProps = {}) {
   const pathname = usePathname();
   const { t } = useI18n();
+  
+  const handleLogout = () => {
+    // TODO: Implement logout logic
+    console.log("Logout clicked");
+  };
 
   return (
     <header className="mobile-navbar" style={{ color: 'white' }}>
@@ -39,52 +52,54 @@ export const SiteHeader = memo(function SiteHeader() {
           </Link>
 
           {/* Desktop navigation */}
-          <ul className="hidden items-center gap-6 sm:gap-8 md:flex">
-            <li>
-              <Link
-                href="/"
-                aria-current={pathname === "/" ? "page" : undefined}
-                className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
-                  pathname === "/" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
-                }`}
-              >
-                {t("common.nav.home")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                aria-current={pathname === "/services" ? "page" : undefined}
-                className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
-                  pathname === "/services" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
-                }`}
-              >
-                {t("common.nav.services")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/pricing"
-                aria-current={pathname === "/pricing" ? "page" : undefined}
-                className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
-                  pathname === "/pricing" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
-                }`}
-              >
-                {t("common.nav.pricing")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                aria-current={pathname === "/contact" ? "page" : undefined}
-                className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
-                  pathname === "/contact" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
-                }`}
-              >
-                {t("common.nav.contact")}
-              </Link>
-            </li>
-          </ul>
+          {showNav && (
+            <ul className="hidden items-center gap-6 sm:gap-8 md:flex">
+              <li>
+                <Link
+                  href="/"
+                  aria-current={pathname === "/" ? "page" : undefined}
+                  className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
+                    pathname === "/" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
+                  }`}
+                >
+                  {t("common.nav.home")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  aria-current={pathname === "/services" ? "page" : undefined}
+                  className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
+                    pathname === "/services" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
+                  }`}
+                >
+                  {t("common.nav.services")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing"
+                  aria-current={pathname === "/pricing" ? "page" : undefined}
+                  className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
+                    pathname === "/pricing" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
+                  }`}
+                >
+                  {t("common.nav.pricing")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  aria-current={pathname === "/contact" ? "page" : undefined}
+                  className={`text-sm sm:text-base font-medium transition-colors hover:text-white/80 ${
+                    pathname === "/contact" ? "font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""
+                  }`}
+                >
+                  {t("common.nav.contact")}
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -93,7 +108,17 @@ export const SiteHeader = memo(function SiteHeader() {
             <LanguageSwitcher />
             </div>
             <div>
-            <WaitlistDialog />
+            {variant === "landing" ? (
+              <WaitlistDialog />
+            ) : (
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className="bg-white text-neutral-900 hover:bg-neutral-100 border-0 rounded-full px-6"
+              >
+                {t("actions.logout")}
+              </Button>
+            )}
             </div>
           </div>
 
@@ -148,97 +173,109 @@ export const SiteHeader = memo(function SiteHeader() {
 
               {/* Navigation Section */}
               <nav aria-label="Mobile" className="flex-1 px-4 py-6">
-                <div className="space-y-2">
-                  <div className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                    {t("common.nav.menu")}
-                  </div>
+                {showNav && (
+                  <div className="space-y-2">
+                    <div className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      {t("common.nav.menu")}
+                    </div>
 
-                  <ul className="space-y-1">
-                    <li>
-                      <SheetClose asChild>
-                        <Link
-                          href="/"
-                          aria-current={pathname === "/" ? "page" : undefined}
-                          className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                            pathname === "/" 
-                              ? "font-bold text-foreground bg-muted/30" 
-                              : "text-muted-foreground hover:text-foreground"
-                          }`}
-                        >
-                          <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                          </svg>
-                          {t("common.nav.home")}
-                        </Link>
-                      </SheetClose>
-                    </li>
-                    <li>
-                      <SheetClose asChild>
-                        <Link
-                          href="/services"
-                          aria-current={pathname === "/services" ? "page" : undefined}
-                          className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                            pathname === "/services" 
-                              ? "font-bold text-foreground bg-muted/30" 
-                              : "text-muted-foreground hover:text-foreground"
-                          }`}
-                        >
-                          <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                          </svg>
-                          {t("common.nav.services")}
-                        </Link>
-                      </SheetClose>
-                    </li>
-                    <li>
-                      <SheetClose asChild>
-                        <Link
-                          href="/pricing"
-                          aria-current={pathname === "/pricing" ? "page" : undefined}
-                          className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                            pathname === "/pricing" 
-                              ? "font-bold text-foreground bg-muted/30" 
-                              : "text-muted-foreground hover:text-foreground"
-                          }`}
-                        >
-                          <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                          </svg>
-                          {t("common.nav.pricing")}
-                        </Link>
-                      </SheetClose>
-                    </li>
-                    <li>
-                      <SheetClose asChild>
-                        <Link
-                          href="/contact"
-                          aria-current={pathname === "/contact" ? "page" : undefined}
-                          className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                            pathname === "/contact" 
-                              ? "font-bold text-foreground bg-muted/30" 
-                              : "text-muted-foreground hover:text-foreground"
-                          }`}
-                        >
-                          <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                          </svg>
-                          {t("common.nav.contact")}
-                        </Link>
-                      </SheetClose>
-                    </li>
-                  </ul>
-                </div>
+                    <ul className="space-y-1">
+                      <li>
+                        <SheetClose asChild>
+                          <Link
+                            href="/"
+                            aria-current={pathname === "/" ? "page" : undefined}
+                            className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                              pathname === "/" 
+                                ? "font-bold text-foreground bg-muted/30" 
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            {t("common.nav.home")}
+                          </Link>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <Link
+                            href="/services"
+                            aria-current={pathname === "/services" ? "page" : undefined}
+                            className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                              pathname === "/services" 
+                                ? "font-bold text-foreground bg-muted/30" 
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                            {t("common.nav.services")}
+                          </Link>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <Link
+                            href="/pricing"
+                            aria-current={pathname === "/pricing" ? "page" : undefined}
+                            className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                              pathname === "/pricing" 
+                                ? "font-bold text-foreground bg-muted/30" 
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                            </svg>
+                            {t("common.nav.pricing")}
+                          </Link>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <Link
+                            href="/contact"
+                            aria-current={pathname === "/contact" ? "page" : undefined}
+                            className={`flex items-center h-11 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                              pathname === "/contact" 
+                                ? "font-bold text-foreground bg-muted/30" 
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            {t("common.nav.contact")}
+                          </Link>
+                        </SheetClose>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </nav>
 
               {/* Footer Section */}
               <div className="border-t border-border/20 p-4">
                 <div className="flex items-center gap-3">
                   <div className="flex-1">
-                    <SheetClose asChild>
-                      <div>
-                        <WaitlistDialog variant="sidebar" />
-                      </div>
-                    </SheetClose>
+                    {variant === "landing" ? (
+                      <SheetClose asChild>
+                        <div>
+                          <WaitlistDialog variant="sidebar" />
+                        </div>
+                      </SheetClose>
+                    ) : (
+                      <Button
+                        onClick={handleLogout}
+                        variant="outline"
+                        className="w-full bg-neutral-900 text-white hover:bg-neutral-800 border-0"
+                      >
+                        {t("actions.logout")}
+                      </Button>
+                    )}
                   </div>
                   <div className="flex-shrink-0">
                     <LanguageSwitcher />

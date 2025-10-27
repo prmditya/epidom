@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/components/lang/i18n-provider";
+import { useAlertsCount } from "@/hooks/use-alerts-count";
 
 const itemDefs = [
   { href: "/profile", key: "nav.profile", icon: UserRound },
@@ -20,7 +21,7 @@ const itemDefs = [
   { href: "/management", key: "nav.management", icon: Boxes },
   { href: "/tracking", key: "nav.tracking", icon: PackageSearch },
   { href: "/data", key: "nav.data", icon: Database },
-  { href: "/alerts", key: "nav.alerts", icon: Bell },
+  { href: "/alerts", key: "nav.alerts", icon: Bell, showBadge: true },
 ] as const;
 
 function isMobile(mode: string) {
@@ -32,6 +33,7 @@ function isMobile(mode: string) {
 export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
   const pathname = usePathname();
   const { t } = useI18n();
+  const alertsCount = useAlertsCount();
 
   return (
     <aside className={cn(isMobile(mode))}>
@@ -50,9 +52,11 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
         )}
         <nav className="flex-1 p-3">
           <ul className="space-y-1.5">
-            {itemDefs.map(({ href, key, icon: Icon }) => {
+            {itemDefs.map(({ href, key, icon: Icon, showBadge }) => {
               const active = pathname === href;
               const label = t(key);
+              const badge = showBadge ? alertsCount : null;
+              
               return (
                 <li key={href}>
                   <Link
@@ -66,7 +70,17 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
                     aria-current={active ? "page" : undefined}
                   >
                     <Icon className="size-4" aria-hidden />
-                    <span>{label}</span>
+                    <span className="flex items-center gap-1.5">
+                      {label}
+                      {badge !== null && badge > 0 && (
+                        <span 
+                          className="text-xs font-medium text-muted-foreground"
+                          aria-label={`${badge} alerts`}
+                        >
+                          ({badge})
+                        </span>
+                      )}
+                    </span>
                   </Link>
                 </li>
               );

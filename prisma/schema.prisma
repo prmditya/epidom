@@ -92,7 +92,35 @@ model Business {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  // Relations - all business data
+  // Relations
+  stores       Store[]
+
+  @@map("businesses")
+}
+
+// ============================================
+// STORE (Multi-outlet support)
+// ============================================
+
+model Store {
+  id          String   @id @default(cuid())
+  businessId  String
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  // Store info
+  name        String
+  address     String?
+  city        String?
+  country     String?
+  phone       String?
+  email       String?
+  image       String?
+
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations - all store data
   products         Product[]
   ingredients      Ingredient[]
   recipes          Recipe[]
@@ -100,7 +128,9 @@ model Business {
   orders           Order[]
   productionBatches ProductionBatch[]
 
-  @@map("businesses")
+  @@index([businessId])
+  @@index([isActive])
+  @@map("stores")
 }
 
 // ============================================
@@ -150,8 +180,8 @@ model Subscription {
 
 model Product {
   id              String    @id @default(cuid())
-  businessId      String
-  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  storeId         String
+  store           Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
   sku             String    @unique
   name            String
@@ -182,7 +212,7 @@ model Product {
   productionBatches ProductionBatch[]
   orderItems      OrderItem[]
 
-  @@index([businessId])
+  @@index([storeId])
   @@index([category])
   @@index([isActive])
   @@map("products")
@@ -190,8 +220,8 @@ model Product {
 
 model Ingredient {
   id              String    @id @default(cuid())
-  businessId      String
-  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  storeId         String
+  store           Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
   sku             String    @unique
   name            String
@@ -219,7 +249,7 @@ model Ingredient {
   recipeIngredients RecipeIngredient[]
   stockMovements  StockMovement[]
 
-  @@index([businessId])
+  @@index([storeId])
   @@index([category])
   @@index([supplierId])
   @@index([isActive])
@@ -232,8 +262,8 @@ model Ingredient {
 
 model Recipe {
   id              String    @id @default(cuid())
-  businessId      String
-  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  storeId         String
+  store           Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
   productId       String    @unique
   product         Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -248,7 +278,7 @@ model Recipe {
   ingredients     RecipeIngredient[]
   productionBatches ProductionBatch[]
 
-  @@index([businessId])
+  @@index([storeId])
   @@map("recipes")
 }
 
@@ -278,8 +308,8 @@ enum ProductionStatus {
 
 model ProductionBatch {
   id              String            @id @default(cuid())
-  businessId      String
-  business        Business          @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  storeId         String
+  store           Store             @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
   batchNumber     String            @unique
   productId       String
@@ -303,7 +333,7 @@ model ProductionBatch {
 
   stockMovements  StockMovement[]
 
-  @@index([businessId])
+  @@index([storeId])
   @@index([productId])
   @@index([status])
   @@index([scheduledDate])
@@ -361,8 +391,8 @@ model StockMovement {
 
 model Supplier {
   id              String    @id @default(cuid())
-  businessId      String
-  business        Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  storeId         String
+  store           Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
   name            String
   contactPerson   String?
@@ -382,7 +412,7 @@ model Supplier {
 
   ingredients     Ingredient[]
 
-  @@index([businessId])
+  @@index([storeId])
   @@index([isActive])
   @@map("suppliers")
 }
@@ -402,8 +432,8 @@ enum OrderStatus {
 
 model Order {
   id              String        @id @default(cuid())
-  businessId      String
-  business        Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  storeId         String
+  store           Store         @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
   orderNumber     String        @unique
 
@@ -432,7 +462,7 @@ model Order {
   items           OrderItem[]
   stockMovements  StockMovement[]
 
-  @@index([businessId])
+  @@index([storeId])
   @@index([status])
   @@index([orderDate])
   @@index([dueDate])

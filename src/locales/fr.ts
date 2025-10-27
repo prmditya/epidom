@@ -813,7 +813,7 @@ export const fr = {
     save: "Enregistrer",
     backToAlerts: "Retour aux Alertes",
     ordersToPlace: "Commandes à Passer",
-    addMaterial: "Ajouter un Matériau",
+    addMaterial: "Ajouter une matière première",
     archive: "Archive",
     details: "Détails",
     editProfile: "Modifier le Profil",
@@ -853,6 +853,14 @@ export const fr = {
     address: "Adresse",
     businessName: "Nom de l'Entreprise",
     updateProfile: "Mettre à Jour le Profil",
+  },
+  stores: {
+    title: "Vos boutiques",
+    createStore: "Créer une boutique",
+    storeName: "Nom de la Boutique",
+    city: "Ville",
+    noStores: "Aucune boutique pour le moment",
+    createFirst: "Créez votre première boutique pour commencer",
   },
   tabs: {
     delivery: "Livraison",

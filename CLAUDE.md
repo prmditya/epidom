@@ -26,7 +26,7 @@ pnpm lint
 
 ### Route Structure
 
-This app uses Next.js 15 App Router with three route groups:
+This app uses Next.js 15 App Router with four route groups:
 
 - **Landing routes** (`/(landing)/*`) - Public marketing pages (`/`, `/services`, `/pricing`, `/contact`)
   - Uses `I18nProvider` for internationalization
@@ -38,11 +38,19 @@ This app uses Next.js 15 App Router with three route groups:
   - Simple layout with no navigation components
   - **Note:** Auth is NOT implemented yet - forms currently just redirect
 
+- **Stores routes** (`/(stores)/*`) - Store selection pages (`/stores`)
+  - Uses `I18nProvider` for internationalization
+  - Reuses `SiteHeader` with `variant="authenticated"` (logo + logout, no nav links)
+  - Multi-store support: users select which store to manage
+  - **Flow:** Login → Store Selection → Dashboard (per store)
+  - Uses Lato font from Google Fonts (same as landing)
+
 - **Dashboard routes** (`/(dashboard)/*`) - Application routes
   - Pages: `/dashboard`, `/tracking`, `/data`, `/management`, `/alerts`, `/profile`
   - Uses `I18nProvider` for internationalization
   - Wrapped in `PageShell` (Topbar + Sidebar + content area)
   - **Note:** Currently no authentication - will be added later
+  - Each dashboard is scoped to a selected store
 
 ### Layout Hierarchy
 
@@ -62,22 +70,40 @@ Auth layout (src/app/(auth)/layout.tsx)
   └─ I18nProvider
       └─ page content
 
+Stores layout (src/app/(stores)/layout.tsx)
+  └─ I18nProvider
+      ├─ SiteHeader (variant="authenticated", showNav=false)
+      └─ main content
+
 Dashboard layout (src/app/(dashboard)/layout.tsx)
   └─ I18nProvider
       └─ PageShell (Topbar, Sidebar, main content)
           └─ page content
 ```
 
-### Key Providers
+### Key Providers & Components
 
 1. **I18nProvider** (`src/components/lang/i18n-provider.tsx`)
-   - Used across all route groups (landing, auth, dashboard)
+   - Used across all route groups (landing, auth, dashboard, stores)
    - Supports 3 languages: English (en), French (fr), Indonesian (id)
    - Stores locale in localStorage (key: `locale`)
    - Exports: `useI18n()` hook with `locale`, `setLocale()`, `t()` translation function
    - Translation dictionaries in `src/locales/` (en.ts, fr.ts, id.ts)
    - Supports nested keys with dot notation (e.g., `t("nav.dashboard")`)
    - Supports function values for dynamic content (e.g., footer copyright with year)
+
+2. **SiteHeader** (`src/features/landing/components/site-header.tsx`)
+   - Reusable header component for both landing and authenticated pages
+   - Props:
+     - `variant`: "landing" (default) | "authenticated"
+     - `showNav`: true (default) | false
+   - **Landing mode** (`variant="landing"`):
+     - Shows nav links (Home, Services, Pricing, Contact)
+     - Shows waitlist dialog button
+   - **Authenticated mode** (`variant="authenticated"`):
+     - Shows logout button instead of waitlist
+     - Can hide nav links with `showNav={false}`
+   - Always includes: Logo, language switcher, mobile menu
 
 ### Component Organization
 
@@ -213,13 +239,14 @@ Following the clean architecture pattern:
 
 - **Clean Architecture**: Pages are thin (10-20 lines), components are extracted to feature folders
 - **Feature-based structure**: Components organized by feature in `src/features/[feature-area]/[page-name]/components/`
+- **Multi-store architecture**: One Business can have multiple Stores, each with separate inventory
 - **No authentication**: Auth is NOT implemented - forms just redirect for now (will be added later)
 - **No database**: This is an MVP with hardcoded/mocked data
 - **Responsive design**: Uses Tailwind's responsive utilities, sidebar hidden on mobile
 - **TypeScript strict mode**: enabled in tsconfig.json
 - **Vercel Analytics**: Integrated in root layout
 - **Unified I18n system**: Single `I18nProvider` used across all routes with translations in `src/locales/`
-- **Three route groups**: Landing (public), Auth (placeholder), Dashboard (public for now)
+- **Four route groups**: Landing (public), Auth (placeholder), Stores (multi-store selector), Dashboard (per-store)
 
 ## Clean Architecture Best Practices
 
