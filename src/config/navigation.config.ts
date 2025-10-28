@@ -46,10 +46,6 @@ export const dashboardNavigation: NavSection[] = [
         icon: LayoutDashboard,
         showBadge: false,
       },
-    ],
-  },
-  {
-    items: [
       {
         href: "/management",
         labelKey: "nav.management",

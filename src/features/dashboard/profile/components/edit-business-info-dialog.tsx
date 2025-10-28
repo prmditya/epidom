@@ -23,6 +23,10 @@ interface EditBusinessInfoDialogProps {
   onUpdate: () => void;
 }
 
+interface FieldErrors {
+  [key: string]: string;
+}
+
 export function EditBusinessInfoDialog({
   open,
   onOpenChange,
@@ -32,10 +36,12 @@ export function EditBusinessInfoDialog({
 }: EditBusinessInfoDialogProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   async function handleSubmit(formData: FormData) {
     setLoading(true);
     setError("");
+    setFieldErrors({});
 
     try {
       const response = await fetch("/api/user/business", {
@@ -53,13 +59,29 @@ export function EditBusinessInfoDialog({
         }),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to update business information");
+        // Handle validation errors with field-level details
+        if (result.error?.code === "VALIDATION_ERROR" && result.error?.details) {
+          const errors: FieldErrors = {};
+          if (Array.isArray(result.error.details)) {
+            result.error.details.forEach((detail: { field: string; message: string }) => {
+              errors[detail.field] = detail.message;
+            });
+          }
+          setFieldErrors(errors);
+          setError(result.error.message || "Please fix the errors below");
+        } else {
+          setError(result.error?.message || "Failed to update business information. Please try again.");
+        }
+        return;
       }
 
       onUpdate();
       onOpenChange(false);
     } catch (err) {
+      console.error("Error updating business:", err);
       setError("Failed to update business information. Please try again.");
     } finally {
       setLoading(false);
@@ -93,7 +115,11 @@ export function EditBusinessInfoDialog({
               required
               disabled={loading}
               placeholder="Epidom Bakery"
+              className={fieldErrors.name ? "border-destructive" : ""}
             />
+            {fieldErrors.name && (
+              <p className="text-destructive text-sm">{fieldErrors.name}</p>
+            )}
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -106,7 +132,11 @@ export function EditBusinessInfoDialog({
                 defaultValue={business?.email || ""}
                 disabled={loading}
                 placeholder="contact@business.com"
+                className={fieldErrors.email ? "border-destructive" : ""}
               />
+              {fieldErrors.email && (
+                <p className="text-destructive text-sm">{fieldErrors.email}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -118,7 +148,11 @@ export function EditBusinessInfoDialog({
                 defaultValue={business?.phone || ""}
                 disabled={loading}
                 placeholder="+1 234 567 8900"
+                className={fieldErrors.phone ? "border-destructive" : ""}
               />
+              {fieldErrors.phone && (
+                <p className="text-destructive text-sm">{fieldErrors.phone}</p>
+              )}
             </div>
           </div>
 
@@ -131,7 +165,11 @@ export function EditBusinessInfoDialog({
               defaultValue={business?.website || ""}
               disabled={loading}
               placeholder="https://www.yourbusiness.com"
+              className={fieldErrors.website ? "border-destructive" : ""}
             />
+            {fieldErrors.website && (
+              <p className="text-destructive text-sm">{fieldErrors.website}</p>
+            )}
           </div>
 
           <div className="space-y-2">

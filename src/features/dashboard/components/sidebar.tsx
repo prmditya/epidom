@@ -63,7 +63,7 @@ export function Sidebar({ mode = "desktop", navigation = dashboardNavigation }: 
           {navigation.map((section, sectionIndex) => (
             <div key={sectionIndex} className={sectionIndex > 0 ? "mt-4" : ""}>
               {section.title && (
-                <h3 className="text-muted-foreground mb-2 px-3 text-xs font-semibold uppercase tracking-wider">
+                <h3 className="text-muted-foreground mb-2 px-3 text-xs font-semibold tracking-wider uppercase">
                   {section.title}
                 </h3>
               )}
@@ -106,7 +106,6 @@ export function Sidebar({ mode = "desktop", navigation = dashboardNavigation }: 
             </div>
           ))}
         </nav>
-        <div className="text-muted-foreground p-3 text-xs">{t("sidebar.inventoryProduction")}</div>
       </div>
     </aside>
   );

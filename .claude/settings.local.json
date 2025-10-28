@@ -14,9 +14,14 @@
       "Bash(pnpm add:*)",
       "Bash(tree:*)",
       "Bash(mkdir:*)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(npx prisma migrate:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "shadcn"
+  ]
 }
