@@ -214,3 +214,4 @@ export default function AddProductDialog({ trigger }: AddProductDialogProps) {
     </Dialog>
   );
 }
+
