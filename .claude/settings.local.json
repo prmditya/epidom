@@ -11,7 +11,9 @@
       "Bash(cat .env)",
       "Bash(npx prisma db push)",
       "Bash(test:*)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(tree:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []

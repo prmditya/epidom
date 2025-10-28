@@ -2,46 +2,47 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  LayoutDashboard,
-  UserRound,
-  Boxes,
-  PackageSearch,
-  Database,
-  Bell,
-  Search,
-} from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/components/lang/i18n-provider";
 import { useAlertsCount } from "@/features/dashboard/alerts/hooks/use-alerts-count";
-
-const itemDefs = [
-  { href: "/profile", key: "nav.profile", icon: UserRound, showBadge: false },
-  {
-    href: "/dashboard",
-    key: "nav.dashboard",
-    icon: LayoutDashboard,
-    showBadge: false,
-  },
-  { href: "/management", key: "nav.management", icon: Boxes, showBadge: false },
-  {
-    href: "/tracking",
-    key: "nav.tracking",
-    icon: PackageSearch,
-    showBadge: false,
-  },
-  { href: "/data", key: "nav.data", icon: Database, showBadge: false },
-  { href: "/alerts", key: "nav.alerts", icon: Bell, showBadge: true },
-] as const;
+import { dashboardNavigation, type NavSection } from "@/config/navigation.config";
 
 function isMobile(mode: string) {
   return mode === "mobile" ? "flex md:hidden h-full mt-12" : "hidden md:flex w-full";
 }
 
-export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
+/**
+ * Get badge count for a navigation item
+ */
+function useBadgeCount(badgeKey?: string): number | null {
+  const alertsCount = useAlertsCount();
+
+  if (!badgeKey) return null;
+
+  // Map badge keys to their respective counts
+  const badgeCounts: Record<string, number> = {
+    alerts: alertsCount,
+    // Add more badge keys here as needed
+  };
+
+  return badgeCounts[badgeKey] ?? null;
+}
+
+interface SidebarProps {
+  mode?: "desktop" | "mobile";
+  navigation?: NavSection[]; // Allow custom navigation
+}
+
+/**
+ * Sidebar Component
+ *
+ * Renders navigation links from config following Open/Closed Principle.
+ * Navigation items are defined in config/navigation.config.ts
+ */
+export function Sidebar({ mode = "desktop", navigation = dashboardNavigation }: SidebarProps) {
   const pathname = usePathname();
   const { t } = useI18n();
-  const alertsCount = useAlertsCount();
 
   return (
     <aside className={cn(isMobile(mode))}>
@@ -59,41 +60,51 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
           </div>
         )}
         <nav className="flex-1 p-3">
-          <ul className="space-y-1.5">
-            {itemDefs.map(({ href, key, icon: Icon, showBadge }) => {
-              const active = pathname === href;
-              const label = t(key);
-              const badge = showBadge ? alertsCount : null;
+          {navigation.map((section, sectionIndex) => (
+            <div key={sectionIndex} className={sectionIndex > 0 ? "mt-4" : ""}>
+              {section.title && (
+                <h3 className="text-muted-foreground mb-2 px-3 text-xs font-semibold uppercase tracking-wider">
+                  {section.title}
+                </h3>
+              )}
+              <ul className="space-y-1.5">
+                {section.items.map((item) => {
+                  const active = pathname === item.href;
+                  const label = t(item.labelKey);
+                  const Icon = item.icon;
+                  const badge = useBadgeCount(item.badgeKey);
 
-              return (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className={cn(
-                      "group flex items-center gap-3 rounded-md px-3 py-2 text-sm transition",
-                      active
-                        ? "bg-muted/60 text-foreground shadow-inner"
-                        : "text-muted-foreground hover:bg-muted/40 hover:text-foreground"
-                    )}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    <Icon className="size-4" aria-hidden />
-                    <span className="flex items-center gap-1.5">
-                      {label}
-                      {badge !== null && badge > 0 && (
-                        <span
-                          className="text-muted-foreground text-xs font-medium"
-                          aria-label={`${badge} alerts`}
-                        >
-                          ({badge})
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "group flex items-center gap-3 rounded-md px-3 py-2 text-sm transition",
+                          active
+                            ? "bg-muted/60 text-foreground shadow-inner"
+                            : "text-muted-foreground hover:bg-muted/40 hover:text-foreground"
+                        )}
+                        aria-current={active ? "page" : undefined}
+                      >
+                        <Icon className="size-4" aria-hidden />
+                        <span className="flex items-center gap-1.5">
+                          {label}
+                          {badge !== null && badge > 0 && (
+                            <span
+                              className="text-muted-foreground text-xs font-medium"
+                              aria-label={`${badge} ${item.badgeKey}`}
+                            >
+                              ({badge})
+                            </span>
+                          )}
                         </span>
-                      )}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
         </nav>
         <div className="text-muted-foreground p-3 text-xs">{t("sidebar.inventoryProduction")}</div>
       </div>
