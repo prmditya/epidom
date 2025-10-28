@@ -71,7 +71,6 @@ export function ContactMap() {
             </MapContainer>
           </div>
         </div>
-      </div>
     </div>
   );
 }
