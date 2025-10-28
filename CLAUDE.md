@@ -479,3 +479,7 @@ When adding new features or modifying existing pages:
 3. **Organize by page** - Page-specific components go in `src/features/[area]/[page]/components/`
 4. **Share wisely** - Only move components to `src/features/[area]/components/` if used by multiple pages
 5. **Name descriptively** - Component files should clearly describe their purpose (e.g., `pricing-cards.tsx`, not `cards.tsx`)
+
+## Docs
+
+All documentation that generated put it on /docs folder.
