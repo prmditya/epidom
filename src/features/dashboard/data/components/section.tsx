@@ -17,17 +17,13 @@ export function Section({ items, label }: SectionProps) {
   const selectedItem = items.find((i) => i.id === selected);
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[1fr_380px] w-full">
-      <Card className="shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+    <div className="grid w-full gap-4 lg:grid-cols-[1fr_380px]">
+      <Card className="overflow-hidden shadow-md transition-shadow hover:shadow-lg">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg">{label}</CardTitle>
         </CardHeader>
         <CardContent>
-          <PillsList
-            items={items}
-            onSelect={setSelected}
-            selectedId={selected}
-          />
+          <PillsList items={items} onSelect={setSelected} selectedId={selected} />
         </CardContent>
       </Card>
       <DetailsPanel item={selectedItem} />

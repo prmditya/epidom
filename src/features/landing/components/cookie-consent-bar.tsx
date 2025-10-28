@@ -29,32 +29,24 @@ export function CookieConsentBar() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border shadow-lg">
+    <div className="bg-background border-border fixed right-0 bottom-0 left-0 z-50 border-t shadow-lg">
       <div className="mx-auto max-w-7xl px-6 py-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex-1">
-            <p className="text-sm text-foreground font-medium mb-2">
-              {t("cookie.title")}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              {t("cookie.description")}
-            </p>
+            <p className="text-foreground mb-2 text-sm font-medium">{t("cookie.title")}</p>
+            <p className="text-muted-foreground text-xs">{t("cookie.description")}</p>
           </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex flex-shrink-0 items-center gap-3">
             <Button
               variant="outline"
               size="sm"
               onClick={handleReject}
-              className="whitespace-nowrap bg-transparent"
+              className="bg-transparent whitespace-nowrap"
             >
               {t("cookie.reject")}
             </Button>
-            <Button
-              size="sm"
-              onClick={handleAccept}
-              className="whitespace-nowrap"
-            >
+            <Button size="sm" onClick={handleAccept} className="whitespace-nowrap">
               {t("cookie.accept")}
             </Button>
           </div>

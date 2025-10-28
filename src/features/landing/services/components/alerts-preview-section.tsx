@@ -7,29 +7,23 @@ export function AlertsPreviewSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white py-6 sm:py-12 sm:min-h-screen flex items-center overflow-visible relative z-10">
+    <section className="relative z-10 flex items-center overflow-visible bg-white py-6 sm:min-h-screen sm:py-12">
       <div className="services-narrow-container">
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-8 lg:gap-8 items-start lg:items-center">
+        <div className="grid grid-cols-1 items-start gap-4 sm:gap-8 lg:grid-cols-10 lg:items-center lg:gap-8">
           {/* Left Column (40%) - Title + Description + Small Mockup */}
-          <div className="lg:col-span-4 space-y-3 sm:space-y-10">
+          <div className="space-y-3 sm:space-y-10 lg:col-span-4">
             {/* Title */}
-            <h2 
-              className="text-section-title"
-              style={{ color: "var(--color-brand-primary)" }}
-            >
+            <h2 className="text-section-title" style={{ color: "var(--color-brand-primary)" }}>
               {t("services.alerts.title")}
             </h2>
-            
+
             {/* Description */}
-            <p 
-              className="text-description"
-              style={{ color: "#444444" }}
-            >
+            <p className="text-description" style={{ color: "#444444" }}>
               {t("services.alerts.description")}
             </p>
-            
+
             {/* Small Mockup */}
-            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-lg">
               <Image
                 src="/images/alert-1.png"
                 alt="Alerts interface small preview"
@@ -42,7 +36,7 @@ export function AlertsPreviewSection() {
 
           {/* Right Column (60%) - Large Mockup */}
           <div className="lg:col-span-6">
-            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl">
               <Image
                 src="/images/alert-2.png"
                 alt="Alerts interface large preview"

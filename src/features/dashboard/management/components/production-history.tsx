@@ -15,13 +15,13 @@ export function ProductionHistoryCard() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <button className="rounded-full bg-muted px-3 py-1.5 text-sm hover:bg-muted/80">
+        <button className="bg-muted hover:bg-muted/80 rounded-full px-3 py-1.5 text-sm">
           {t("actions.today")}
         </button>
-        <button className="rounded-full bg-muted px-3 py-1.5 text-sm hover:bg-muted/80">
+        <button className="bg-muted hover:bg-muted/80 rounded-full px-3 py-1.5 text-sm">
           {t("actions.thisWeek")}
         </button>
-        <button className="rounded-full bg-muted px-3 py-1.5 text-sm hover:bg-muted/80">
+        <button className="bg-muted hover:bg-muted/80 rounded-full px-3 py-1.5 text-sm">
           {t("actions.thisMonth")}
         </button>
         <button className="ml-auto rounded-full border px-3 py-1.5 text-sm">
@@ -29,17 +29,14 @@ export function ProductionHistoryCard() {
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-xl border bg-card shadow">
-        <div className="grid grid-cols-[1fr_200px] bg-muted px-3 py-2 text-sm font-medium">
+      <div className="bg-card overflow-hidden rounded-xl border shadow">
+        <div className="bg-muted grid grid-cols-[1fr_200px] px-3 py-2 text-sm font-medium">
           <span>{t("tables.recipe")}</span>
           <span>{t("pages.dateTime")}</span>
         </div>
         <ul className="divide-y">
           {ROWS.map((r) => (
-            <li
-              key={r.recipe + r.at}
-              className="grid grid-cols-[1fr_200px] px-3 py-2 text-sm"
-            >
+            <li key={r.recipe + r.at} className="grid grid-cols-[1fr_200px] px-3 py-2 text-sm">
               <span>{r.recipe}</span>
               <span>{r.at}</span>
             </li>

@@ -4,15 +4,11 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
-    const { name, email, password, businessName, address } =
-      await request.json();
+    const { name, email, password, businessName, address } = await request.json();
 
     // Validate required fields
     if (!email || !password) {
-      return NextResponse.json(
-        { message: "Email and password are required." },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Email and password are required." }, { status: 400 });
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -47,10 +43,7 @@ export async function POST(request: Request) {
       });
     }
 
-    return NextResponse.json(
-      { message: "User created successfully." },
-      { status: 201 }
-    );
+    return NextResponse.json({ message: "User created successfully." }, { status: 201 });
   } catch (error) {
     console.error("Signup error:", error);
     return NextResponse.json(

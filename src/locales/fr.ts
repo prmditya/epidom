@@ -55,25 +55,32 @@ export const fr = {
       "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
     featureBlock: { management: "Gestion", tracking: "Suivi", data: "Données" },
     dashboard: {
-      subtitle: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
-      description: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration."
+      subtitle:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
+      description:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
     },
     management: {
       title: "Gestion efficace",
-      subtitle: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
-      description: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration."
+      subtitle:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
+      description:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
     },
     tracking: {
-      title: "Un suivi des stocks actifs"
+      title: "Un suivi des stocks actifs",
     },
     data: {
       title: "Un suivi des données complet",
-      description1: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
-      description2: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés."
+      description1:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
+      description2:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
     },
     alerts: {
       title: "Alertes visibles et accessibles",
-      description: "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration."
+      description:
+        "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés. Cette démarche est essentielle pour éviter toute perte et optimiser votre activité de restauration.",
     },
     dashboardDesc1:
       "La gestion du stock alimentaire est le processus de suivi des produits alimentaires achetés et non encore consommés.",
@@ -192,7 +199,8 @@ export const fr = {
   },
   pricing: {
     heroTitle: "Une solution pour la gestion de votre stock alimentaire",
-    heroDescription: "La gestion des stocks alimentaires est le processus de suivi des ingrédients achetés et non consommés. Cette pratique est essentielle pour éviter le gaspillage et optimiser vos opérations de restaurant.",
+    heroDescription:
+      "La gestion des stocks alimentaires est le processus de suivi des ingrédients achetés et non consommés. Cette pratique est essentielle pour éviter le gaspillage et optimiser vos opérations de restaurant.",
     plans: {
       starter: {
         title: "Starter",
@@ -271,33 +279,34 @@ export const fr = {
     backToPricing: "Retour aux Tarifs",
     hero: {
       title: "Finalisez Votre Abonnement",
-      subtitle: "Traitement de paiement sécurisé avec chiffrement de niveau industrie"
+      subtitle: "Traitement de paiement sécurisé avec chiffrement de niveau industrie",
     },
     billing: {
       title: "Informations de Facturation",
       firstName: "Prénom",
       firstNamePlaceholder: "Entrez votre prénom",
-      lastName: "Nom de Famille", 
+      lastName: "Nom de Famille",
       lastNamePlaceholder: "Entrez votre nom de famille",
       email: "Adresse Email",
       emailPlaceholder: "votre.email@exemple.com",
       company: "Entreprise (Optionnel)",
-      companyPlaceholder: "Nom de votre entreprise"
+      companyPlaceholder: "Nom de votre entreprise",
     },
     payment: {
       title: "Informations de Paiement",
       cardNumber: "Numéro de Carte",
       expiryMonth: "Mois",
       expiryYear: "Année",
-      cvv: "CVV"
+      cvv: "CVV",
     },
     terms: {
       title: "Syarat dan Ketentuan",
       text: "J'accepte les",
       link: "Conditions d'Utilisation et Politique de Confidentialité",
-      billing: "Je comprends que le paiement sera traité automatiquement chaque mois et peut être annulé à tout moment",
+      billing:
+        "Je comprends que le paiement sera traité automatiquement chaque mois et peut être annulé à tout moment",
       refund: "J'ai lu et j'accepte la",
-      refundLink: "Politique de Remboursement"
+      refundLink: "Politique de Remboursement",
     },
     processing: "Traitement...",
     completePayment: "Finaliser le Paiement",
@@ -309,28 +318,28 @@ export const fr = {
       total: "Total",
       included: "Ce qui est inclus :",
       billingInfo1: "Vous serez facturé mensuellement",
-      billingInfo2: "Annulez à tout moment depuis votre tableau de bord"
+      billingInfo2: "Annulez à tout moment depuis votre tableau de bord",
     },
     security: {
       title: "Paiement Sécurisé",
       feature1: {
         title: "Sécurité Stripe",
-        description: "Alimenté par la sécurité de pointe de Stripe"
+        description: "Alimenté par la sécurité de pointe de Stripe",
       },
       feature2: {
         title: "Conforme PCI DSS",
-        description: "Vos données de carte ne sont jamais stockées sur nos serveurs"
+        description: "Vos données de carte ne sont jamais stockées sur nos serveurs",
       },
       feature3: {
         title: "Chiffrement SSL 256-bit",
-        description: "Toutes les transactions sont chiffrées de bout en bout"
+        description: "Toutes les transactions sont chiffrées de bout en bout",
       },
-      footer: "Vos informations de paiement sont sécurisées et chiffrées"
+      footer: "Vos informations de paiement sont sécurisées et chiffrées",
     },
     enterprise: {
       hero: {
         title: "Contactez Notre Équipe Commerciale",
-        subtitle: "Obtenez un devis personnalisé pour vos besoins d'entreprise"
+        subtitle: "Obtenez un devis personnalisé pour vos besoins d'entreprise",
       },
       included: "Ce qui est inclus :",
       form: {
@@ -339,17 +348,19 @@ export const fr = {
         companyInfo: "Informations de l'Entreprise",
         requirements: "Vos Besoins",
         requirementsDesc: "Parlez-nous de vos besoins spécifiques :",
-        requirementsPlaceholder: "Décrivez la taille de votre entreprise, le nombre d'emplacements, les fonctionnalités spécifiques nécessaires, les exigences d'intégration, etc.",
+        requirementsPlaceholder:
+          "Décrivez la taille de votre entreprise, le nombre d'emplacements, les fonctionnalités spécifiques nécessaires, les exigences d'intégration, etc.",
         phone: "Numéro de Téléphone",
         phonePlaceholder: "+33 7 81 73 23 86",
         submit: "Demander un Devis",
-        submitting: "Envoi de la Demande..."
+        submitting: "Envoi de la Demande...",
       },
       contact: {
         title: "Préférez-vous parler directement ?",
-        description: "Notre équipe commerciale est prête à vous aider à trouver la solution parfaite."
-      }
-    }
+        description:
+          "Notre équipe commerciale est prête à vous aider à trouver la solution parfaite.",
+      },
+    },
   },
   choosePlan: {
     title: "Choisissez votre plan",
@@ -650,8 +661,7 @@ export const fr = {
     openButtonAria: "Rejoindre la liste d'attente EPIDOM",
     openButton: "Rejoindre la liste d'attente",
     title: "Rejoindre la liste d'attente EPIDOM",
-    description:
-      "Soyez les premiers à essayer notre solution de gestion des stocks alimentaires.",
+    description: "Soyez les premiers à essayer notre solution de gestion des stocks alimentaires.",
     fields: {
       name: "Nom complet",
       email: "Email",
@@ -664,8 +674,7 @@ export const fr = {
     },
     submit: "Demander l'accès",
     successTitle: "Vous êtes inscrit !",
-    successDesc:
-      "Nous vous contacterons bientôt avec les détails d'accès anticipé.",
+    successDesc: "Nous vous contacterons bientôt avec les détails d'accès anticipé.",
   },
   nav: {
     profile: "Profil",
@@ -823,11 +832,7 @@ export const fr = {
     tagline: "UNE SOLUTION POUR LA GESTION DE VOTRE STOCK ALIMENTAIRE",
     contact: "Nous contacter",
     addressHeading: "France, Massy",
-    addressLines: [
-      "1 Av. Marcel Ramolfo Garnier",
-      "Massy, 91300",
-      "Tél (+33) 7 81 73 23 86",
-    ],
+    addressLines: ["1 Av. Marcel Ramolfo Garnier", "Massy, 91300", "Tél (+33) 7 81 73 23 86"],
     rights: (year: number) => `© ${year} Epidom. Tous droits réservés.`,
   },
   cookie: {

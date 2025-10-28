@@ -9,9 +9,9 @@ export const Hero = React.memo(function Hero() {
   const { t } = useI18n();
 
   return (
-    <section className="py-6 md:py-8 lg:py-10 min-h-screen flex items-center">
-      <div className="grid gap-6 md:gap-8 lg:gap-10 grid-cols-1 lg:grid-cols-5 w-full">
-        <div className="lg:col-span-3 overflow-hidden rounded-xl border border-border shadow-sm">
+    <section className="flex min-h-screen items-center py-6 md:py-8 lg:py-10">
+      <div className="grid w-full grid-cols-1 gap-6 md:gap-8 lg:grid-cols-5 lg:gap-10">
+        <div className="border-border overflow-hidden rounded-xl border shadow-sm lg:col-span-3">
           <Image
             src="/images/pantry-shelf.jpg"
             alt="Pantry shelves with jars and baskets"
@@ -22,16 +22,16 @@ export const Hero = React.memo(function Hero() {
             priority
           />
         </div>
-        <div className="lg:col-span-2 flex flex-col justify-center space-y-4">
+        <div className="flex flex-col justify-center space-y-4 lg:col-span-2">
           <div>
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
+              className="text-3xl leading-tight font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
               style={{ color: "var(--color-brand-primary)" }}
             >
               {t("hero.title")}
             </h1>
             <p
-              className="mt-3 sm:mt-4 text-balance text-lg sm:text-xl md:text-2xl font-semibold leading-snug"
+              className="mt-3 text-lg leading-snug font-semibold text-balance sm:mt-4 sm:text-xl md:text-2xl"
               style={{ color: "var(--color-brand-primary)" }}
             >
               {t("hero.subtitle")}
@@ -40,7 +40,7 @@ export const Hero = React.memo(function Hero() {
           <div className="mt-4 sm:mt-6">
             <WaitlistDialog variant="home" />
           </div>
-          <div className="mt-6 sm:mt-8 space-y-3 leading-relaxed text-muted-foreground text-sm sm:text-base">
+          <div className="text-muted-foreground mt-6 space-y-3 text-sm leading-relaxed sm:mt-8 sm:text-base">
             <p>{t("hero.p1")}</p>
             <p>{t("hero.p2")}</p>
             <p>{t("hero.p3")}</p>

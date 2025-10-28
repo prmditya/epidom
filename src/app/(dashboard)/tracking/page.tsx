@@ -64,11 +64,7 @@ const suppliers: Supplier[] = [
 ];
 
 function Qty({ v, critical }: { v: string; critical?: boolean }) {
-  return (
-    <span className={critical ? "text-red-600 font-medium" : "text-foreground"}>
-      {v}
-    </span>
-  );
+  return <span className={critical ? "font-medium text-red-600" : "text-foreground"}>{v}</span>;
 }
 
 export default function TrackingPage() {

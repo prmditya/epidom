@@ -15,10 +15,7 @@ export async function POST(request: Request) {
     const { name, email, phone, website, address, city, country } = body;
 
     if (!name) {
-      return NextResponse.json(
-        { error: "Business name is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Business name is required" }, { status: 400 });
     }
 
     // Check if business already exists
@@ -49,10 +46,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ business }, { status: 201 });
   } catch (error) {
     console.error("Error creating business:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
@@ -68,10 +62,7 @@ export async function PATCH(request: Request) {
     const { name, email, phone, website, address, city, country } = body;
 
     if (!name) {
-      return NextResponse.json(
-        { error: "Business name is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Business name is required" }, { status: 400 });
     }
 
     const business = await prisma.business.upsert({
@@ -100,9 +91,6 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ business });
   } catch (error) {
     console.error("Error updating business:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

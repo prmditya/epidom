@@ -2,13 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -63,19 +57,17 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md shadow-xl border-2">
+    <Card className="w-full max-w-md border-2 shadow-xl">
       <CardHeader className="space-y-2 pb-6">
-        <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+        <CardTitle className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent sm:text-3xl">
           {t("auth.welcome")}
         </CardTitle>
-        <CardDescription className="text-base">
-          {t("auth.signInToContinue")}
-        </CardDescription>
+        <CardDescription className="text-base">{t("auth.signInToContinue")}</CardDescription>
       </CardHeader>
       <CardContent>
         <form action={onSubmit} className="space-y-4">
           {error && (
-            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive border border-destructive/20">
+            <div className="bg-destructive/10 text-destructive border-destructive/20 rounded-md border p-3 text-sm">
               {error}
             </div>
           )}
@@ -92,36 +84,27 @@ export function LoginForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">{t("auth.password")}</Label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              required
-              disabled={loading}
-            />
+            <Input type="password" id="password" name="password" required disabled={loading} />
           </div>
           <div className="flex items-center justify-between">
-            <Link
-              className="text-sm text-primary underline underline-offset-4"
-              href="#"
-            >
+            <Link className="text-primary text-sm underline underline-offset-4" href="#">
               {t("auth.forgotPassword")}
             </Link>
           </div>
           <Button
             type="submit"
-            className="w-full shadow-md hover:shadow-lg transition-all"
+            className="w-full shadow-md transition-all hover:shadow-lg"
             disabled={loading}
           >
             {loading ? t("messages.loggingIn") || "Logging in..." : t("auth.loginButton")}
           </Button>
         </form>
         <Separator className="my-6" />
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-center text-sm">
           {t("auth.dontHaveAccount")}{" "}
           <Link
             href="/register"
-            className="text-primary hover:text-primary/80 underline underline-offset-4 font-semibold transition-colors"
+            className="text-primary hover:text-primary/80 font-semibold underline underline-offset-4 transition-colors"
           >
             {t("auth.registerButton")}
           </Link>

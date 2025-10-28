@@ -1,4 +1,3 @@
-/* eslint-disable  */
 export const en = {
   common: {
     brand: "EPIDOM",
@@ -39,8 +38,7 @@ export const en = {
   },
   countdown: {
     title: "Coming Soon",
-    subtitle:
-      "We're working hard to bring you the ultimate food inventory management solution",
+    subtitle: "We're working hard to bring you the ultimate food inventory management solution",
     days: "Days",
     hours: "Hours",
     minutes: "Minutes",
@@ -359,8 +357,7 @@ export const en = {
       },
       contact: {
         title: "Prefer to talk directly?",
-        description:
-          "Our sales team is ready to help you find the perfect solution.",
+        description: "Our sales team is ready to help you find the perfect solution.",
       },
     },
   },
@@ -404,8 +401,7 @@ export const en = {
     },
     create: "Create Store",
     cancel: "Cancel",
-    starterNote:
-      "Starter plan: You can only create 1 store. Upgrade to add more.",
+    starterNote: "Starter plan: You can only create 1 store. Upgrade to add more.",
   },
   usersPage: {
     title: "Your Account",
@@ -822,11 +818,7 @@ export const en = {
     tagline: "A SOLUTION FOR YOUR FOOD STOCK MANAGEMENT",
     contact: "Contact us",
     addressHeading: "France, Massy",
-    addressLines: [
-      "1 Av. Marcel Ramolfo Garnier",
-      "Massy, 91300",
-      "Tel (+33) 7 81 73 23 86",
-    ],
+    addressLines: ["1 Av. Marcel Ramolfo Garnier", "Massy, 91300", "Tel (+33) 7 81 73 23 86"],
     rights: (year: number) => `© ${year} Epidom. All rights reserved.`,
   },
   cookie: {

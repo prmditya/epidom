@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -73,7 +68,7 @@ export function EditBusinessInfoDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             {business ? "Edit Business Information" : "Add Business Information"}
@@ -82,7 +77,7 @@ export function EditBusinessInfoDialog({
 
         <form action={handleSubmit} className="space-y-4">
           {error && (
-            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive border border-destructive/20">
+            <div className="bg-destructive/10 text-destructive border-destructive/20 rounded-md border p-3 text-sm">
               {error}
             </div>
           )}
@@ -101,7 +96,7 @@ export function EditBusinessInfoDialog({
             />
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="email">Business Email</Label>
               <Input
@@ -150,7 +145,7 @@ export function EditBusinessInfoDialog({
             />
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="city">City</Label>
               <Input

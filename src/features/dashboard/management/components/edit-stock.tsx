@@ -8,12 +8,9 @@ const ITEMS = Array.from({ length: 12 }).map((_, i) => `Ingredient ${i + 1}`);
 export function EditStockCard() {
   const [q, setQ] = useState("");
   const { t } = useI18n();
-  const filtered = ITEMS.filter((r) =>
-    r.toLowerCase().includes(q.toLowerCase())
-  );
+  const filtered = ITEMS.filter((r) => r.toLowerCase().includes(q.toLowerCase()));
 
-  const locale =
-    (typeof navigator !== "undefined" && navigator.language) || "en";
+  const locale = (typeof navigator !== "undefined" && navigator.language) || "en";
   const nf2 = new Intl.NumberFormat(locale, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -24,9 +21,9 @@ export function EditStockCard() {
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-[320px_1fr]">
-      <div className="rounded-xl bg-card p-4 shadow">
+      <div className="bg-card rounded-xl p-4 shadow">
         <div className="mb-3">
-          <div className="rounded-full bg-muted px-3 py-2">
+          <div className="bg-muted rounded-full px-3 py-2">
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
@@ -40,7 +37,7 @@ export function EditStockCard() {
           {filtered.map((name) => (
             <button
               key={name}
-              className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted"
+              className="bg-background hover:bg-muted rounded-full border px-3 py-2 text-left text-sm"
             >
               {name}
             </button>
@@ -48,13 +45,11 @@ export function EditStockCard() {
         </div>
       </div>
 
-      <div className="rounded-xl bg-card p-4 shadow">
+      <div className="bg-card rounded-xl p-4 shadow">
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded bg-muted" aria-hidden />
+          <div className="bg-muted h-12 w-12 rounded" aria-hidden />
           <div>
-            <p className="text-sm text-muted-foreground">
-              {t("pages.ingredient")}
-            </p>
+            <p className="text-muted-foreground text-sm">{t("pages.ingredient")}</p>
             <h3 className="text-lg font-semibold">Sample Ingredient</h3>
           </div>
         </div>
@@ -91,10 +86,10 @@ export function EditStockCard() {
               id="adjust"
               type="number"
               step="0.01"
-              className="w-32 rounded-md border bg-background px-2 py-1 text-sm"
+              className="bg-background w-32 rounded-md border px-2 py-1 text-sm"
               defaultValue={10}
             />
-            <button className="rounded-full bg-primary px-3 py-1.5 text-sm text-primary-foreground">
+            <button className="bg-primary text-primary-foreground rounded-full px-3 py-1.5 text-sm">
               {t("actions.save")}
             </button>
           </div>

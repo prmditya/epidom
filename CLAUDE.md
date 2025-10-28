@@ -20,6 +20,30 @@ pnpm start
 
 # Run linting
 pnpm lint
+
+# Generate Prisma client (runs automatically on pnpm install)
+npx prisma generate
+
+# Run database migrations
+npx prisma migrate dev
+
+# Open Prisma Studio (database GUI)
+npx prisma studio
+
+# Push schema changes without migrations (for prototyping)
+npx prisma db push
+```
+
+## Environment Setup
+
+Create a `.env` file based on `.env.example`:
+
+```bash
+NEXTAUTH_SECRET=generate-a-strong-random-secret-here
+NEXTAUTH_URL=http://localhost:3000
+DATABASE_URL="postgresql://user:password@localhost:5432/epidom"
+# For local development, you can use SQLite:
+# DATABASE_URL="file:./dev.db"
 ```
 
 ## Architecture
@@ -36,7 +60,7 @@ This app uses Next.js 15 App Router with four route groups:
 - **Auth routes** (`/(auth)/*`) - Authentication pages (`/login`, `/register`)
   - Uses `I18nProvider` for internationalization
   - Simple layout with no navigation components
-  - **Note:** Auth is NOT implemented yet - forms currently just redirect
+  - **Note:** Auth is PARTIALLY implemented with NextAuth + Credentials provider (see Authentication section below)
 
 - **Stores routes** (`/(stores)/*`) - Store selection pages (`/stores`)
   - Uses `I18nProvider` for internationalization
@@ -49,8 +73,8 @@ This app uses Next.js 15 App Router with four route groups:
   - Pages: `/dashboard`, `/tracking`, `/data`, `/management`, `/alerts`, `/profile`
   - Uses `I18nProvider` for internationalization
   - Wrapped in `PageShell` (Topbar + Sidebar + content area)
-  - **Note:** Currently no authentication - will be added later
-  - Each dashboard is scoped to a selected store
+  - Session-based authentication via NextAuth
+  - Each dashboard is scoped to a selected store (multi-store support)
 
 ### Layout Hierarchy
 
@@ -92,7 +116,18 @@ Dashboard layout (src/app/(dashboard)/layout.tsx)
    - Supports nested keys with dot notation (e.g., `t("nav.dashboard")`)
    - Supports function values for dynamic content (e.g., footer copyright with year)
 
-2. **SiteHeader** (`src/features/landing/components/site-header.tsx`)
+2. **SessionProvider** (`src/components/providers/session-provider.tsx`)
+   - NextAuth session provider wrapper
+   - Wraps the entire app to provide authentication context
+   - Enables `useSession()` hook across all components
+
+3. **ErrorBoundary** (`src/components/error-boundary.tsx`)
+   - React error boundary for graceful error handling
+   - Shows custom error UI with recovery options
+   - Exports `useErrorHandler()` hook and `withErrorBoundary()` HOC
+   - Logs errors in development mode
+
+4. **SiteHeader** (`src/features/landing/components/site-header.tsx`)
    - Reusable header component for both landing and authenticated pages
    - Props:
      - `variant`: "landing" (default) | "authenticated"
@@ -110,6 +145,7 @@ Dashboard layout (src/app/(dashboard)/layout.tsx)
 The codebase follows a **clean architecture** with feature-based organization:
 
 **Folder Structure Pattern:**
+
 ```
 src/
 ├── components/
@@ -123,12 +159,14 @@ src/
 ```
 
 **Key Principles:**
+
 1. **Pages are thin** - They only import and compose components
 2. **Page-specific components** go in `src/features/[feature-area]/[page-name]/components/`
 3. **Shared feature components** go in `src/features/[feature-area]/components/`
 4. **Pages** in `src/app/` should be minimal (typically 10-20 lines)
 
 **Examples:**
+
 - `src/features/dashboard/dashboard/components/` - Components for the dashboard page
 - `src/features/dashboard/components/` - Shared across all dashboard pages (PageShell, Topbar, Sidebar)
 - `src/features/landing/pricing/components/` - Components for the pricing page
@@ -148,21 +186,171 @@ src/
 ### Path Aliases
 
 Configured in `tsconfig.json`:
+
 - `@/*` maps to `./src/*`
 
 ### Component Library
 
 Using shadcn/ui with configuration in `components.json`:
+
 - Style: "new-york"
 - Icon library: lucide-react
 - RSC: true (React Server Components enabled)
 - Additional aliases: `@/components`, `@/lib/utils`, `@/components/ui`, `@/lib`, `@/hooks`
+
+### Authentication
+
+**Implementation Status: PARTIALLY IMPLEMENTED**
+
+The app uses NextAuth v4 with Credentials provider for authentication:
+
+**Key Files:**
+
+- `src/lib/auth.ts` - NextAuth configuration with JWT strategy
+- `src/app/api/auth/[...nextauth]/route.ts` - NextAuth route handler
+- `src/app/api/auth/signup/route.ts` - User registration endpoint
+- `src/lib/auth-client.ts` - Custom `useUser()` hook for client-side session access
+
+**Authentication Flow:**
+
+1. User registers via `/api/auth/signup` (password hashed with bcryptjs)
+2. User logs in via NextAuth's `signIn("credentials", { email, password })`
+3. Session stored as JWT with 30-day max age
+4. Server-side routes verify session with `getServerSession(authOptions)`
+
+**Client-Side Session Access:**
+
+```typescript
+import { useUser } from "@/lib/auth-client";
+const { user, loading } = useUser(); // Returns { id, email, name, image }
+```
+
+**Server-Side Authorization Pattern:**
+
+```typescript
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
+export async function GET(request: Request) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  // ... authorized logic
+}
+```
+
+**Current Limitations:**
+
+- No OAuth providers configured (only Credentials)
+- Email verification not implemented (schema supports it)
+- Password reset flow not fully implemented
+
+### Database Architecture
+
+**ORM:** Prisma 6.17.1 with PostgreSQL (SQLite supported for local dev)
+
+**Key Models and Relationships:**
+
+```
+User (1:1) ← Business (1:N) → Store
+                              └─ (1:N) → Product (1:1) → Recipe
+                              └─ (1:N) → Ingredient
+                              └─ (1:N) → Order → OrderItem (N:N) → Product
+                              └─ (1:N) → Supplier
+
+Recipe (N:N via RecipeIngredient junction) ← Ingredient
+Product → ProductionBatch
+Ingredient/Product → StockMovement (audit trail)
+User (1:1) → Subscription (Stripe integration)
+User (1:N) → Alert (notifications)
+```
+
+**Important Model Details:**
+
+- **Multi-store architecture**: Business → Store (1:N), all inventory scoped to Store
+- **Recipe composition**: Product has one Recipe, which contains multiple Ingredients via junction table
+- **Audit trail**: StockMovement tracks all inventory changes with timestamps
+- **Enums**: ProductionStatus, MovementType, OrderStatus, AlertType, SubscriptionPlan
+- **Decimal precision**: Prices and quantities use `@db.Decimal(10, 2)`
+- **Soft deletes**: Consider using `isActive` boolean instead of hard deletes for audit purposes
+
+**Schema Location:** `prisma/schema.prisma`
+
+### API Routes
+
+**Existing Endpoints:**
+
+```
+POST   /api/auth/signup              # Create new user account
+POST   /api/auth/[...nextauth]       # NextAuth authentication
+GET    /api/user/profile             # Get user profile (session required)
+POST   /api/user/business            # Create business (session required)
+PATCH  /api/user/business            # Update business (session required)
+```
+
+**API Patterns:**
+
+- RESTful conventions (GET/POST/PATCH/DELETE)
+- Session verification via `getServerSession(authOptions)`
+- Standard HTTP status codes: 200 (OK), 201 (Created), 400 (Bad Request), 401 (Unauthorized), 409 (Conflict), 500 (Error)
+- JSON request/response bodies
+- Error responses: `{ error: "Error message" }`
+
+**Adding New API Routes:**
+
+1. Create file in `src/app/api/[route-name]/route.ts`
+2. Export async functions: `GET`, `POST`, `PATCH`, `DELETE`
+3. Verify session for protected routes
+4. Use Prisma client for database operations
+5. Return `NextResponse.json()` with appropriate status codes
+
+### State Management
+
+**No global state library** (Redux, Zustand, etc.) - uses built-in React patterns:
+
+1. **NextAuth sessions** - Authentication state via `useSession()` or `useUser()`
+2. **React Context API** - I18nProvider for language/translations
+3. **Component state** - `useState()` for local UI state
+4. **Server state** - API routes + Prisma for data persistence
+
+**Current Data Fetching:**
+
+- Most components use **mock data** with TODO comments
+- Example: `useAlertsCount()` hook uses `MOCK_ALERTS` array
+- Future: Replace with API calls or add a proper data fetching library
+
+**Adding New State:**
+
+- For UI state: Use `useState()` in components
+- For shared state: Create React Context provider in `src/components/providers/`
+- For server data: Create API route + use `fetch()` or server actions
+
+### Utilities
+
+**Validation** (`src/lib/validation.ts`):
+
+- Email validation with regex
+- Name validation (2-50 characters)
+- Waitlist form validation
+- RateLimiter class for brute force protection
+
+**Logger** (`src/lib/logger.ts`):
+
+- Used by ErrorBoundary for error logging
+- Development-friendly error output
+
+**Auth Client** (`src/lib/auth-client.ts`):
+
+- Custom `useUser()` hook wrapping NextAuth's `useSession()`
+- Returns: `{ user: { id, email, name, image }, loading }`
 
 ## Adding New Features
 
 ### Adding UI Components
 
 Use shadcn CLI to add new components:
+
 ```bash
 npx shadcn@latest add [component-name]
 ```
@@ -191,6 +379,7 @@ Following the clean architecture pattern:
 6. **Add translations**: Update `src/components/lang/i18n-dictionaries.ts`
 
 **Example structure:**
+
 ```
 src/app/(dashboard)/inventory/page.tsx (imports components)
 src/features/dashboard/inventory/components/
@@ -211,6 +400,7 @@ Following the clean architecture pattern:
 6. **Add translations**: Update `src/locales/` files (en.ts, fr.ts, id.ts)
 
 **Example structure:**
+
 ```
 src/app/(landing)/about/page.tsx (imports components)
 src/features/landing/about/components/
@@ -231,22 +421,54 @@ Following the clean architecture pattern:
 
 ### Working with Forms
 
-- Forms use `react-hook-form` with `@hookform/resolvers`
-- Validation with `zod` schemas
-- Form components from shadcn/ui (label, input, etc.)
+**Current Implementation:**
+
+- Forms use **server actions** with FormData API (not react-hook-form currently)
+- Manual error state management with `useState()`
+- NextAuth's `signIn()` function for authentication forms
+- Basic validation in `src/lib/validation.ts`
+
+**Pattern:**
+
+```typescript
+async function onSubmit(formData: FormData) {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  // Validate and process
+  const result = await signIn("credentials", {
+    email,
+    password,
+    redirect: false
+  });
+
+  // Handle result
+}
+
+// In JSX:
+<form action={onSubmit}>
+  <input name="email" type="email" required />
+  <input name="password" type="password" required />
+  <button type="submit">Submit</button>
+</form>
+```
+
+**Note:** react-hook-form and zod are in package.json but not currently used. Consider migrating forms to use these libraries for better validation and type safety.
 
 ## Important Notes
 
 - **Clean Architecture**: Pages are thin (10-20 lines), components are extracted to feature folders
 - **Feature-based structure**: Components organized by feature in `src/features/[feature-area]/[page-name]/components/`
-- **Multi-store architecture**: One Business can have multiple Stores, each with separate inventory
-- **No authentication**: Auth is NOT implemented - forms just redirect for now (will be added later)
-- **No database**: This is an MVP with hardcoded/mocked data
+- **Multi-store architecture**: One Business can have multiple Stores, each with separate inventory (see Database Architecture)
+- **Authentication**: NextAuth with Credentials provider, JWT sessions, bcryptjs password hashing
+- **Database**: Prisma + PostgreSQL (SQLite for local dev), comprehensive schema with audit trails
+- **Mock data**: Many components use hardcoded mock data with TODO comments - needs API integration
 - **Responsive design**: Uses Tailwind's responsive utilities, sidebar hidden on mobile
-- **TypeScript strict mode**: enabled in tsconfig.json
+- **TypeScript strict mode**: Enabled in tsconfig.json
 - **Vercel Analytics**: Integrated in root layout
 - **Unified I18n system**: Single `I18nProvider` used across all routes with translations in `src/locales/`
-- **Four route groups**: Landing (public), Auth (placeholder), Stores (multi-store selector), Dashboard (per-store)
+- **Four route groups**: Landing (public), Auth (NextAuth), Stores (multi-store selector), Dashboard (per-store)
+- **Error handling**: ErrorBoundary with custom fallback UI and recovery options
 
 ## Clean Architecture Best Practices
 
@@ -257,3 +479,7 @@ When adding new features or modifying existing pages:
 3. **Organize by page** - Page-specific components go in `src/features/[area]/[page]/components/`
 4. **Share wisely** - Only move components to `src/features/[area]/components/` if used by multiple pages
 5. **Name descriptively** - Component files should clearly describe their purpose (e.g., `pricing-cards.tsx`, not `cards.tsx`)
+
+## Docs
+
+All documentation that generated put it on /docs folder.

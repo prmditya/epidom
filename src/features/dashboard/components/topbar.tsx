@@ -35,7 +35,7 @@ export function Topbar() {
   return (
     <header
       role="banner"
-      className="sticky top-0 z-10 w-full bg-primary text-primary-foreground shadow rounded-none navbar-no-transition navbar-static"
+      className="bg-primary text-primary-foreground navbar-no-transition navbar-static sticky top-0 z-10 w-full rounded-none shadow"
       style={{
         animation: "none !important",
         transition: "none !important",
@@ -52,13 +52,13 @@ export function Topbar() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="md:hidden text-primary-foreground hover:bg-white/10"
+                  className="text-primary-foreground hover:bg-white/10 md:hidden"
                 >
                   <Menu className="size-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[280px] p-0 h-[100dvh]">
+              <SheetContent side="left" className="h-[100dvh] w-[280px] p-0">
                 <Sidebar mode="mobile" />
               </SheetContent>
             </Sheet>
@@ -75,13 +75,13 @@ export function Topbar() {
           </div>
 
           {/* Center: Search (hidden on mobile, centered on md+) */}
-          <div className="w-full items-center justify-center hidden md:flex">
+          <div className="hidden w-full items-center justify-center md:flex">
             <div className="relative w-80 max-w-xl sm:max-w-2xl">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-black" />
+              <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-black" />
               <Input
                 placeholder={t("actions.searchPlaceholder")}
                 aria-label={t("actions.searchPlaceholder")}
-                className="h-9 w-full rounded-full bg-white pl-9 text-foreground placeholder:text-muted-foreground"
+                className="text-foreground placeholder:text-muted-foreground h-9 w-full rounded-full bg-white pl-9"
               />
             </div>
           </div>
@@ -89,15 +89,15 @@ export function Topbar() {
           {/* Right: language, profile, logout */}
           <div className="ml-auto flex items-center justify-end gap-2">
             {/* Language switcher */}
-            <LangSwitcher className="hidden sm:inline-block bg-white text-foreground border" />
+            <LangSwitcher className="text-foreground hidden border bg-white sm:inline-block" />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="gap-2 text-primary-foreground hover:bg-white/10 hover:text-white"
+                  className="text-primary-foreground gap-2 hover:bg-white/10 hover:text-white"
                 >
                   <Avatar className="size-6">
-                    <AvatarFallback className="text-xs bg-white text-foreground">
+                    <AvatarFallback className="text-foreground bg-white text-xs">
                       {user?.name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? "U"}
                     </AvatarFallback>
                   </Avatar>
@@ -124,7 +124,7 @@ export function Topbar() {
                 signOut();
               }}
             >
-              <LogOut className="size-4 mr-1" />
+              <LogOut className="mr-1 size-4" />
               {t("actions.logout")}
             </Button>
           </div>

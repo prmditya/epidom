@@ -21,23 +21,23 @@ export function PaymentForm({ plan }: PaymentFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate payment processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       // Handle success here
-      logger.info('Payment processed successfully');
+      logger.info("Payment processed successfully");
     } catch (error) {
-      logger.error('Payment processing error:', error);
+      logger.error("Payment processing error:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6 h-full">
+    <div className="h-full space-y-4 sm:space-y-6">
       {/* Billing Information */}
-      <Card className="rounded-xl sm:rounded-2xl border-2">
+      <Card className="rounded-xl border-2 sm:rounded-2xl">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
             <User className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -47,47 +47,55 @@ export function PaymentForm({ plan }: PaymentFormProps) {
         <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="firstName" className="text-sm font-medium">{t("payments.billing.firstName")}</Label>
-              <Input 
-                id="firstName" 
+              <Label htmlFor="firstName" className="text-sm font-medium">
+                {t("payments.billing.firstName")}
+              </Label>
+              <Input
+                id="firstName"
                 placeholder={t("payments.billing.firstNamePlaceholder")}
                 className="h-10 sm:h-11"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="lastName" className="text-sm font-medium">{t("payments.billing.lastName")}</Label>
-              <Input 
-                id="lastName" 
+              <Label htmlFor="lastName" className="text-sm font-medium">
+                {t("payments.billing.lastName")}
+              </Label>
+              <Input
+                id="lastName"
                 placeholder={t("payments.billing.lastNamePlaceholder")}
                 className="h-10 sm:h-11"
                 required
               />
             </div>
           </div>
-          
+
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium">{t("payments.billing.email")}</Label>
+            <Label htmlFor="email" className="text-sm font-medium">
+              {t("payments.billing.email")}
+            </Label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input 
-                id="email" 
-                type="email" 
+              <Mail className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+              <Input
+                id="email"
+                type="email"
                 placeholder={t("payments.billing.emailPlaceholder")}
-                className="pl-10 h-10 sm:h-11"
+                className="h-10 pl-10 sm:h-11"
                 required
               />
             </div>
           </div>
-          
+
           <div className="space-y-2">
-            <Label htmlFor="company" className="text-sm font-medium">{t("payments.billing.company")}</Label>
+            <Label htmlFor="company" className="text-sm font-medium">
+              {t("payments.billing.company")}
+            </Label>
             <div className="relative">
-              <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input 
-                id="company" 
+              <Building className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+              <Input
+                id="company"
                 placeholder={t("payments.billing.companyPlaceholder")}
-                className="pl-10 h-10 sm:h-11"
+                className="h-10 pl-10 sm:h-11"
               />
             </div>
           </div>
@@ -95,7 +103,7 @@ export function PaymentForm({ plan }: PaymentFormProps) {
       </Card>
 
       {/* Payment Information */}
-      <Card className="rounded-xl sm:rounded-2xl border-2">
+      <Card className="rounded-xl border-2 sm:rounded-2xl">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
             <CreditCard className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -104,23 +112,27 @@ export function PaymentForm({ plan }: PaymentFormProps) {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="cardNumber" className="text-sm font-medium">{t("payments.payment.cardNumber")}</Label>
+            <Label htmlFor="cardNumber" className="text-sm font-medium">
+              {t("payments.payment.cardNumber")}
+            </Label>
             <div className="relative">
-              <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input 
-                id="cardNumber" 
+              <CreditCard className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+              <Input
+                id="cardNumber"
                 placeholder="1234 5678 9012 3456"
-                className="pl-10 h-10 sm:h-11"
+                className="h-10 pl-10 sm:h-11"
                 required
               />
             </div>
           </div>
-          
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             <div className="space-y-2">
-              <Label htmlFor="expiryMonth" className="text-sm font-medium">{t("payments.payment.expiryMonth")}</Label>
-              <Input 
-                id="expiryMonth" 
+              <Label htmlFor="expiryMonth" className="text-sm font-medium">
+                {t("payments.payment.expiryMonth")}
+              </Label>
+              <Input
+                id="expiryMonth"
                 placeholder="MM"
                 maxLength={2}
                 className="h-10 sm:h-11"
@@ -128,9 +140,11 @@ export function PaymentForm({ plan }: PaymentFormProps) {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="expiryYear" className="text-sm font-medium">{t("payments.payment.expiryYear")}</Label>
-              <Input 
-                id="expiryYear" 
+              <Label htmlFor="expiryYear" className="text-sm font-medium">
+                {t("payments.payment.expiryYear")}
+              </Label>
+              <Input
+                id="expiryYear"
                 placeholder="YY"
                 maxLength={2}
                 className="h-10 sm:h-11"
@@ -138,21 +152,17 @@ export function PaymentForm({ plan }: PaymentFormProps) {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="cvv" className="text-sm font-medium">{t("payments.payment.cvv")}</Label>
-              <Input 
-                id="cvv" 
-                placeholder="123"
-                maxLength={3}
-                className="h-10 sm:h-11"
-                required
-              />
+              <Label htmlFor="cvv" className="text-sm font-medium">
+                {t("payments.payment.cvv")}
+              </Label>
+              <Input id="cvv" placeholder="123" maxLength={3} className="h-10 sm:h-11" required />
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Terms and Conditions */}
-      <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50">
+      <Card className="rounded-xl border-2 bg-gray-50 sm:rounded-2xl">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
             <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -162,42 +172,50 @@ export function PaymentForm({ plan }: PaymentFormProps) {
         <CardContent className="pt-0">
           <div className="space-y-3 sm:space-y-4">
             <div className="flex items-start gap-2 sm:gap-3">
-              <input 
-                type="checkbox" 
-                id="terms" 
-                className="mt-1 h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0"
+              <input
+                type="checkbox"
+                id="terms"
+                className="text-primary mt-1 h-4 w-4 flex-shrink-0 sm:h-5 sm:w-5"
                 required
               />
-              <Label htmlFor="terms" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              <Label htmlFor="terms" className="text-xs leading-relaxed text-gray-600 sm:text-sm">
                 {t("payments.terms.text")}{" "}
-                <a href="/terms" target="_blank" className="text-primary hover:underline font-medium break-words">
+                <a
+                  href="/terms"
+                  target="_blank"
+                  className="text-primary font-medium break-words hover:underline"
+                >
                   {t("payments.terms.link")}
                 </a>
               </Label>
             </div>
-            
+
             <div className="flex items-start gap-2 sm:gap-3">
-              <input 
-                type="checkbox" 
-                id="billing" 
-                className="mt-1 h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0"
+              <input
+                type="checkbox"
+                id="billing"
+                className="text-primary mt-1 h-4 w-4 flex-shrink-0 sm:h-5 sm:w-5"
                 required
               />
-              <Label htmlFor="billing" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              <Label htmlFor="billing" className="text-xs leading-relaxed text-gray-600 sm:text-sm">
                 {t("payments.terms.billing")}
               </Label>
             </div>
-            
+
             <div className="flex items-start gap-2 sm:gap-3">
-              <input 
-                type="checkbox" 
-                id="refund" 
-                className="mt-1 h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0"
+              <input
+                type="checkbox"
+                id="refund"
+                className="text-primary mt-1 h-4 w-4 flex-shrink-0 sm:h-5 sm:w-5"
                 required
               />
-              <Label htmlFor="refund" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              <Label htmlFor="refund" className="text-xs leading-relaxed text-gray-600 sm:text-sm">
                 {t("payments.terms.refund")}{" "}
-                <a href="/refund-policy" target="_blank" className="text-primary hover:underline font-medium break-words">
+                <a
+                  href="/refund-policy"
+                  target="_blank"
+                  className="text-primary font-medium break-words hover:underline"
+                >
                   {t("payments.terms.refundLink")}
                 </a>
               </Label>
@@ -207,11 +225,11 @@ export function PaymentForm({ plan }: PaymentFormProps) {
       </Card>
 
       {/* Submit Button */}
-      <Button 
+      <Button
         onClick={handleSubmit}
         disabled={isSubmitting}
-        className="w-full h-11 sm:h-12 text-base sm:text-lg font-semibold rounded-lg transition-colors duration-200 hover:bg-gray-700 mb-6 sm:mb-8"
-        style={{ backgroundColor: '#444444', color: 'white' }}
+        className="mb-6 h-11 w-full rounded-lg text-base font-semibold transition-colors duration-200 hover:bg-gray-700 sm:mb-8 sm:h-12 sm:text-lg"
+        style={{ backgroundColor: "#444444", color: "white" }}
       >
         {isSubmitting ? t("payments.processing") : t("payments.completePayment")}
       </Button>

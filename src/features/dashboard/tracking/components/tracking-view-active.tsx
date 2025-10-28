@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { CheckCircle2, AlertCircle, XCircle } from "lucide-react"
+import { CheckCircle2, AlertCircle, XCircle } from "lucide-react";
 
 type Row = {
-  product: string
-  levelPct: number // 0..100
-  quantity: string
-  status: "ok" | "warning" | "critical"
-}
+  product: string;
+  levelPct: number; // 0..100
+  quantity: string;
+  status: "ok" | "warning" | "critical";
+};
 
 const rows: Row[] = [
   { product: "Butter", levelPct: 82, quantity: "25.01 Kg", status: "ok" },
@@ -19,11 +19,11 @@ const rows: Row[] = [
   { product: "Flour", levelPct: 18, quantity: "2.01 Kg", status: "critical" },
   { product: "Eggs", levelPct: 12, quantity: "5 Units", status: "critical" },
   { product: "Lime", levelPct: 5, quantity: "2 Units", status: "critical" },
-]
+];
 
 function LevelBar({ pct, color }: { pct: number; color: "primary" | "muted" | "destructive" }) {
   return (
-    <div className="w-full h-2 rounded-full bg-muted">
+    <div className="bg-muted h-2 w-full rounded-full">
       <div
         className={
           color === "primary"
@@ -35,24 +35,24 @@ function LevelBar({ pct, color }: { pct: number; color: "primary" | "muted" | "d
         style={{ width: `${Math.min(Math.max(pct, 0), 100)}%` }}
       />
     </div>
-  )
+  );
 }
 
 export function TrackingViewActive() {
   return (
-    <div className="rounded-xl border bg-card shadow-sm">
-      <div className="flex items-center justify-between px-4 py-3 border-b">
-        <h2 className="text-lg font-medium text-foreground text-pretty">Active Stock Tracking</h2>
+    <div className="bg-card rounded-xl border shadow-sm">
+      <div className="flex items-center justify-between border-b px-4 py-3">
+        <h2 className="text-foreground text-lg font-medium text-pretty">Active Stock Tracking</h2>
       </div>
 
       <div className="overflow-x-auto p-4">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-foreground/80">
-              <th className="text-left font-medium py-2 pr-3">Products</th>
-              <th className="text-left font-medium py-2 pr-3 w-1/2">Level</th>
-              <th className="text-right font-medium py-2 pr-3 whitespace-nowrap">Units / Weight</th>
-              <th className="text-right font-medium py-2 pl-3">Status</th>
+              <th className="py-2 pr-3 text-left font-medium">Products</th>
+              <th className="w-1/2 py-2 pr-3 text-left font-medium">Level</th>
+              <th className="py-2 pr-3 text-right font-medium whitespace-nowrap">Units / Weight</th>
+              <th className="py-2 pl-3 text-right font-medium">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -62,17 +62,28 @@ export function TrackingViewActive() {
                 <td className="py-3 pr-3">
                   <LevelBar
                     pct={r.levelPct}
-                    color={r.status === "ok" ? "primary" : r.status === "warning" ? "muted" : "destructive"}
+                    color={
+                      r.status === "ok"
+                        ? "primary"
+                        : r.status === "warning"
+                          ? "muted"
+                          : "destructive"
+                    }
                   />
                 </td>
                 <td className="py-3 pr-3 text-right">{r.quantity}</td>
                 <td className="py-3 pl-3 text-right">
-                  {r.status === "ok" && <CheckCircle2 className="inline size-5 text-primary" aria-label="OK" />}
+                  {r.status === "ok" && (
+                    <CheckCircle2 className="text-primary inline size-5" aria-label="OK" />
+                  )}
                   {r.status === "warning" && (
-                    <AlertCircle className="inline size-5 text-foreground/70" aria-label="Warning" />
+                    <AlertCircle
+                      className="text-foreground/70 inline size-5"
+                      aria-label="Warning"
+                    />
                   )}
                   {r.status === "critical" && (
-                    <XCircle className="inline size-5 text-destructive" aria-label="Critical" />
+                    <XCircle className="text-destructive inline size-5" aria-label="Critical" />
                   )}
                 </td>
               </tr>
@@ -81,7 +92,7 @@ export function TrackingViewActive() {
         </table>
       </div>
     </div>
-  )
+  );
 }
 
-export default TrackingViewActive
+export default TrackingViewActive;

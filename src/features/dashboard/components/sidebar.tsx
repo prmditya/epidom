@@ -35,9 +35,7 @@ const itemDefs = [
 ] as const;
 
 function isMobile(mode: string) {
-  return mode === "mobile"
-    ? "flex md:hidden h-full mt-12"
-    : "hidden md:flex w-full";
+  return mode === "mobile" ? "flex md:hidden h-full mt-12" : "hidden md:flex w-full";
 }
 
 export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
@@ -47,15 +45,15 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
 
   return (
     <aside className={cn(isMobile(mode))}>
-      <div className="flex h-[100%] w-full flex-col overflow-y-auto rounded-xl border bg-card shadow-sm">
+      <div className="bg-card flex h-[100%] w-full flex-col overflow-y-auto rounded-xl border shadow-sm">
         {mode === "mobile" && (
-          <div className="p-3 border-b">
+          <div className="border-b p-3">
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 size-4 text-foreground/70" />
+              <Search className="text-foreground/70 pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2" />
               <Input
                 placeholder={t("actions.searchPlaceholder")}
                 aria-label={t("actions.searchPlaceholder")}
-                className="pl-9 h-9 rounded-full"
+                className="h-9 rounded-full pl-9"
               />
             </div>
           </div>
@@ -84,7 +82,7 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
                       {label}
                       {badge !== null && badge > 0 && (
                         <span
-                          className="text-xs font-medium text-muted-foreground"
+                          className="text-muted-foreground text-xs font-medium"
                           aria-label={`${badge} alerts`}
                         >
                           ({badge})
@@ -97,9 +95,7 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
             })}
           </ul>
         </nav>
-        <div className="p-3 text-xs text-muted-foreground">
-          {t("sidebar.inventoryProduction")}
-        </div>
+        <div className="text-muted-foreground p-3 text-xs">{t("sidebar.inventoryProduction")}</div>
       </div>
     </aside>
   );

@@ -57,22 +57,20 @@ export function ProfileHeader({ user, subscription }: ProfileHeaderProps) {
   return (
     <Card className="border-2">
       <CardContent className="p-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <Avatar className="h-24 w-24 ring-4 ring-primary/10">
+        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+          <Avatar className="ring-primary/10 h-24 w-24 ring-4">
             <AvatarImage src={user.image || undefined} alt={user.name || user.email} />
-            <AvatarFallback className="text-2xl font-bold bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
+            <AvatarFallback className="from-primary to-primary/60 text-primary-foreground bg-gradient-to-br text-2xl font-bold">
               {getInitials()}
             </AvatarFallback>
           </Avatar>
 
           <div className="flex-1 space-y-2">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <h1 className="text-2xl font-bold">{user.name || "User"}</h1>
               {subscription && (
                 <div className="flex gap-2">
-                  <Badge className={getPlanBadge(subscription.plan)}>
-                    {subscription.plan}
-                  </Badge>
+                  <Badge className={getPlanBadge(subscription.plan)}>{subscription.plan}</Badge>
                   <Badge className={getStatusColor(subscription.status)}>
                     {subscription.status}
                   </Badge>
@@ -80,7 +78,7 @@ export function ProfileHeader({ user, subscription }: ProfileHeaderProps) {
               )}
             </div>
             <p className="text-muted-foreground">{user.email}</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Member since {new Date(user.createdAt).toLocaleDateString()}
             </p>
           </div>
