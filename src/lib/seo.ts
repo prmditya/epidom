@@ -178,10 +178,10 @@ export function generateStructuredData(
       type === "website"
         ? "WebSite"
         : type === "organization"
-        ? "Organization"
-        : type === "product"
-        ? "SoftwareApplication"
-        : "Service",
+          ? "Organization"
+          : type === "product"
+            ? "SoftwareApplication"
+            : "Service",
     name: "EPIDOM",
     description:
       "Revolutionary food inventory management system for restaurants, cafes, and food service businesses.",

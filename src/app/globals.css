@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import 'leaflet/dist/leaflet.css';
+@import "leaflet/dist/leaflet.css";
 
 /* Smooth scroll behavior */
 html {
@@ -102,15 +102,15 @@ html {
 /* Typography Standards for Services Sections */
 
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-5 sm:mb-5 sm:mb-10;
+  @apply mb-5 text-2xl leading-tight font-bold sm:mb-5 sm:mb-10 sm:text-3xl lg:text-4xl;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-5 sm:mb-5 sm:mb-10;
+  @apply mb-5 text-lg leading-relaxed font-normal sm:mb-5 sm:mb-10 sm:text-xl lg:text-2xl;
 }
 
 .text-description {
-  @apply text-base sm:text-lg lg:text-xl font-light leading-relaxed;
+  @apply text-base leading-relaxed font-light sm:text-lg lg:text-xl;
 }
 
 /* Padding Standards for Services Sections */
@@ -120,7 +120,7 @@ html {
 
 /* Narrow Container for Services Sections */
 .services-narrow-container {
-  @apply mx-auto max-w-[1400px] px-0 sm:px-2 lg:px-4 w-full;
+  @apply mx-auto w-full max-w-[1400px] px-0 sm:px-2 lg:px-4;
 }
 
 /* Ensure consistent layout when dialog is open */
@@ -209,7 +209,7 @@ body.dialog-open {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  
+
   /* Design Tokens */
   --color-brand-primary: #444444;
   --color-brand-white: #ffffff;
@@ -263,19 +263,27 @@ body.dialog-open {
   }
   body {
     @apply text-foreground;
-    background: linear-gradient(0deg,rgba(209, 209, 209, 1) 0%, rgba(240, 240, 240, 1) 20%, rgba(240, 240, 240, 1) 86%, rgba(230, 230, 230, 1) 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(209, 209, 209, 1) 0%,
+      rgba(240, 240, 240, 1) 20%,
+      rgba(240, 240, 240, 1) 86%,
+      rgba(230, 230, 230, 1) 100%
+    );
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   .dark body {
-    background: linear-gradient(135deg,
+    background: linear-gradient(
+      135deg,
       oklch(0.12 0.04 220) 0%,
       oklch(0.14 0.035 240) 20%,
       oklch(0.16 0.025 260) 40%,
       oklch(0.145 0 0) 60%,
       oklch(0.13 0.03 280) 80%,
-      oklch(0.11 0.045 240) 100%);
+      oklch(0.11 0.045 240) 100%
+    );
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -292,7 +300,7 @@ body.dialog-open {
 
   /* Mobile navbar improvements */
   .mobile-navbar {
-    @apply fixed top-0 left-0 right-0 z-50 shadow-lg;
+    @apply fixed top-0 right-0 left-0 z-50 shadow-lg;
     background-color: var(--color-brand-primary);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -332,7 +340,9 @@ body.dialog-open {
 
   /* Page content transitions - only affect main content, not navbar */
   .page-content {
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
   }
 
   /* Ensure page transitions don't affect navbar */
@@ -357,11 +367,11 @@ body.dialog-open {
    CAROUSEL STYLES
    ======================================== */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
+  display: none; /* Safari and Chrome */
 }
 
 /* ========================================
@@ -411,7 +421,7 @@ body.dialog-open {
 /* ========================================
    MARKETING PAGES TYPOGRAPHY STANDARDS
    ======================================== */
-  /* 
+/* 
    * For Services, Pricing, Contact pages:
    * 
    * Top Spacing: py-8 sm:py-12 (first section)
@@ -475,15 +485,15 @@ body.dialog-open {
 /* Typography Standards for Services Sections */
 
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-5 sm:mb-5 sm:mb-10;
+  @apply mb-5 text-2xl leading-tight font-bold sm:mb-5 sm:mb-10 sm:text-3xl lg:text-4xl;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-5 sm:mb-5 sm:mb-10;
+  @apply mb-5 text-lg leading-relaxed font-normal sm:mb-5 sm:mb-10 sm:text-xl lg:text-2xl;
 }
 
 .text-description {
-  @apply text-base sm:text-lg lg:text-xl font-light leading-relaxed;
+  @apply text-base leading-relaxed font-light sm:text-lg lg:text-xl;
 }
 
 /* Padding Standards for Services Sections */
@@ -493,70 +503,59 @@ body.dialog-open {
 
 /* Narrow Container for Services Sections */
 .services-narrow-container {
-  @apply mx-auto max-w-[1400px] px-0 sm:px-2 lg:px-4 w-full;
+  @apply mx-auto w-full max-w-[1400px] px-0 sm:px-2 lg:px-4;
 }
 
 body {
+  @apply text-foreground;
 
-    @apply text-foreground;
+  background: linear-gradient(
+    0deg,
+    rgba(209, 209, 209, 1) 0%,
+    rgba(240, 240, 240, 1) 20%,
+    rgba(240, 240, 240, 1) 86%,
+    rgba(230, 230, 230, 1) 100%
+  );
 
-    background: linear-gradient(0deg,rgba(209, 209, 209, 1) 0%, rgba(240, 240, 240, 1) 20%, rgba(240, 240, 240, 1) 86%, rgba(230, 230, 230, 1) 100%);
+  background-attachment: fixed;
 
-    background-attachment: fixed;
+  min-height: 100vh;
+}
 
-    min-height: 100vh;
+.dark body {
+  background: linear-gradient(
+    135deg,
+    oklch(0.12 0.04 220) 0%,
 
-  }
+    oklch(0.14 0.035 240) 20%,
 
+    oklch(0.16 0.025 260) 40%,
 
+    oklch(0.145 0 0) 60%,
 
-  .dark body {
+    oklch(0.13 0.03 280) 80%,
 
-    background: linear-gradient(135deg,
+    oklch(0.11 0.045 240) 100%
+  );
 
-      oklch(0.12 0.04 220) 0%,
+  background-attachment: fixed;
 
-      oklch(0.14 0.035 240) 20%,
-
-      oklch(0.16 0.025 260) 40%,
-
-      oklch(0.145 0 0) 60%,
-
-      oklch(0.13 0.03 280) 80%,
-
-      oklch(0.11 0.045 240) 100%);
-
-    background-attachment: fixed;
-
-    min-height: 100vh;
-
-  }
-
-
+  min-height: 100vh;
+}
 
 @layer components {
-
   .card-hover {
-
     @apply transition-all duration-300 hover:shadow-md;
-
   }
-
-
 
   .btn-smooth {
-
     @apply transition-all duration-200 active:scale-95;
-
   }
-
-
 
   /* Mobile navbar improvements */
 
   .mobile-navbar {
-
-    @apply fixed top-0 left-0 right-0 z-50 shadow-lg;
+    @apply fixed top-0 right-0 left-0 z-50 shadow-lg;
 
     background-color: var(--color-brand-primary);
 
@@ -577,29 +576,21 @@ body {
     image-rendering: -webkit-optimize-contrast;
 
     image-rendering: crisp-edges;
-
   }
-
-
 
   /* Prevent navbar from being affected by page transitions */
 
   .navbar-no-transition {
-
     transition: none !important;
 
     animation: none !important;
 
     transform: none !important;
-
   }
-
-
 
   /* Ensure navbar stays fixed during page transitions */
 
   .navbar-fixed {
-
     position: fixed !important;
 
     top: 0 !important;
@@ -615,47 +606,33 @@ body {
     animation: none !important;
 
     transform: none !important;
-
   }
-
-
 
   /* Ensure navbar content is crisp */
 
   .mobile-navbar * {
-
     -webkit-font-smoothing: antialiased;
 
     -moz-osx-font-smoothing: grayscale;
-
   }
-
-
 
   /* Page content transitions - only affect main content, not navbar */
 
   .page-content {
-
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
   }
-
-
 
   /* Ensure page transitions don't affect navbar */
 
   .page-transition-container {
-
     position: relative;
 
     z-index: 1;
-
   }
 
-
-
   .page-transition-container .navbar-no-transition {
-
     position: fixed !important;
 
     top: 0 !important;
@@ -671,12 +648,8 @@ body {
     animation: none !important;
 
     transform: none !important;
-
   }
-
 }
-
-
 
 /* ========================================
 
@@ -685,20 +658,14 @@ body {
    ======================================== */
 
 .scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-
-  scrollbar-width: none;  /* Firefox */
-
+  scrollbar-width: none; /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-
-  display: none;  /* Safari and Chrome */
-
+  display: none; /* Safari and Chrome */
 }
-
-
 
 /* ========================================
 
@@ -707,86 +674,54 @@ body {
    ======================================== */
 
 @keyframes slideUpFadeIn {
-
   from {
-
     opacity: 0;
 
     transform: translateY(30px);
-
   }
 
   to {
-
     opacity: 1;
 
     transform: translateY(0);
-
   }
-
 }
-
-
 
 @keyframes slideUpFadeInDelayed {
-
   from {
-
     opacity: 0;
 
     transform: translateY(30px);
-
   }
 
   to {
-
     opacity: 1;
 
     transform: translateY(0);
-
   }
-
 }
-
-
 
 .animate-slide-up {
-
   animation: slideUpFadeIn 0.6s ease-out forwards;
-
 }
 
-
-
 .animate-slide-up-delayed {
-
   animation: slideUpFadeInDelayed 0.6s ease-out 0.2s forwards;
 
   opacity: 0;
-
 }
 
-
-
 .animate-slide-up-delayed-2 {
-
   animation: slideUpFadeInDelayed 0.6s ease-out 0.4s forwards;
 
   opacity: 0;
-
 }
 
-
-
 .animate-slide-up-delayed-3 {
-
   animation: slideUpFadeInDelayed 0.6s ease-out 0.6s forwards;
 
   opacity: 0;
-
 }
-
-
 
 /* ========================================
 
@@ -794,7 +729,7 @@ body {
 
    ======================================== */
 
-  /* 
+/* 
 
    * For Services, Pricing, Contact pages:
 
@@ -868,7 +803,6 @@ body {
 
    */
 
-
 /* ========================================
    PERFORMANCE OPTIMIZATIONS
    ======================================== */
@@ -894,15 +828,15 @@ body {
 
 /* Typography Standards for Services Sections */
 .text-section-title {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-5 sm:mb-10;
+  @apply mb-5 text-2xl leading-tight font-bold sm:mb-10 sm:text-3xl lg:text-4xl;
 }
 
 .text-subtitle {
-  @apply text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed mb-5 sm:mb-10;
+  @apply mb-5 text-lg leading-relaxed font-normal sm:mb-10 sm:text-xl lg:text-2xl;
 }
 
 .text-description {
-  @apply text-base sm:text-lg lg:text-xl font-light leading-relaxed;
+  @apply text-base leading-relaxed font-light sm:text-lg lg:text-xl;
 }
 
 /* Padding Standards for Services Sections */
@@ -912,5 +846,5 @@ body {
 
 /* Narrow Container for Services Sections */
 .services-narrow-container {
-  @apply mx-auto max-w-[1400px] px-0 sm:px-2 lg:px-4 w-full;
+  @apply mx-auto w-full max-w-[1400px] px-0 sm:px-2 lg:px-4;
 }

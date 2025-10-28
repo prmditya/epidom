@@ -15,15 +15,13 @@ const INGREDIENTS = [
 export function RecipeProductionCard() {
   const { t } = useI18n();
   const [q, setQ] = useState("");
-  const filtered = RECIPES.filter((r) =>
-    r.toLowerCase().includes(q.toLowerCase())
-  );
+  const filtered = RECIPES.filter((r) => r.toLowerCase().includes(q.toLowerCase()));
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-[320px_1fr]">
-      <div className="rounded-xl bg-card p-4 shadow">
+      <div className="bg-card rounded-xl p-4 shadow">
         <div className="mb-3">
-          <div className="rounded-full bg-muted px-3 py-2">
+          <div className="bg-muted rounded-full px-3 py-2">
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
@@ -37,7 +35,7 @@ export function RecipeProductionCard() {
           {filtered.map((name, idx) => (
             <button
               key={idx}
-              className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted"
+              className="bg-background hover:bg-muted rounded-full border px-3 py-2 text-left text-sm"
             >
               {name}
             </button>
@@ -45,29 +43,27 @@ export function RecipeProductionCard() {
         </div>
       </div>
 
-      <div className="rounded-xl bg-card p-4 shadow">
+      <div className="bg-card rounded-xl p-4 shadow">
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded bg-muted" aria-hidden />
+          <div className="bg-muted h-12 w-12 rounded" aria-hidden />
           <div>
-            <p className="text-sm text-muted-foreground">{t("pages.recipe")}</p>
+            <p className="text-muted-foreground text-sm">{t("pages.recipe")}</p>
             <h3 className="text-lg font-semibold">Sample Recipe</h3>
           </div>
         </div>
 
         <div className="mt-4 overflow-hidden rounded-lg border">
-          <div className="grid grid-cols-3 bg-muted px-3 py-2 text-sm font-medium">
+          <div className="bg-muted grid grid-cols-3 px-3 py-2 text-sm font-medium">
             <span>{t("pages.ingredient")}</span>
             <span className="text-right">{t("pages.currentQty")}</span>
-            <span className="text-right text-destructive">
-              {t("pages.usedQty")}
-            </span>
+            <span className="text-destructive text-right">{t("pages.usedQty")}</span>
           </div>
           <ul className="divide-y">
             {INGREDIENTS.map((it) => (
               <li key={it.name} className="grid grid-cols-3 px-3 py-2 text-sm">
                 <span>{it.name}</span>
                 <span className="text-right">{it.current}</span>
-                <span className="text-right text-destructive">{it.used}</span>
+                <span className="text-destructive text-right">{it.used}</span>
               </li>
             ))}
           </ul>

@@ -28,12 +28,10 @@ export function UsersTable({ users }: UsersTableProps) {
   const [query, setQuery] = useState("");
   const { t } = useI18n();
 
-  const filteredUsers = users.filter((u) =>
-    u.email.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredUsers = users.filter((u) => u.email.toLowerCase().includes(query.toLowerCase()));
 
   return (
-    <Card className="shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+    <Card className="overflow-hidden shadow-md transition-shadow hover:shadow-lg">
       <CardHeader className="pb-4">
         <CardTitle className="text-lg">{t("pages.usersList")}</CardTitle>
       </CardHeader>
@@ -47,16 +45,14 @@ export function UsersTable({ users }: UsersTableProps) {
           />
           <Button variant="secondary">{t("actions.invite")}</Button>
         </div>
-        <div className="overflow-x-auto rounded-md -mx-4 sm:mx-0">
+        <div className="-mx-4 overflow-x-auto rounded-md sm:mx-0">
           <div className="min-w-[520px] px-4 sm:px-0">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>{t("tables.email")}</TableHead>
                   <TableHead>{t("tables.role")}</TableHead>
-                  <TableHead className="text-right">
-                    {t("tables.action")}
-                  </TableHead>
+                  <TableHead className="text-right">{t("tables.action")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

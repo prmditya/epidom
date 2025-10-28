@@ -1,6 +1,8 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const ordersSuppliers = [
   {
@@ -88,54 +90,45 @@ export function OrdersView() {
       {ordersSuppliers.map((s, idx) => (
         <div
           key={idx}
-          className="rounded-xl border bg-card shadow-md hover:shadow-lg transition-shadow p-4 sm:p-5"
+          className="bg-card relative z-0 rounded-xl border p-4 shadow-md transition-shadow hover:z-10 hover:shadow-lg sm:p-5"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
-            <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
-              <div
-                className="h-12 w-12 shrink-0 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <span className="text-lg font-bold text-primary">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
+              <Avatar className="h-12 w-12">
+                <AvatarFallback className="from-primary/20 to-primary/10 text-primary bg-gradient-to-br text-lg font-bold">
                   {s.name[0]}
-                </span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-base truncate">{s.name}</p>
+                </AvatarFallback>
+              </Avatar>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-base font-semibold">{s.name}</p>
                 <a
                   href={s.contactHref}
-                  className="text-sm text-primary hover:text-primary/80 underline underline-offset-2 truncate block transition-colors"
+                  className="text-primary hover:text-primary/80 block truncate text-sm underline underline-offset-2 transition-colors"
                 >
                   {s.contactLabel}
                 </a>
               </div>
             </div>
-            <span className="inline-flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 text-xs font-semibold self-start sm:self-center">
+            <Badge className="border-emerald-300 bg-emerald-100 text-emerald-700 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
               {t("alerts.orderPlaced")}
-            </span>
+            </Badge>
           </div>
 
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="-mx-4 overflow-x-auto sm:mx-0">
             <div className="min-w-[720px] px-4 sm:px-0">
-              <div className="rounded-lg border overflow-hidden shadow-sm">
-                <div className="bg-gradient-to-r from-foreground/90 to-foreground/80 text-background text-xs font-bold px-4 py-3 flex">
+              <div className="overflow-hidden rounded-lg border shadow-sm">
+                <div className="from-foreground/90 to-foreground/80 text-background flex bg-gradient-to-r px-4 py-3 text-xs font-bold">
                   <div className="w-2/6">{t("tables.products")}</div>
-                  <div className="w-1/6 text-center">
-                    {t("tables.currentUnits")}
-                  </div>
-                  <div className="w-1/6 text-center">
-                    {t("tables.recommended")}
-                  </div>
+                  <div className="w-1/6 text-center">{t("tables.currentUnits")}</div>
+                  <div className="w-1/6 text-center">{t("tables.recommended")}</div>
                   <div className="w-1/6 text-center">{t("tables.toOrder")}</div>
-                  <div className="w-1/6 text-right pr-1">
-                    {t("tables.date")}
-                  </div>
+                  <div className="w-1/6 pr-1 text-right">{t("tables.date")}</div>
                 </div>
-                <ul className="divide-y divide-border">
+                <ul className="divide-border divide-y">
                   {s.items.map((it, i) => (
                     <li
                       key={i}
-                      className="flex items-center px-4 py-3 text-sm hover:bg-muted/30 transition-colors"
+                      className="hover:bg-muted/30 flex items-center px-4 py-3 text-sm transition-colors"
                     >
                       <div className="w-2/6 font-medium">{it.product}</div>
                       <div className="w-1/6 text-center font-semibold text-red-600 dark:text-red-400">
@@ -147,14 +140,12 @@ export function OrdersView() {
                       <div className="w-1/6 text-center">
                         <a
                           href="#"
-                          className="text-primary hover:text-primary/80 underline underline-offset-2 font-semibold transition-colors"
+                          className="text-primary hover:text-primary/80 font-semibold underline underline-offset-2 transition-colors"
                         >
                           {it.toOrder}
                         </a>
                       </div>
-                      <div className="w-1/6 text-right text-muted-foreground text-xs">
-                        {s.date}
-                      </div>
+                      <div className="text-muted-foreground w-1/6 text-right text-xs">{s.date}</div>
                     </li>
                   ))}
                 </ul>

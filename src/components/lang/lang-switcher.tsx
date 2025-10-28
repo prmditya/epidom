@@ -16,11 +16,7 @@ const opts = [
   { label: "Indonesia", value: "id", short: "ID" },
 ] as const;
 
-export default function LangSwitcher({
-  className = "",
-}: {
-  className?: string;
-}) {
+export default function LangSwitcher({ className = "" }: { className?: string }) {
   const { locale, setLocale } = useI18n();
   const currentLang = opts.find((opt) => opt.value === locale);
 

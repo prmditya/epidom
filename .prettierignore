@@ -1,0 +1,59 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Production build
+.next
+out
+build
+dist
+
+# Environment files
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Database
+prisma/migrations
+*.db
+*.db-journal
+
+# Auto-generated files
+.turbo
+*.tsbuildinfo
+next-env.d.ts
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Cache
+.cache
+.vercel
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Public assets (images, fonts, etc.)
+public/
+
+# Auto-generated Prisma client
+prisma/generated
+
+# Coverage
+coverage
+*.lcov

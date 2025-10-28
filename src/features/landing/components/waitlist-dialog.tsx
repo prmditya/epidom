@@ -16,17 +16,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/components/lang/i18n-provider";
-import {
-  validateWaitlistForm,
-  waitlistRateLimiter,
-  type ValidationError,
-} from "@/lib/validation";
+import { validateWaitlistForm, waitlistRateLimiter, type ValidationError } from "@/lib/validation";
 
 interface WaitlistDialogProps {
   variant?: "default" | "home" | "sidebar";
 }
 
-export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default" }: WaitlistDialogProps) {
+export const WaitlistDialog = memo(function WaitlistDialog({
+  variant = "default",
+}: WaitlistDialogProps) {
   const [open, setOpen] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [errors, setErrors] = React.useState<ValidationError[]>([]);
@@ -39,17 +37,17 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
     if (open) {
       // Calculate scrollbar width
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      
+
       // Set CSS custom property for scrollbar width
-      document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
-      
+      document.documentElement.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
+
       // Add class to body to apply our custom styles
-      document.body.classList.add('dialog-open');
-      
+      document.body.classList.add("dialog-open");
+
       return () => {
         // Clean up when dialog closes
-        document.body.classList.remove('dialog-open');
-        document.documentElement.style.removeProperty('--scrollbar-width');
+        document.body.classList.remove("dialog-open");
+        document.documentElement.style.removeProperty("--scrollbar-width");
       };
     }
   }, [open]);
@@ -85,9 +83,7 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
     // Check rate limiting
     const clientId = email; // Use email as identifier
     if (!waitlistRateLimiter.isAllowed(clientId)) {
-      const remainingTime = Math.ceil(
-        waitlistRateLimiter.getRemainingTime(clientId) / 60000
-      );
+      const remainingTime = Math.ceil(waitlistRateLimiter.getRemainingTime(clientId) / 60000);
       setIsSubmitting(false);
       toast({
         title: "Too Many Attempts",
@@ -105,65 +101,56 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
       timestamp: new Date().toLocaleString(),
     };
 
-
     try {
       // Send to external API that handles email + spreadsheet
-      const response = await fetch(
-        "https://api.alphaomegamensgrooming.com/api/form-submissions",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
+      const response = await fetch("https://api.alphaomegamensgrooming.com/api/form-submissions", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formData: {
+            firstName: nameParts[0] || "",
+            lastName: nameParts.slice(1).join(" ") || "",
+            company: formData.company,
+            phone: "", // Waitlist form doesn't have phone
+            email: formData.email,
           },
-          body: JSON.stringify({
-            formData: {
-              firstName: nameParts[0] || "",
-              lastName: nameParts.slice(1).join(" ") || "",
-              company: formData.company,
-              phone: "", // Waitlist form doesn't have phone
-              email: formData.email,
-            },
-            spreadsheetUrl:
-              "https://docs.google.com/spreadsheets/d/1yyI_EgH-MaQF6IRdtfWy5VZKcsdtiXWDAOIUbiQUftM/edit?gid=0#gid=0",
-            emailReceiver: "mrcaoevan@gmail.com",
-            metadata: {
-              formType: "waitlist-form",
-              subject: `New Waitlist Registration - ${formData.name}`,
-            },
-          }),
-        }
-      );
+          spreadsheetUrl:
+            "https://docs.google.com/spreadsheets/d/1yyI_EgH-MaQF6IRdtfWy5VZKcsdtiXWDAOIUbiQUftM/edit?gid=0#gid=0",
+          emailReceiver: "mrcaoevan@gmail.com",
+          metadata: {
+            formType: "waitlist-form",
+            subject: `New Waitlist Registration - ${formData.name}`,
+          },
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
 
-
       toast({
         title: t("waitlist.successTitle"),
         description: t("waitlist.successDesc"),
       });
-      
+
       // Track conversion for analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'waitlist_signup', {
-          event_category: 'engagement',
-          event_label: 'pricing_cta',
-          value: 1
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "waitlist_signup", {
+          event_category: "engagement",
+          event_label: "pricing_cta",
+          value: 1,
         });
       }
-      
+
       formRef.current?.reset();
       setOpen(false);
     } catch (error) {
-
       toast({
         title: "Error",
-        description:
-          error instanceof Error
-            ? error.message
-            : "Failed to submit. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to submit. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -180,29 +167,42 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
             variant === "home"
               ? "text-white hover:bg-gray-700"
               : variant === "sidebar"
-              ? "text-white hover:opacity-80"
-              : "bg-white hover:bg-gray-100"
+                ? "text-white hover:opacity-80"
+                : "bg-white hover:bg-gray-100"
           }`}
-          style={variant === "home" ? { backgroundColor: "#444444" } : variant === "sidebar" ? { backgroundColor: "#444444" } : { color: "#444444" }}
+          style={
+            variant === "home"
+              ? { backgroundColor: "#444444" }
+              : variant === "sidebar"
+                ? { backgroundColor: "#444444" }
+                : { color: "#444444" }
+          }
           aria-label={t("waitlist.openButtonAria")}
         >
           {t("waitlist.openButton")}
         </Button>
       </DialogTrigger>
-      <DialogContent
-        aria-describedby="waitlist-description"
-        className="sm:max-w-md"
-      >
+      <DialogContent aria-describedby="waitlist-description" className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl" style={{ color: 'var(--color-brand-primary)' }}>{t("waitlist.title")}</DialogTitle>
-          <DialogDescription id="waitlist-description" className="text-base" style={{ color: 'var(--color-brand-primary)' }}>
+          <DialogTitle className="text-xl" style={{ color: "var(--color-brand-primary)" }}>
+            {t("waitlist.title")}
+          </DialogTitle>
+          <DialogDescription
+            id="waitlist-description"
+            className="text-base"
+            style={{ color: "var(--color-brand-primary)" }}
+          >
             {t("waitlist.description")}
           </DialogDescription>
         </DialogHeader>
 
         <form ref={formRef} onSubmit={handleSubmit} className="grid gap-5 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="name" className="font-semibold" style={{ color: 'var(--color-brand-primary)' }}>
+            <Label
+              htmlFor="name"
+              className="font-semibold"
+              style={{ color: "var(--color-brand-primary)" }}
+            >
               {t("waitlist.fields.name")}
             </Label>
             <Input
@@ -212,9 +212,7 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
               required
               autoComplete="name"
               className={`transition-colors focus:ring-2 ${
-                errors.some((e) => e.field === "name")
-                  ? "border-red-500 focus:ring-red-500"
-                  : ""
+                errors.some((e) => e.field === "name") ? "border-red-500 focus:ring-red-500" : ""
               }`}
               disabled={isSubmitting}
             />
@@ -226,7 +224,11 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email" className="font-semibold" style={{ color: 'var(--color-brand-primary)' }}>
+            <Label
+              htmlFor="email"
+              className="font-semibold"
+              style={{ color: "var(--color-brand-primary)" }}
+            >
               {t("waitlist.fields.email")}
             </Label>
             <Input
@@ -237,9 +239,7 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
               required
               autoComplete="email"
               className={`transition-colors focus:ring-2 ${
-                errors.some((e) => e.field === "email")
-                  ? "border-red-500 focus:ring-red-500"
-                  : ""
+                errors.some((e) => e.field === "email") ? "border-red-500 focus:ring-red-500" : ""
               }`}
               disabled={isSubmitting}
             />
@@ -251,7 +251,11 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="company" className="font-semibold" style={{ color: 'var(--color-brand-primary)' }}>
+            <Label
+              htmlFor="company"
+              className="font-semibold"
+              style={{ color: "var(--color-brand-primary)" }}
+            >
               {t("waitlist.fields.company")}
             </Label>
             <Input
@@ -259,9 +263,7 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
               name="company"
               placeholder={t("waitlist.placeholders.company")}
               className={`transition-colors focus:ring-2 ${
-                errors.some((e) => e.field === "company")
-                  ? "border-red-500 focus:ring-red-500"
-                  : ""
+                errors.some((e) => e.field === "company") ? "border-red-500 focus:ring-red-500" : ""
               }`}
               disabled={isSubmitting}
             />
@@ -275,8 +277,8 @@ export const WaitlistDialog = memo(function WaitlistDialog({ variant = "default"
           <DialogFooter className="mt-4">
             <Button
               type="submit"
-              className="rounded-full px-6 font-semibold btn-smooth"
-              style={{ backgroundColor: '#444444', color: 'white' }}
+              className="btn-smooth rounded-full px-6 font-semibold"
+              style={{ backgroundColor: "#444444", color: "white" }}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : t("waitlist.submit")}

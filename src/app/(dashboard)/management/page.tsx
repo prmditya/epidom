@@ -58,43 +58,36 @@ export default function ManagementPage() {
   const { t } = useI18n();
 
   return (
-    <Tabs defaultValue="delivery" className="grid gap-6 w-full overflow-hidden">
-      <TabsList className="w-full justify-start overflow-x-auto whitespace-nowrap rounded-lg p-1.5 bg-muted/50 backdrop-blur-sm shadow-sm -mx-4 px-4 sm:mx-0 sm:px-1.5">
+    <Tabs defaultValue="delivery" className="grid w-full gap-6">
+      <TabsList className="bg-muted/50 -mx-4 w-full justify-start overflow-x-auto rounded-lg p-1.5 px-4 whitespace-nowrap shadow-sm backdrop-blur-sm sm:mx-0 sm:px-1.5">
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="delivery"
         >
           {t("tabs.delivery")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="recipe"
         >
           {t("tabs.recipeProduction")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="history"
         >
           {t("tabs.productionHistory")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="stock"
         >
           {t("tabs.editStock")}
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent
-        value="delivery"
-        className="grid gap-4 lg:grid-cols-3 w-full"
-      >
-        <OrdersTable
-          orders={orders}
-          selectedOrder={selected}
-          onOrderSelect={setSelected}
-        />
+      <TabsContent value="delivery" className="grid w-full gap-4 lg:grid-cols-3">
+        <OrdersTable orders={orders} selectedOrder={selected} onOrderSelect={setSelected} />
         <OrderDetails selectedOrder={selected} />
       </TabsContent>
 

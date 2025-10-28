@@ -11,41 +11,41 @@ export function PaymentSecurity() {
     {
       icon: Shield,
       title: t("payments.security.feature1.title"),
-      description: t("payments.security.feature1.description")
+      description: t("payments.security.feature1.description"),
     },
     {
       icon: CreditCard,
       title: t("payments.security.feature2.title"),
-      description: t("payments.security.feature2.description")
+      description: t("payments.security.feature2.description"),
     },
     {
       icon: Lock,
       title: t("payments.security.feature3.title"),
-      description: t("payments.security.feature3.description")
-    }
+      description: t("payments.security.feature3.description"),
+    },
   ];
 
   return (
-    <Card className="rounded-xl sm:rounded-2xl border-2 bg-gray-50">
+    <Card className="rounded-xl border-2 bg-gray-50 sm:rounded-2xl">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-          <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+          <Shield className="h-4 w-4 text-green-600 sm:h-5 sm:w-5" />
           {t("payments.security.title")}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 sm:space-y-4">
         {securityFeatures.map((feature, index) => (
           <div key={index} className="flex items-start gap-2 sm:gap-3">
-            <feature.icon className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0 mt-0.5" />
+            <feature.icon className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 sm:h-5 sm:w-5" />
             <div>
-              <h4 className="font-semibold text-xs sm:text-sm">{feature.title}</h4>
-              <p className="text-xs text-gray-600 leading-relaxed">{feature.description}</p>
+              <h4 className="text-xs font-semibold sm:text-sm">{feature.title}</h4>
+              <p className="text-xs leading-relaxed text-gray-600">{feature.description}</p>
             </div>
           </div>
         ))}
-        
-        <div className="pt-2 border-t border-gray-200">
-          <p className="text-xs text-gray-500 text-center leading-relaxed">
+
+        <div className="border-t border-gray-200 pt-2">
+          <p className="text-center text-xs leading-relaxed text-gray-500">
             {t("payments.security.footer")}
           </p>
         </div>

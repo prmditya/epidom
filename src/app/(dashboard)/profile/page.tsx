@@ -8,18 +8,16 @@ import { BusinessInfoCard } from "@/features/dashboard/profile/components/busine
 import { SubscriptionInfoCard } from "@/features/dashboard/profile/components/subscription-info-card";
 
 interface ProfileData {
-  user: {
-    id: string;
-    name: string | null;
-    email: string;
-    image: string | null;
-    phone: string | null;
-    locale: string;
-    timezone: string;
-    currency: string;
-    createdAt: Date;
-  };
-  business?: {
+  id: string;
+  name: string | null;
+  email: string;
+  image: string | null;
+  phone: string | null;
+  locale: string;
+  timezone: string;
+  currency: string;
+  createdAt: Date;
+  business: {
     id: string;
     name: string;
     address: string | null;
@@ -29,7 +27,7 @@ interface ProfileData {
     email: string | null;
     website: string | null;
   } | null;
-  subscription?: {
+  subscription: {
     plan: string;
     status: string;
     currentPeriodStart: Date | null;
@@ -47,8 +45,14 @@ export default function ProfilePage() {
     try {
       const response = await fetch("/api/user/profile");
       if (!response.ok) throw new Error("Failed to fetch profile");
-      const data = await response.json();
-      setProfileData(data);
+      const result = await response.json();
+
+      // API returns { success: true, data: {...} }
+      if (result.success && result.data) {
+        setProfileData(result.data);
+      } else {
+        throw new Error(result.error?.message || "Failed to fetch profile");
+      }
     } catch (error) {
       console.error("Error fetching profile:", error);
     } finally {
@@ -64,7 +68,7 @@ export default function ProfilePage() {
 
   if (sessionLoading || loading) {
     return (
-      <div className="w-full flex items-center justify-center py-12">
+      <div className="flex w-full items-center justify-center py-12">
         <p className="text-muted-foreground">Loading profile...</p>
       </div>
     );
@@ -72,7 +76,7 @@ export default function ProfilePage() {
 
   if (!sessionUser || !profileData) {
     return (
-      <div className="w-full flex items-center justify-center py-12">
+      <div className="flex w-full items-center justify-center py-12">
         <p className="text-muted-foreground">Failed to load profile</p>
       </div>
     );
@@ -80,19 +84,16 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full space-y-6">
-      <ProfileHeader
-        user={profileData.user}
-        subscription={profileData.subscription}
-      />
+      <ProfileHeader user={profileData} subscription={profileData.subscription} />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <PersonalInfoCard user={profileData.user} onUpdate={fetchProfileData} />
+        <PersonalInfoCard user={profileData} onUpdate={fetchProfileData} />
         <SubscriptionInfoCard subscription={profileData.subscription} />
       </div>
 
       <BusinessInfoCard
         business={profileData.business}
-        userId={profileData.user.id}
+        userId={profileData.id}
         onUpdate={fetchProfileData}
       />
     </div>

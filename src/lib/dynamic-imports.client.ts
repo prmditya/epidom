@@ -18,8 +18,7 @@ export const LazyCountdownComponent = dynamic(
           className: "flex items-center justify-center min-h-screen",
         },
         React.createElement("div", {
-          className:
-            "animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900",
+          className: "animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900",
         })
       ),
     ssr: false,
@@ -56,7 +55,10 @@ export const LazyHero = dynamic(
 );
 
 export const DynamicWaitlistDialog = dynamic(
-  () => import('@/features/landing/components/waitlist-dialog').then(mod => ({ default: mod.WaitlistDialog })),
+  () =>
+    import("@/features/landing/components/waitlist-dialog").then((mod) => ({
+      default: mod.WaitlistDialog,
+    })),
   { ssr: false, loading: () => null }
 );
 
@@ -84,39 +86,31 @@ export const LazyWaitlistDialog = dynamic(
 // Note: Chart and Carousel components are not available in this project
 
 // Lazy load pages
-export const LazyPricingPage = dynamic(
-  () => import("@/app/(landing)/pricing/page"),
-  {
-    loading: () =>
-      React.createElement(
-        "div",
-        {
-          className: "min-h-screen flex items-center justify-center",
-        },
-        React.createElement("div", {
-          className:
-            "animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900",
-        })
-      ),
-  }
-);
+export const LazyPricingPage = dynamic(() => import("@/app/(landing)/pricing/page"), {
+  loading: () =>
+    React.createElement(
+      "div",
+      {
+        className: "min-h-screen flex items-center justify-center",
+      },
+      React.createElement("div", {
+        className: "animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900",
+      })
+    ),
+});
 
-export const LazyServicesPage = dynamic(
-  () => import("@/app/(landing)/services/page"),
-  {
-    loading: () =>
-      React.createElement(
-        "div",
-        {
-          className: "min-h-screen flex items-center justify-center",
-        },
-        React.createElement("div", {
-          className:
-            "animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900",
-        })
-      ),
-  }
-);
+export const LazyServicesPage = dynamic(() => import("@/app/(landing)/services/page"), {
+  loading: () =>
+    React.createElement(
+      "div",
+      {
+        className: "min-h-screen flex items-center justify-center",
+      },
+      React.createElement("div", {
+        className: "animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900",
+      })
+    ),
+});
 
 // Utility function for conditional dynamic imports
 export function createLazyComponent<T = {}>(

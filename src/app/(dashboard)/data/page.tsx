@@ -33,37 +33,34 @@ const suppliers: Item[] = [
 export default function DataPage() {
   const { t } = useI18n();
   return (
-    <Tabs
-      defaultValue="materials"
-      className="grid gap-6 w-full overflow-hidden"
-    >
-      <TabsList className="w-full justify-start overflow-x-auto whitespace-nowrap rounded-lg p-1.5 bg-muted/50 backdrop-blur-sm shadow-sm -mx-4 px-4 sm:mx-0 sm:px-1.5">
+    <Tabs defaultValue="materials" className="grid w-full gap-6 overflow-hidden">
+      <TabsList className="bg-muted/50 -mx-4 w-full justify-start overflow-x-auto rounded-lg p-1.5 px-4 whitespace-nowrap shadow-sm backdrop-blur-sm sm:mx-0 sm:px-1.5">
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="materials"
         >
           {t("pages.materialsList")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="recipes"
         >
           {t("pages.recipesList")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="products"
         >
           {t("pages.productsList")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="suppliers"
         >
           {t("pages.suppliersList")}
         </TabsTrigger>
         <TabsTrigger
-          className="shrink-0 data-[state=active]:bg-card data-[state=active]:shadow-md transition-all"
+          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
           value="manage"
         >
           {t("pages.manageData")}

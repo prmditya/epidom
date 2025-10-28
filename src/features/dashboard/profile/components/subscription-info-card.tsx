@@ -49,10 +49,8 @@ export function SubscriptionInfoCard({ subscription }: SubscriptionInfoCardProps
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center justify-center py-8 text-center">
-            <CreditCard className="h-12 w-12 text-muted-foreground mb-4" />
-            <p className="text-muted-foreground mb-4">
-              No active subscription
-            </p>
+            <CreditCard className="text-muted-foreground mb-4 h-12 w-12" />
+            <p className="text-muted-foreground mb-4">No active subscription</p>
             <Button asChild>
               <Link href="/pricing">View Plans</Link>
             </Button>
@@ -70,19 +68,15 @@ export function SubscriptionInfoCard({ subscription }: SubscriptionInfoCardProps
     <Card className="border-2">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
         <CardTitle className="text-xl font-bold">Subscription</CardTitle>
-        <Badge className={getStatusColor(subscription.status)}>
-          {subscription.status}
-        </Badge>
+        <Badge className={getStatusColor(subscription.status)}>{subscription.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Plan Details */}
         <div className="space-y-2">
           <div className="flex items-baseline justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">Current Plan</p>
-              <p className={`text-2xl font-bold ${planDetails.color}`}>
-                {planDetails.name}
-              </p>
+              <p className="text-muted-foreground text-sm">Current Plan</p>
+              <p className={`text-2xl font-bold ${planDetails.color}`}>{planDetails.name}</p>
             </div>
             <p className="text-xl font-semibold">{planDetails.price}</p>
           </div>
@@ -90,20 +84,20 @@ export function SubscriptionInfoCard({ subscription }: SubscriptionInfoCardProps
 
         {/* Billing Period */}
         {subscription.currentPeriodStart && subscription.currentPeriodEnd && (
-          <div className="space-y-3 pt-4 border-t">
+          <div className="space-y-3 border-t pt-4">
             <div className="flex items-center gap-2 text-sm">
-              <Calendar className="h-4 w-4 text-muted-foreground" />
+              <Calendar className="text-muted-foreground h-4 w-4" />
               <span className="text-muted-foreground">Billing Period</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-muted-foreground">Period Start</p>
+                <p className="text-muted-foreground text-xs">Period Start</p>
                 <p className="font-semibold">
                   {new Date(subscription.currentPeriodStart).toLocaleDateString()}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">Period End</p>
+                <p className="text-muted-foreground text-xs">Period End</p>
                 <p className="font-semibold">
                   {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
                 </p>
@@ -114,13 +108,13 @@ export function SubscriptionInfoCard({ subscription }: SubscriptionInfoCardProps
 
         {/* Warnings */}
         {subscription.cancelAtPeriodEnd && (
-          <div className="flex items-start gap-2 rounded-md bg-yellow-50 dark:bg-yellow-900/20 p-3 border border-yellow-200 dark:border-yellow-900">
-            <AlertCircle className="h-5 w-5 text-yellow-600 dark:text-yellow-500 mt-0.5" />
+          <div className="flex items-start gap-2 rounded-md border border-yellow-200 bg-yellow-50 p-3 dark:border-yellow-900 dark:bg-yellow-900/20">
+            <AlertCircle className="mt-0.5 h-5 w-5 text-yellow-600 dark:text-yellow-500" />
             <div className="flex-1">
               <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
                 Subscription Ending
               </p>
-              <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
+              <p className="mt-1 text-xs text-yellow-700 dark:text-yellow-300">
                 Your subscription will not renew at the end of the current period.
               </p>
             </div>
@@ -128,13 +122,11 @@ export function SubscriptionInfoCard({ subscription }: SubscriptionInfoCardProps
         )}
 
         {isPastDue && (
-          <div className="flex items-start gap-2 rounded-md bg-red-50 dark:bg-red-900/20 p-3 border border-red-200 dark:border-red-900">
-            <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-500 mt-0.5" />
+          <div className="flex items-start gap-2 rounded-md border border-red-200 bg-red-50 p-3 dark:border-red-900 dark:bg-red-900/20">
+            <AlertCircle className="mt-0.5 h-5 w-5 text-red-600 dark:text-red-500" />
             <div className="flex-1">
-              <p className="text-sm font-medium text-red-800 dark:text-red-200">
-                Payment Required
-              </p>
-              <p className="text-xs text-red-700 dark:text-red-300 mt-1">
+              <p className="text-sm font-medium text-red-800 dark:text-red-200">Payment Required</p>
+              <p className="mt-1 text-xs text-red-700 dark:text-red-300">
                 Your payment is past due. Please update your payment method.
               </p>
             </div>

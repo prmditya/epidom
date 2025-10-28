@@ -7,6 +7,7 @@ import { OrdersView } from "@/features/dashboard/alerts/components/orders-view";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";
+import { useAlertsCount } from "@/features/dashboard/alerts/hooks/use-alerts-count";
 
 export default function AlertsPage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function AlertsPage() {
   const searchParams = useSearchParams();
   const isOrders = searchParams.get("view") === "orders";
   const { t } = useI18n();
+  const alertsCount = useAlertsCount();
 
   const handleToggle = useCallback(() => {
     const params = new URLSearchParams(searchParams);
@@ -28,13 +30,18 @@ export default function AlertsPage() {
   return (
     <>
       <Card className="border-0 bg-transparent shadow-none">
-        <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-0 sm:px-1 py-4">
-          <CardTitle className="text-xl md:text-2xl font-bold">
-            {isOrders ? t("pages.ordersTitle") : t("pages.alertsTitle")}
+        <CardHeader className="flex flex-col justify-between gap-3 px-0 py-4 sm:flex-row sm:items-center sm:px-1">
+          <CardTitle className="flex items-center gap-2 text-xl font-bold md:text-2xl">
+            <span>{isOrders ? t("pages.ordersTitle") : t("pages.alertsTitle")}</span>
+            {!isOrders && alertsCount > 0 && (
+              <span className="text-muted-foreground text-lg font-bold md:text-xl">
+                ({alertsCount})
+              </span>
+            )}
           </CardTitle>
           <Button
             size="sm"
-            className="rounded-full shadow-md hover:shadow-lg transition-all self-start sm:self-center"
+            className="self-start rounded-full shadow-md transition-all hover:shadow-lg sm:self-center"
             aria-pressed={isOrders}
             onClick={handleToggle}
           >
@@ -45,7 +52,7 @@ export default function AlertsPage() {
           {isOrders ? (
             <OrdersView />
           ) : (
-            <div className="overflow-x-auto">
+            <div>
               <div className="min-w-[640px] md:min-w-0">
                 <AlertsToggle />
               </div>

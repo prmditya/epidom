@@ -59,25 +59,32 @@ export const id = {
       data: "Data",
     },
     dashboard: {
-      subtitle: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
-      description: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda."
+      subtitle:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
+      description:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
     },
     management: {
       title: "Manajemen Efisien",
-      subtitle: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
-      description: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda."
+      subtitle:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
+      description:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
     },
     tracking: {
-      title: "Pelacakan Stok Aktif"
+      title: "Pelacakan Stok Aktif",
     },
     data: {
       title: "Pelacakan Data Lengkap",
-      description1: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
-      description2: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi."
+      description1:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
+      description2:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
     },
     alerts: {
       title: "Peringatan yang Terlihat dan Dapat Diakses",
-      description: "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda."
+      description:
+        "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi. Pendekatan ini penting untuk menghindari kerugian dan mengoptimalkan aktivitas katering Anda.",
     },
     dashboardDesc1:
       "Manajemen stok makanan adalah proses pelacakan produk makanan yang dibeli dan belum dikonsumsi.",
@@ -196,7 +203,8 @@ export const id = {
   },
   pricing: {
     heroTitle: "Solusi untuk manajemen persediaan makanan Anda",
-    heroDescription: "Manajemen persediaan makanan adalah proses melacak bahan yang dibeli dan tidak dikonsumsi. Praktik ini penting untuk mencegah pemborosan dan mengoptimalkan operasional restoran Anda.",
+    heroDescription:
+      "Manajemen persediaan makanan adalah proses melacak bahan yang dibeli dan tidak dikonsumsi. Praktik ini penting untuk mencegah pemborosan dan mengoptimalkan operasional restoran Anda.",
     plans: {
       starter: {
         title: "Starter",
@@ -275,33 +283,34 @@ export const id = {
     backToPricing: "Kembali ke Harga",
     hero: {
       title: "Selesaikan Langganan Anda",
-      subtitle: "Pemrosesan pembayaran aman dengan enkripsi standar industri"
+      subtitle: "Pemrosesan pembayaran aman dengan enkripsi standar industri",
     },
     billing: {
       title: "Informasi Penagihan",
       firstName: "Nama Depan",
       firstNamePlaceholder: "Masukkan nama depan Anda",
-      lastName: "Nama Belakang", 
+      lastName: "Nama Belakang",
       lastNamePlaceholder: "Masukkan nama belakang Anda",
       email: "Alamat Email",
       emailPlaceholder: "email.anda@contoh.com",
       company: "Perusahaan (Opsional)",
-      companyPlaceholder: "Nama perusahaan Anda"
+      companyPlaceholder: "Nama perusahaan Anda",
     },
     payment: {
       title: "Informasi Pembayaran",
       cardNumber: "Nomor Kartu",
       expiryMonth: "Bulan",
       expiryYear: "Tahun",
-      cvv: "CVV"
+      cvv: "CVV",
     },
     terms: {
       title: "Syarat dan Ketentuan",
       text: "Saya setuju dengan",
       link: "Syarat Layanan dan Kebijakan Privasi",
-      billing: "Saya memahami bahwa pembayaran akan diproses secara otomatis setiap bulan dan dapat dibatalkan kapan saja",
+      billing:
+        "Saya memahami bahwa pembayaran akan diproses secara otomatis setiap bulan dan dapat dibatalkan kapan saja",
       refund: "Saya telah membaca dan menyetujui",
-      refundLink: "Kebijakan Pengembalian Dana"
+      refundLink: "Kebijakan Pengembalian Dana",
     },
     processing: "Memproses...",
     completePayment: "Selesaikan Pembayaran",
@@ -313,28 +322,28 @@ export const id = {
       total: "Total",
       included: "Yang termasuk:",
       billingInfo1: "Anda akan ditagih setiap bulan",
-      billingInfo2: "Batalkan kapan saja dari dashboard Anda"
+      billingInfo2: "Batalkan kapan saja dari dashboard Anda",
     },
     security: {
       title: "Pembayaran Aman",
       feature1: {
         title: "Keamanan Stripe",
-        description: "Didukung oleh keamanan terdepan industri Stripe"
+        description: "Didukung oleh keamanan terdepan industri Stripe",
       },
       feature2: {
         title: "Sesuai Standar PCI DSS",
-        description: "Data kartu Anda tidak pernah disimpan di server kami"
+        description: "Data kartu Anda tidak pernah disimpan di server kami",
       },
       feature3: {
         title: "Enkripsi SSL 256-bit",
-        description: "Semua transaksi dienkripsi dari ujung ke ujung"
+        description: "Semua transaksi dienkripsi dari ujung ke ujung",
       },
-      footer: "Informasi pembayaran Anda aman dan terenkripsi"
+      footer: "Informasi pembayaran Anda aman dan terenkripsi",
     },
     enterprise: {
       hero: {
         title: "Hubungi Tim Penjualan Kami",
-        subtitle: "Dapatkan penawaran khusus untuk kebutuhan enterprise Anda"
+        subtitle: "Dapatkan penawaran khusus untuk kebutuhan enterprise Anda",
       },
       included: "Yang termasuk:",
       form: {
@@ -343,66 +352,23 @@ export const id = {
         companyInfo: "Informasi Perusahaan",
         requirements: "Kebutuhan Anda",
         requirementsDesc: "Ceritakan tentang kebutuhan spesifik Anda:",
-        requirementsPlaceholder: "Jelaskan ukuran bisnis Anda, jumlah lokasi, fitur khusus yang dibutuhkan, persyaratan integrasi, dll.",
+        requirementsPlaceholder:
+          "Jelaskan ukuran bisnis Anda, jumlah lokasi, fitur khusus yang dibutuhkan, persyaratan integrasi, dll.",
         phone: "Nomor Telepon",
         phonePlaceholder: "+62 812-3456-7890",
         submit: "Minta Penawaran",
-        submitting: "Mengirim Permintaan..."
+        submitting: "Mengirim Permintaan...",
       },
       contact: {
         title: "Lebih suka berbicara langsung?",
-        description: "Tim penjualan kami siap membantu Anda menemukan solusi yang tepat."
-      }
-    }
+        description: "Tim penjualan kami siap membantu Anda menemukan solusi yang tepat.",
+      },
+    },
   },
   choosePlan: {
     title: "Pilih paket Anda",
     desc: "Bandingkan paket dan perbarui dari halaman Harga.",
     goPricing: "Pergi ke Harga",
-  },
-  stores: {
-    header: {
-      title: "Toko Anda",
-      desc: "Kelola lokasi yang terhubung ke akun Anda.",
-      add: "Tambah Toko Baru",
-    },
-    planNotice: {
-      title: "Pesan Paket",
-      desc: "Paket Anda saat ini menentukan berapa banyak toko yang dapat Anda buat.",
-    },
-    planMsgStarter: "Paket Starter: Anda hanya bisa membuat 1 toko.",
-    planMsgPremium: "Paket Premium: Anda bisa membuat toko tidak terbatas.",
-    empty: {
-      title: "Belum ada toko",
-      desc: "Mulailah dengan membuat toko pertama Anda.",
-      add: "Tambah Toko Baru",
-    },
-    card: { created: "Dibuat", view: "Lihat", edit: "Edit", delete: "Hapus" },
-    dialog: {
-      title: "Tambah toko baru",
-      desc: "Masukkan detail dasar untuk toko Anda.",
-      labels: {
-        name: "Nama Toko",
-        city: "Kota / Lokasi",
-        thumb: "URL Gambar Miniatur (opsional)",
-      },
-      placeholders: {
-        name: "e.g., Central Kitchen",
-        city: "e.g., Massy",
-        thumb: "https://...",
-      },
-      create: "Buat Toko",
-      cancel: "Batal",
-    },
-    toasts: {
-      starterLimitTitle: "Batas paket Starter tercapai",
-      starterLimitDesc: "Anda hanya bisa membuat 1 toko di paket Starter.",
-      missing: {
-        title: "Detail yang hilang",
-        desc: "Silakan masukkan nama dan kota.",
-      },
-      created: { title: "Toko dibuat", desc: "{name} telah ditambahkan." },
-    },
   },
   storeDetail: {
     notFound: {
@@ -692,8 +658,7 @@ export const id = {
     openButtonAria: "Gabung daftar tunggu EPIDOM",
     openButton: "Gabung daftar tunggu",
     title: "Gabung daftar tunggu EPIDOM",
-    description:
-      "Jadi yang pertama mencoba solusi manajemen persediaan makanan kami.",
+    description: "Jadi yang pertama mencoba solusi manajemen persediaan makanan kami.",
     fields: {
       name: "Nama lengkap",
       email: "Email",
@@ -845,6 +810,14 @@ export const id = {
     businessName: "Nama Bisnis",
     updateProfile: "Perbarui Profil",
   },
+  stores: {
+    title: "Toko Anda",
+    createStore: "Buat toko",
+    storeName: "Nama Toko",
+    city: "Kota",
+    noStores: "Belum ada toko",
+    createFirst: "Buat toko pertama Anda untuk memulai",
+  },
   tabs: {
     delivery: "Pengiriman",
     recipeProduction: "Produksi Resep",
@@ -856,11 +829,7 @@ export const id = {
     tagline: "SOLUSI UNTUK MANAJEMEN STOK MAKANAN ANDA",
     contact: "Hubungi kami",
     addressHeading: "Prancis, Massy",
-    addressLines: [
-      "1 Av. Marcel Ramolfo Garnier",
-      "Massy, 91300",
-      "Tel (+33) 7 81 73 23 86",
-    ],
+    addressLines: ["1 Av. Marcel Ramolfo Garnier", "Massy, 91300", "Tel (+33) 7 81 73 23 86"],
     rights: (year: number) => `© ${year} Epidom. Hak cipta dilindungi.`,
   },
   cookie: {

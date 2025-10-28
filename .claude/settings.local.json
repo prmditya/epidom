@@ -9,9 +9,19 @@
       "Bash(npx prisma generate)",
       "Bash(test -f .env)",
       "Bash(cat .env)",
-      "Bash(npx prisma db push)"
+      "Bash(npx prisma db push)",
+      "Bash(test:*)",
+      "Bash(pnpm add:*)",
+      "Bash(tree:*)",
+      "Bash(mkdir:*)",
+      "Bash(tee:*)",
+      "Bash(npx prisma migrate:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "shadcn"
+  ]
 }

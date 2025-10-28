@@ -1,60 +1,66 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/prisma";
+import { authService } from "@/lib/services";
+import { registerSchema } from "@/lib/validation/auth.schemas";
+import {
+  createSuccessResponse,
+  createErrorResponse,
+  ApiErrorCode,
+} from "@/types/api";
+import { ZodError } from "zod";
 
+/**
+ * POST /api/auth/signup
+ *
+ * Register a new user with optional business creation.
+ * Uses service layer for business logic and Zod for validation.
+ */
 export async function POST(request: Request) {
   try {
-    const { name, email, password, businessName, address } =
-      await request.json();
+    // Parse and validate request body
+    const body = await request.json();
+    const input = registerSchema.parse(body);
 
-    // Validate required fields
-    if (!email || !password) {
+    // Register user via service
+    const result = await authService.register(input);
+
+    // Return standardized success response
+    return NextResponse.json(createSuccessResponse(result), { status: 201 });
+  } catch (error) {
+    // Handle validation errors
+    if (error instanceof ZodError) {
       return NextResponse.json(
-        { message: "Email and password are required." },
+        createErrorResponse(
+          ApiErrorCode.VALIDATION_ERROR,
+          "Invalid input data",
+          error.errors.map((e) => ({
+            field: e.path.join("."),
+            message: e.message,
+          }))
+        ),
         { status: 400 }
       );
     }
 
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (existingUser) {
-      return NextResponse.json(
-        { message: "User with this email already exists." },
-        { status: 409 }
-      );
+    // Handle business logic errors
+    if (error instanceof Error) {
+      if (error.message === "Email already exists") {
+        return NextResponse.json(
+          createErrorResponse(
+            ApiErrorCode.EMAIL_ALREADY_EXISTS,
+            "User with this email already exists"
+          ),
+          { status: 409 }
+        );
+      }
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-      },
-    });
-
-    // Only create business if businessName is provided
-    if (businessName) {
-      await prisma.business.create({
-        data: {
-          name: businessName,
-          address: address || "",
-          user: { connect: { id: user.id } },
-        },
-      });
-    }
-
-    return NextResponse.json(
-      { message: "User created successfully." },
-      { status: 201 }
-    );
-  } catch (error) {
+    // Handle unexpected errors
     console.error("Signup error:", error);
     return NextResponse.json(
-      { message: "Internal server error.", error: String(error) },
+      createErrorResponse(
+        ApiErrorCode.INTERNAL_ERROR,
+        "An unexpected error occurred"
+      ),
       { status: 500 }
     );
   }

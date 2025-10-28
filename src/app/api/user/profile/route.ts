@@ -1,118 +1,109 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { userService } from "@/lib/services";
+import { updateProfileSchema } from "@/lib/validation/auth.schemas";
+import {
+  createSuccessResponse,
+  createErrorResponse,
+  ApiErrorCode,
+} from "@/types/api";
+import { ZodError } from "zod";
 
+/**
+ * GET /api/user/profile
+ *
+ * Get current user's profile with business and subscription data.
+ */
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        createErrorResponse(ApiErrorCode.UNAUTHORIZED, "Unauthorized"),
+        { status: 401 }
+      );
     }
 
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        image: true,
-        phone: true,
-        locale: true,
-        timezone: true,
-        currency: true,
-        createdAt: true,
-        business: {
-          select: {
-            id: true,
-            name: true,
-            address: true,
-            city: true,
-            country: true,
-            phone: true,
-            email: true,
-            website: true,
-          },
-        },
-        subscription: {
-          select: {
-            plan: true,
-            status: true,
-            currentPeriodStart: true,
-            currentPeriodEnd: true,
-            cancelAtPeriodEnd: true,
-          },
-        },
-      },
-    });
+    // Get profile via service
+    const profile = await userService.getProfile(session.user.id);
 
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
-    return NextResponse.json({
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        image: user.image,
-        phone: user.phone,
-        locale: user.locale,
-        timezone: user.timezone,
-        currency: user.currency,
-        createdAt: user.createdAt,
-      },
-      business: user.business,
-      subscription: user.subscription,
-    });
+    return NextResponse.json(createSuccessResponse(profile));
   } catch (error) {
     console.error("Error fetching profile:", error);
+
+    if (error instanceof Error && error.message === "User not found") {
+      return NextResponse.json(
+        createErrorResponse(ApiErrorCode.USER_NOT_FOUND, "User not found"),
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Internal server error" },
+      createErrorResponse(
+        ApiErrorCode.INTERNAL_ERROR,
+        "An unexpected error occurred"
+      ),
       { status: 500 }
     );
   }
 }
 
+/**
+ * PATCH /api/user/profile
+ *
+ * Update current user's profile information.
+ */
 export async function PATCH(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        createErrorResponse(ApiErrorCode.UNAUTHORIZED, "Unauthorized"),
+        { status: 401 }
+      );
     }
 
+    // Parse and validate request body
     const body = await request.json();
-    const { name, phone, locale, timezone, currency } = body;
+    const input = updateProfileSchema.parse(body);
 
-    const updatedUser = await prisma.user.update({
-      where: { id: session.user.id },
-      data: {
-        ...(name !== undefined && { name }),
-        ...(phone !== undefined && { phone }),
-        ...(locale !== undefined && { locale }),
-        ...(timezone !== undefined && { timezone }),
-        ...(currency !== undefined && { currency }),
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        image: true,
-        phone: true,
-        locale: true,
-        timezone: true,
-        currency: true,
-        createdAt: true,
-      },
-    });
+    // Update profile via service
+    const updatedUser = await userService.updateProfile(session.user.id, input);
 
-    return NextResponse.json({ user: updatedUser });
+    return NextResponse.json(createSuccessResponse(updatedUser));
   } catch (error) {
+    // Handle validation errors
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        createErrorResponse(
+          ApiErrorCode.VALIDATION_ERROR,
+          "Invalid input data",
+          error.errors.map((e) => ({
+            field: e.path.join("."),
+            message: e.message,
+          }))
+        ),
+        { status: 400 }
+      );
+    }
+
+    // Handle business logic errors
+    if (error instanceof Error && error.message === "User not found") {
+      return NextResponse.json(
+        createErrorResponse(ApiErrorCode.USER_NOT_FOUND, "User not found"),
+        { status: 404 }
+      );
+    }
+
     console.error("Error updating profile:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      createErrorResponse(
+        ApiErrorCode.INTERNAL_ERROR,
+        "An unexpected error occurred"
+      ),
       { status: 500 }
     );
   }

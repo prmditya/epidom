@@ -22,7 +22,7 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
         t("pricing.plans.starter.f1"),
         t("pricing.plans.starter.f2"),
         t("pricing.plans.starter.f3"),
-      ]
+      ],
     },
     pro: {
       title: t("pricing.plans.pro.title"),
@@ -33,7 +33,7 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
         t("pricing.plans.pro.f2"),
         t("pricing.plans.pro.f3"),
         t("pricing.plans.pro.f4"),
-      ]
+      ],
     },
     enterprise: {
       title: t("pricing.plans.enterprise.title"),
@@ -43,25 +43,25 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
         t("pricing.plans.enterprise.f1"),
         t("pricing.plans.enterprise.f2"),
         t("pricing.plans.enterprise.f3"),
-      ]
-    }
+      ],
+    },
   };
 
   const selectedPlan = planDetails[plan];
 
   return (
-    <Card className="rounded-xl sm:rounded-2xl border-2">
+    <Card className="rounded-xl border-2 sm:rounded-2xl">
       <CardHeader className="pb-4">
         <CardTitle className="text-lg sm:text-xl">{t("payments.summary.title")}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Plan Selection */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="font-semibold text-base sm:text-lg">{selectedPlan.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-600">{selectedPlan.period}</p>
+            <h3 className="text-base font-semibold sm:text-lg">{selectedPlan.title}</h3>
+            <p className="text-xs text-gray-600 sm:text-sm">{selectedPlan.period}</p>
           </div>
-          <Badge variant="secondary" className="bg-gray-100 text-gray-700 w-fit">
+          <Badge variant="secondary" className="w-fit bg-gray-100 text-gray-700">
             {t("payments.summary.selected")}
           </Badge>
         </div>
@@ -70,16 +70,18 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
 
         {/* Pricing */}
         <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="text-xs sm:text-sm text-gray-600">{t("payments.summary.subtotal")}</span>
-            <span className="font-semibold text-sm sm:text-base">{selectedPlan.price}</span>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-600 sm:text-sm">
+              {t("payments.summary.subtotal")}
+            </span>
+            <span className="text-sm font-semibold sm:text-base">{selectedPlan.price}</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-xs sm:text-sm text-gray-600">{t("payments.summary.tax")}</span>
-            <span className="font-semibold text-sm sm:text-base">€0.00</span>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-600 sm:text-sm">{t("payments.summary.tax")}</span>
+            <span className="text-sm font-semibold sm:text-base">€0.00</span>
           </div>
           <Separator />
-          <div className="flex justify-between items-center text-base sm:text-lg font-bold">
+          <div className="flex items-center justify-between text-base font-bold sm:text-lg">
             <span>{t("payments.summary.total")}</span>
             <span>{selectedPlan.price}</span>
           </div>
@@ -89,12 +91,12 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
 
         {/* Features */}
         <div className="space-y-3">
-          <h4 className="font-semibold text-xs sm:text-sm">{t("payments.summary.included")}</h4>
+          <h4 className="text-xs font-semibold sm:text-sm">{t("payments.summary.included")}</h4>
           <ul className="space-y-2">
             {selectedPlan.features.map((feature, index) => (
               <li key={index} className="flex items-start gap-2">
-                <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
+                <Check className="mt-0.5 h-3 w-3 flex-shrink-0 text-green-600 sm:h-4 sm:w-4" />
+                <span className="text-xs text-gray-600 sm:text-sm">{feature}</span>
               </li>
             ))}
           </ul>
@@ -103,7 +105,7 @@ export function PaymentSummary({ plan = "starter" }: PaymentSummaryProps) {
         <Separator />
 
         {/* Billing Info */}
-        <div className="text-xs text-gray-500 space-y-1">
+        <div className="space-y-1 text-xs text-gray-500">
           <p className="text-xs">{t("payments.summary.billingInfo1")}</p>
           <p className="text-xs">{t("payments.summary.billingInfo2")}</p>
         </div>
