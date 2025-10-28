@@ -1,6 +1,8 @@
 "use client";
 
 import { useI18n } from "@/components/lang/i18n-provider";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const ordersSuppliers = [
   {
@@ -92,12 +94,11 @@ export function OrdersView() {
         >
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
-              <div
-                className="from-primary/20 to-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br"
-                aria-hidden="true"
-              >
-                <span className="text-primary text-lg font-bold">{s.name[0]}</span>
-              </div>
+              <Avatar className="h-12 w-12">
+                <AvatarFallback className="from-primary/20 to-primary/10 text-primary bg-gradient-to-br text-lg font-bold">
+                  {s.name[0]}
+                </AvatarFallback>
+              </Avatar>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-base font-semibold">{s.name}</p>
                 <a
@@ -108,9 +109,9 @@ export function OrdersView() {
                 </a>
               </div>
             </div>
-            <span className="inline-flex items-center justify-center self-start rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-semibold text-emerald-700 sm:self-center dark:bg-emerald-900/30 dark:text-emerald-400">
+            <Badge className="border-emerald-300 bg-emerald-100 text-emerald-700 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
               {t("alerts.orderPlaced")}
-            </span>
+            </Badge>
           </div>
 
           <div className="-mx-4 overflow-x-auto sm:mx-0">
