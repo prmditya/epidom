@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { WaitlistDialog } from "@/features/landing/components/waitlist-dialog";
 import { usePathname } from "next/navigation";
-import { LanguageSwitcher } from "@/components/lang/language-switcher";
+import LangSwitcher from "@/components/lang/lang-switcher";
 import { useI18n } from "@/components/lang/i18n-provider";
 
 interface SiteHeaderProps {
@@ -114,7 +114,7 @@ export const SiteHeader = memo(function SiteHeader({
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="hidden items-center gap-3 md:flex">
             <div>
-              <LanguageSwitcher />
+              <LangSwitcher />
             </div>
             <div>
               {variant === "landing" ? (
@@ -348,7 +348,7 @@ export const SiteHeader = memo(function SiteHeader({
                     )}
                   </div>
                   <div className="flex-shrink-0">
-                    <LanguageSwitcher />
+                    <LangSwitcher />
                   </div>
                 </div>
               </div>

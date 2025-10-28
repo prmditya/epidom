@@ -3,91 +3,14 @@
 import { useI18n } from "@/components/lang/i18n-provider";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
-const ordersSuppliers = [
-  {
-    name: "Soframa",
-    contactHref: "#0434392611",
-    contactLabel: "0434392611",
-    status: "Order placed",
-    date: "10.08.24",
-    items: [
-      {
-        product: "Butter",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "9.83 Kg",
-      },
-      {
-        product: "Dark chocolate",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "15.87 Kg",
-      },
-      {
-        product: "Butter",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "12.16 Kg",
-      },
-    ],
-  },
-  {
-    name: "Soframa",
-    contactHref: "#0434392611",
-    contactLabel: "0434392611",
-    status: "Order placed",
-    date: "10.08.24",
-    items: [
-      {
-        product: "Butter",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "9.83 Kg",
-      },
-      {
-        product: "Dark chocolate",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "15.87 Kg",
-      },
-      {
-        product: "Butter",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "12.16 Kg",
-      },
-    ],
-  },
-  {
-    name: "Soframa",
-    contactHref: "#0434392611",
-    contactLabel: "0434392611",
-    status: "Order placed",
-    date: "10.08.24",
-    items: [
-      {
-        product: "Butter",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "9.83 Kg",
-      },
-      {
-        product: "Milk chocolate",
-        current: "10.22 Kg",
-        required: "20.05 Kg",
-        toOrder: "15.87 Kg",
-      },
-    ],
-  },
-];
+import { ORDERS_SUPPLIERS } from "@/mocks";
 
 export function OrdersView() {
   const { t } = useI18n();
   return (
     <section className="space-y-6">
       <h2 className="sr-only">{t("pages.ordersTitle")}</h2>
-      {ordersSuppliers.map((s, idx) => (
+      {ORDERS_SUPPLIERS.map((s, idx) => (
         <div
           key={idx}
           className="bg-card relative z-0 rounded-xl border p-4 shadow-md transition-shadow hover:z-10 hover:shadow-lg sm:p-5"

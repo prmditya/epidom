@@ -189,6 +189,25 @@ Configured in `tsconfig.json`:
 
 - `@/*` maps to `./src/*`
 
+### Mock Data Organization
+
+Centralized mock data in `src/mocks/` directory:
+
+- `alerts.mock.ts` - Alert suppliers and alert items
+- `orders.mock.ts` - Orders and order suppliers
+- `inventory.mock.ts` - Materials, recipes, products, suppliers, stock tracking data
+- `users.mock.ts` - User management data
+- `stores.mock.ts` - Store/location data
+- `index.ts` - Central export for all mock data
+
+**Usage:**
+
+```typescript
+import { MOCK_ALERTS, MOCK_ORDERS, MOCK_MATERIALS } from "@/mocks";
+```
+
+All mock data includes TypeScript types and TODO comments indicating where API integration is needed.
+
 ### Component Library
 
 Using shadcn/ui with configuration in `components.json`:
@@ -316,8 +335,9 @@ PATCH  /api/user/business            # Update business (session required)
 
 **Current Data Fetching:**
 
-- Most components use **mock data** with TODO comments
-- Example: `useAlertsCount()` hook uses `MOCK_ALERTS` array
+- Most components use **mock data** from centralized `src/mocks/` directory
+- Mock data organized by domain: alerts.mock.ts, orders.mock.ts, inventory.mock.ts, users.mock.ts, stores.mock.ts
+- All exported from `src/mocks/index.ts` for easy importing
 - Future: Replace with API calls or add a proper data fetching library
 
 **Adding New State:**
@@ -328,12 +348,35 @@ PATCH  /api/user/business            # Update business (session required)
 
 ### Utilities
 
-**Validation** (`src/lib/validation.ts`):
+**Validation Strategy:**
 
-- Email validation with regex
-- Name validation (2-50 characters)
-- Waitlist form validation
-- RateLimiter class for brute force protection
+The app uses a dual validation approach:
+
+1. **Legacy Utilities** (`src/lib/validation.ts`):
+   - Simple helper functions for email, name validation
+   - RateLimiter class for brute force protection
+   - Used for basic client-side validation in older components
+   - Will be gradually migrated to Zod schemas
+
+2. **Modern Zod Schemas** (`src/lib/validation/`):
+   - Type-safe validation schemas with TypeScript inference
+   - Organized by domain: auth.schemas.ts, business.schemas.ts, common.schemas.ts, inventory.schemas.ts, orders.schemas.ts
+   - Exported centrally from `src/lib/validation/index.ts`
+   - Used for API route validation and will become the standard
+
+**Usage (Modern Approach):**
+
+```typescript
+import { z, loginSchema } from "@/lib/validation";
+
+// Validate input
+const result = loginSchema.safeParse(data);
+if (!result.success) {
+  // Handle errors: result.error.errors
+}
+```
+
+**Migration Path:** New forms and API routes should use Zod schemas. Legacy validation.ts functions are maintained for backward compatibility.
 
 **Logger** (`src/lib/logger.ts`):
 
@@ -376,7 +419,7 @@ Following the clean architecture pattern:
 3. **Extract components**: Create page-specific components in the components directory
 4. **Import in page**: Import and compose components in the page file
 5. **Add navigation**: Update `src/features/dashboard/components/sidebar.tsx`
-6. **Add translations**: Update `src/components/lang/i18n-dictionaries.ts`
+6. **Add translations**: Update `src/locales/` files (en.ts, fr.ts, id.ts)
 
 **Example structure:**
 
@@ -453,7 +496,7 @@ async function onSubmit(formData: FormData) {
 </form>
 ```
 
-**Note:** react-hook-form and zod are in package.json but not currently used. Consider migrating forms to use these libraries for better validation and type safety.
+**Note:** Zod schemas are available in `src/lib/validation/` for type-safe validation. react-hook-form is installed but not yet widely adopted. Future forms should use react-hook-form + Zod for better validation and type safety. Current forms use FormData API with manual validation.
 
 ## Important Notes
 

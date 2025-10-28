@@ -13,12 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useI18n } from "@/components/lang/i18n-provider";
-
-type UserRow = {
-  id: string;
-  email: string;
-  role: "Admin" | "Manager" | "Viewer";
-};
+import type { UserRow } from "@/mocks";
 
 interface UsersTableProps {
   users: UserRow[];

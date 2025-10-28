@@ -3,28 +3,7 @@
 import { useI18n } from "@/components/lang/i18n-provider";
 import { StoreCard } from "./store-card";
 import { CreateStoreButton } from "./create-store-button";
-
-// Mock data - will be replaced with real data from API
-const mockStores = [
-  {
-    id: "1",
-    name: "Boutique boulangerie n°1",
-    city: "Bali",
-    image: "/images/pantry-shelf.jpg",
-  },
-  {
-    id: "2",
-    name: "test",
-    city: "paris",
-    image: "/images/pantry-shelf.jpg",
-  },
-  {
-    id: "3",
-    name: "Mur Mur",
-    city: "Canggu",
-    image: "/images/pantry-shelf.jpg",
-  },
-];
+import { MOCK_STORES } from "@/mocks";
 
 export function StoresContainer() {
   const { t } = useI18n();
@@ -42,14 +21,14 @@ export function StoresContainer() {
       </div>
 
       {/* Stores Grid */}
-      {mockStores.length === 0 ? (
+      {MOCK_STORES.length === 0 ? (
         <div className="py-16 text-center sm:py-20">
           <p className="mb-2 text-base text-neutral-600 sm:text-lg">{t("stores.noStores")}</p>
           <p className="text-sm text-neutral-500 sm:text-base">{t("stores.createFirst")}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
-          {mockStores.map((store) => (
+          {MOCK_STORES.map((store) => (
             <StoreCard key={store.id} store={store} />
           ))}
         </div>

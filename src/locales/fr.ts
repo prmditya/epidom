@@ -300,7 +300,7 @@ export const fr = {
       cvv: "CVV",
     },
     terms: {
-      title: "Syarat dan Ketentuan",
+      title: "Termes et Conditions",
       text: "J'accepte les",
       link: "Conditions d'Utilisation et Politique de Confidentialité",
       billing:

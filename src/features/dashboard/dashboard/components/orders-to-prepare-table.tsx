@@ -10,13 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/components/lang/i18n-provider";
-
-type Order = {
-  id: string;
-  name: string;
-  date: string;
-  status: string;
-};
+import type { Order } from "@/mocks";
 
 interface OrdersToPrepareTableProps {
   orders: Order[];

@@ -1,11 +1,5 @@
 import { useMemo } from "react";
-
-// Mock data - will be replaced with API call
-const MOCK_ALERTS = [
-  { product: "Butter", pct: 0.8, qty: "10.22 Kg", date: "10.08.24" },
-  { product: "Dark chocolate", pct: 0.6, qty: "9.15 Kg", date: "08.08.24" },
-  { product: "White chocolate", pct: 0.55, qty: "7.85 Kg", date: "25.07.24" },
-];
+import { MOCK_ALERTS } from "@/mocks";
 
 /**
  * Custom hook to get alerts count

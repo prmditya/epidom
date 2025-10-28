@@ -4,26 +4,7 @@ import { useState } from "react";
 import { CheckCircle2, AlertCircle, XCircle, Search } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
-
-type Row = {
-  product: string;
-  currentStock: number;
-  minStock: number; // Critical level - triggers red when current <= min
-  maxStock: number; // Threshold - full when current >= max
-  unit: string;
-};
-
-const rows: Row[] = [
-  { product: "Butter", currentStock: 25.01, minStock: 5, maxStock: 20, unit: "Kg" }, // >= max: grey dark 100%
-  { product: "Dark chocolate", currentStock: 23.05, minStock: 5, maxStock: 25, unit: "Kg" }, // >= max: grey dark 100%
-  { product: "White chocolate", currentStock: 15, minStock: 5, maxStock: 25, unit: "Kg" }, // between: grey
-  { product: "Peanuts", currentStock: 12, minStock: 5, maxStock: 20, unit: "Kg" }, // between: grey
-  { product: "Strawberry", currentStock: 8, minStock: 5, maxStock: 20, unit: "Units" }, // between: grey
-  { product: "Pecans", currentStock: 6, minStock: 5, maxStock: 20, unit: "Kg" }, // between: grey
-  { product: "Flour", currentStock: 4, minStock: 5, maxStock: 20, unit: "Kg" }, // <= min: red
-  { product: "Eggs", currentStock: 3, minStock: 5, maxStock: 20, unit: "Units" }, // <= min: red
-  { product: "Lime", currentStock: 2, minStock: 5, maxStock: 20, unit: "Units" }, // <= min: red
-];
+import { MOCK_STOCK_ROWS } from "@/mocks";
 
 function getStockStatus(currentStock: number, minStock: number, maxStock: number) {
   if (currentStock <= minStock) {
@@ -48,6 +29,9 @@ export function TrackingView() {
 
   // TODO: Replace with API call - filtering will be done on backend
   // Example: const { data: rows } = useQuery(['stock', searchQuery], () => fetchStock(searchQuery));
+  const filteredRows = MOCK_STOCK_ROWS.filter((row) =>
+    row.product.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="bg-card rounded-xl border shadow-sm">
@@ -76,7 +60,7 @@ export function TrackingView() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((r) => {
+            {filteredRows.map((r) => {
               const stockStatus = getStockStatus(r.currentStock, r.minStock, r.maxStock);
               return (
                 <tr key={r.product} className="border-t">

@@ -3,13 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/components/lang/i18n-provider";
-
-type Order = {
-  id: string;
-  name: string;
-  date: string;
-  status: "Pending" | "Processing" | "Delivered";
-};
+import type { Order } from "@/mocks";
 
 interface OrderDetailsProps {
   selectedOrder: Order | null;

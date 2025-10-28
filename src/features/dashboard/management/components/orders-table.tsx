@@ -14,13 +14,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useI18n } from "@/components/lang/i18n-provider";
-
-type Order = {
-  id: string;
-  name: string;
-  date: string;
-  status: "Pending" | "Processing" | "Delivered";
-};
+import type { Order } from "@/mocks";
 
 interface OrdersTableProps {
   orders: Order[];

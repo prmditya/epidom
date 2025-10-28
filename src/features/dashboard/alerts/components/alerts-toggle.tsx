@@ -4,67 +4,7 @@ import { useI18n } from "@/components/lang/i18n-provider";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
-// Mock data structure with supplier grouping
-const ALERT_SUPPLIERS = [
-  {
-    name: "Soframa",
-    contactHref: "#0434392611",
-    contactLabel: "0434392611",
-    status: "Low Stock",
-    date: "10.08.24",
-    items: [
-      {
-        product: "Butter",
-        stockPercentage: 0.8, // 80% depleted (20% remaining)
-        current: "10.22 Kg",
-        recommended: "20.05 Kg",
-      },
-      {
-        product: "Dark chocolate",
-        stockPercentage: 0.6, // 60% depleted (40% remaining)
-        current: "9.15 Kg",
-        recommended: "15.30 Kg",
-      },
-    ],
-  },
-  {
-    name: "Lactalis",
-    contactHref: "#0456789123",
-    contactLabel: "0456789123",
-    status: "Critical",
-    date: "08.08.24",
-    items: [
-      {
-        product: "White chocolate",
-        stockPercentage: 0.55, // 55% depleted (45% remaining)
-        current: "7.85 Kg",
-        recommended: "17.45 Kg",
-      },
-      {
-        product: "Milk",
-        stockPercentage: 0.9, // 90% depleted (10% remaining - critical)
-        current: "3.20 L",
-        recommended: "32.00 L",
-      },
-    ],
-  },
-  {
-    name: "Barry Callebaut",
-    contactHref: "#0423456789",
-    contactLabel: "0423456789",
-    status: "Low Stock",
-    date: "25.07.24",
-    items: [
-      {
-        product: "Cocoa powder",
-        stockPercentage: 0.75, // 75% depleted (25% remaining)
-        current: "5.50 Kg",
-        recommended: "22.00 Kg",
-      },
-    ],
-  },
-];
+import { ALERT_SUPPLIERS } from "@/mocks";
 
 export function AlertsToggle() {
   const { t } = useI18n();
