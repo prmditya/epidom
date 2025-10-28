@@ -360,50 +360,6 @@ export const id = {
     desc: "Bandingkan paket dan perbarui dari halaman Harga.",
     goPricing: "Pergi ke Harga",
   },
-  stores: {
-    header: {
-      title: "Toko Anda",
-      desc: "Kelola lokasi yang terhubung ke akun Anda.",
-      add: "Tambah Toko Baru",
-    },
-    planNotice: {
-      title: "Pesan Paket",
-      desc: "Paket Anda saat ini menentukan berapa banyak toko yang dapat Anda buat.",
-    },
-    planMsgStarter: "Paket Starter: Anda hanya bisa membuat 1 toko.",
-    planMsgPremium: "Paket Premium: Anda bisa membuat toko tidak terbatas.",
-    empty: {
-      title: "Belum ada toko",
-      desc: "Mulailah dengan membuat toko pertama Anda.",
-      add: "Tambah Toko Baru",
-    },
-    card: { created: "Dibuat", view: "Lihat", edit: "Edit", delete: "Hapus" },
-    dialog: {
-      title: "Tambah toko baru",
-      desc: "Masukkan detail dasar untuk toko Anda.",
-      labels: {
-        name: "Nama Toko",
-        city: "Kota / Lokasi",
-        thumb: "URL Gambar Miniatur (opsional)",
-      },
-      placeholders: {
-        name: "e.g., Central Kitchen",
-        city: "e.g., Massy",
-        thumb: "https://...",
-      },
-      create: "Buat Toko",
-      cancel: "Batal",
-    },
-    toasts: {
-      starterLimitTitle: "Batas paket Starter tercapai",
-      starterLimitDesc: "Anda hanya bisa membuat 1 toko di paket Starter.",
-      missing: {
-        title: "Detail yang hilang",
-        desc: "Silakan masukkan nama dan kota.",
-      },
-      created: { title: "Toko dibuat", desc: "{name} telah ditambahkan." },
-    },
-  },
   storeDetail: {
     notFound: {
       title: "Toko tidak ditemukan",

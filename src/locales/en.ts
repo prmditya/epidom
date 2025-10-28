@@ -1,3 +1,4 @@
+/* eslint-disable  */
 export const en = {
   common: {
     brand: "EPIDOM",
@@ -59,25 +60,32 @@ export const en = {
       data: "Data",
     },
     dashboard: {
-      subtitle: "Food stock management is the process of tracking purchased and unconsumed food products.",
-      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+      subtitle:
+        "Food stock management is the process of tracking purchased and unconsumed food products.",
+      description:
+        "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
     },
     management: {
       title: "Efficient Management",
-      subtitle: "Food stock management is the process of tracking purchased and unconsumed food products.",
-      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+      subtitle:
+        "Food stock management is the process of tracking purchased and unconsumed food products.",
+      description:
+        "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
     },
     tracking: {
-      title: "Active Stock Tracking"
+      title: "Active Stock Tracking",
     },
     data: {
       title: "Complete Data Tracking",
-      description1: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
-      description2: "Food stock management is the process of tracking purchased and unconsumed food products."
+      description1:
+        "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
+      description2:
+        "Food stock management is the process of tracking purchased and unconsumed food products.",
     },
     alerts: {
       title: "Visible and Accessible Alerts",
-      description: "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity."
+      description:
+        "Food stock management is the process of tracking purchased and unconsumed food products. This approach is essential to avoid any loss and optimize your catering activity.",
     },
     dashboardDesc1:
       "Food stock management is the process of tracking purchased and unconsumed food products.",
@@ -193,7 +201,8 @@ export const en = {
   },
   pricing: {
     heroTitle: "A solution for your food stock management",
-    heroDescription: "Food stock management is the process of tracking purchased and unconsumed ingredients. This practice is essential to prevent waste and optimize your restaurant operations.",
+    heroDescription:
+      "Food stock management is the process of tracking purchased and unconsumed ingredients. This practice is essential to prevent waste and optimize your restaurant operations.",
     plans: {
       starter: {
         title: "Starter",
@@ -272,33 +281,34 @@ export const en = {
     backToPricing: "Back to Pricing",
     hero: {
       title: "Complete Your Subscription",
-      subtitle: "Secure payment processing with industry-standard encryption"
+      subtitle: "Secure payment processing with industry-standard encryption",
     },
     billing: {
       title: "Billing Information",
       firstName: "First Name",
       firstNamePlaceholder: "Enter your first name",
-      lastName: "Last Name", 
+      lastName: "Last Name",
       lastNamePlaceholder: "Enter your last name",
       email: "Email Address",
       emailPlaceholder: "your.email@example.com",
       company: "Company (Optional)",
-      companyPlaceholder: "Your company name"
+      companyPlaceholder: "Your company name",
     },
     payment: {
       title: "Payment Information",
       cardNumber: "Card Number",
       expiryMonth: "Month",
       expiryYear: "Year",
-      cvv: "CVV"
+      cvv: "CVV",
     },
     terms: {
       title: "Terms and Conditions",
       text: "I agree to the",
       link: "Terms of Service and Privacy Policy",
-      billing: "I understand that payment will be processed automatically every month and can be cancelled at any time",
+      billing:
+        "I understand that payment will be processed automatically every month and can be cancelled at any time",
       refund: "I have read and agree to the",
-      refundLink: "Refund Policy"
+      refundLink: "Refund Policy",
     },
     processing: "Processing...",
     completePayment: "Complete Payment",
@@ -310,28 +320,28 @@ export const en = {
       total: "Total",
       included: "What's included:",
       billingInfo1: "You will be charged monthly",
-      billingInfo2: "Cancel anytime from your dashboard"
+      billingInfo2: "Cancel anytime from your dashboard",
     },
     security: {
       title: "Secure Payment",
       feature1: {
         title: "Stripe Security",
-        description: "Powered by Stripe's industry-leading security"
+        description: "Powered by Stripe's industry-leading security",
       },
       feature2: {
         title: "PCI DSS Compliant",
-        description: "Your card data is never stored on our servers"
+        description: "Your card data is never stored on our servers",
       },
       feature3: {
         title: "256-bit SSL Encryption",
-        description: "All transactions are encrypted end-to-end"
+        description: "All transactions are encrypted end-to-end",
       },
-      footer: "Your payment information is secure and encrypted"
+      footer: "Your payment information is secure and encrypted",
     },
     enterprise: {
       hero: {
         title: "Contact Our Sales Team",
-        subtitle: "Get a custom quote for your enterprise needs"
+        subtitle: "Get a custom quote for your enterprise needs",
       },
       included: "What's included:",
       form: {
@@ -340,66 +350,24 @@ export const en = {
         companyInfo: "Company Information",
         requirements: "Your Requirements",
         requirementsDesc: "Tell us about your specific needs:",
-        requirementsPlaceholder: "Describe your business size, number of locations, specific features needed, integration requirements, etc.",
+        requirementsPlaceholder:
+          "Describe your business size, number of locations, specific features needed, integration requirements, etc.",
         phone: "Phone Number",
         phonePlaceholder: "+1 (555) 123-4567",
         submit: "Request Quote",
-        submitting: "Sending Request..."
+        submitting: "Sending Request...",
       },
       contact: {
         title: "Prefer to talk directly?",
-        description: "Our sales team is ready to help you find the perfect solution."
-      }
-    }
+        description:
+          "Our sales team is ready to help you find the perfect solution.",
+      },
+    },
   },
   choosePlan: {
     title: "Choose your plan",
     desc: "Compare plans and upgrade from the Pricing page.",
     goPricing: "Go to Pricing",
-  },
-  stores: {
-    header: {
-      title: "Your Stores",
-      desc: "Manage locations connected to your account.",
-      add: "Add New Store",
-    },
-    planNotice: {
-      title: "Plan Notice",
-      desc: "Your current plan determines how many stores you can create.",
-    },
-    planMsgStarter: "Starter plan: You can only create 1 store.",
-    planMsgPremium: "Premium plan: You can create unlimited stores.",
-    empty: {
-      title: "No stores yet",
-      desc: "Get started by creating your first store.",
-      add: "Add New Store",
-    },
-    card: { created: "Created", view: "View", edit: "Edit", delete: "Delete" },
-    dialog: {
-      title: "Add a new store",
-      desc: "Enter basic details for your store.",
-      labels: {
-        name: "Store name",
-        city: "City / Location",
-        thumb: "Thumbnail URL (optional)",
-      },
-      placeholders: {
-        name: "e.g., Central Kitchen",
-        city: "e.g., Massy",
-        thumb: "https://...",
-      },
-      create: "Create store",
-      cancel: "Cancel",
-    },
-    toasts: {
-      starterLimitTitle: "Starter plan limit reached",
-      starterLimitDesc: "You can only create 1 store on the Starter plan.",
-      missing: {
-        title: "Missing details",
-        desc: "Please enter a name and city.",
-      },
-      created: { title: "Store created", desc: "{name} has been added." },
-    },
   },
   storeDetail: {
     notFound: {
