@@ -75,7 +75,7 @@ export function AlertsToggle() {
       {ALERT_SUPPLIERS.map((supplier, idx) => (
         <div
           key={idx}
-          className="bg-card rounded-xl border p-4 shadow-md transition-shadow hover:shadow-lg sm:p-5"
+          className="bg-card relative z-0 rounded-xl border p-4 shadow-md transition-shadow hover:z-10 hover:shadow-lg sm:p-5"
         >
           {/* Supplier Header */}
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">

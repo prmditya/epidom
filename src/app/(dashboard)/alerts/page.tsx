@@ -52,7 +52,7 @@ export default function AlertsPage() {
           {isOrders ? (
             <OrdersView />
           ) : (
-            <div className="overflow-x-auto">
+            <div>
               <div className="min-w-[640px] md:min-w-0">
                 <AlertsToggle />
               </div>

@@ -90,7 +90,7 @@ export function OrdersView() {
       {ordersSuppliers.map((s, idx) => (
         <div
           key={idx}
-          className="bg-card rounded-xl border p-4 shadow-md transition-shadow hover:shadow-lg sm:p-5"
+          className="bg-card relative z-0 rounded-xl border p-4 shadow-md transition-shadow hover:z-10 hover:shadow-lg sm:p-5"
         >
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
