@@ -7,7 +7,7 @@ import { OrdersView } from "@/features/dashboard/alerts/components/orders-view";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";
-import { useAlertsCount } from "@/hooks/use-alerts-count";
+import { useAlertsCount } from "@/features/dashboard/alerts/hooks/use-alerts-count";
 
 export default function AlertsPage() {
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function AlertsPage() {
           {isOrders ? (
             <OrdersView />
           ) : (
-            <div className="overflow-x-auto">
+            <div>
               <div className="min-w-[640px] md:min-w-0">
                 <AlertsToggle />
               </div>
