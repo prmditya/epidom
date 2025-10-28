@@ -16,11 +16,21 @@ import { useI18n } from "@/components/lang/i18n-provider";
 import { useAlertsCount } from "@/hooks/use-alerts-count";
 
 const itemDefs = [
-  { href: "/profile", key: "nav.profile", icon: UserRound },
-  { href: "/dashboard", key: "nav.dashboard", icon: LayoutDashboard },
-  { href: "/management", key: "nav.management", icon: Boxes },
-  { href: "/tracking", key: "nav.tracking", icon: PackageSearch },
-  { href: "/data", key: "nav.data", icon: Database },
+  { href: "/profile", key: "nav.profile", icon: UserRound, showBadge: false },
+  {
+    href: "/dashboard",
+    key: "nav.dashboard",
+    icon: LayoutDashboard,
+    showBadge: false,
+  },
+  { href: "/management", key: "nav.management", icon: Boxes, showBadge: false },
+  {
+    href: "/tracking",
+    key: "nav.tracking",
+    icon: PackageSearch,
+    showBadge: false,
+  },
+  { href: "/data", key: "nav.data", icon: Database, showBadge: false },
   { href: "/alerts", key: "nav.alerts", icon: Bell, showBadge: true },
 ] as const;
 
@@ -56,7 +66,7 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
               const active = pathname === href;
               const label = t(key);
               const badge = showBadge ? alertsCount : null;
-              
+
               return (
                 <li key={href}>
                   <Link
@@ -73,7 +83,7 @@ export function Sidebar({ mode = "desktop" }: { mode?: "desktop" | "mobile" }) {
                     <span className="flex items-center gap-1.5">
                       {label}
                       {badge !== null && badge > 0 && (
-                        <span 
+                        <span
                           className="text-xs font-medium text-muted-foreground"
                           aria-label={`${badge} alerts`}
                         >

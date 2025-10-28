@@ -356,56 +356,6 @@ export const fr = {
     desc: "Comparez les plans et passez à Premium depuis la page Tarifs.",
     goPricing: "Aller à Tarifs",
   },
-  stores: {
-    header: {
-      title: "Vos Magasins",
-      desc: "Gérez les lieux connectés à votre compte.",
-      add: "Ajouter un nouveau magasin",
-    },
-    planNotice: {
-      title: "Avertissement de plan",
-      desc: "Votre plan actuel détermine combien de magasins vous pouvez créer.",
-    },
-    planMsgStarter: "Plan Starter: Vous pouvez créer uniquement 1 magasin.",
-    planMsgPremium: "Plan Premium: Vous pouvez créer des magasins illimités.",
-    empty: {
-      title: "Aucun magasin pour l'instant",
-      desc: "Commencez en créant votre premier magasin.",
-      add: "Ajouter un nouveau magasin",
-    },
-    card: {
-      created: "Créé",
-      view: "Voir",
-      edit: "Modifier",
-      delete: "Supprimer",
-    },
-    dialog: {
-      title: "Ajouter un nouveau magasin",
-      desc: "Entrez les détails de base pour votre magasin.",
-      labels: {
-        name: "Nom du magasin",
-        city: "Ville / Lieu",
-        thumb: "URL de l'image miniature (optionnel)",
-      },
-      placeholders: {
-        name: "e.g., Central Kitchen",
-        city: "e.g., Massy",
-        thumb: "https://...",
-      },
-      create: "Créer le magasin",
-      cancel: "Annuler",
-    },
-    toasts: {
-      starterLimitTitle: "Limite du plan Starter atteinte",
-      starterLimitDesc:
-        "Vous pouvez créer uniquement 1 magasin sur le plan Starter.",
-      missing: {
-        title: "Détails manquants",
-        desc: "Veuillez entrer un nom et une ville.",
-      },
-      created: { title: "Magasin créé", desc: "{name} a été ajouté." },
-    },
-  },
   storeDetail: {
     notFound: {
       title: "Magasin non trouvé",
