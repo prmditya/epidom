@@ -1,7 +1,7 @@
 import { Business } from "@prisma/client";
 import { businessRepository, BusinessRepository } from "@/lib/repositories/business.repository";
 import { storeRepository, StoreRepository } from "@/lib/repositories/store.repository";
-import { CreateBusinessInput, UpdateBusinessInput, CreateStoreInput } from "@/lib/validation";
+import { CreateBusinessInput, UpdateBusinessInput, CreateStoreInput } from "@/lib/validation/business.schemas";
 import { BusinessDto, BusinessWithStoresDto, StoreDto } from "@/types/dto";
 
 /**

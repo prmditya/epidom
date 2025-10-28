@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { userRepository, UserRepository } from "@/lib/repositories/user.repository";
-import { UpdateProfileInput } from "@/lib/validation";
+import { UpdateProfileInput } from "@/lib/validation/auth.schemas";
 import { UserProfileDto, UserDto } from "@/types/dto";
 
 /**

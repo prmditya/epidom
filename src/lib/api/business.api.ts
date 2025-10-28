@@ -4,7 +4,7 @@ import {
   UpdateBusinessInput,
   CreateStoreInput,
   UpdateStoreInput,
-} from "@/lib/validation";
+} from "@/lib/validation/business.schemas";
 import { BusinessDto, BusinessWithStoresDto, StoreDto } from "@/types/dto";
 
 /**

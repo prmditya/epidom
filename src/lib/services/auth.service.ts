@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { User } from "@prisma/client";
 import { userRepository, UserRepository } from "@/lib/repositories/user.repository";
 import { businessRepository, BusinessRepository } from "@/lib/repositories/business.repository";
-import { RegisterInput, LoginInput } from "@/lib/validation";
+import { RegisterInput, LoginInput } from "@/lib/validation/auth.schemas";
 
 /**
  * Authentication Service

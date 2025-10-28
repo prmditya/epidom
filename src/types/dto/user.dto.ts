@@ -22,7 +22,7 @@ export interface UserDto {
 
 // User profile with business and subscription
 export interface UserProfileDto extends UserDto {
-  business: BusinessDto | null;
+  business: BusinessWithStoresDto | null;
   subscription: SubscriptionDto | null;
 }
 

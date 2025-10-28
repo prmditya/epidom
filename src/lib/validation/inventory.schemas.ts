@@ -6,7 +6,7 @@ import { cuidSchema, priceSchema, decimalSchema, urlSchema } from "./common.sche
  */
 
 // Product schemas
-export const createProductSchema = z.object({
+const baseProductSchema = z.object({
   storeId: cuidSchema,
   sku: z.string().min(1, "SKU is required").max(50, "SKU is too long"),
   name: z.string().min(1, "Name is required").max(200, "Name is too long"),
@@ -22,14 +22,19 @@ export const createProductSchema = z.object({
   productionTime: z.number().int().nonnegative("Production time must be non-negative").optional(),
   shelfLife: z.number().int().positive("Shelf life must be positive").optional(),
   isActive: z.boolean().default(true),
-}).refine((data) => data.sellingPrice >= data.costPrice, {
-  message: "Selling price must be greater than or equal to cost price",
-  path: ["sellingPrice"],
 });
+
+export const createProductSchema = baseProductSchema.refine(
+  (data) => data.sellingPrice >= data.costPrice,
+  {
+    message: "Selling price must be greater than or equal to cost price",
+    path: ["sellingPrice"],
+  }
+);
 
 export type CreateProductInput = z.infer<typeof createProductSchema>;
 
-export const updateProductSchema = createProductSchema.partial().omit({ storeId: true });
+export const updateProductSchema = baseProductSchema.partial().omit({ storeId: true });
 
 export type UpdateProductInput = z.infer<typeof updateProductSchema>;
 

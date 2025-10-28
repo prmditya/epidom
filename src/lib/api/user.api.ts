@@ -1,5 +1,5 @@
 import { apiClient } from "./client";
-import { UpdateProfileInput, ChangePasswordInput } from "@/lib/validation";
+import { UpdateProfileInput, ChangePasswordInput } from "@/lib/validation/auth.schemas";
 import { UserProfileDto, UserDto } from "@/types/dto";
 
 /**
