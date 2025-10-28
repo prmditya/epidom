@@ -37,6 +37,7 @@ npx prisma db push
 ## Environment Setup
 
 Create a `.env` file based on `.env.example`:
+
 ```bash
 NEXTAUTH_SECRET=generate-a-strong-random-secret-here
 NEXTAUTH_URL=http://localhost:3000
@@ -144,6 +145,7 @@ Dashboard layout (src/app/(dashboard)/layout.tsx)
 The codebase follows a **clean architecture** with feature-based organization:
 
 **Folder Structure Pattern:**
+
 ```
 src/
 ├── components/
@@ -157,12 +159,14 @@ src/
 ```
 
 **Key Principles:**
+
 1. **Pages are thin** - They only import and compose components
 2. **Page-specific components** go in `src/features/[feature-area]/[page-name]/components/`
 3. **Shared feature components** go in `src/features/[feature-area]/components/`
 4. **Pages** in `src/app/` should be minimal (typically 10-20 lines)
 
 **Examples:**
+
 - `src/features/dashboard/dashboard/components/` - Components for the dashboard page
 - `src/features/dashboard/components/` - Shared across all dashboard pages (PageShell, Topbar, Sidebar)
 - `src/features/landing/pricing/components/` - Components for the pricing page
@@ -182,11 +186,13 @@ src/
 ### Path Aliases
 
 Configured in `tsconfig.json`:
+
 - `@/*` maps to `./src/*`
 
 ### Component Library
 
 Using shadcn/ui with configuration in `components.json`:
+
 - Style: "new-york"
 - Icon library: lucide-react
 - RSC: true (React Server Components enabled)
@@ -199,24 +205,28 @@ Using shadcn/ui with configuration in `components.json`:
 The app uses NextAuth v4 with Credentials provider for authentication:
 
 **Key Files:**
+
 - `src/lib/auth.ts` - NextAuth configuration with JWT strategy
 - `src/app/api/auth/[...nextauth]/route.ts` - NextAuth route handler
 - `src/app/api/auth/signup/route.ts` - User registration endpoint
 - `src/lib/auth-client.ts` - Custom `useUser()` hook for client-side session access
 
 **Authentication Flow:**
+
 1. User registers via `/api/auth/signup` (password hashed with bcryptjs)
 2. User logs in via NextAuth's `signIn("credentials", { email, password })`
 3. Session stored as JWT with 30-day max age
 4. Server-side routes verify session with `getServerSession(authOptions)`
 
 **Client-Side Session Access:**
+
 ```typescript
 import { useUser } from "@/lib/auth-client";
 const { user, loading } = useUser(); // Returns { id, email, name, image }
 ```
 
 **Server-Side Authorization Pattern:**
+
 ```typescript
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -231,6 +241,7 @@ export async function GET(request: Request) {
 ```
 
 **Current Limitations:**
+
 - No OAuth providers configured (only Credentials)
 - Email verification not implemented (schema supports it)
 - Password reset flow not fully implemented
@@ -256,6 +267,7 @@ User (1:N) → Alert (notifications)
 ```
 
 **Important Model Details:**
+
 - **Multi-store architecture**: Business → Store (1:N), all inventory scoped to Store
 - **Recipe composition**: Product has one Recipe, which contains multiple Ingredients via junction table
 - **Audit trail**: StockMovement tracks all inventory changes with timestamps
@@ -268,6 +280,7 @@ User (1:N) → Alert (notifications)
 ### API Routes
 
 **Existing Endpoints:**
+
 ```
 POST   /api/auth/signup              # Create new user account
 POST   /api/auth/[...nextauth]       # NextAuth authentication
@@ -277,6 +290,7 @@ PATCH  /api/user/business            # Update business (session required)
 ```
 
 **API Patterns:**
+
 - RESTful conventions (GET/POST/PATCH/DELETE)
 - Session verification via `getServerSession(authOptions)`
 - Standard HTTP status codes: 200 (OK), 201 (Created), 400 (Bad Request), 401 (Unauthorized), 409 (Conflict), 500 (Error)
@@ -284,6 +298,7 @@ PATCH  /api/user/business            # Update business (session required)
 - Error responses: `{ error: "Error message" }`
 
 **Adding New API Routes:**
+
 1. Create file in `src/app/api/[route-name]/route.ts`
 2. Export async functions: `GET`, `POST`, `PATCH`, `DELETE`
 3. Verify session for protected routes
@@ -300,11 +315,13 @@ PATCH  /api/user/business            # Update business (session required)
 4. **Server state** - API routes + Prisma for data persistence
 
 **Current Data Fetching:**
+
 - Most components use **mock data** with TODO comments
 - Example: `useAlertsCount()` hook uses `MOCK_ALERTS` array
 - Future: Replace with API calls or add a proper data fetching library
 
 **Adding New State:**
+
 - For UI state: Use `useState()` in components
 - For shared state: Create React Context provider in `src/components/providers/`
 - For server data: Create API route + use `fetch()` or server actions
@@ -312,16 +329,19 @@ PATCH  /api/user/business            # Update business (session required)
 ### Utilities
 
 **Validation** (`src/lib/validation.ts`):
+
 - Email validation with regex
 - Name validation (2-50 characters)
 - Waitlist form validation
 - RateLimiter class for brute force protection
 
 **Logger** (`src/lib/logger.ts`):
+
 - Used by ErrorBoundary for error logging
 - Development-friendly error output
 
 **Auth Client** (`src/lib/auth-client.ts`):
+
 - Custom `useUser()` hook wrapping NextAuth's `useSession()`
 - Returns: `{ user: { id, email, name, image }, loading }`
 
@@ -330,6 +350,7 @@ PATCH  /api/user/business            # Update business (session required)
 ### Adding UI Components
 
 Use shadcn CLI to add new components:
+
 ```bash
 npx shadcn@latest add [component-name]
 ```
@@ -358,6 +379,7 @@ Following the clean architecture pattern:
 6. **Add translations**: Update `src/components/lang/i18n-dictionaries.ts`
 
 **Example structure:**
+
 ```
 src/app/(dashboard)/inventory/page.tsx (imports components)
 src/features/dashboard/inventory/components/
@@ -378,6 +400,7 @@ Following the clean architecture pattern:
 6. **Add translations**: Update `src/locales/` files (en.ts, fr.ts, id.ts)
 
 **Example structure:**
+
 ```
 src/app/(landing)/about/page.tsx (imports components)
 src/features/landing/about/components/
@@ -399,12 +422,14 @@ Following the clean architecture pattern:
 ### Working with Forms
 
 **Current Implementation:**
+
 - Forms use **server actions** with FormData API (not react-hook-form currently)
 - Manual error state management with `useState()`
 - NextAuth's `signIn()` function for authentication forms
 - Basic validation in `src/lib/validation.ts`
 
 **Pattern:**
+
 ```typescript
 async function onSubmit(formData: FormData) {
   const email = formData.get("email") as string;

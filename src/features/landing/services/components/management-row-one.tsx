@@ -8,42 +8,36 @@ export function ManagementRowOne() {
   const { t } = useI18n();
   const { ref, hasIntersected } = useIntersectionObserver({
     threshold: 0.1,
-    rootMargin: '50px',
-    triggerOnce: true
+    rootMargin: "50px",
+    triggerOnce: true,
   });
 
   return (
-    <section ref={ref} className="bg-white py-6 sm:py-4 flex items-center overflow-visible relative z-10">
+    <section
+      ref={ref}
+      className="relative z-10 flex items-center overflow-visible bg-white py-6 sm:py-4"
+    >
       <div className="services-narrow-container">
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-8 lg:gap-8 items-start lg:items-center">
+        <div className="grid grid-cols-1 items-start gap-4 sm:gap-8 lg:grid-cols-10 lg:items-center lg:gap-8">
           {/* Left Column (40%) - Text + Small Mockup */}
-          <div className="lg:col-span-4 space-y-3 sm:space-y-10">
+          <div className="space-y-3 sm:space-y-10 lg:col-span-4">
             {/* Title */}
-            <h2 
-              className="text-section-title"
-              style={{ color: "var(--color-brand-primary)" }}
-            >
+            <h2 className="text-section-title" style={{ color: "var(--color-brand-primary)" }}>
               {t("services.management.title")}
             </h2>
-            
+
             {/* Subtitle */}
-            <h3 
-              className="text-subtitle"
-              style={{ color: "var(--color-brand-primary)" }}
-            >
+            <h3 className="text-subtitle" style={{ color: "var(--color-brand-primary)" }}>
               {t("services.management.subtitle")}
             </h3>
-            
+
             {/* Description */}
-            <p 
-              className="text-description"
-              style={{ color: "#444444" }}
-            >
+            <p className="text-description" style={{ color: "#444444" }}>
               {t("services.management.description")}
             </p>
-            
+
             {/* Small Mockup */}
-            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-lg">
               {hasIntersected && (
                 <Image
                   src="/images/management-history.png"
@@ -59,8 +53,8 @@ export function ManagementRowOne() {
           </div>
 
           {/* Right Column (60%) - Large Mockup */}
-          <div className="lg:col-span-6 flex items-center">
-            <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+          <div className="flex items-center lg:col-span-6">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl">
               {hasIntersected && (
                 <Image
                   src="/images/management-editstock.png"

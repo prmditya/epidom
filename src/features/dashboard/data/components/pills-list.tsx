@@ -17,8 +17,7 @@ export function PillsList({ items, onSelect, selectedId }: PillsListProps) {
   const { t } = useI18n();
   const [query, setQuery] = useState("");
   const filtered = useMemo(
-    () =>
-      items.filter((i) => i.name.toLowerCase().includes(query.toLowerCase())),
+    () => items.filter((i) => i.name.toLowerCase().includes(query.toLowerCase())),
     [items, query]
   );
 
@@ -41,9 +40,9 @@ export function PillsList({ items, onSelect, selectedId }: PillsListProps) {
           <button
             key={i.id}
             onClick={() => onSelect(i.id)}
-            className={`rounded-lg border px-4 py-2.5 text-sm text-left transition-all shadow-sm hover:shadow-md ${
+            className={`rounded-lg border px-4 py-2.5 text-left text-sm shadow-sm transition-all hover:shadow-md ${
               selectedId === i.id
-                ? "bg-primary/10 border-primary/50 font-semibold ring-2 ring-primary/20"
+                ? "bg-primary/10 border-primary/50 ring-primary/20 font-semibold ring-2"
                 : "bg-card hover:bg-muted/60 hover:border-muted-foreground/30"
             }`}
           >
@@ -51,7 +50,7 @@ export function PillsList({ items, onSelect, selectedId }: PillsListProps) {
           </button>
         ))}
         {filtered.length === 0 && (
-          <p className="col-span-full text-sm text-muted-foreground text-center py-4">
+          <p className="text-muted-foreground col-span-full py-4 text-center text-sm">
             {t("messages.noResults")}
           </p>
         )}

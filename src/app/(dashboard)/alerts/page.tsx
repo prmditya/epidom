@@ -30,18 +30,18 @@ export default function AlertsPage() {
   return (
     <>
       <Card className="border-0 bg-transparent shadow-none">
-        <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-0 sm:px-1 py-4">
-          <CardTitle className="text-xl md:text-2xl font-bold flex items-center gap-2">
+        <CardHeader className="flex flex-col justify-between gap-3 px-0 py-4 sm:flex-row sm:items-center sm:px-1">
+          <CardTitle className="flex items-center gap-2 text-xl font-bold md:text-2xl">
             <span>{isOrders ? t("pages.ordersTitle") : t("pages.alertsTitle")}</span>
             {!isOrders && alertsCount > 0 && (
-              <span className="text-lg md:text-xl font-bold text-muted-foreground">
+              <span className="text-muted-foreground text-lg font-bold md:text-xl">
                 ({alertsCount})
               </span>
             )}
           </CardTitle>
           <Button
             size="sm"
-            className="rounded-full shadow-md hover:shadow-lg transition-all self-start sm:self-center"
+            className="self-start rounded-full shadow-md transition-all hover:shadow-lg sm:self-center"
             aria-pressed={isOrders}
             onClick={handleToggle}
           >

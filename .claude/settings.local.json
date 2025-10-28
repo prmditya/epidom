@@ -9,7 +9,9 @@
       "Bash(npx prisma generate)",
       "Bash(test -f .env)",
       "Bash(cat .env)",
-      "Bash(npx prisma db push)"
+      "Bash(npx prisma db push)",
+      "Bash(test:*)",
+      "Bash(pnpm add:*)"
     ],
     "deny": [],
     "ask": []

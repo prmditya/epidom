@@ -11,7 +11,7 @@ export function DataManageView() {
         {Array.from({ length: 8 }).map((_, i) => (
           <button
             key={i}
-            className="rounded-full border bg-background px-3 py-2 text-left text-sm hover:bg-muted"
+            className="bg-background hover:bg-muted rounded-full border px-3 py-2 text-left text-sm"
           >
             Item
           </button>
@@ -22,26 +22,20 @@ export function DataManageView() {
 
   return (
     <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1fr_1fr_1fr_380px]">
-      <div className="xl:col-span-3 rounded-xl bg-card p-4 shadow">
+      <div className="bg-card rounded-xl p-4 shadow xl:col-span-3">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Column
-            title={t("pages.manageData") + " — " + t("pages.materialsList")}
-          />
-          <Column
-            title={t("pages.manageData") + " — " + t("pages.recipesList")}
-          />
-          <Column
-            title={t("pages.manageData") + " — " + t("pages.suppliersList")}
-          />
+          <Column title={t("pages.manageData") + " — " + t("pages.materialsList")} />
+          <Column title={t("pages.manageData") + " — " + t("pages.recipesList")} />
+          <Column title={t("pages.manageData") + " — " + t("pages.suppliersList")} />
         </div>
       </div>
 
-      <aside className="rounded-xl bg-card p-4 shadow">
+      <aside className="bg-card rounded-xl p-4 shadow">
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded bg-muted" aria-hidden />
+          <div className="bg-muted h-12 w-12 rounded" aria-hidden />
           <div>
             <h3 className="text-lg font-semibold">{t("pages.classic")}</h3>
-            <p className="text-sm text-muted-foreground">{t("pages.recipe")}</p>
+            <p className="text-muted-foreground text-sm">{t("pages.recipe")}</p>
           </div>
         </div>
 
@@ -56,10 +50,7 @@ export function DataManageView() {
                 { n: "Wheat flour", q: "-0.132 Kg" },
                 { n: "Sugar", q: "-0.20 Kg" },
               ].map((x) => (
-                <li
-                  key={x.n}
-                  className="flex items-center justify-between px-3 py-2"
-                >
+                <li key={x.n} className="flex items-center justify-between px-3 py-2">
                   <span>{x.n}</span>
                   <span className="text-right">{x.q}</span>
                 </li>
@@ -73,18 +64,15 @@ export function DataManageView() {
             </div>
             <ul className="divide-y">
               {Array.from({ length: 8 }).map((_, i) => (
-                <li
-                  key={i}
-                  className="flex items-center gap-2 px-3 py-2 text-sm"
-                >
+                <li key={i} className="flex items-center gap-2 px-3 py-2 text-sm">
                   <span className="flex-1">Ingredient</span>
                   <input
-                    className="w-24 rounded-md border bg-background px-2 py-1 text-right"
+                    className="bg-background w-24 rounded-md border px-2 py-1 text-right"
                     defaultValue={0.0}
                   />
                   <button
                     aria-label="Remove"
-                    className="ml-1 h-6 w-6 rounded-full bg-destructive/10 text-destructive"
+                    className="bg-destructive/10 text-destructive ml-1 h-6 w-6 rounded-full"
                     title="Remove"
                   >
                     ●
@@ -93,7 +81,7 @@ export function DataManageView() {
               ))}
             </ul>
             <div className="flex justify-end gap-2 px-3 py-2">
-              <button className="rounded-full bg-primary px-3 py-1.5 text-sm text-primary-foreground">
+              <button className="bg-primary text-primary-foreground rounded-full px-3 py-1.5 text-sm">
                 {t("actions.save")}
               </button>
             </div>

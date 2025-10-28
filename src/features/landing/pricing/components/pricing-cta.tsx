@@ -9,11 +9,11 @@ export function PricingCta() {
 
   const handleViewPlansClick = () => {
     // Track click for analytics
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'view_plans_click', {
-        event_category: 'engagement',
-        event_label: 'pricing_cta',
-        value: 1
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "view_plans_click", {
+        event_category: "engagement",
+        event_label: "pricing_cta",
+        value: 1,
       });
     }
 
@@ -23,14 +23,14 @@ export function PricingCta() {
       // Calculate offset based on screen size for better visibility
       const isMobile = window.innerWidth < 768;
       const offset = isMobile ? 100 : 150; // More offset on desktop, less on mobile
-      
+
       // Get element position and add offset for better visibility
       const elementPosition = pricingCardsElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
+
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -38,24 +38,24 @@ export function PricingCta() {
   return (
     <section className="pb-10 sm:pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border-2 p-6 sm:p-8 md:p-12 text-center bg-muted/30">
-        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
-          {t("pricing.finalCta.title")}
-        </h3>
-        <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-          {t("pricing.finalCta.desc")}
-        </p>
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
-          <DynamicWaitlistDialog />
-          <Button 
-            variant="secondary" 
-            className="rounded-lg transition-colors duration-200 hover:bg-gray-200 hover:shadow-md" 
-            style={{ color: "var(--color-brand-primary)" }}
-            onClick={handleViewPlansClick}
-          >
-            {t("pricing.finalCta.goPayments")}
-          </Button>
-        </div>
+        <div className="bg-muted/30 rounded-2xl border-2 p-6 text-center sm:p-8 md:p-12">
+          <h3 className="text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
+            {t("pricing.finalCta.title")}
+          </h3>
+          <p className="text-muted-foreground mx-auto mt-3 max-w-2xl text-sm sm:text-base">
+            {t("pricing.finalCta.desc")}
+          </p>
+          <div className="mt-6 flex flex-col flex-wrap items-center justify-center gap-3 sm:flex-row">
+            <DynamicWaitlistDialog />
+            <Button
+              variant="secondary"
+              className="rounded-lg transition-colors duration-200 hover:bg-gray-200 hover:shadow-md"
+              style={{ color: "var(--color-brand-primary)" }}
+              onClick={handleViewPlansClick}
+            >
+              {t("pricing.finalCta.goPayments")}
+            </Button>
+          </div>
         </div>
       </div>
     </section>

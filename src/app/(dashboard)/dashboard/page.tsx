@@ -38,14 +38,14 @@ const orders = [
 
 export default function DashboardPage() {
   return (
-    <div className="grid gap-6 w-full overflow-hidden">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 w-full">
+    <div className="grid w-full gap-6 overflow-hidden">
+      <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <StockLevel stockUtilization={50} />
         <OrdersPending totalOpenOrders={10} />
         <ActiveRecipes totalActiveRecipes={20} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3 w-full">
+      <div className="grid w-full gap-4 lg:grid-cols-3">
         <ProductionHistoryChart chartData={chartData} />
         <CurrentWorkflow inStock={55} processing={28} delivered={17} />
       </div>

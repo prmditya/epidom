@@ -16,7 +16,7 @@ export function LanguageSwitcher() {
       <div className="relative inline-block">
         <select
           id={labelId}
-          className="appearance-none h-10 rounded-full bg-white text-gray-900 px-6 pr-8 text-sm font-semibold focus:outline-none cursor-pointer hover:bg-gray-50 transition-colors min-w-[60px]"
+          className="h-10 min-w-[60px] cursor-pointer appearance-none rounded-full bg-white px-6 pr-8 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 focus:outline-none"
           aria-label={t("common.language.label")}
           value={locale}
           onChange={(e) => setLocale(e.target.value as any)}
@@ -25,7 +25,7 @@ export function LanguageSwitcher() {
           <option value="fr">FR</option>
           <option value="id">ID</option>
         </select>
-        <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-900 pointer-events-none" />
+        <ChevronDown className="pointer-events-none absolute top-1/2 right-2.5 h-4 w-4 -translate-y-1/2 text-gray-900" />
       </div>
     </div>
   );

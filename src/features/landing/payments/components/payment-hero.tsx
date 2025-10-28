@@ -16,12 +16,12 @@ export function PaymentHero({ plan }: PaymentHeroProps) {
     if (plan === "enterprise") {
       return {
         title: t("payments.enterprise.hero.title"),
-        subtitle: t("payments.enterprise.hero.subtitle")
+        subtitle: t("payments.enterprise.hero.subtitle"),
       };
     }
     return {
       title: t("payments.hero.title"),
-      subtitle: t("payments.hero.subtitle")
+      subtitle: t("payments.hero.subtitle"),
     };
   };
 
@@ -31,23 +31,17 @@ export function PaymentHero({ plan }: PaymentHeroProps) {
     <section className="pb-8 sm:pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <Button 
-            asChild 
-            variant="ghost" 
-            className="mb-6 text-gray-600 hover:text-gray-900"
-          >
+          <Button asChild variant="ghost" className="mb-6 text-gray-600 hover:text-gray-900">
             <Link href="/pricing" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               {t("payments.backToPricing")}
             </Link>
           </Button>
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+
+          <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             {title}
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
+          <p className="mx-auto max-w-2xl text-lg text-gray-600 sm:text-xl">{subtitle}</p>
         </div>
       </div>
     </section>

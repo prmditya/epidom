@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface SafeImageProps {
-  src: string
-  alt: string
-  width?: number
-  height?: number
-  className?: string
-  fill?: boolean
-  placeholderText?: string
-  priority?: boolean
-  quality?: number
-  sizes?: string
-  style?: React.CSSProperties
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+  fill?: boolean;
+  placeholderText?: string;
+  priority?: boolean;
+  quality?: number;
+  sizes?: string;
+  style?: React.CSSProperties;
 }
 
 export function SafeImage({
@@ -29,62 +29,79 @@ export function SafeImage({
   priority = false,
   quality = 75,
   sizes,
-  style
+  style,
 }: SafeImageProps) {
-  const [hasError, setHasError] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleError = () => {
-    setHasError(true)
-    setIsLoading(false)
-  }
+    setHasError(true);
+    setIsLoading(false);
+  };
 
   const handleLoad = () => {
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   // Jika ada error, tampilkan placeholder inline
   if (hasError) {
     if (fill) {
       // Untuk fill=true, placeholder harus mengisi seluruh container
       return (
-        <div 
+        <div
           className={cn(
-            "absolute inset-0 rounded-lg bg-gray-100 flex items-center justify-center",
+            "absolute inset-0 flex items-center justify-center rounded-lg bg-gray-100",
             className
           )}
           style={style}
         >
-          <div className="text-center p-4">
-            <div className="w-16 h-16 mx-auto mb-2 bg-gray-300 rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div className="p-4 text-center">
+            <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-lg bg-gray-300">
+              <svg
+                className="h-8 w-8 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
             </div>
-            <p className="text-sm text-gray-500 font-medium">{placeholderText || alt}</p>
+            <p className="text-sm font-medium text-gray-500">{placeholderText || alt}</p>
           </div>
         </div>
-      )
+      );
     } else {
       // Untuk width/height yang ditentukan
       return (
-        <div 
-          className={cn(
-            "rounded-lg bg-gray-100 flex items-center justify-center",
-            className
-          )}
+        <div
+          className={cn("flex items-center justify-center rounded-lg bg-gray-100", className)}
           style={{ width, height, ...style }}
         >
-          <div className="text-center p-2">
-            <div className="w-12 h-12 mx-auto mb-2 bg-gray-300 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div className="p-2 text-center">
+            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-300">
+              <svg
+                className="h-6 w-6 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
             </div>
-            <p className="text-xs text-gray-500 font-medium">{placeholderText || alt}</p>
+            <p className="text-xs font-medium text-gray-500">{placeholderText || alt}</p>
           </div>
         </div>
-      )
+      );
     }
   }
 
@@ -92,42 +109,62 @@ export function SafeImage({
   if (isLoading) {
     if (fill) {
       return (
-        <div 
+        <div
           className={cn(
-            "absolute inset-0 rounded-lg bg-gray-100 flex items-center justify-center animate-pulse",
+            "absolute inset-0 flex animate-pulse items-center justify-center rounded-lg bg-gray-100",
             className
           )}
           style={style}
         >
-          <div className="text-center p-4">
-            <div className="w-16 h-16 mx-auto mb-2 bg-gray-300 rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div className="p-4 text-center">
+            <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-lg bg-gray-300">
+              <svg
+                className="h-8 w-8 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
             </div>
-            <p className="text-sm text-gray-400 font-medium">Loading...</p>
+            <p className="text-sm font-medium text-gray-400">Loading...</p>
           </div>
         </div>
-      )
+      );
     } else {
       return (
-        <div 
+        <div
           className={cn(
-            "rounded-lg bg-gray-100 flex items-center justify-center animate-pulse",
+            "flex animate-pulse items-center justify-center rounded-lg bg-gray-100",
             className
           )}
           style={{ width, height, ...style }}
         >
-          <div className="text-center p-2">
-            <div className="w-12 h-12 mx-auto mb-2 bg-gray-300 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div className="p-2 text-center">
+            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-300">
+              <svg
+                className="h-6 w-6 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
             </div>
-            <p className="text-xs text-gray-400 font-medium">Loading...</p>
+            <p className="text-xs font-medium text-gray-400">Loading...</p>
           </div>
         </div>
-      )
+      );
     }
   }
 
@@ -147,7 +184,7 @@ export function SafeImage({
         onLoad={handleLoad}
         loading={priority ? "eager" : "lazy"}
       />
-    )
+    );
   }
 
   return (
@@ -165,5 +202,5 @@ export function SafeImage({
       onLoad={handleLoad}
       loading={priority ? "eager" : "lazy"}
     />
-  )
+  );
 }

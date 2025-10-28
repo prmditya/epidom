@@ -1,6 +1,7 @@
 # Dependency Audit Report
 
 ## Overview
+
 This document provides recommendations for optimizing the project's dependencies to reduce bundle size and improve performance.
 
 ## Potentially Unused Dependencies
@@ -67,11 +68,13 @@ This document provides recommendations for optimizing the project's dependencies
 ## Used Dependencies (Verified)
 
 ### Core Framework
+
 - `next` (15.5.4) - App Router
 - `react` (19.1.0) - UI library
 - `react-dom` (19.1.0) - DOM rendering
 
 ### UI Components
+
 - `@radix-ui/*` - All components are used
 - `lucide-react` (^0.454.0) - Icons throughout app
 - `class-variance-authority` (^0.7.1) - Used in UI components
@@ -79,11 +82,13 @@ This document provides recommendations for optimizing the project's dependencies
 - `tailwind-merge` (^3.3.1) - Tailwind class merging
 
 ### Styling
+
 - `tailwindcss` (^4.1.9) - CSS framework
 - `autoprefixer` (^10.4.20) - CSS prefixing
 - `tailwindcss-animate` (^1.0.7) - Animation utilities
 
 ### Utilities
+
 - `zod` (3.25.76) - Validation (used in validation.ts)
 - `sonner` (^1.7.4) - Toast notifications
 - `embla-carousel-react` (8.5.1) - Used in pricing cards
@@ -91,15 +96,18 @@ This document provides recommendations for optimizing the project's dependencies
 ## Recommendations
 
 ### Immediate Actions (High Impact)
+
 1. Remove unused dependencies listed in "High Priority" section
 2. Run `pnpm install` to update lock file
 3. Test application to ensure no breaking changes
 
 ### Bundle Size Impact
+
 - **Total potential reduction**: ~345KB
 - **Percentage reduction**: ~15-20% of current bundle
 
 ### Commands to Execute
+
 ```bash
 # Remove high-priority unused dependencies
 pnpm remove react-i18next framer-motion @hookform/resolvers input-otp vaul
@@ -112,12 +120,14 @@ pnpm build
 ```
 
 ### Post-Removal Verification
+
 1. Run `pnpm build` to ensure no build errors
 2. Test all major features (pricing, payments, dashboard)
 3. Check for any runtime errors in browser console
 4. Verify i18n functionality still works
 
 ## Notes
+
 - All removals are based on static analysis of the codebase
 - Some dependencies might be used in ways not detected by simple grep
 - Always test thoroughly after removing dependencies

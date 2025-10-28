@@ -7,18 +7,18 @@ export function TrackingPreviewSection() {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white py-6 sm:py-12 sm:min-h-screen flex items-center overflow-visible relative z-10">
+    <section className="relative z-10 flex items-center overflow-visible bg-white py-6 sm:min-h-screen sm:py-12">
       <div className="services-narrow-container">
         {/* Title - Centered */}
-        <h2 
-          className="text-section-title text-center mb-6 sm:mb-8 lg:mb-12"
+        <h2
+          className="text-section-title mb-6 text-center sm:mb-8 lg:mb-12"
           style={{ color: "var(--color-brand-primary)" }}
         >
           {t("services.tracking.title")}
         </h2>
-        
+
         {/* Large Mockup - Almost full width */}
-        <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+        <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl">
           <Image
             src="/images/tracking.png"
             alt="Active stock tracking interface"

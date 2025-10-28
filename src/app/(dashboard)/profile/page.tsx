@@ -64,7 +64,7 @@ export default function ProfilePage() {
 
   if (sessionLoading || loading) {
     return (
-      <div className="w-full flex items-center justify-center py-12">
+      <div className="flex w-full items-center justify-center py-12">
         <p className="text-muted-foreground">Loading profile...</p>
       </div>
     );
@@ -72,7 +72,7 @@ export default function ProfilePage() {
 
   if (!sessionUser || !profileData) {
     return (
-      <div className="w-full flex items-center justify-center py-12">
+      <div className="flex w-full items-center justify-center py-12">
         <p className="text-muted-foreground">Failed to load profile</p>
       </div>
     );
@@ -80,10 +80,7 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full space-y-6">
-      <ProfileHeader
-        user={profileData.user}
-        subscription={profileData.subscription}
-      />
+      <ProfileHeader user={profileData.user} subscription={profileData.subscription} />
 
       <div className="grid gap-6 lg:grid-cols-2">
         <PersonalInfoCard user={profileData.user} onUpdate={fetchProfileData} />

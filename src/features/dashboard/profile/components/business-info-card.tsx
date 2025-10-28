@@ -33,9 +33,7 @@ export function BusinessInfoCard({ business, userId, onUpdate }: BusinessInfoCar
           </CardHeader>
           <CardContent>
             <div className="flex flex-col items-center justify-center py-8 text-center">
-              <p className="text-muted-foreground mb-4">
-                No business information added yet
-              </p>
+              <p className="text-muted-foreground mb-4">No business information added yet</p>
               <Button onClick={() => setEditOpen(true)} className="gap-2">
                 <Plus className="h-4 w-4" />
                 Add Business Information
@@ -70,12 +68,7 @@ export function BusinessInfoCard({ business, userId, onUpdate }: BusinessInfoCar
       <Card className="border-2">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-xl font-bold">Business Information</CardTitle>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setEditOpen(true)}
-            className="gap-2"
-          >
+          <Button variant="outline" size="sm" onClick={() => setEditOpen(true)} className="gap-2">
             <Pencil className="h-4 w-4" />
             Edit
           </Button>
@@ -84,9 +77,7 @@ export function BusinessInfoCard({ business, userId, onUpdate }: BusinessInfoCar
           <div className="grid gap-4 sm:grid-cols-2">
             {infoItems.map((item, index) => (
               <div key={index} className="space-y-1">
-                <p className="text-sm font-medium text-muted-foreground">
-                  {item.label}
-                </p>
+                <p className="text-muted-foreground text-sm font-medium">{item.label}</p>
                 <p className="text-base font-semibold break-words">{item.value}</p>
               </div>
             ))}

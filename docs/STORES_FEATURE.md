@@ -7,6 +7,7 @@ The Stores feature enables **multi-outlet/multi-store management** for food manu
 ## Architecture Decision
 
 **Scenario 1: Multi-Store ERP** ✅ (Implemented)
+
 - One Business → Multiple Stores (1-to-many)
 - Each store has independent inventory tracking
 - User flow: Login → Store Selection → Dashboard (scoped to store)
@@ -21,7 +22,7 @@ model Store {
   id          String   @id @default(cuid())
   businessId  String
   business    Business @relation(fields: [businessId], references: [id])
-  
+
   name        String
   address     String?
   city        String?
@@ -29,11 +30,11 @@ model Store {
   phone       String?
   email       String?
   image       String?
-  
+
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+
   // Relations - all store data
   products         Product[]
   ingredients      Ingredient[]
@@ -47,8 +48,9 @@ model Store {
 ### Updated Relations
 
 All inventory-related models now reference `storeId` instead of `businessId`:
+
 - ✅ Product
-- ✅ Ingredient  
+- ✅ Ingredient
 - ✅ Recipe
 - ✅ Supplier
 - ✅ Order
@@ -85,6 +87,7 @@ src/features/stores/
 ### UI Components
 
 #### 1. SiteHeader (Reused)
+
 - Global navbar from landing pages
 - Configured with `variant="authenticated"` to show logout button
 - `showNav={false}` to hide navigation links
@@ -92,12 +95,14 @@ src/features/stores/
 - Consistent styling across app
 
 #### 2. StoresContainer
+
 - Page title: "Vos boutiques"
 - Create store button (black, rounded, with + icon)
 - Responsive grid layout (1 → 2 → 3 columns)
 - Empty state for no stores
 
 #### 3. StoreCard
+
 - Store image (aspect ratio 16:9)
 - Store name (bold, prominent)
 - City info
@@ -105,6 +110,7 @@ src/features/stores/
 - Click to select store → redirects to dashboard
 
 #### 4. CreateStoreButton
+
 - Dialog form with store name + city fields
 - Form validation
 - Mock API integration (TODO: connect to backend)
@@ -149,8 +155,9 @@ OR
 ## Mock Data
 
 Currently using 3 mock stores:
+
 1. "Boutique boulangerie n°1" - Bali
-2. "test" - paris  
+2. "test" - paris
 3. "Mur Mur" - Canggu
 
 Mock data stored in: `src/features/stores/stores/components/stores-container.tsx`
@@ -158,6 +165,7 @@ Mock data stored in: `src/features/stores/stores/components/stores-container.tsx
 ## Next Steps (TODO)
 
 ### Backend Integration
+
 - [ ] Create API route: `POST /api/stores` (create store)
 - [ ] Create API route: `GET /api/stores` (list stores)
 - [ ] Create API route: `PUT /api/stores/:id` (update store)
@@ -166,6 +174,7 @@ Mock data stored in: `src/features/stores/stores/components/stores-container.tsx
 - [ ] Connect frontend to real API
 
 ### Enhanced Features
+
 - [ ] Store image upload
 - [ ] Edit store functionality
 - [ ] Delete/archive store
@@ -175,6 +184,7 @@ Mock data stored in: `src/features/stores/stores/components/stores-container.tsx
 - [ ] Store switching in dashboard (dropdown in topbar)
 
 ### Authentication & Authorization
+
 - [ ] Protect /stores route (require login)
 - [ ] Store selection persistence (localStorage/session)
 - [ ] Auto-redirect to last selected store
@@ -183,12 +193,14 @@ Mock data stored in: `src/features/stores/stores/components/stores-container.tsx
 ## Technical Details
 
 ### Dependencies Used
+
 - **shadcn/ui**: Card, Dialog, Button, Input, Label
 - **lucide-react**: Plus icon
 - **Next.js**: Image, Link
 - **i18n**: Custom provider with translations
 
 ### Styling
+
 - Tailwind CSS with neutral color palette
 - Responsive grid (mobile → tablet → desktop)
 - Smooth transitions and hover effects
@@ -196,6 +208,7 @@ Mock data stored in: `src/features/stores/stores/components/stores-container.tsx
 - Shadow elevation for depth
 
 ### Performance Considerations
+
 - Server components where possible
 - Client components only when needed (form state, dialogs)
 - Image optimization with Next.js Image
@@ -204,6 +217,7 @@ Mock data stored in: `src/features/stores/stores/components/stores-container.tsx
 ## Files Created/Modified
 
 ### Created Files
+
 ```
 src/app/(stores)/layout.tsx
 src/app/(stores)/stores/page.tsx
@@ -214,6 +228,7 @@ REPOS/epidom-mvp/STORES_FEATURE.md
 ```
 
 ### Modified Files
+
 ```
 prisma/schema.prisma (added Store model, updated relations)
 src/features/landing/components/site-header.tsx (added variant prop for reuse)

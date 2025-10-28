@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -83,19 +78,14 @@ export function EditPersonalInfoDialog({
 
         <form action={handleSubmit} className="space-y-4">
           {error && (
-            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive border border-destructive/20">
+            <div className="bg-destructive/10 text-destructive border-destructive/20 rounded-md border p-3 text-sm">
               {error}
             </div>
           )}
 
           <div className="space-y-2">
             <Label htmlFor="name">{t("auth.name")}</Label>
-            <Input
-              id="name"
-              name="name"
-              defaultValue={user.name || ""}
-              disabled={loading}
-            />
+            <Input id="name" name="name" defaultValue={user.name || ""} disabled={loading} />
           </div>
 
           <div className="space-y-2">
@@ -108,9 +98,7 @@ export function EditPersonalInfoDialog({
               disabled
               className="bg-muted"
             />
-            <p className="text-xs text-muted-foreground">
-              Email cannot be changed
-            </p>
+            <p className="text-muted-foreground text-xs">Email cannot be changed</p>
           </div>
 
           <div className="space-y-2">

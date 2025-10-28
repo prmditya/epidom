@@ -35,11 +35,7 @@ export function TrackingToggle() {
             Orders to place
           </Button>
         ) : (
-          <Button
-            onClick={() => switchTo("active")}
-            variant="secondary"
-            className="rounded-full"
-          >
+          <Button onClick={() => switchTo("active")} variant="secondary" className="rounded-full">
             Back to tracking
           </Button>
         )}

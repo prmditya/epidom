@@ -7,14 +7,10 @@ export const metadata: Metadata = {
   description: "Manage your stores",
 };
 
-export default function StoresLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function StoresLayout({ children }: { children: React.ReactNode }) {
   return (
     <I18nProvider>
-      <div className="min-h-screen bg-neutral-50 flex flex-col">
+      <div className="flex min-h-screen flex-col bg-neutral-50">
         <SiteHeader variant="authenticated" showNav={false} />
         <main className="flex-1 pt-23 sm:pt-32">{children}</main>
       </div>
