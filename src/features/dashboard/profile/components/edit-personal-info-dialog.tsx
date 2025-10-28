@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useI18n } from "@/components/lang/i18n-provider";
+import type { ApiErrorResponse } from "@/types/api";
 
 interface EditPersonalInfoDialogProps {
   open: boolean;
@@ -29,6 +30,10 @@ interface EditPersonalInfoDialogProps {
   onUpdate: () => void;
 }
 
+interface FieldErrors {
+  [key: string]: string;
+}
+
 export function EditPersonalInfoDialog({
   open,
   onOpenChange,
@@ -38,10 +43,12 @@ export function EditPersonalInfoDialog({
   const { t } = useI18n();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   async function handleSubmit(formData: FormData) {
     setLoading(true);
     setError("");
+    setFieldErrors({});
 
     try {
       const response = await fetch("/api/user/profile", {
@@ -56,13 +63,29 @@ export function EditPersonalInfoDialog({
         }),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to update profile");
+        // Handle validation errors with field-level details
+        if (result.error?.code === "VALIDATION_ERROR" && result.error?.details) {
+          const errors: FieldErrors = {};
+          if (Array.isArray(result.error.details)) {
+            result.error.details.forEach((detail: { field: string; message: string }) => {
+              errors[detail.field] = detail.message;
+            });
+          }
+          setFieldErrors(errors);
+          setError(result.error.message || "Please fix the errors below");
+        } else {
+          setError(result.error?.message || "Failed to update profile. Please try again.");
+        }
+        return;
       }
 
       onUpdate();
       onOpenChange(false);
     } catch (err) {
+      console.error("Error updating profile:", err);
       setError("Failed to update profile. Please try again.");
     } finally {
       setLoading(false);
@@ -85,7 +108,16 @@ export function EditPersonalInfoDialog({
 
           <div className="space-y-2">
             <Label htmlFor="name">{t("auth.name")}</Label>
-            <Input id="name" name="name" defaultValue={user.name || ""} disabled={loading} />
+            <Input
+              id="name"
+              name="name"
+              defaultValue={user.name || ""}
+              disabled={loading}
+              className={fieldErrors.name ? "border-destructive" : ""}
+            />
+            {fieldErrors.name && (
+              <p className="text-destructive text-sm">{fieldErrors.name}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -110,7 +142,11 @@ export function EditPersonalInfoDialog({
               defaultValue={user.phone || ""}
               placeholder="+1 234 567 8900"
               disabled={loading}
+              className={fieldErrors.phone ? "border-destructive" : ""}
             />
+            {fieldErrors.phone && (
+              <p className="text-destructive text-sm">{fieldErrors.phone}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
