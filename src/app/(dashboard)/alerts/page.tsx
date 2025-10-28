@@ -7,7 +7,7 @@ import { OrdersView } from "@/features/dashboard/alerts/components/orders-view";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { useI18n } from "@/components/lang/i18n-provider";
-import { useAlertsCount } from "@/hooks/use-alerts-count";
+import { useAlertsCount } from "@/features/dashboard/alerts/hooks/use-alerts-count";
 
 export default function AlertsPage() {
   const router = useRouter();

@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/components/lang/i18n-provider";
-import { useAlertsCount } from "@/hooks/use-alerts-count";
+import { useAlertsCount } from "@/features/dashboard/alerts/hooks/use-alerts-count";
 
 const itemDefs = [
   { href: "/profile", key: "nav.profile", icon: UserRound, showBadge: false },
