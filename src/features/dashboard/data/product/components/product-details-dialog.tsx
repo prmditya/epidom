@@ -66,9 +66,10 @@ export default function ProductDetailsDialog({
     const retailMargin = product.retailPrice > 0 ? (retailProfit / product.retailPrice) * 100 : 0;
 
     const wholesaleProfit = product.wholesalePrice ? product.wholesalePrice - costPerUnit : 0;
-    const wholesaleMargin = product.wholesalePrice && product.wholesalePrice > 0
-      ? (wholesaleProfit / product.wholesalePrice) * 100
-      : 0;
+    const wholesaleMargin =
+      product.wholesalePrice && product.wholesalePrice > 0
+        ? (wholesaleProfit / product.wholesalePrice) * 100
+        : 0;
 
     return {
       costPerUnit,
@@ -122,12 +123,8 @@ export default function ProductDetailsDialog({
                   </Button>
                 )}
                 {onDelete && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setDeleteDialogOpen(true)}
-                  >
-                    <Trash2 className="h-4 w-4 text-destructive" />
+                  <Button variant="outline" size="sm" onClick={() => setDeleteDialogOpen(true)}>
+                    <Trash2 className="text-destructive h-4 w-4" />
                   </Button>
                 )}
               </div>
@@ -139,11 +136,11 @@ export default function ProductDetailsDialog({
             <div className="grid gap-4 sm:grid-cols-3">
               <Card>
                 <CardContent className="flex items-center gap-3 pt-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Package className="h-5 w-5 text-primary" />
+                  <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-lg">
+                    <Package className="text-primary h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Current Stock</p>
+                    <p className="text-muted-foreground text-xs">Current Stock</p>
                     <p className="font-semibold">
                       {product.currentStock} {product.unit}
                     </p>
@@ -157,7 +154,7 @@ export default function ProductDetailsDialog({
                     <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Retail Price</p>
+                    <p className="text-muted-foreground text-xs">Retail Price</p>
                     <p className="font-semibold">{formatCurrency(product.retailPrice)}</p>
                   </div>
                 </CardContent>
@@ -169,7 +166,7 @@ export default function ProductDetailsDialog({
                     <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Stock Value</p>
+                    <p className="text-muted-foreground text-xs">Stock Value</p>
                     <p className="font-semibold">{formatCurrency(totalValue)}</p>
                   </div>
                 </CardContent>
@@ -188,27 +185,27 @@ export default function ProductDetailsDialog({
                 <div className="grid gap-4 sm:grid-cols-2">
                   {product.sku && (
                     <div>
-                      <p className="text-sm text-muted-foreground">SKU</p>
+                      <p className="text-muted-foreground text-sm">SKU</p>
                       <p className="font-medium">{product.sku}</p>
                     </div>
                   )}
                   {product.category && (
                     <div>
-                      <p className="text-sm text-muted-foreground">Category</p>
+                      <p className="text-muted-foreground text-sm">Category</p>
                       <Badge variant="secondary">{product.category}</Badge>
                     </div>
                   )}
                   {product.barcode && (
                     <div>
-                      <p className="text-sm text-muted-foreground">Barcode</p>
+                      <p className="text-muted-foreground text-sm">Barcode</p>
                       <div className="flex items-center gap-2">
-                        <Barcode className="h-4 w-4 text-muted-foreground" />
+                        <Barcode className="text-muted-foreground h-4 w-4" />
                         <p className="font-mono font-medium">{product.barcode}</p>
                       </div>
                     </div>
                   )}
                   <div>
-                    <p className="text-sm text-muted-foreground">Unit</p>
+                    <p className="text-muted-foreground text-sm">Unit</p>
                     <p className="font-medium">{product.unit}</p>
                   </div>
                 </div>
@@ -228,29 +225,27 @@ export default function ProductDetailsDialog({
                   <div>
                     <p className="font-semibold">{recipe.name}</p>
                     {recipe.description && (
-                      <p className="text-sm text-muted-foreground">{recipe.description}</p>
+                      <p className="text-muted-foreground text-sm">{recipe.description}</p>
                     )}
                   </div>
                   <Separator />
                   <div className="grid gap-4 sm:grid-cols-3">
                     <div>
-                      <p className="text-xs text-muted-foreground">Yield</p>
+                      <p className="text-muted-foreground text-xs">Yield</p>
                       <p className="font-medium">
                         {recipe.yieldQuantity} {recipe.yieldUnit}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Production Cost</p>
+                      <p className="text-muted-foreground text-xs">Production Cost</p>
                       <p className="font-medium">{formatCurrency(recipe.costPerBatch)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Cost per Unit</p>
-                      <p className="font-medium">
-                        {formatCurrency(margins.costPerUnit)}
-                      </p>
+                      <p className="text-muted-foreground text-xs">Cost per Unit</p>
+                      <p className="font-medium">{formatCurrency(margins.costPerUnit)}</p>
                     </div>
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     Ingredients: {recipe.ingredients.length} items
                   </div>
                 </CardContent>
@@ -267,7 +262,7 @@ export default function ProductDetailsDialog({
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Retail Pricing */}
-                <div className="rounded-lg border bg-card p-4">
+                <div className="bg-card rounded-lg border p-4">
                   <div className="mb-3 flex items-center justify-between">
                     <h4 className="font-semibold">Retail</h4>
                     <Badge variant="default">Primary</Badge>
@@ -303,7 +298,7 @@ export default function ProductDetailsDialog({
 
                 {/* Wholesale Pricing */}
                 {product.wholesalePrice && (
-                  <div className="rounded-lg border bg-card p-4">
+                  <div className="bg-card rounded-lg border p-4">
                     <div className="mb-3 flex items-center justify-between">
                       <h4 className="font-semibold">Wholesale</h4>
                       <Badge variant="secondary">Bulk</Badge>
@@ -343,18 +338,22 @@ export default function ProductDetailsDialog({
                 )}
 
                 {/* Potential Revenue */}
-                <div className="rounded-lg bg-muted p-4">
+                <div className="bg-muted rounded-lg p-4">
                   <h4 className="mb-2 font-semibold">Potential Revenue (Current Stock)</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Retail ({product.currentStock} {product.unit})</span>
+                      <span className="text-muted-foreground">
+                        Retail ({product.currentStock} {product.unit})
+                      </span>
                       <span className="font-semibold">
                         {formatCurrency(product.currentStock * product.retailPrice)}
                       </span>
                     </div>
                     {product.wholesalePrice && (
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">Wholesale ({product.currentStock} {product.unit})</span>
+                        <span className="text-muted-foreground">
+                          Wholesale ({product.currentStock} {product.unit})
+                        </span>
                         <span className="font-semibold">
                           {formatCurrency(product.currentStock * product.wholesalePrice)}
                         </span>
@@ -391,19 +390,19 @@ export default function ProductDetailsDialog({
 
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <p className="text-xs text-muted-foreground">Minimum Stock</p>
+                    <p className="text-muted-foreground text-xs">Minimum Stock</p>
                     <p className="font-semibold">
                       {product.minStock} {product.unit}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Current Stock</p>
+                    <p className="text-muted-foreground text-xs">Current Stock</p>
                     <p className="font-semibold">
                       {product.currentStock} {product.unit}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Maximum Stock</p>
+                    <p className="text-muted-foreground text-xs">Maximum Stock</p>
                     <p className="font-semibold">
                       {product.maxStock} {product.unit}
                     </p>
@@ -436,7 +435,7 @@ export default function ProductDetailsDialog({
             </Card>
 
             {/* Metadata */}
-            <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-2">
+            <div className="text-muted-foreground grid gap-4 text-sm sm:grid-cols-2">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 <span>Created: {formatDate(product.createdAt)}</span>

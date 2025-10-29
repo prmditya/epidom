@@ -145,11 +145,15 @@ export interface Product {
   recipeId?: string;
   recipe?: Recipe;
   category?: string;
+  currentStock: number;
+  minStock: number;
+  maxStock: number;
   retailPrice: number;
   wholesalePrice?: number;
   costPrice: number;
   unit: string;
   imageUrl?: string;
+  barcode?: string;
   storeId: string;
   variants?: ProductVariant[];
   createdAt: Date;
@@ -593,4 +597,3 @@ export interface ExportParams {
     to: Date;
   };
 }
-

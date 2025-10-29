@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DataManageView } from "./data-manage";
 import { Section } from "./section";
 import { MaterialsSection } from "./materials-section";
-import { RecipesSection } from "./recipes-section";
+import { RecipesSection } from "../recipes/components/recipes-section";
 import { useI18n } from "@/components/lang/i18n-provider";
 import { MOCK_MATERIALS, MOCK_RECIPES, MOCK_PRODUCTS, MOCK_SUPPLIERS } from "@/mocks";
 

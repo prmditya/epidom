@@ -243,7 +243,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
           <div className="flex flex-col gap-3">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <Input
                 placeholder="Search by name, description, or category..."
                 value={searchQuery}
@@ -308,7 +308,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
 
             {/* Bulk Select All */}
             {bulkSelectMode && (
-              <div className="flex items-center gap-2 rounded-lg border bg-muted/50 p-3">
+              <div className="bg-muted/50 flex items-center gap-2 rounded-lg border p-3">
                 <Checkbox
                   checked={
                     selectedIds.size === processedRecipes.length && processedRecipes.length > 0
@@ -324,7 +324,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
 
           {/* Results Count */}
           <div className="flex items-center justify-between border-b pb-2">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Showing {processedRecipes.length} of {recipes.length} recipes
             </p>
           </div>
@@ -338,13 +338,13 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
               return (
                 <div
                   key={recipe.id}
-                  className={`group relative rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md ${
-                    isSelected ? "ring-2 ring-primary" : ""
+                  className={`group bg-card relative rounded-lg border p-4 shadow-sm transition-all hover:shadow-md ${
+                    isSelected ? "ring-primary ring-2" : ""
                   }`}
                 >
                   {/* Bulk Select Checkbox */}
                   {bulkSelectMode && (
-                    <div className="absolute left-2 top-2">
+                    <div className="absolute top-2 left-2">
                       <Checkbox
                         checked={isSelected}
                         onCheckedChange={() => toggleSelectItem(recipe.id)}
@@ -356,7 +356,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                   <div className={bulkSelectMode ? "pl-6" : ""}>
                     <div className="mb-3 flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-sm leading-tight line-clamp-2">
+                        <h3 className="line-clamp-2 text-sm leading-tight font-semibold">
                           {recipe.name}
                         </h3>
                         {recipe.category && (
@@ -365,48 +365,48 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                           </Badge>
                         )}
                       </div>
-                      <div className="ml-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                        <ChefHat className="h-5 w-5 text-primary" />
+                      <div className="bg-primary/10 ml-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
+                        <ChefHat className="text-primary h-5 w-5" />
                       </div>
                     </div>
 
                     {recipe.description && (
-                      <p className="mb-3 text-xs text-muted-foreground line-clamp-2">
+                      <p className="text-muted-foreground mb-3 line-clamp-2 text-xs">
                         {recipe.description}
                       </p>
                     )}
 
                     {/* Recipe Metrics */}
                     <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
                         <ChefHat className="h-3 w-3" />
                         <span>
                           Yield: {recipe.yieldQuantity} {recipe.yieldUnit}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
                         <Clock className="h-3 w-3" />
                         <span>{formatDuration(recipe.productionTimeMinutes)}</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs">
                         <DollarSign className="h-3 w-3 text-green-600" />
                         <div className="flex-1">
-                          <span className="font-medium text-foreground">
+                          <span className="text-foreground font-medium">
                             {formatCurrency(recipe.costPerBatch)}
                           </span>
                           <span className="text-muted-foreground"> per batch</span>
                         </div>
                       </div>
-                      <div className="rounded bg-muted px-2 py-1 text-xs">
+                      <div className="bg-muted rounded px-2 py-1 text-xs">
                         <span className="text-muted-foreground">Per unit: </span>
-                        <span className="font-semibold text-foreground">
+                        <span className="text-foreground font-semibold">
                           {formatCurrency(costPerUnit)}
                         </span>
                       </div>
                     </div>
 
                     {/* Ingredients Count */}
-                    <div className="mt-3 text-xs text-muted-foreground">
+                    <div className="text-muted-foreground mt-3 text-xs">
                       {recipe.ingredients.length} ingredient
                       {recipe.ingredients.length !== 1 ? "s" : ""}
                     </div>
@@ -435,7 +435,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 text-xs text-destructive hover:bg-destructive/10"
+                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
                           onClick={() => handleDeleteClick(recipe)}
                         >
                           <Trash2 className="h-3 w-3" />
@@ -450,7 +450,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
             {/* Empty State */}
             {processedRecipes.length === 0 && (
               <div className="col-span-full py-12 text-center">
-                <ChefHat className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                <ChefHat className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                 <p className="text-muted-foreground">
                   {hasActiveFilters ? "No recipes match your filters" : "No recipes found"}
                 </p>
