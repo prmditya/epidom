@@ -84,6 +84,20 @@ export function formatRelativeTime(
 }
 
 /**
+ * Format duration given in minutes to "Xh Ym" format
+ */
+export const formatDuration = (minutes: number | undefined) => {
+  if (minutes === undefined || minutes === null) return "—";
+  const m = Math.max(0, Math.floor(minutes));
+  const h = Math.floor(m / 60);
+  const rem = m % 60;
+  if (h > 0) {
+    return `${h}h${rem > 0 ? ` ${rem}m` : ""}`;
+  }
+  return `${rem}m`;
+};
+
+/**
  * Format date for input fields (YYYY-MM-DD)
  */
 export function formatDateForInput(date: Date | string | null | undefined): string {

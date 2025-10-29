@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DataManageView } from "./data-manage";
 import { Section } from "./section";
 import { MaterialsSection } from "./materials-section";
+import { RecipesSection } from "./recipes-section";
 import { useI18n } from "@/components/lang/i18n-provider";
 import { MOCK_MATERIALS, MOCK_RECIPES, MOCK_PRODUCTS, MOCK_SUPPLIERS } from "@/mocks";
 
@@ -49,7 +50,7 @@ export function DataView() {
         <MaterialsSection materials={MOCK_MATERIALS} />
       </TabsContent>
       <TabsContent value="recipes">
-        <Section items={MOCK_RECIPES} label={t("data.recipes")} />
+        <RecipesSection recipes={MOCK_RECIPES} />
       </TabsContent>
       <TabsContent value="products">
         <Section items={MOCK_PRODUCTS} label={t("data.products")} />
