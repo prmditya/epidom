@@ -14,7 +14,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useI18n } from "@/components/lang/i18n-provider";
-import type { Order } from "@/mocks";
+import type { Order } from "@/types/entities";
+import { formatDate } from "@/lib/utils/formatting";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -49,8 +50,10 @@ export function OrdersTable({ orders, selectedOrder, onOrderSelect }: OrdersTabl
               <TableBody>
                 {orders.map((o) => (
                   <TableRow key={o.id} onClick={() => onOrderSelect(o)} className="cursor-pointer">
-                    <TableCell className="font-medium">{o.name}</TableCell>
-                    <TableCell>{o.date}</TableCell>
+                    <TableCell className="font-medium">{o.customerName || o.orderNumber}</TableCell>
+                    <TableCell>
+                      {o.deliveryDate ? formatDate(o.deliveryDate) : "—"}
+                    </TableCell>
                     <TableCell>
                       <Badge variant="secondary">{o.status}</Badge>
                     </TableCell>

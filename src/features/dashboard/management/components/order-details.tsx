@@ -3,7 +3,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/components/lang/i18n-provider";
-import type { Order } from "@/mocks";
+import type { Order } from "@/types/entities";
+import { formatDate } from "@/lib/utils/formatting";
 
 interface OrderDetailsProps {
   selectedOrder: Order | null;
@@ -21,16 +22,18 @@ export function OrderDetails({ selectedOrder }: OrderDetailsProps) {
         {selectedOrder ? (
           <>
             <div className="grid gap-1">
-              <p className="text-muted-foreground text-sm">{t("labels.orderId")}</p>
-              <p className="font-medium">{selectedOrder.id}</p>
+              <p className="text-muted-foreground text-sm">Order Number</p>
+              <p className="font-medium">{selectedOrder.orderNumber}</p>
             </div>
             <div className="grid gap-1">
-              <p className="text-muted-foreground text-sm">{t("tables.name")}</p>
-              <p className="font-medium">{selectedOrder.name}</p>
+              <p className="text-muted-foreground text-sm">Customer</p>
+              <p className="font-medium">{selectedOrder.customerName || "—"}</p>
             </div>
             <div className="grid gap-1">
-              <p className="text-muted-foreground text-sm">{t("tables.date")}</p>
-              <p className="font-medium">{selectedOrder.date}</p>
+              <p className="text-muted-foreground text-sm">Delivery Date</p>
+              <p className="font-medium">
+                {selectedOrder.deliveryDate ? formatDate(selectedOrder.deliveryDate) : "—"}
+              </p>
             </div>
             <div className="grid gap-1">
               <p className="text-muted-foreground text-sm">{t("tables.status")}</p>

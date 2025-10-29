@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/components/lang/i18n-provider";
-import type { Order } from "@/mocks";
+import type { Order } from "@/types/entities";
+import { formatDate } from "@/lib/utils/formatting";
 
 interface OrdersToPrepareTableProps {
   orders: Order[];
@@ -37,8 +38,10 @@ export default function OrdersToPrepareTable({ orders }: OrdersToPrepareTablePro
             <TableBody>
               {orders.map((o) => (
                 <TableRow key={o.id} className="hover:bg-muted/50 transition-colors">
-                  <TableCell className="font-medium">{o.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{o.date}</TableCell>
+                  <TableCell className="font-medium">{o.customerName || o.orderNumber}</TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {o.deliveryDate ? formatDate(o.deliveryDate) : "—"}
+                  </TableCell>
                   <TableCell>
                     <Badge variant="secondary" className="font-normal">
                       {o.status}

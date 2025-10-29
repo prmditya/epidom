@@ -1,14 +1,19 @@
 /**
- * Mock data for orders and order management
+ * Enhanced mock data for orders and order management
  * TODO: Replace with real API calls to /api/orders
  */
 
-export interface Order {
-  id: string;
-  name: string;
-  date: string;
-  status: "Pending" | "Processing" | "Delivered" | "In stock";
-}
+import {
+  Order,
+  OrderItem,
+  OrderStatus,
+  PaymentStatus,
+  OrderStatusHistory,
+} from "@/types/entities";
+
+// ============================================================================
+// SIMPLE TYPES (for backward compatibility)
+// ============================================================================
 
 export interface OrderSupplier {
   name: string;
@@ -24,48 +29,302 @@ export interface OrderSupplier {
   }[];
 }
 
-export const MOCK_ORDERS: Order[] = [
+// ============================================================================
+// ORDER ITEMS
+// ============================================================================
+
+const ORDER_ITEMS: OrderItem[] = [
   {
-    id: "ORD-1201",
-    name: "Baguette x120",
-    date: "2025-10-15",
-    status: "Processing",
+    id: "OI-001",
+    orderId: "ORD-001",
+    productId: "PRO-001",
+    quantity: 120,
+    unitPrice: 1.80,
+    discount: 0,
+    total: 216.00,
   },
   {
-    id: "ORD-1202",
-    name: "Croissant x80",
-    date: "2025-10-15",
-    status: "In stock",
+    id: "OI-002",
+    orderId: "ORD-002",
+    productId: "PRO-002",
+    quantity: 80,
+    unitPrice: 1.20,
+    discount: 5.00,
+    total: 91.00,
   },
   {
-    id: "ORD-1203",
-    name: "Pain de mie x60",
-    date: "2025-10-16",
-    status: "Pending",
+    id: "OI-003",
+    orderId: "ORD-003",
+    productId: "PRO-004",
+    quantity: 60,
+    unitPrice: 4.50,
+    discount: 0,
+    total: 270.00,
+  },
+  {
+    id: "OI-004",
+    orderId: "ORD-004",
+    productId: "PRO-002",
+    quantity: 50,
+    unitPrice: 1.20,
+    discount: 0,
+    total: 60.00,
+  },
+  {
+    id: "OI-005",
+    orderId: "ORD-004",
+    productId: "PRO-003",
+    quantity: 30,
+    unitPrice: 1.50,
+    discount: 0,
+    total: 45.00,
+  },
+  {
+    id: "OI-006",
+    orderId: "ORD-005",
+    productId: "PRO-001",
+    quantity: 200,
+    unitPrice: 1.80,
+    discount: 20.00,
+    total: 340.00,
+  },
+  {
+    id: "OI-007",
+    orderId: "ORD-006",
+    productId: "PRO-003",
+    quantity: 100,
+    unitPrice: 1.50,
+    discount: 0,
+    total: 150.00,
   },
 ];
 
-export const MOCK_MANAGEMENT_ORDERS: Order[] = [
-  { id: "O-1001", name: "Baguette x50", date: "2025-10-15", status: "Pending" },
+// ============================================================================
+// ORDER STATUS HISTORY
+// ============================================================================
+
+const ORDER_STATUS_HISTORY: OrderStatusHistory[] = [
+  {
+    id: "OSH-001",
+    orderId: "ORD-001",
+    status: OrderStatus.PENDING,
+    notes: "Order received",
+    userId: "USER-001",
+    userName: "System",
+    createdAt: new Date("2024-10-25T10:00:00"),
+  },
+  {
+    id: "OSH-002",
+    orderId: "ORD-001",
+    status: OrderStatus.PROCESSING,
+    notes: "Started production",
+    userId: "USER-002",
+    userName: "Baker Jean",
+    createdAt: new Date("2024-10-26T06:00:00"),
+  },
+  {
+    id: "OSH-003",
+    orderId: "ORD-002",
+    status: OrderStatus.PENDING,
+    notes: "Order received",
+    userId: "USER-001",
+    userName: "System",
+    createdAt: new Date("2024-10-25T11:30:00"),
+  },
+  {
+    id: "OSH-004",
+    orderId: "ORD-002",
+    status: OrderStatus.PROCESSING,
+    notes: "Production started",
+    userId: "USER-002",
+    userName: "Baker Jean",
+    createdAt: new Date("2024-10-26T07:00:00"),
+  },
+  {
+    id: "OSH-005",
+    orderId: "ORD-002",
+    status: OrderStatus.IN_STOCK,
+    notes: "Production completed, ready for delivery",
+    userId: "USER-002",
+    userName: "Baker Jean",
+    createdAt: new Date("2024-10-26T12:00:00"),
+  },
+];
+
+// ============================================================================
+// ORDERS
+// ============================================================================
+
+export const MOCK_ORDERS: Order[] = [
+  {
+    id: "ORD-001",
+    orderNumber: "ORD-1201",
+    customerName: "Café du Coin",
+    customerEmail: "contact@cafeducoin.fr",
+    customerPhone: "+33 1 23 45 67 89",
+    deliveryAddress: "12 Rue de la République",
+    deliveryCity: "Paris",
+    deliveryDate: new Date("2024-10-26T07:00:00"),
+    dueDate: new Date("2024-10-26T07:00:00"),
+    status: OrderStatus.PROCESSING,
+    paymentStatus: PaymentStatus.PENDING,
+    subtotal: 216.00,
+    tax: 21.60,
+    discount: 0,
+    total: 237.60,
+    notes: "Deliver before 7 AM",
+    storeId: "STORE-001",
+    items: ORDER_ITEMS.filter((item) => item.orderId === "ORD-001"),
+    statusHistory: ORDER_STATUS_HISTORY.filter((h) => h.orderId === "ORD-001"),
+    createdAt: new Date("2024-10-25T10:00:00"),
+    updatedAt: new Date("2024-10-26T06:00:00"),
+  },
+  {
+    id: "ORD-002",
+    orderNumber: "ORD-1202",
+    customerName: "Boulangerie Martin",
+    customerEmail: "martin@boulangerie.fr",
+    customerPhone: "+33 1 98 76 54 32",
+    deliveryAddress: "45 Avenue des Champs",
+    deliveryCity: "Lyon",
+    deliveryDate: new Date("2024-10-26T08:00:00"),
+    dueDate: new Date("2024-10-26T08:00:00"),
+    status: OrderStatus.IN_STOCK,
+    paymentStatus: PaymentStatus.PAID,
+    subtotal: 96.00,
+    tax: 9.60,
+    discount: 5.00,
+    total: 100.60,
+    notes: "Regular customer, weekly order",
+    storeId: "STORE-001",
+    items: ORDER_ITEMS.filter((item) => item.orderId === "ORD-002"),
+    statusHistory: ORDER_STATUS_HISTORY.filter((h) => h.orderId === "ORD-002"),
+    createdAt: new Date("2024-10-25T11:30:00"),
+    updatedAt: new Date("2024-10-26T12:00:00"),
+  },
+  {
+    id: "ORD-003",
+    orderNumber: "ORD-1203",
+    customerName: "Hotel Le Grand",
+    customerEmail: "orders@hotellegrand.fr",
+    customerPhone: "+33 4 56 78 90 12",
+    deliveryAddress: "88 Boulevard Saint-Germain",
+    deliveryCity: "Paris",
+    deliveryDate: new Date("2024-10-27T06:30:00"),
+    dueDate: new Date("2024-10-27T06:30:00"),
+    status: OrderStatus.PENDING,
+    paymentStatus: PaymentStatus.PENDING,
+    subtotal: 270.00,
+    tax: 27.00,
+    discount: 0,
+    total: 297.00,
+    notes: "VIP customer - handle with care",
+    storeId: "STORE-001",
+    items: ORDER_ITEMS.filter((item) => item.orderId === "ORD-003"),
+    createdAt: new Date("2024-10-26T14:00:00"),
+    updatedAt: new Date("2024-10-26T14:00:00"),
+  },
+  {
+    id: "ORD-004",
+    orderNumber: "ORD-1204",
+    customerName: "Restaurant Chez Pierre",
+    customerEmail: "pierre@chezpierre.fr",
+    customerPhone: "+33 2 34 56 78 90",
+    deliveryAddress: "15 Rue du Commerce",
+    deliveryCity: "Marseille",
+    deliveryDate: new Date("2024-10-27T07:00:00"),
+    dueDate: new Date("2024-10-27T07:00:00"),
+    status: OrderStatus.PENDING,
+    paymentStatus: PaymentStatus.PENDING,
+    subtotal: 105.00,
+    tax: 10.50,
+    discount: 0,
+    total: 115.50,
+    notes: "Call before delivery",
+    storeId: "STORE-001",
+    items: ORDER_ITEMS.filter((item) => item.orderId === "ORD-004"),
+    createdAt: new Date("2024-10-26T15:30:00"),
+    updatedAt: new Date("2024-10-26T15:30:00"),
+  },
+  {
+    id: "ORD-005",
+    orderNumber: "ORD-1205",
+    customerName: "Supermarché Bio Plus",
+    customerEmail: "orders@bioplus.fr",
+    customerPhone: "+33 3 45 67 89 01",
+    deliveryAddress: "30 Avenue de la Liberté",
+    deliveryCity: "Bordeaux",
+    deliveryDate: new Date("2024-10-28T09:00:00"),
+    dueDate: new Date("2024-10-28T09:00:00"),
+    status: OrderStatus.PENDING,
+    paymentStatus: PaymentStatus.PARTIAL,
+    subtotal: 360.00,
+    tax: 36.00,
+    discount: 20.00,
+    total: 376.00,
+    notes: "Large order - may need two deliveries",
+    storeId: "STORE-001",
+    items: ORDER_ITEMS.filter((item) => item.orderId === "ORD-005"),
+    createdAt: new Date("2024-10-27T09:00:00"),
+    updatedAt: new Date("2024-10-27T09:00:00"),
+  },
+  {
+    id: "ORD-006",
+    orderNumber: "ORD-1206",
+    customerName: "Café de la Gare",
+    customerEmail: "contact@cafegare.fr",
+    customerPhone: "+33 5 67 89 01 23",
+    deliveryAddress: "2 Place de la Gare",
+    deliveryCity: "Lyon",
+    deliveryDate: new Date("2024-10-28T07:30:00"),
+    dueDate: new Date("2024-10-28T07:30:00"),
+    status: OrderStatus.PENDING,
+    paymentStatus: PaymentStatus.PENDING,
+    subtotal: 150.00,
+    tax: 15.00,
+    discount: 0,
+    total: 165.00,
+    storeId: "STORE-001",
+    items: ORDER_ITEMS.filter((item) => item.orderId === "ORD-006"),
+    createdAt: new Date("2024-10-27T16:00:00"),
+    updatedAt: new Date("2024-10-27T16:00:00"),
+  },
+];
+
+// ============================================================================
+// MANAGEMENT ORDERS (simplified for management page)
+// ============================================================================
+
+export const MOCK_MANAGEMENT_ORDERS = [
+  {
+    id: "O-1001",
+    name: "Baguette x50",
+    date: "2025-10-15",
+    status: "Pending" as const,
+  },
   {
     id: "O-1002",
     name: "Croissant x80",
     date: "2025-10-15",
-    status: "Processing",
+    status: "Processing" as const,
   },
   {
     id: "O-1003",
     name: "Pain au chocolat x60",
     date: "2025-10-16",
-    status: "Pending",
+    status: "Pending" as const,
   },
   {
     id: "O-1004",
     name: "Brioche x20",
     date: "2025-10-16",
-    status: "Delivered",
+    status: "Delivered" as const,
   },
 ];
+
+// ============================================================================
+// ORDERS SUPPLIERS (for alerts page)
+// ============================================================================
 
 export const ORDERS_SUPPLIERS: OrderSupplier[] = [
   {
@@ -144,3 +403,6 @@ export const ORDERS_SUPPLIERS: OrderSupplier[] = [
     ],
   },
 ];
+
+// Export type for backward compatibility
+export type { Order };

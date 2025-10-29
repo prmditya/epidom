@@ -13,10 +13,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useI18n } from "@/components/lang/i18n-provider";
-import type { UserRow } from "@/mocks";
+import type { User } from "@/types/entities";
 
 interface UsersTableProps {
-  users: UserRow[];
+  users: User[];
 }
 
 export function UsersTable({ users }: UsersTableProps) {

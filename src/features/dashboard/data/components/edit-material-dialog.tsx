@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -11,7 +11,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -33,11 +32,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/mocks";
-import { MaterialCategory } from "@/types/entities";
+import { Material, MaterialCategory } from "@/types/entities";
 
-// Zod validation schema
+// Zod validation schema (same as add-material-dialog)
 const materialSchema = z.object({
   name: z.string().min(2, "Material name must be at least 2 characters"),
   sku: z.string().optional(),
@@ -55,8 +54,19 @@ const materialSchema = z.object({
 
 type MaterialFormValues = z.infer<typeof materialSchema>;
 
-export default function AddMaterialDialog() {
-  const [open, setOpen] = useState(false);
+interface EditMaterialDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  material: Material | null;
+  onSave?: (materialId: string, data: MaterialFormValues) => void;
+}
+
+export default function EditMaterialDialog({
+  open,
+  onOpenChange,
+  material,
+  onSave,
+}: EditMaterialDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -78,44 +88,66 @@ export default function AddMaterialDialog() {
     },
   });
 
+  // Update form values when material changes
+  useEffect(() => {
+    if (material) {
+      form.reset({
+        name: material.name,
+        sku: material.sku || "",
+        category: material.category,
+        description: material.description || "",
+        supplierId: material.supplierId,
+        unit: material.unit,
+        costPerUnit: material.costPerUnit,
+        currentStock: material.currentStock,
+        minStock: material.minStock,
+        maxStock: material.maxStock,
+        location: material.location || "",
+        barcode: material.barcode || "",
+      });
+    }
+  }, [material, form]);
+
   const onSubmit = async (data: MaterialFormValues) => {
+    if (!material) return;
+
     setIsSubmitting(true);
 
     // Simulate API call delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // TODO: Replace with actual API call
-    // const response = await fetch("/api/materials", {
-    //   method: "POST",
+    // const response = await fetch(`/api/materials/${material.id}`, {
+    //   method: "PATCH",
     //   headers: { "Content-Type": "application/json" },
     //   body: JSON.stringify(data),
     // });
 
-    console.log("Material data to submit:", data);
+    console.log("Material update data:", { id: material.id, ...data });
 
     setIsSubmitting(false);
+
+    if (onSave) {
+      onSave(material.id, data);
+    }
+
     toast({
-      title: "Material Added Successfully",
-      description: `${data.name} has been added to your inventory.`,
+      title: "Material Updated Successfully",
+      description: `${data.name} has been updated.`,
     });
 
-    form.reset();
-    setOpen(false);
+    onOpenChange(false);
   };
 
+  if (!material) return null;
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size="sm" className="gap-2">
-          <Plus className="h-4 w-4" />
-          Add Material
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[700px]">
         <DialogHeader>
-          <DialogTitle>Add New Material</DialogTitle>
+          <DialogTitle>Edit Material</DialogTitle>
           <DialogDescription>
-            Add a new material to your inventory. All fields marked with * are required.
+            Update material information. All fields marked with * are required.
           </DialogDescription>
         </DialogHeader>
 
@@ -160,7 +192,7 @@ export default function AddMaterialDialog() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Category *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select category" />
@@ -188,7 +220,7 @@ export default function AddMaterialDialog() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Supplier *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select supplier" />
@@ -258,7 +290,7 @@ export default function AddMaterialDialog() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Unit *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Unit" />
@@ -349,14 +381,14 @@ export default function AddMaterialDialog() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setOpen(false)}
+                onClick={() => onOpenChange(false)}
                 disabled={isSubmitting}
               >
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {isSubmitting ? "Adding..." : "Add Material"}
+                {isSubmitting ? "Saving..." : "Save Changes"}
               </Button>
             </DialogFooter>
           </form>

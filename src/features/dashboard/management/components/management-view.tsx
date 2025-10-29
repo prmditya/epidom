@@ -8,10 +8,11 @@ import { EditStockCard } from "./edit-stock";
 import { OrdersTable } from "./orders-table";
 import { OrderDetails } from "./order-details";
 import { useI18n } from "@/components/lang/i18n-provider";
-import { MOCK_MANAGEMENT_ORDERS, type Order } from "@/mocks";
+import { MOCK_ORDERS } from "@/mocks";
+import type { Order } from "@/types/entities";
 
 export function ManagementView() {
-  const [selected, setSelected] = useState<Order | null>(MOCK_MANAGEMENT_ORDERS[0]);
+  const [selected, setSelected] = useState<Order | null>(MOCK_ORDERS[0] || null);
   const { t } = useI18n();
 
   return (
@@ -45,7 +46,7 @@ export function ManagementView() {
 
       <TabsContent value="delivery" className="grid w-full gap-4 lg:grid-cols-3">
         <OrdersTable
-          orders={MOCK_MANAGEMENT_ORDERS}
+          orders={MOCK_ORDERS}
           selectedOrder={selected}
           onOrderSelect={setSelected}
         />
