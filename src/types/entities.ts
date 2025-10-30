@@ -38,6 +38,7 @@ export enum PaymentStatus {
   PARTIAL = "partial",
   OVERDUE = "overdue",
   CANCELLED = "cancelled",
+  REFUNDED = "refunded",
 }
 
 export enum MovementType {
@@ -203,8 +204,15 @@ export interface Order {
   deliveryDate?: Date;
   dueDate?: Date;
   status: OrderStatus;
-  paymentStatus: PaymentStatus;
+  totalAmount?: number;
   subtotal: number;
+  orderDate: Date;
+  deliveryPostalCode: string;
+  deliveryCountry: string;
+  supplierId: string;
+  supplier: Supplier;
+  paymentMethod: string;
+  paymentStatus: PaymentStatus;
   tax: number;
   discount: number;
   total: number;
