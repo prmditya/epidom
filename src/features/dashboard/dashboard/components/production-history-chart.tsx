@@ -10,13 +10,15 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { ExportButton } from "@/components/ui/export-button";
+import type { ProductionHistoryData } from "@/types/entities";
 
 interface ProductionHistoryChartProps {
-  chartData: { date: string; qty: number }[];
+  chartData: ProductionHistoryData[];
 }
 
-function getMaxYValue(data: { date: string; qty: number }[]): number {
-  return Math.max(...data.map((d) => d.qty));
+function getMaxYValue(data: ProductionHistoryData[]): number {
+  return Math.max(...data.map((d) => d.quantity));
 }
 
 export default function ProductionHistoryChart({ chartData }: ProductionHistoryChartProps) {
@@ -25,11 +27,29 @@ export default function ProductionHistoryChart({ chartData }: ProductionHistoryC
   // Get max value from chart data and add 10
   const maxQty = getMaxYValue(chartData);
   const yAxisDomain = [0, maxQty + 10];
+
+  // Format data for export
+  const exportData = chartData.map((item) => ({
+    Date: item.date,
+    Quantity: item.quantity,
+    Revenue: item.revenue ? `$${item.revenue.toFixed(2)}` : "—",
+  }));
+
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-lg lg:col-span-2">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg">{t("pages.prodHistory")}</CardTitle>
-        <CardDescription className="text-xs">{t("pages.prodHistoryDesc")}</CardDescription>
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <CardTitle className="text-lg">{t("pages.prodHistory")}</CardTitle>
+            <CardDescription className="text-xs">{t("pages.prodHistoryDesc")}</CardDescription>
+          </div>
+          <ExportButton
+            data={exportData}
+            filename="production-history"
+            variant="outline"
+            size="sm"
+          />
+        </div>
       </CardHeader>
       <CardContent className="-mx-2 h-64 sm:mx-0 sm:h-72">
         <ResponsiveContainer width="100%" height="100%">
@@ -67,7 +87,7 @@ export default function ProductionHistoryChart({ chartData }: ProductionHistoryC
             />
             <Area
               type="monotone"
-              dataKey="qty"
+              dataKey="quantity"
               stroke="hsl(var(--primary))"
               strokeWidth={3}
               fill="url(#colorQty)"
