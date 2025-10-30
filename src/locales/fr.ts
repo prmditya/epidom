@@ -827,6 +827,207 @@ export const fr = {
     productionHistory: "Historique de Production",
     editStock: "Modifier le Stock",
     managePermissions: "Gérer les Permissions",
+    stockLevels: "Niveaux de Stock",
+    movementHistory: "Historique des Mouvements",
+  },
+  tracking: {
+    // Page titles
+    stockLevels: "Niveaux de Stock",
+    movementHistory: "Historique des Mouvements",
+    analytics: "Analytique",
+
+    // Movement types
+    movements: {
+      in: "Entrée de Stock",
+      out: "Sortie de Stock",
+      adjustment: "Ajustement",
+      production: "Production",
+      waste: "Perte",
+      return: "Retour",
+    },
+
+    // Table headers
+    dateTime: "Date et Heure",
+    material: "Matériel",
+    product: "Produit",
+    type: "Type",
+    quantity: "Quantité",
+    reason: "Raison",
+    user: "Utilisateur",
+    reference: "Référence",
+    notes: "Notes",
+
+    // Filters
+    filterByType: "Filtrer par Type",
+    filterByDate: "Filtrer par Date",
+    selectDateRange: "Sélectionner la Période",
+    allMovements: "Tous les Mouvements",
+    allTypes: "Tous les Types",
+    searchMovements: "Rechercher des mouvements...",
+    clearFilters: "Effacer les Filtres",
+    filterActive: "filtre actif",
+    filtersActive: "filtres actifs",
+
+    // Actions
+    addMovement: "Ajouter un Mouvement",
+    viewMovement: "Voir le Mouvement",
+    recordMovement: "Enregistrer le Mouvement",
+    exportMovements: "Exporter les Mouvements",
+    viewHistory: "Voir l'Historique",
+    restock: "Réapprovisionner",
+    bulkRestock: "Réapprovisionnement en Masse",
+    bulkExport: "Exportation en Masse",
+    selectAll: "Tout Sélectionner",
+    deselectAll: "Tout Désélectionner",
+    selected: "sélectionné(s)",
+    bulkActions: "Actions en Masse",
+
+    // Status
+    showingMovements: "Affichage de {count} mouvements",
+    showingResults: "Affichage de {count} sur {total} résultats",
+    noMovements: "Aucun mouvement trouvé",
+    noResults: "Aucun résultat ne correspond à vos filtres",
+    recentMovements: "Mouvements Récents",
+    stockStatus: "État du Stock",
+    currentStock: "Stock Actuel",
+
+    // Forms
+    selectMaterial: "Sélectionner le Matériel",
+    selectProduct: "Sélectionner le Produit",
+    selectItem: "Sélectionner l'Article",
+    movementType: "Type de Mouvement",
+    enterQuantity: "Entrer la Quantité",
+    selectReason: "Sélectionner la Raison",
+    additionalNotes: "Notes Additionnelles",
+    referenceNumber: "Numéro de Référence",
+    itemType: "Type d'Article",
+    materialType: "Matériel",
+    productType: "Produit",
+
+    // Reasons
+    reasons: {
+      purchase: "Bon de Commande",
+      production: "Utilisé en Production",
+      sale: "Vente",
+      damage: "Endommagé",
+      expired: "Expiré",
+      theft: "Vol/Perte",
+      count: "Correction d'Inventaire Physique",
+      return: "Retour Fournisseur",
+      transfer: "Transfert de Magasin",
+      other: "Autre",
+    },
+
+    // Stock levels
+    stockLevel: "Niveau de Stock",
+    minLevel: "Niveau Minimum",
+    maxLevel: "Niveau Maximum",
+    reorderLevel: "Niveau de Réapprovisionnement",
+    lastMovement: "Dernier Mouvement",
+    recentActivity: "Activité Récente",
+
+    // Stock History
+    stockHistory: "Historique du Stock",
+    runningBalance: "Solde Courant",
+    exportHistory: "Exporter l'Historique",
+    noHistory: "Aucun historique de mouvement",
+    movementTimeline: "Chronologie des Mouvements",
+
+    // Bulk Selection
+    selectItems: "Sélectionner les Articles",
+    itemsSelected: "{count} articles sélectionnés",
+    restockSelected: "Réapprovisionner Sélectionnés",
+    clearSelection: "Effacer la Sélection",
+
+    // Restock
+    restockItem: "Réapprovisionner l'Article",
+    suggestedQuantity: "Quantité Suggérée",
+    reorderQuantity: "Quantité de Réapprovisionnement",
+    selectSupplier: "Sélectionner le Fournisseur",
+    deliveryDate: "Date de Livraison",
+    priority: "Priorité",
+    restockNotes: "Notes de Réapprovisionnement",
+    createOrder: "Créer la Commande",
+    createOrders: "Créer les Commandes",
+
+    // Priority levels
+    priorities: {
+      low: "Bas",
+      medium: "Moyen",
+      high: "Élevé",
+      urgent: "Urgent",
+    },
+
+    // Pagination
+    page: "Page",
+    of: "de",
+    rowsPerPage: "Lignes par page",
+    previous: "Précédent",
+    next: "Suivant",
+
+    // Toast messages
+    toasts: {
+      movementAdded: {
+        title: "Mouvement Enregistré",
+        desc: "Le mouvement de stock a été enregistré avec succès.",
+      },
+      movementDeleted: {
+        title: "Mouvement Supprimé",
+        desc: "Le mouvement de stock a été supprimé.",
+      },
+      bulkExported: {
+        title: "Exportation Réussie",
+        desc: "{count} articles exportés avec succès.",
+      },
+      restockInitiated: {
+        title: "Réapprovisionnement Initié",
+        desc: "La commande de réapprovisionnement a été créée.",
+      },
+    },
+
+    // Dialogs
+    dialogs: {
+      addMovement: {
+        title: "Enregistrer un Mouvement de Stock",
+        description: "Ajouter un nouveau mouvement de stock pour suivre les changements d'inventaire.",
+      },
+      viewMovement: {
+        title: "Détails du Mouvement",
+        description: "Voir les informations complètes sur ce mouvement de stock.",
+      },
+      deleteMovement: {
+        title: "Supprimer le Mouvement",
+        description: "Êtes-vous sûr de vouloir supprimer cet enregistrement de mouvement ? Cette action ne peut pas être annulée.",
+      },
+      stockHistory: {
+        title: "Historique du Stock",
+        description: "Voir l'historique complet des mouvements pour cet article.",
+      },
+      restock: {
+        title: "Réapprovisionner l'Article",
+        description: "Créer une commande de réapprovisionnement pour cet article.",
+      },
+      bulkRestock: {
+        title: "Réapprovisionnement en Masse",
+        description: "Créer des commandes de réapprovisionnement pour les articles sélectionnés.",
+      },
+    },
+
+    // Empty states
+    emptyStates: {
+      noMovements: {
+        title: "Aucun mouvement pour le moment",
+        description: "Commencez à suivre votre inventaire en enregistrant votre premier mouvement de stock.",
+      },
+      noResults: {
+        title: "Aucun résultat trouvé",
+        description: "Essayez d'ajuster vos filtres ou votre terme de recherche.",
+      },
+      noStock: {
+        title: "Aucun article en stock",
+        description: "Ajoutez des matériels ou des produits pour commencer le suivi de l'inventaire.",
+      },
+    },
   },
   footer: {
     tagline: "UNE SOLUTION POUR LA GESTION DE VOTRE STOCK ALIMENTAIRE",

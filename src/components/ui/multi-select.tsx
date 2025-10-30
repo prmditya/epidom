@@ -58,10 +58,11 @@ export function MultiSelect({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
+          className={cn("w-fit overflow-hidden", className)}
           disabled={disabled}
+          asChild
         >
-          <div className="flex flex-wrap gap-1">
+          <div className="flex gap-1">
             {selected.length > 0 ? (
               selected.map((value) => {
                 const option = options.find((opt) => opt.value === value);
@@ -141,5 +142,4 @@ export function MultiSelect({
     </Popover>
   );
 }
-
 

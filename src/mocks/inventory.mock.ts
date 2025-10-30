@@ -29,6 +29,7 @@ export interface Item {
 }
 
 export interface StockRow {
+  id: string;
   product: string;
   currentStock: number;
   minStock: number;
@@ -502,14 +503,21 @@ export const MOCK_PRODUCT_ITEMS: Item[] = MOCK_PRODUCTS.slice(0, 3).map((p) => (
 // ============================================================================
 
 export const MOCK_STOCK_ROWS: StockRow[] = [
-  { product: "Butter AOP", currentStock: 45, minStock: 20, maxStock: 100, unit: "kg" },
-  { product: "Dark Chocolate 70%", currentStock: 50, minStock: 5, maxStock: 40, unit: "kg" },
-  { product: "Flour T55", currentStock: 250, minStock: 50, maxStock: 500, unit: "kg" },
-  { product: "Almonds", currentStock: 25, minStock: 10, maxStock: 50, unit: "kg" },
-  { product: "Sugar", currentStock: 23, minStock: 40, maxStock: 300, unit: "kg" },
-  { product: "Eggs", currentStock: 360, minStock: 120, maxStock: 600, unit: "units" },
-  { product: "Yeast", currentStock: 500, minStock: 1000, maxStock: 10000, unit: "g" },
-  { product: "Salt", currentStock: 60, minStock: 10, maxStock: 50, unit: "kg" },
+  { id: "1", product: "Butter AOP", currentStock: 45, minStock: 20, maxStock: 100, unit: "kg" },
+  {
+    id: "2",
+    product: "Dark Chocolate 70%",
+    currentStock: 50,
+    minStock: 5,
+    maxStock: 40,
+    unit: "kg",
+  },
+  { id: "3", product: "Flour T55", currentStock: 250, minStock: 50, maxStock: 500, unit: "kg" },
+  { id: "4", product: "Almonds", currentStock: 25, minStock: 10, maxStock: 50, unit: "kg" },
+  { id: "5", product: "Sugar", currentStock: 23, minStock: 40, maxStock: 300, unit: "kg" },
+  { id: "6", product: "Eggs", currentStock: 360, minStock: 120, maxStock: 600, unit: "units" },
+  { id: "7", product: "Yeast", currentStock: 500, minStock: 1000, maxStock: 10000, unit: "g" },
+  { id: "8", product: "Salt", currentStock: 60, minStock: 10, maxStock: 50, unit: "kg" },
 ];
 
 // ============================================================================

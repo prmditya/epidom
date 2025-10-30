@@ -77,6 +77,7 @@ export default function ProductionHistoryChart({ chartData }: ProductionHistoryC
               domain={yAxisDomain}
               tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
               stroke="gray"
+              width={30}
             />
             <Tooltip
               contentStyle={{

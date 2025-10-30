@@ -824,6 +824,207 @@ export const id = {
     productionHistory: "Riwayat Produksi",
     editStock: "Edit Stok",
     managePermissions: "Kelola Izin",
+    stockLevels: "Level Stok",
+    movementHistory: "Riwayat Pergerakan",
+  },
+  tracking: {
+    // Page titles
+    stockLevels: "Level Stok",
+    movementHistory: "Riwayat Pergerakan",
+    analytics: "Analitik",
+
+    // Movement types
+    movements: {
+      in: "Masuk Stok",
+      out: "Keluar Stok",
+      adjustment: "Penyesuaian",
+      production: "Produksi",
+      waste: "Limbah",
+      return: "Pengembalian",
+    },
+
+    // Table headers
+    dateTime: "Tanggal & Waktu",
+    material: "Material",
+    product: "Produk",
+    type: "Tipe",
+    quantity: "Jumlah",
+    reason: "Alasan",
+    user: "Pengguna",
+    reference: "Referensi",
+    notes: "Catatan",
+
+    // Filters
+    filterByType: "Filter berdasarkan Tipe",
+    filterByDate: "Filter berdasarkan Tanggal",
+    selectDateRange: "Pilih Rentang Tanggal",
+    allMovements: "Semua Pergerakan",
+    allTypes: "Semua Tipe",
+    searchMovements: "Cari pergerakan...",
+    clearFilters: "Hapus Filter",
+    filterActive: "filter aktif",
+    filtersActive: "filter aktif",
+
+    // Actions
+    addMovement: "Tambah Pergerakan",
+    viewMovement: "Lihat Pergerakan",
+    recordMovement: "Catat Pergerakan",
+    exportMovements: "Ekspor Pergerakan",
+    viewHistory: "Lihat Riwayat",
+    restock: "Isi Ulang",
+    bulkRestock: "Isi Ulang Massal",
+    bulkExport: "Ekspor Massal",
+    selectAll: "Pilih Semua",
+    deselectAll: "Batalkan Semua",
+    selected: "terpilih",
+    bulkActions: "Aksi Massal",
+
+    // Status
+    showingMovements: "Menampilkan {count} pergerakan",
+    showingResults: "Menampilkan {count} dari {total} hasil",
+    noMovements: "Tidak ada pergerakan ditemukan",
+    noResults: "Tidak ada hasil yang cocok dengan filter Anda",
+    recentMovements: "Pergerakan Terakhir",
+    stockStatus: "Status Stok",
+    currentStock: "Stok Saat Ini",
+
+    // Forms
+    selectMaterial: "Pilih Material",
+    selectProduct: "Pilih Produk",
+    selectItem: "Pilih Item",
+    movementType: "Tipe Pergerakan",
+    enterQuantity: "Masukkan Jumlah",
+    selectReason: "Pilih Alasan",
+    additionalNotes: "Catatan Tambahan",
+    referenceNumber: "Nomor Referensi",
+    itemType: "Tipe Item",
+    materialType: "Material",
+    productType: "Produk",
+
+    // Reasons
+    reasons: {
+      purchase: "Pesanan Pembelian",
+      production: "Digunakan dalam Produksi",
+      sale: "Penjualan",
+      damage: "Rusak",
+      expired: "Kadaluarsa",
+      theft: "Kehilangan/Dicuri",
+      count: "Koreksi Perhitungan Fisik",
+      return: "Pengembalian Pemasok",
+      transfer: "Transfer Toko",
+      other: "Lainnya",
+    },
+
+    // Stock levels
+    stockLevel: "Level Stok",
+    minLevel: "Level Minimum",
+    maxLevel: "Level Maksimum",
+    reorderLevel: "Level Pesan Ulang",
+    lastMovement: "Pergerakan Terakhir",
+    recentActivity: "Aktivitas Terakhir",
+
+    // Stock History
+    stockHistory: "Riwayat Stok",
+    runningBalance: "Saldo Berjalan",
+    exportHistory: "Ekspor Riwayat",
+    noHistory: "Tidak ada riwayat pergerakan",
+    movementTimeline: "Timeline Pergerakan",
+
+    // Bulk Selection
+    selectItems: "Pilih Item",
+    itemsSelected: "{count} item terpilih",
+    restockSelected: "Isi Ulang Terpilih",
+    clearSelection: "Hapus Pilihan",
+
+    // Restock
+    restockItem: "Isi Ulang Item",
+    suggestedQuantity: "Jumlah yang Disarankan",
+    reorderQuantity: "Jumlah Pesan Ulang",
+    selectSupplier: "Pilih Pemasok",
+    deliveryDate: "Tanggal Pengiriman",
+    priority: "Prioritas",
+    restockNotes: "Catatan Isi Ulang",
+    createOrder: "Buat Pesanan",
+    createOrders: "Buat Pesanan",
+
+    // Priority levels
+    priorities: {
+      low: "Rendah",
+      medium: "Sedang",
+      high: "Tinggi",
+      urgent: "Mendesak",
+    },
+
+    // Pagination
+    page: "Halaman",
+    of: "dari",
+    rowsPerPage: "Baris per halaman",
+    previous: "Sebelumnya",
+    next: "Berikutnya",
+
+    // Toast messages
+    toasts: {
+      movementAdded: {
+        title: "Pergerakan Tercatat",
+        desc: "Pergerakan stok telah berhasil dicatat.",
+      },
+      movementDeleted: {
+        title: "Pergerakan Dihapus",
+        desc: "Pergerakan stok telah dihapus.",
+      },
+      bulkExported: {
+        title: "Ekspor Berhasil",
+        desc: "{count} item berhasil diekspor.",
+      },
+      restockInitiated: {
+        title: "Isi Ulang Dimulai",
+        desc: "Pesanan isi ulang telah dibuat.",
+      },
+    },
+
+    // Dialogs
+    dialogs: {
+      addMovement: {
+        title: "Catat Pergerakan Stok",
+        description: "Tambahkan catatan pergerakan stok baru untuk melacak perubahan inventori.",
+      },
+      viewMovement: {
+        title: "Detail Pergerakan",
+        description: "Lihat informasi lengkap tentang pergerakan stok ini.",
+      },
+      deleteMovement: {
+        title: "Hapus Pergerakan",
+        description: "Apakah Anda yakin ingin menghapus catatan pergerakan ini? Tindakan ini tidak dapat dibatalkan.",
+      },
+      stockHistory: {
+        title: "Riwayat Stok",
+        description: "Lihat riwayat pergerakan lengkap untuk item ini.",
+      },
+      restock: {
+        title: "Isi Ulang Item",
+        description: "Buat pesanan isi ulang untuk item ini.",
+      },
+      bulkRestock: {
+        title: "Isi Ulang Massal",
+        description: "Buat pesanan isi ulang untuk item yang dipilih.",
+      },
+    },
+
+    // Empty states
+    emptyStates: {
+      noMovements: {
+        title: "Belum ada pergerakan",
+        description: "Mulai lacak inventori Anda dengan mencatat pergerakan stok pertama.",
+      },
+      noResults: {
+        title: "Tidak ada hasil ditemukan",
+        description: "Coba sesuaikan filter atau istilah pencarian Anda.",
+      },
+      noStock: {
+        title: "Tidak ada item stok",
+        description: "Tambahkan material atau produk untuk mulai melacak inventori.",
+      },
+    },
   },
   footer: {
     tagline: "SOLUSI UNTUK MANAJEMEN STOK MAKANAN ANDA",

@@ -813,6 +813,207 @@ export const en = {
     productionHistory: "Production History",
     editStock: "Edit Stock",
     managePermissions: "Manage Permissions",
+    stockLevels: "Stock Levels",
+    movementHistory: "Movement History",
+  },
+  tracking: {
+    // Page titles
+    stockLevels: "Stock Levels",
+    movementHistory: "Movement History",
+    analytics: "Analytics",
+
+    // Movement types
+    movements: {
+      in: "Stock In",
+      out: "Stock Out",
+      adjustment: "Adjustment",
+      production: "Production",
+      waste: "Waste",
+      return: "Return",
+    },
+
+    // Table headers
+    dateTime: "Date & Time",
+    material: "Material",
+    product: "Product",
+    type: "Type",
+    quantity: "Quantity",
+    reason: "Reason",
+    user: "User",
+    reference: "Reference",
+    notes: "Notes",
+
+    // Filters
+    filterByType: "Filter by Type",
+    filterByDate: "Filter by Date",
+    selectDateRange: "Select Date Range",
+    allMovements: "All Movements",
+    allTypes: "All Types",
+    searchMovements: "Search movements...",
+    clearFilters: "Clear Filters",
+    filterActive: "filter active",
+    filtersActive: "filters active",
+
+    // Actions
+    addMovement: "Add Movement",
+    viewMovement: "View Movement",
+    recordMovement: "Record Movement",
+    exportMovements: "Export Movements",
+    viewHistory: "View History",
+    restock: "Restock",
+    bulkRestock: "Bulk Restock",
+    bulkExport: "Bulk Export",
+    selectAll: "Select All",
+    deselectAll: "Deselect All",
+    selected: "selected",
+    bulkActions: "Bulk Actions",
+
+    // Status
+    showingMovements: "Showing {count} movements",
+    showingResults: "Showing {count} of {total} results",
+    noMovements: "No movements found",
+    noResults: "No results match your filters",
+    recentMovements: "Recent Movements",
+    stockStatus: "Stock Status",
+    currentStock: "Current Stock",
+
+    // Forms
+    selectMaterial: "Select Material",
+    selectProduct: "Select Product",
+    selectItem: "Select Item",
+    movementType: "Movement Type",
+    enterQuantity: "Enter Quantity",
+    selectReason: "Select Reason",
+    additionalNotes: "Additional Notes",
+    referenceNumber: "Reference Number",
+    itemType: "Item Type",
+    materialType: "Material",
+    productType: "Product",
+
+    // Reasons
+    reasons: {
+      purchase: "Purchase Order",
+      production: "Used in Production",
+      sale: "Sale",
+      damage: "Damaged",
+      expired: "Expired",
+      theft: "Theft/Loss",
+      count: "Physical Count Correction",
+      return: "Supplier Return",
+      transfer: "Store Transfer",
+      other: "Other",
+    },
+
+    // Stock levels
+    stockLevel: "Stock Level",
+    minLevel: "Min Level",
+    maxLevel: "Max Level",
+    reorderLevel: "Reorder Level",
+    lastMovement: "Last Movement",
+    recentActivity: "Recent Activity",
+
+    // Stock History
+    stockHistory: "Stock History",
+    runningBalance: "Running Balance",
+    exportHistory: "Export History",
+    noHistory: "No movement history",
+    movementTimeline: "Movement Timeline",
+
+    // Bulk Selection
+    selectItems: "Select Items",
+    itemsSelected: "{count} items selected",
+    restockSelected: "Restock Selected",
+    clearSelection: "Clear Selection",
+
+    // Restock
+    restockItem: "Restock Item",
+    suggestedQuantity: "Suggested Quantity",
+    reorderQuantity: "Reorder Quantity",
+    selectSupplier: "Select Supplier",
+    deliveryDate: "Delivery Date",
+    priority: "Priority",
+    restockNotes: "Restock Notes",
+    createOrder: "Create Order",
+    createOrders: "Create Orders",
+
+    // Priority levels
+    priorities: {
+      low: "Low",
+      medium: "Medium",
+      high: "High",
+      urgent: "Urgent",
+    },
+
+    // Pagination
+    page: "Page",
+    of: "of",
+    rowsPerPage: "Rows per page",
+    previous: "Previous",
+    next: "Next",
+
+    // Toast messages
+    toasts: {
+      movementAdded: {
+        title: "Movement Recorded",
+        desc: "Stock movement has been recorded successfully.",
+      },
+      movementDeleted: {
+        title: "Movement Deleted",
+        desc: "Stock movement has been deleted.",
+      },
+      bulkExported: {
+        title: "Export Successful",
+        desc: "{count} items exported successfully.",
+      },
+      restockInitiated: {
+        title: "Restock Initiated",
+        desc: "Restock order has been created.",
+      },
+    },
+
+    // Dialogs
+    dialogs: {
+      addMovement: {
+        title: "Record Stock Movement",
+        description: "Add a new stock movement record to track inventory changes.",
+      },
+      viewMovement: {
+        title: "Movement Details",
+        description: "View complete information about this stock movement.",
+      },
+      deleteMovement: {
+        title: "Delete Movement",
+        description: "Are you sure you want to delete this movement record? This action cannot be undone.",
+      },
+      stockHistory: {
+        title: "Stock History",
+        description: "View complete movement history for this item.",
+      },
+      restock: {
+        title: "Restock Item",
+        description: "Create a restock order for this item.",
+      },
+      bulkRestock: {
+        title: "Bulk Restock",
+        description: "Create restock orders for selected items.",
+      },
+    },
+
+    // Empty states
+    emptyStates: {
+      noMovements: {
+        title: "No movements yet",
+        description: "Start tracking your inventory by recording your first stock movement.",
+      },
+      noResults: {
+        title: "No results found",
+        description: "Try adjusting your filters or search term.",
+      },
+      noStock: {
+        title: "No stock items",
+        description: "Add materials or products to start tracking inventory.",
+      },
+    },
   },
   footer: {
     tagline: "A SOLUTION FOR YOUR FOOD STOCK MANAGEMENT",
