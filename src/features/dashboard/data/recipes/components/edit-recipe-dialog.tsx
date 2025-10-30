@@ -296,8 +296,8 @@ export default function EditRecipeDialog({ open, onOpenChange, recipe }: EditRec
               {form.watch("ingredients").length === 0 && (
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-6 text-center">
-                    <Package className="mb-2 h-10 w-10 text-muted-foreground" />
-                    <p className="text-sm text-muted-foreground">No ingredients added</p>
+                    <Package className="text-muted-foreground mb-2 h-10 w-10" />
+                    <p className="text-muted-foreground text-sm">No ingredients added</p>
                   </CardContent>
                 </Card>
               )}
@@ -305,9 +305,7 @@ export default function EditRecipeDialog({ open, onOpenChange, recipe }: EditRec
               <div className="space-y-3">
                 {form.watch("ingredients").map((_, index) => {
                   const selectedMaterialId = form.watch(`ingredients.${index}.materialId`);
-                  const selectedMaterial = MOCK_MATERIALS.find(
-                    (m) => m.id === selectedMaterialId
-                  );
+                  const selectedMaterial = MOCK_MATERIALS.find((m) => m.id === selectedMaterialId);
 
                   return (
                     <Card key={index}>
@@ -349,7 +347,7 @@ export default function EditRecipeDialog({ open, onOpenChange, recipe }: EditRec
                           )}
                         />
 
-                        <div className="grid gap-3 sm:grid-cols-2">
+                        <div className="grid items-start gap-3 sm:grid-cols-2">
                           <FormField
                             control={form.control}
                             name={`ingredients.${index}.quantity`}
@@ -377,10 +375,7 @@ export default function EditRecipeDialog({ open, onOpenChange, recipe }: EditRec
                               <FormItem>
                                 <FormLabel>Unit *</FormLabel>
                                 <FormControl>
-                                  <Input
-                                    placeholder={selectedMaterial?.unit || "g"}
-                                    {...field}
-                                  />
+                                  <Input placeholder={selectedMaterial?.unit || "g"} {...field} />
                                 </FormControl>
                                 {selectedMaterial && (
                                   <FormDescription className="text-xs">
@@ -394,7 +389,7 @@ export default function EditRecipeDialog({ open, onOpenChange, recipe }: EditRec
                         </div>
 
                         {selectedMaterial && (
-                          <div className="rounded-md bg-muted p-2 text-xs">
+                          <div className="bg-muted rounded-md p-2 text-xs">
                             Cost: $
                             {(
                               selectedMaterial.costPerUnit *

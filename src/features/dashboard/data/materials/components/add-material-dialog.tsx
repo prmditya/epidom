@@ -23,6 +23,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Plus } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 interface AddMaterialDialogProps {
   trigger?: React.ReactNode;
@@ -75,13 +76,14 @@ export default function AddMaterialDialog({ trigger }: AddMaterialDialogProps) {
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[600px] [&>button]:hidden">
         <DialogHeader>
           <DialogTitle>Add New Material</DialogTitle>
           <DialogDescription>
             Add a new material to your inventory. Fill in all required fields.
           </DialogDescription>
         </DialogHeader>
+        <Separator />
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
@@ -219,6 +221,3 @@ export default function AddMaterialDialog({ trigger }: AddMaterialDialogProps) {
     </Dialog>
   );
 }
-
-
-

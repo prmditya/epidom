@@ -79,7 +79,7 @@ export default function SupplierDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-3xl">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-3xl [&>button]:hidden">
         <DialogHeader>
           <div className="flex items-start justify-between">
             <div className="space-y-1">

@@ -256,7 +256,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
             <div className="flex flex-wrap items-center gap-2">
               {/* Category Filter */}
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -279,7 +279,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                   setSortOrder(order);
                 }}
               >
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger>
                   <ArrowUpDown className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>

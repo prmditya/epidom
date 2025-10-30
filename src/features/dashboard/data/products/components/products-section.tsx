@@ -225,7 +225,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
         <CardHeader className="border-b pb-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle className="text-lg">Products</CardTitle>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2">
               <ExportButton
                 data={processedProducts}
                 filename="products"
@@ -278,7 +278,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
             <div className="flex flex-wrap items-center gap-2">
               {/* Category Filter */}
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -294,7 +294,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
 
               {/* Stock Status Filter */}
               <Select value={stockFilter} onValueChange={(v) => setStockFilter(v as StockFilter)}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Stock Status" />
                 </SelectTrigger>
@@ -316,7 +316,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                   setSortOrder(order);
                 }}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger>
                   <ArrowUpDown className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>

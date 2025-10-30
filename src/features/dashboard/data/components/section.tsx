@@ -17,7 +17,7 @@ export function Section({ items, label }: SectionProps) {
 
   return (
     <div className="grid w-full gap-4 lg:grid-cols-[1fr_380px]">
-      <Card className="overflow-hidden shadow-md transition-shadow hover:shadow-lg">
+      <Card className="shadow-md transition-shadow hover:shadow-lg">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg">{label}</CardTitle>
         </CardHeader>

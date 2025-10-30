@@ -216,7 +216,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
         <CardHeader className="border-b pb-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle className="text-lg">Materials</CardTitle>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2">
               <ExportButton
                 data={processedMaterials}
                 filename="materials"
@@ -266,10 +266,10 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
             </div>
 
             {/* Filters Row */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2">
               {/* Category Filter */}
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -285,7 +285,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
               {/* Supplier Filter */}
               <Select value={supplierFilter} onValueChange={setSupplierFilter}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Supplier" />
                 </SelectTrigger>
@@ -301,7 +301,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
               {/* Stock Status Filter */}
               <Select value={stockFilter} onValueChange={(v) => setStockFilter(v as StockFilter)}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Stock Status" />
                 </SelectTrigger>
@@ -323,7 +323,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   setSortOrder(order);
                 }}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger>
                   <ArrowUpDown className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>

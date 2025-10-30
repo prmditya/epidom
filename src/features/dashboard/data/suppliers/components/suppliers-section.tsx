@@ -190,8 +190,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
     setSortOrder("asc");
   };
 
-  const hasActiveFilters =
-    searchQuery || paymentTermsFilter !== "all" || ratingFilter !== "all";
+  const hasActiveFilters = searchQuery || paymentTermsFilter !== "all" || ratingFilter !== "all";
 
   // Export columns configuration
   const exportColumns = [
@@ -252,7 +251,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
           <div className="flex flex-col gap-3">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <Input
                 placeholder="Search by name, contact, or location..."
                 value={searchQuery}
@@ -265,7 +264,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
             <div className="flex flex-wrap items-center gap-2">
               {/* Payment Terms Filter */}
               <Select value={paymentTermsFilter} onValueChange={setPaymentTermsFilter}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Payment Terms" />
                 </SelectTrigger>
@@ -280,8 +279,11 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
               </Select>
 
               {/* Rating Filter */}
-              <Select value={ratingFilter} onValueChange={(v) => setRatingFilter(v as RatingFilter)}>
-                <SelectTrigger className="w-[160px]">
+              <Select
+                value={ratingFilter}
+                onValueChange={(v) => setRatingFilter(v as RatingFilter)}
+              >
+                <SelectTrigger>
                   <Filter className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Rating" />
                 </SelectTrigger>
@@ -303,7 +305,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                   setSortOrder(order);
                 }}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger>
                   <ArrowUpDown className="mr-2 h-4 w-4" />
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
@@ -330,9 +332,11 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
 
             {/* Bulk Select All */}
             {bulkSelectMode && (
-              <div className="flex items-center gap-2 rounded-lg border bg-muted/50 p-3">
+              <div className="bg-muted/50 flex items-center gap-2 rounded-lg border p-3">
                 <Checkbox
-                  checked={selectedIds.size === processedSuppliers.length && processedSuppliers.length > 0}
+                  checked={
+                    selectedIds.size === processedSuppliers.length && processedSuppliers.length > 0
+                  }
                   onCheckedChange={toggleSelectAll}
                 />
                 <span className="text-sm font-medium">
@@ -344,7 +348,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
 
           {/* Results Count */}
           <div className="flex items-center justify-between border-b pb-2">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Showing {processedSuppliers.length} of {suppliers.length} suppliers
             </p>
           </div>
@@ -357,13 +361,13 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
               return (
                 <div
                   key={supplier.id}
-                  className={`group relative rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md ${
-                    isSelected ? "ring-2 ring-primary" : ""
+                  className={`group bg-card relative rounded-lg border p-4 shadow-sm transition-all hover:shadow-md ${
+                    isSelected ? "ring-primary ring-2" : ""
                   }`}
                 >
                   {/* Bulk Select Checkbox */}
                   {bulkSelectMode && (
-                    <div className="absolute left-2 top-2">
+                    <div className="absolute top-2 left-2">
                       <Checkbox
                         checked={isSelected}
                         onCheckedChange={() => toggleSelectItem(supplier.id)}
@@ -375,9 +379,9 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                   <div className={bulkSelectMode ? "pl-6" : ""}>
                     <div className="mb-2 flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="text-sm font-semibold leading-tight">{supplier.name}</h3>
+                        <h3 className="text-sm leading-tight font-semibold">{supplier.name}</h3>
                         {supplier.contactPerson && (
-                          <p className="text-xs text-muted-foreground">{supplier.contactPerson}</p>
+                          <p className="text-muted-foreground text-xs">{supplier.contactPerson}</p>
                         )}
                       </div>
 
@@ -400,11 +404,11 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                     </div>
 
                     {/* Supplier Info */}
-                    <div className="space-y-1 text-xs text-muted-foreground">
+                    <div className="text-muted-foreground space-y-1 text-xs">
                       {supplier.email && (
                         <div className="flex justify-between">
                           <span>Email:</span>
-                          <span className="truncate font-medium text-foreground">
+                          <span className="text-foreground truncate font-medium">
                             {supplier.email.split("@")[0]}...
                           </span>
                         </div>
@@ -412,13 +416,13 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                       {supplier.phone && (
                         <div className="flex justify-between">
                           <span>Phone:</span>
-                          <span className="font-medium text-foreground">{supplier.phone}</span>
+                          <span className="text-foreground font-medium">{supplier.phone}</span>
                         </div>
                       )}
                       {(supplier.city || supplier.country) && (
                         <div className="flex justify-between">
                           <span>Location:</span>
-                          <span className="font-medium text-foreground">
+                          <span className="text-foreground font-medium">
                             {[supplier.city, supplier.country].filter(Boolean).join(", ")}
                           </span>
                         </div>
@@ -426,7 +430,9 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                       {supplier.paymentTerms && (
                         <div className="flex justify-between">
                           <span>Payment:</span>
-                          <span className="font-medium text-foreground">{supplier.paymentTerms}</span>
+                          <span className="text-foreground font-medium">
+                            {supplier.paymentTerms}
+                          </span>
                         </div>
                       )}
                       {supplier.onTimeDeliveryRate !== undefined && (
@@ -472,7 +478,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 text-xs text-destructive hover:bg-destructive/10"
+                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
                           onClick={() => handleDeleteClick(supplier)}
                         >
                           <Trash2 className="h-3 w-3" />
@@ -487,9 +493,9 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
             {/* Empty State */}
             {processedSuppliers.length === 0 && (
               <div className="col-span-full flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
-                <Store className="mb-4 h-12 w-12 text-muted-foreground/50" />
+                <Store className="text-muted-foreground/50 mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-lg font-semibold">No suppliers found</h3>
-                <p className="mb-4 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mb-4 text-sm">
                   {hasActiveFilters
                     ? "Try adjusting your filters or search query"
                     : "Get started by adding your first supplier"}

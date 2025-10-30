@@ -12,7 +12,7 @@ export function DataView() {
   const { t } = useI18n();
 
   return (
-    <Tabs defaultValue="materials" className="grid w-full gap-6 overflow-hidden">
+    <Tabs defaultValue="materials" className="grid w-full gap-6">
       <TabsList className="bg-muted/50 -mx-4 w-full justify-start overflow-x-auto rounded-lg p-1.5 px-4 whitespace-nowrap shadow-sm backdrop-blur-sm sm:mx-0 sm:px-1.5">
         <TabsTrigger
           className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"

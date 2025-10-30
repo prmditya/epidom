@@ -35,6 +35,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Loader2, ChefHat } from "lucide-react";
 import { MOCK_RECIPES } from "@/mocks";
+import { Separator } from "@/components/ui/separator";
 
 // Zod validation schema
 const productSchema = z.object({
@@ -44,7 +45,11 @@ const productSchema = z.object({
   recipeId: z.string().optional(),
   category: z.string().min(1, "Please enter a category"),
   retailPrice: z.coerce.number().positive("Retail price must be greater than 0"),
-  wholesalePrice: z.coerce.number().positive("Wholesale price must be greater than 0").optional().or(z.literal(0)),
+  wholesalePrice: z.coerce
+    .number()
+    .positive("Wholesale price must be greater than 0")
+    .optional()
+    .or(z.literal(0)),
   costPrice: z.coerce.number().positive("Cost price must be greater than 0"),
   unit: z.string().min(1, "Please enter a unit"),
   currentStock: z.coerce.number().min(0, "Stock cannot be negative"),
@@ -147,27 +152,27 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {children || (
-          <Button>
+          <Button size="sm">
             <Plus className="mr-2 h-4 w-4" />
             Add Product
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl [&>button]:hidden">
         <DialogHeader>
           <DialogTitle>Add New Product</DialogTitle>
           <DialogDescription>
-            Add a new product to your inventory. Link it to a recipe for automatic cost
-            calculation.
+            Add a new product to your inventory. Link it to a recipe for automatic cost calculation.
           </DialogDescription>
         </DialogHeader>
+        <Separator />
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Basic Information */}
             <div className="space-y-4">
               <h3 className="text-sm font-semibold">Basic Information</h3>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid items-start gap-4 sm:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="name"
@@ -295,12 +300,7 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
                     <FormItem>
                       <FormLabel>Cost Price *</FormLabel>
                       <FormControl>
-                        <Input
-                          type="number"
-                          step="0.01"
-                          placeholder="0.00"
-                          {...field}
-                        />
+                        <Input type="number" step="0.01" placeholder="0.00" {...field} />
                       </FormControl>
                       <FormDescription>Production cost</FormDescription>
                       <FormMessage />
@@ -349,9 +349,9 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
                 />
               </div>
               {costPrice > 0 && (
-                <div className="rounded-lg bg-muted p-3 text-sm">
+                <div className="bg-muted rounded-lg p-3 text-sm">
                   <p className="font-medium">Suggested Pricing:</p>
-                  <ul className="mt-1 space-y-0.5 text-muted-foreground">
+                  <ul className="text-muted-foreground mt-1 space-y-0.5">
                     <li>• Wholesale: ${suggestedWholesalePrice} (1.8x markup)</li>
                     <li>• Retail: ${suggestedRetailPrice} (2.5x markup)</li>
                   </ul>
@@ -362,7 +362,7 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
             {/* Stock Management */}
             <div className="space-y-4">
               <h3 className="text-sm font-semibold">Stock Management</h3>
-              <div className="grid gap-4 sm:grid-cols-4">
+              <div className="grid items-start gap-4 sm:grid-cols-4">
                 <FormField
                   control={form.control}
                   name="unit"

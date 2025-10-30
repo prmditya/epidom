@@ -35,6 +35,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Loader2 } from "lucide-react";
 import { PaymentTerms } from "@/types/entities";
+import { Separator } from "@/components/ui/separator";
 
 // Zod validation schema
 const supplierSchema = z.object({
@@ -113,19 +114,21 @@ export default function AddSupplierDialog({ children }: AddSupplierDialogProps) 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {children || (
-          <Button>
+          <Button size="sm">
             <Plus className="mr-2 h-4 w-4" />
             Add Supplier
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl [&>button]:hidden">
         <DialogHeader>
           <DialogTitle>Add New Supplier</DialogTitle>
           <DialogDescription>
             Add a new supplier to your contact list. Fill in as much information as possible.
           </DialogDescription>
         </DialogHeader>
+
+        <Separator />
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
