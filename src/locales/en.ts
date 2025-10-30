@@ -992,6 +992,125 @@ export const en = {
         },
       },
     },
+    // Edit Stock Tab
+    editStock: {
+      title: "Stock Management",
+      description: "Manage inventory levels and record stock adjustments",
+      searchItems: "Search by name or SKU...",
+      items: "items",
+      itemsSelected: "items selected",
+      selectItem: "Select an Item",
+      selectItemDescription: "Choose an item from the list to view details and make adjustments",
+      noItemsFound: "No items found",
+      selectAll: "Select All",
+      deselectAll: "Deselect All",
+
+      // Item Types
+      itemType: "Item Type",
+      selectItemType: "Select item type",
+      material: "Material",
+      product: "Product",
+      selectMaterial: "Select Material",
+      selectProduct: "Select Product",
+
+      // Stock Status
+      inStock: "In Stock",
+      lowStock: "Low Stock",
+      critical: "Critical",
+      outOfStock: "Out of Stock",
+      stockInfo: "Stock Information",
+      currentStock: "Current Stock",
+      minStock: "Minimum Stock",
+      maxStock: "Maximum Stock",
+      stockValue: "Stock Value",
+      current: "Current",
+
+      // Actions
+      quickActions: "Quick Actions",
+      adjustStock: "Adjust Stock",
+      bulkAdjust: "Bulk Adjust",
+      viewHistory: "View History",
+      importCSV: "Import CSV",
+      importCSVDescription: "CSV import functionality coming soon",
+
+      // Adjustment Types
+      adjustmentType: "Adjustment Type",
+      increaseStock: "Increase Stock",
+      decreaseStock: "Decrease Stock",
+      increaseDescription: "Add quantity to current stock",
+      decreaseDescription: "Remove quantity from current stock",
+      quantity: "Quantity",
+      reason: "Reason",
+      selectReason: "Select a reason",
+      referenceId: "Reference ID",
+      referenceIdPlaceholder: "PO#, Invoice#, etc.",
+      referenceIdDescription: "Optional reference number for tracking",
+      notes: "Notes",
+      notesPlaceholder: "Additional details about this adjustment...",
+
+      // Adjustment Reasons
+      reasons: {
+        countCorrection: "Physical Count Correction",
+        foundItems: "Found Items",
+        systemError: "System Error Correction",
+        returned: "Returned from Customer",
+        damaged: "Damaged Goods",
+        expired: "Expired Items",
+        stolen: "Stolen/Missing",
+      },
+
+      // Dialogs
+      adjustmentDialog: {
+        title: "Record Stock Adjustment",
+        description: "Adjust stock levels for materials or products",
+      },
+      bulkAdjustmentDialog: {
+        title: "Bulk Stock Adjustment",
+        description: "Adjust stock levels for multiple items at once",
+      },
+      adjustmentHistoryDialog: {
+        title: "Adjustment History",
+        description: "View all stock adjustments for this item",
+      },
+
+      // Bulk Operations
+      globalSettings: "Global Settings",
+      useSameReason: "Use same reason for all items",
+      useSameReasonDescription: "Apply one reason to all adjustments",
+      itemsToAdjust: "Items to Adjust",
+      noItemsSelected: "No items selected for adjustment",
+      recordAdjustment: "Record Adjustment",
+      recordAdjustments: "Record Adjustments",
+
+      // History
+      adjustmentTimeline: "Adjustment Timeline",
+      noAdjustmentHistory: "No adjustment history found",
+      totalAdjustments: "Total Adjustments",
+      increases: "Increases",
+      decreases: "Decreases",
+      increase: "Increase",
+      decrease: "Decrease",
+      runningBalance: "Running Balance",
+      clearFilters: "Clear Filters",
+
+      // Toast Messages
+      toasts: {
+        adjustmentRecorded: {
+          title: "Adjustment Recorded",
+          description: "Stock adjustment has been saved successfully",
+        },
+        adjustmentFailed: {
+          description: "Failed to record adjustment. Please try again.",
+        },
+        bulkAdjustmentRecorded: {
+          title: "Adjustments Recorded",
+          description: "adjustments have been saved successfully",
+        },
+        bulkAdjustmentFailed: {
+          description: "Failed to record bulk adjustments. Please try again.",
+        },
+      },
+    },
   },
   tracking: {
     // Page titles

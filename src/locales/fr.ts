@@ -1006,6 +1006,125 @@ export const fr = {
         },
       },
     },
+    // Edit Stock Tab
+    editStock: {
+      title: "Gestion des Stocks",
+      description: "Gérer les niveaux d'inventaire et enregistrer les ajustements de stock",
+      searchItems: "Rechercher par nom ou SKU...",
+      items: "articles",
+      itemsSelected: "articles sélectionnés",
+      selectItem: "Sélectionner un Article",
+      selectItemDescription: "Choisissez un article dans la liste pour voir les détails et effectuer des ajustements",
+      noItemsFound: "Aucun article trouvé",
+      selectAll: "Tout Sélectionner",
+      deselectAll: "Tout Désélectionner",
+
+      // Item Types
+      itemType: "Type d'Article",
+      selectItemType: "Sélectionner le type d'article",
+      material: "Matière",
+      product: "Produit",
+      selectMaterial: "Sélectionner une Matière",
+      selectProduct: "Sélectionner un Produit",
+
+      // Stock Status
+      inStock: "En Stock",
+      lowStock: "Stock Faible",
+      critical: "Critique",
+      outOfStock: "Rupture de Stock",
+      stockInfo: "Informations sur le Stock",
+      currentStock: "Stock Actuel",
+      minStock: "Stock Minimum",
+      maxStock: "Stock Maximum",
+      stockValue: "Valeur du Stock",
+      current: "Actuel",
+
+      // Actions
+      quickActions: "Actions Rapides",
+      adjustStock: "Ajuster le Stock",
+      bulkAdjust: "Ajustement en Masse",
+      viewHistory: "Voir l'Historique",
+      importCSV: "Importer CSV",
+      importCSVDescription: "Fonctionnalité d'importation CSV à venir",
+
+      // Adjustment Types
+      adjustmentType: "Type d'Ajustement",
+      increaseStock: "Augmenter le Stock",
+      decreaseStock: "Diminuer le Stock",
+      increaseDescription: "Ajouter une quantité au stock actuel",
+      decreaseDescription: "Retirer une quantité du stock actuel",
+      quantity: "Quantité",
+      reason: "Raison",
+      selectReason: "Sélectionner une raison",
+      referenceId: "ID de Référence",
+      referenceIdPlaceholder: "BC#, Facture#, etc.",
+      referenceIdDescription: "Numéro de référence optionnel pour le suivi",
+      notes: "Notes",
+      notesPlaceholder: "Détails supplémentaires sur cet ajustement...",
+
+      // Adjustment Reasons
+      reasons: {
+        countCorrection: "Correction de Comptage Physique",
+        foundItems: "Articles Trouvés",
+        systemError: "Correction d'Erreur Système",
+        returned: "Retourné par le Client",
+        damaged: "Marchandises Endommagées",
+        expired: "Articles Expirés",
+        stolen: "Volé/Manquant",
+      },
+
+      // Dialogs
+      adjustmentDialog: {
+        title: "Enregistrer un Ajustement de Stock",
+        description: "Ajuster les niveaux de stock pour les matières ou produits",
+      },
+      bulkAdjustmentDialog: {
+        title: "Ajustement de Stock en Masse",
+        description: "Ajuster les niveaux de stock pour plusieurs articles à la fois",
+      },
+      adjustmentHistoryDialog: {
+        title: "Historique des Ajustements",
+        description: "Voir tous les ajustements de stock pour cet article",
+      },
+
+      // Bulk Operations
+      globalSettings: "Paramètres Globaux",
+      useSameReason: "Utiliser la même raison pour tous les articles",
+      useSameReasonDescription: "Appliquer une raison à tous les ajustements",
+      itemsToAdjust: "Articles à Ajuster",
+      noItemsSelected: "Aucun article sélectionné pour l'ajustement",
+      recordAdjustment: "Enregistrer l'Ajustement",
+      recordAdjustments: "Enregistrer les Ajustements",
+
+      // History
+      adjustmentTimeline: "Chronologie des Ajustements",
+      noAdjustmentHistory: "Aucun historique d'ajustement trouvé",
+      totalAdjustments: "Ajustements Totaux",
+      increases: "Augmentations",
+      decreases: "Diminutions",
+      increase: "Augmentation",
+      decrease: "Diminution",
+      runningBalance: "Solde Courant",
+      clearFilters: "Effacer les Filtres",
+
+      // Toast Messages
+      toasts: {
+        adjustmentRecorded: {
+          title: "Ajustement Enregistré",
+          description: "L'ajustement de stock a été enregistré avec succès",
+        },
+        adjustmentFailed: {
+          description: "Échec de l'enregistrement de l'ajustement. Veuillez réessayer.",
+        },
+        bulkAdjustmentRecorded: {
+          title: "Ajustements Enregistrés",
+          description: "ajustements ont été enregistrés avec succès",
+        },
+        bulkAdjustmentFailed: {
+          description: "Échec de l'enregistrement des ajustements en masse. Veuillez réessayer.",
+        },
+      },
+    },
   },
   tracking: {
     // Page titles

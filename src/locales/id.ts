@@ -1003,6 +1003,125 @@ export const id = {
         },
       },
     },
+    // Edit Stock Tab
+    editStock: {
+      title: "Manajemen Stok",
+      description: "Kelola level inventori dan catat penyesuaian stok",
+      searchItems: "Cari berdasarkan nama atau SKU...",
+      items: "item",
+      itemsSelected: "item dipilih",
+      selectItem: "Pilih Item",
+      selectItemDescription: "Pilih item dari daftar untuk melihat detail dan melakukan penyesuaian",
+      noItemsFound: "Tidak ada item ditemukan",
+      selectAll: "Pilih Semua",
+      deselectAll: "Batalkan Semua",
+
+      // Item Types
+      itemType: "Tipe Item",
+      selectItemType: "Pilih tipe item",
+      material: "Bahan",
+      product: "Produk",
+      selectMaterial: "Pilih Bahan",
+      selectProduct: "Pilih Produk",
+
+      // Stock Status
+      inStock: "Tersedia",
+      lowStock: "Stok Rendah",
+      critical: "Kritis",
+      outOfStock: "Habis",
+      stockInfo: "Informasi Stok",
+      currentStock: "Stok Saat Ini",
+      minStock: "Stok Minimum",
+      maxStock: "Stok Maksimum",
+      stockValue: "Nilai Stok",
+      current: "Saat Ini",
+
+      // Actions
+      quickActions: "Aksi Cepat",
+      adjustStock: "Sesuaikan Stok",
+      bulkAdjust: "Penyesuaian Massal",
+      viewHistory: "Lihat Riwayat",
+      importCSV: "Impor CSV",
+      importCSVDescription: "Fitur impor CSV akan segera hadir",
+
+      // Adjustment Types
+      adjustmentType: "Tipe Penyesuaian",
+      increaseStock: "Tambah Stok",
+      decreaseStock: "Kurangi Stok",
+      increaseDescription: "Tambahkan jumlah ke stok saat ini",
+      decreaseDescription: "Kurangi jumlah dari stok saat ini",
+      quantity: "Jumlah",
+      reason: "Alasan",
+      selectReason: "Pilih alasan",
+      referenceId: "ID Referensi",
+      referenceIdPlaceholder: "PO#, Invoice#, dll.",
+      referenceIdDescription: "Nomor referensi opsional untuk pelacakan",
+      notes: "Catatan",
+      notesPlaceholder: "Detail tambahan tentang penyesuaian ini...",
+
+      // Adjustment Reasons
+      reasons: {
+        countCorrection: "Koreksi Perhitungan Fisik",
+        foundItems: "Item Ditemukan",
+        systemError: "Koreksi Kesalahan Sistem",
+        returned: "Dikembalikan dari Pelanggan",
+        damaged: "Barang Rusak",
+        expired: "Item Kadaluarsa",
+        stolen: "Hilang/Dicuri",
+      },
+
+      // Dialogs
+      adjustmentDialog: {
+        title: "Catat Penyesuaian Stok",
+        description: "Sesuaikan level stok untuk bahan atau produk",
+      },
+      bulkAdjustmentDialog: {
+        title: "Penyesuaian Stok Massal",
+        description: "Sesuaikan level stok untuk beberapa item sekaligus",
+      },
+      adjustmentHistoryDialog: {
+        title: "Riwayat Penyesuaian",
+        description: "Lihat semua penyesuaian stok untuk item ini",
+      },
+
+      // Bulk Operations
+      globalSettings: "Pengaturan Global",
+      useSameReason: "Gunakan alasan yang sama untuk semua item",
+      useSameReasonDescription: "Terapkan satu alasan ke semua penyesuaian",
+      itemsToAdjust: "Item yang Akan Disesuaikan",
+      noItemsSelected: "Tidak ada item dipilih untuk penyesuaian",
+      recordAdjustment: "Catat Penyesuaian",
+      recordAdjustments: "Catat Penyesuaian",
+
+      // History
+      adjustmentTimeline: "Timeline Penyesuaian",
+      noAdjustmentHistory: "Tidak ada riwayat penyesuaian ditemukan",
+      totalAdjustments: "Total Penyesuaian",
+      increases: "Penambahan",
+      decreases: "Pengurangan",
+      increase: "Penambahan",
+      decrease: "Pengurangan",
+      runningBalance: "Saldo Berjalan",
+      clearFilters: "Hapus Filter",
+
+      // Toast Messages
+      toasts: {
+        adjustmentRecorded: {
+          title: "Penyesuaian Tercatat",
+          description: "Penyesuaian stok berhasil disimpan",
+        },
+        adjustmentFailed: {
+          description: "Gagal mencatat penyesuaian. Silakan coba lagi.",
+        },
+        bulkAdjustmentRecorded: {
+          title: "Penyesuaian Tercatat",
+          description: "penyesuaian berhasil disimpan",
+        },
+        bulkAdjustmentFailed: {
+          description: "Gagal mencatat penyesuaian massal. Silakan coba lagi.",
+        },
+      },
+    },
   },
   tracking: {
     // Page titles
