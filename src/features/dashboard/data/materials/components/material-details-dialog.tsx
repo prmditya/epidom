@@ -19,8 +19,6 @@ import {
   MapPin,
   Barcode,
   Calendar,
-  TrendingUp,
-  TrendingDown,
   AlertTriangle,
   Edit,
   Trash2,
@@ -58,10 +56,7 @@ export default function MaterialDetailsDialog({
 
   const supplier = MOCK_SUPPLIERS.find((s) => s.id === material.supplierId);
   const stockStatus = getStockStatus(material.currentStock, material.minStock, material.maxStock);
-  const stockPercentage = calculateStockPercentage(
-    material.currentStock,
-    material.maxStock
-  );
+  const stockPercentage = calculateStockPercentage(material.currentStock, material.maxStock);
 
   const handleDelete = () => {
     if (onDelete) {

@@ -1,10 +1,10 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DataManageView } from "./data-manage";
-import { Section } from "./section";
 import { MaterialsSection } from "@/features/dashboard/data/materials/components/materials-section";
 import { RecipesSection } from "../recipes/components/recipes-section";
+import { ProductsSection } from "../products/components/products-section";
+import { SuppliersSection } from "../suppliers/components/suppliers-section";
 import { useI18n } from "@/components/lang/i18n-provider";
 import { MOCK_MATERIALS, MOCK_RECIPES, MOCK_PRODUCTS, MOCK_SUPPLIERS } from "@/mocks";
 
@@ -38,12 +38,6 @@ export function DataView() {
         >
           {t("pages.suppliersList")}
         </TabsTrigger>
-        <TabsTrigger
-          className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
-          value="manage"
-        >
-          {t("pages.manageData")}
-        </TabsTrigger>
       </TabsList>
 
       <TabsContent value="materials">
@@ -53,13 +47,10 @@ export function DataView() {
         <RecipesSection recipes={MOCK_RECIPES} />
       </TabsContent>
       <TabsContent value="products">
-        <Section items={MOCK_PRODUCTS} label={t("data.products")} />
+        <ProductsSection products={MOCK_PRODUCTS} />
       </TabsContent>
       <TabsContent value="suppliers">
-        <Section items={MOCK_SUPPLIERS} label={t("data.suppliers")} />
-      </TabsContent>
-      <TabsContent value="manage">
-        <DataManageView />
+        <SuppliersSection suppliers={MOCK_SUPPLIERS} />
       </TabsContent>
     </Tabs>
   );

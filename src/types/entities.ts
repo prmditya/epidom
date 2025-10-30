@@ -83,6 +83,7 @@ export enum PaymentTerms {
   NET15 = "net15",
   NET30 = "net30",
   NET60 = "net60",
+  NET90 = "net90",
   PREPAID = "prepaid",
 }
 
@@ -168,6 +169,7 @@ export interface ProductVariant {
   retailPrice: number;
   wholesalePrice?: number;
   attributes: Record<string, string>; // e.g., { size: "large", flavor: "chocolate" }
+  priceAdjustment?: number;
 }
 
 export interface Supplier {
