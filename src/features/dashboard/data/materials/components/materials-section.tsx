@@ -225,11 +225,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
               />
               <AddMaterialDialog />
               {bulkSelectMode && selectedIds.size > 0 && (
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={handleBulkDelete}
-                >
+                <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
                   <Trash2 className="mr-2 h-4 w-4" />
                   Delete ({selectedIds.size})
                 </Button>
@@ -260,7 +256,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
           <div className="flex flex-col gap-3">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <Input
                 placeholder="Search by name, SKU, or description..."
                 value={searchQuery}
@@ -354,9 +350,11 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
             {/* Bulk Select All */}
             {bulkSelectMode && (
-              <div className="flex items-center gap-2 rounded-lg border bg-muted/50 p-3">
+              <div className="bg-muted/50 flex items-center gap-2 rounded-lg border p-3">
                 <Checkbox
-                  checked={selectedIds.size === processedMaterials.length && processedMaterials.length > 0}
+                  checked={
+                    selectedIds.size === processedMaterials.length && processedMaterials.length > 0
+                  }
                   onCheckedChange={toggleSelectAll}
                 />
                 <span className="text-sm font-medium">
@@ -368,7 +366,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
           {/* Results Count */}
           <div className="flex items-center justify-between border-b pb-2">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Showing {processedMaterials.length} of {materials.length} materials
             </p>
           </div>
@@ -382,13 +380,13 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
               return (
                 <div
                   key={material.id}
-                  className={`group relative rounded-lg border bg-card p-4 shadow-sm transition-all hover:shadow-md ${
-                    isSelected ? "ring-2 ring-primary" : ""
+                  className={`group bg-card relative rounded-lg border p-4 shadow-sm transition-all hover:shadow-md ${
+                    isSelected ? "ring-primary ring-2" : ""
                   }`}
                 >
                   {/* Bulk Select Checkbox */}
                   {bulkSelectMode && (
-                    <div className="absolute left-2 top-2">
+                    <div className="absolute top-2 left-2">
                       <Checkbox
                         checked={isSelected}
                         onCheckedChange={() => toggleSelectItem(material.id)}
@@ -400,13 +398,9 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   <div className={bulkSelectMode ? "pl-6" : ""}>
                     <div className="mb-2 flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-sm leading-tight">
-                          {material.name}
-                        </h3>
+                        <h3 className="text-sm leading-tight font-semibold">{material.name}</h3>
                         {material.sku && (
-                          <p className="text-xs text-muted-foreground">
-                            SKU: {material.sku}
-                          </p>
+                          <p className="text-muted-foreground text-xs">SKU: {material.sku}</p>
                         )}
                       </div>
 
@@ -416,10 +410,10 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                           stockStatus === "critical"
                             ? "destructive"
                             : stockStatus === "low_stock"
-                            ? "default"
-                            : stockStatus === "overstocked"
-                            ? "secondary"
-                            : "outline"
+                              ? "default"
+                              : stockStatus === "overstocked"
+                                ? "secondary"
+                                : "outline"
                         }
                         className="ml-2 text-xs"
                       >
@@ -428,22 +422,22 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                     </div>
 
                     {/* Material Info */}
-                    <div className="space-y-1 text-xs text-muted-foreground">
+                    <div className="text-muted-foreground space-y-1 text-xs">
                       <div className="flex justify-between">
                         <span>Stock:</span>
-                        <span className="font-medium text-foreground">
+                        <span className="text-foreground font-medium">
                           {material.currentStock} {material.unit}
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Cost:</span>
-                        <span className="font-medium text-foreground">
+                        <span className="text-foreground font-medium">
                           ${material.costPerUnit}/{material.unit}
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Category:</span>
-                        <span className="font-medium text-foreground">
+                        <span className="text-foreground font-medium">
                           {material.category.replace("_", " ")}
                         </span>
                       </div>
@@ -451,7 +445,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
                     {/* Hover Actions */}
                     {!bulkSelectMode && (
-                      <div className="mt-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                      <div className="mt-4 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
                         <Button
                           variant="ghost"
                           size="sm"
@@ -473,7 +467,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 text-xs text-destructive hover:bg-destructive/10"
+                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
                           onClick={() => handleDeleteClick(material)}
                         >
                           <Trash2 className="h-3 w-3" />
@@ -489,9 +483,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
             {processedMaterials.length === 0 && (
               <div className="col-span-full py-12 text-center">
                 <p className="text-muted-foreground">
-                  {hasActiveFilters
-                    ? "No materials match your filters"
-                    : "No materials found"}
+                  {hasActiveFilters ? "No materials match your filters" : "No materials found"}
                 </p>
                 {hasActiveFilters && (
                   <Button variant="link" onClick={clearFilters} className="mt-2">

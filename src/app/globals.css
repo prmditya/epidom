@@ -2,6 +2,18 @@
 @import "tw-animate-css";
 @import "leaflet/dist/leaflet.css";
 
+/* Hide scrollbar for Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
@@ -421,41 +433,41 @@ body.dialog-open {
 /* ========================================
    MARKETING PAGES TYPOGRAPHY STANDARDS
    ======================================== */
-/* 
+/*
    * For Services, Pricing, Contact pages:
-   * 
+   *
    * Top Spacing: py-8 sm:py-12 (first section)
    * Container: mx-auto max-w-7xl px-4 sm:px-6 lg:px-8
-   * 
+   *
    * H1: text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight
    *     Color: style={{ color: '#444444' }}
-   * 
+   *
    * H2: text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight
    *     Color: style={{ color: '#444444' }}
-   * 
+   *
    * Main Paragraph: text-lg sm:text-xl md:text-2xl leading-relaxed
    *                 Color: style={{ color: '#444444' }}
-   * 
+   *
    * Secondary Text: text-base sm:text-lg md:text-xl
    *                 Color: style={{ color: '#444444' }}
-   * 
+   *
    * Muted Text: text-muted-foreground (Tailwind class, no inline style)
-   * 
+   *
    * Title-Description Spacing: space-y-4 sm:space-y-6 (between H1 and main paragraph)
-   * 
+   *
    * Note: Home page intentionally uses smaller compact sizes
-   * 
+   *
    * IMAGE SIZE STANDARDS:
-   * 
+   *
    * Large Images: aspect-video lg:aspect-[4/3] (main featured images)
    * Medium Images: h-1/2 (half height of large, used in 3-image layouts)
    * Small Images: h-1/2 (half height of large, used in 3-image layouts)
-   * 
+   *
    * 3-Image Layout: flex flex-col gap-4 h-full
    * - Large: 70% width, full height
    * - Medium: 30% width, half height (top)
    * - Small: 30% width, half height (bottom)
-   * 
+   *
    * All images use: rounded-lg overflow-hidden for consistent styling
    */
 
@@ -729,57 +741,57 @@ body {
 
    ======================================== */
 
-/* 
+/*
 
    * For Services, Pricing, Contact pages:
 
-   * 
+   *
 
    * Top Spacing: py-8 sm:py-12 (first section)
 
    * Container: mx-auto max-w-7xl px-4 sm:px-6 lg:px-8
 
-   * 
+   *
 
    * H1: text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight
 
    *     Color: style={{ color: '#444444' }}
 
-   * 
+   *
 
    * H2: text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight
 
    *     Color: style={{ color: '#444444' }}
 
-   * 
+   *
 
    * Main Paragraph: text-lg sm:text-xl md:text-2xl leading-relaxed
 
    *                 Color: style={{ color: '#444444' }}
 
-   * 
+   *
 
    * Secondary Text: text-base sm:text-lg md:text-xl
 
    *                 Color: style={{ color: '#444444' }}
 
-   * 
+   *
 
    * Muted Text: text-muted-foreground (Tailwind class, no inline style)
 
-   * 
+   *
 
    * Title-Description Spacing: space-y-4 sm:space-y-6 (between H1 and main paragraph)
 
-   * 
+   *
 
    * Note: Home page intentionally uses smaller compact sizes
 
-   * 
+   *
 
    * IMAGE SIZE STANDARDS:
 
-   * 
+   *
 
    * Large Images: aspect-video lg:aspect-[4/3] (main featured images)
 
@@ -787,7 +799,7 @@ body {
 
    * Small Images: h-1/2 (half height of large, used in 3-image layouts)
 
-   * 
+   *
 
    * 3-Image Layout: flex flex-col gap-4 h-full
 
@@ -797,7 +809,7 @@ body {
 
    * - Small: 30% width, half height (bottom)
 
-   * 
+   *
 
    * All images use: rounded-lg overflow-hidden for consistent styling
 
