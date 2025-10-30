@@ -15,7 +15,7 @@ interface ProfileData {
   email: string;
   image: string | null;
   phone: string | null;
-  locale: string;
+  locale: "en" | "fr" | "id" | undefined;
   timezone: string;
   currency: string;
   createdAt: Date;

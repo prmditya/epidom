@@ -13,7 +13,7 @@ interface PersonalInfoCardProps {
     name?: string | null;
     email: string;
     phone?: string | null;
-    locale: string;
+    locale: "en" | "fr" | "id" | undefined;
     timezone: string;
     currency: string;
   };
@@ -28,9 +28,9 @@ export function PersonalInfoCard({ user, onUpdate }: PersonalInfoCardProps) {
     { label: t("auth.name"), value: user.name || "—" },
     { label: t("auth.email"), value: user.email },
     { label: "Phone", value: user.phone || "—" },
-    { label: "Language", value: user.locale.toUpperCase() },
-    { label: "Timezone", value: user.timezone },
-    { label: "Currency", value: user.currency },
+    { label: "Language", value: user.locale || "—" },
+    { label: "Timezone", value: user.timezone || "—" },
+    { label: "Currency", value: user.currency || "—" },
   ];
 
   return (

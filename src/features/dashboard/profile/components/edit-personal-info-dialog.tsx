@@ -5,7 +5,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2 } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -36,7 +42,7 @@ interface EditPersonalInfoDialogProps {
     name?: string | null;
     email: string;
     phone?: string | null;
-    locale: string;
+    locale: "en" | "fr" | "id" | undefined;
     timezone: string;
     currency: string;
   };
@@ -117,7 +123,8 @@ export function EditPersonalInfoDialog({
       console.error("Error updating profile:", error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to update profile. Please try again.",
+        description:
+          error instanceof Error ? error.message : "Failed to update profile. Please try again.",
         variant: "destructive",
       });
     }
@@ -128,9 +135,7 @@ export function EditPersonalInfoDialog({
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>{t("profile.forms.editPersonalInfo")}</DialogTitle>
-          <DialogDescription>
-            Update your personal information and preferences
-          </DialogDescription>
+          <DialogDescription>Update your personal information and preferences</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -156,16 +161,9 @@ export function EditPersonalInfoDialog({
             <FormItem>
               <FormLabel>{t("profile.personal.email")}</FormLabel>
               <FormControl>
-                <Input
-                  type="email"
-                  value={user.email}
-                  disabled
-                  className="bg-muted"
-                />
+                <Input type="email" value={user.email} disabled className="bg-muted" />
               </FormControl>
-              <FormDescription>
-                Email cannot be changed
-              </FormDescription>
+              <FormDescription>Email cannot be changed</FormDescription>
             </FormItem>
 
             <FormField
@@ -194,10 +192,7 @@ export function EditPersonalInfoDialog({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("profile.personal.language")}</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue />
@@ -220,10 +215,7 @@ export function EditPersonalInfoDialog({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("profile.personal.currency")}</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue />
@@ -248,10 +240,7 @@ export function EditPersonalInfoDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t("profile.personal.timezone")}</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue />
@@ -280,14 +269,8 @@ export function EditPersonalInfoDialog({
               >
                 {t("profile.actions.cancel")}
               </Button>
-              <Button
-                type="submit"
-                disabled={form.formState.isSubmitting}
-                className="flex-1"
-              >
-                {form.formState.isSubmitting && (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                )}
+              <Button type="submit" disabled={form.formState.isSubmitting} className="flex-1">
+                {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {t("profile.actions.save")}
               </Button>
             </div>
