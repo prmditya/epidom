@@ -8,10 +8,6 @@ import { useI18n } from "@/components/lang/i18n-provider";
 import { useAlertsCount } from "@/features/dashboard/alerts/hooks/use-alerts-count";
 import { dashboardNavigation, type NavSection } from "@/config/navigation.config";
 
-function isMobile(mode: string) {
-  return mode === "mobile" ? "flex md:hidden h-full mt-12" : "hidden md:flex w-full";
-}
-
 /**
  * Get badge count for a navigation item
  */
@@ -45,8 +41,14 @@ export function Sidebar({ mode = "desktop", navigation = dashboardNavigation }: 
   const { t } = useI18n();
 
   return (
-    <aside className={cn(isMobile(mode))}>
-      <div className="bg-card flex h-svh w-full flex-col overflow-y-auto rounded-xl border shadow-sm">
+    <aside
+      className={cn(
+        mode === "desktop"
+          ? "sticky top-[5rem] hidden h-[calc(100vh-5.25rem-1rem)] w-full self-start md:flex"
+          : "mt-12 flex h-full md:hidden"
+      )}
+    >
+      <div className="bg-card flex h-full w-full flex-col overflow-y-auto rounded-xl border shadow-sm">
         {mode === "mobile" && (
           <div className="border-b p-3">
             <div className="relative">
