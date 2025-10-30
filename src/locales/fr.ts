@@ -839,6 +839,171 @@ export const fr = {
     orderId: "ID de Commande",
   },
   profile: {
+    // Titre de la page
+    title: "Paramètres du Profil",
+
+    // Sections
+    sections: {
+      personal: "Informations Personnelles",
+      business: "Informations sur l'Entreprise",
+      subscription: "Abonnement",
+      notifications: "Préférences de Notification",
+      activity: "Journal d'Activité",
+    },
+
+    // Infos personnelles
+    personal: {
+      name: "Nom Complet",
+      email: "Adresse E-mail",
+      phone: "Numéro de Téléphone",
+      language: "Langue",
+      timezone: "Fuseau Horaire",
+      currency: "Devise",
+      memberSince: "Membre depuis",
+      avatar: "Photo de Profil",
+      changeAvatar: "Changer l'Avatar",
+      uploadAvatar: "Télécharger l'Avatar",
+    },
+
+    // Infos entreprise
+    business: {
+      name: "Nom de l'Entreprise",
+      email: "E-mail Professionnel",
+      phone: "Téléphone Professionnel",
+      website: "Site Web",
+      address: "Adresse",
+      city: "Ville",
+      country: "Pays",
+      logo: "Logo de l'Entreprise",
+      uploadLogo: "Télécharger le Logo",
+      changeLogo: "Changer le Logo",
+      noBusinessInfo: "Aucune information d'entreprise ajoutée",
+      addBusinessInfo: "Ajouter les Informations d'Entreprise",
+    },
+
+    // Abonnement
+    subscription: {
+      plan: "Forfait Actuel",
+      status: "Statut",
+      billingPeriod: "Période de Facturation",
+      periodStart: "Début de Période",
+      periodEnd: "Fin de Période",
+      changePlan: "Changer de Forfait",
+      manageBilling: "Gérer la Facturation",
+      noSubscription: "Aucun abonnement actif",
+      viewPlans: "Voir les Forfaits",
+      cancelingSoon: "Abonnement se Termine",
+      cancelMessage: "Votre abonnement ne sera pas renouvelé à la fin de la période actuelle.",
+      pastDue: "Paiement Requis",
+      pastDueMessage: "Votre paiement est en retard. Veuillez mettre à jour votre moyen de paiement.",
+    },
+
+    // Notifications
+    notifications: {
+      title: "Préférences de Notification",
+      description: "Choisissez comment vous souhaitez être notifié",
+      email: "Notifications par E-mail",
+      push: "Notifications Push",
+      inApp: "Notifications In-App",
+      categories: {
+        alerts: "Alertes de Stock",
+        alertsDesc: "Recevez des notifications lorsque les niveaux de stock sont faibles ou critiques",
+        orders: "Mises à Jour des Commandes",
+        ordersDesc: "Recevez des mises à jour sur les changements d'état des commandes",
+        production: "Mises à Jour de Production",
+        productionDesc: "Soyez notifié de l'avancement des lots de production",
+      },
+    },
+
+    // Journal d'activité
+    activity: {
+      title: "Activité Récente",
+      description: "Vos actions et modifications récentes",
+      login: "Connecté",
+      logout: "Déconnecté",
+      updated: "{field} mis à jour",
+      created: "{entity} créé",
+      deleted: "{entity} supprimé",
+      noActivity: "Aucune activité récente",
+      viewAll: "Voir Toute l'Activité",
+      actions: {
+        login: "Connecté",
+        logout: "Déconnecté",
+        updateProfile: "Profil mis à jour",
+        updateBusiness: "Informations d'entreprise mises à jour",
+        createMaterial: "Matériau créé",
+        updateMaterial: "Matériau mis à jour",
+        deleteMaterial: "Matériau supprimé",
+        createRecipe: "Recette créée",
+        updateRecipe: "Recette mise à jour",
+        deleteRecipe: "Recette supprimée",
+        createOrder: "Commande créée",
+        updateOrder: "Commande mise à jour",
+        createProduction: "Lot de production démarré",
+      },
+    },
+
+    // Formulaires & Actions
+    forms: {
+      editPersonalInfo: "Modifier les Informations Personnelles",
+      editBusinessInfo: "Modifier les Informations d'Entreprise",
+      namePlaceholder: "Entrez votre nom complet",
+      emailPlaceholder: "votre@email.com",
+      phonePlaceholder: "+33 1 23 45 67 89",
+      websitePlaceholder: "https://votreentreprise.com",
+      addressPlaceholder: "Adresse",
+      cityPlaceholder: "Ville",
+      countryPlaceholder: "Pays",
+    },
+
+    // Actions
+    actions: {
+      edit: "Modifier",
+      save: "Enregistrer les Modifications",
+      cancel: "Annuler",
+      update: "Mettre à Jour le Profil",
+      delete: "Supprimer",
+    },
+
+    // Messages toast
+    toasts: {
+      profileUpdated: {
+        title: "Profil Mis à Jour",
+        description: "Votre profil a été mis à jour avec succès.",
+      },
+      businessUpdated: {
+        title: "Infos Entreprise Mises à Jour",
+        description: "Les informations d'entreprise ont été mises à jour avec succès.",
+      },
+      businessCreated: {
+        title: "Infos Entreprise Ajoutées",
+        description: "Les informations d'entreprise ont été ajoutées avec succès.",
+      },
+      avatarUploaded: {
+        title: "Avatar Mis à Jour",
+        description: "Photo de profil mise à jour avec succès.",
+      },
+      logoUploaded: {
+        title: "Logo Mis à Jour",
+        description: "Logo de l'entreprise mis à jour avec succès.",
+      },
+      preferencesUpdated: {
+        title: "Préférences Mises à Jour",
+        description: "Préférences de notification enregistrées.",
+      },
+    },
+
+    // Messages de validation
+    validation: {
+      nameRequired: "Le nom est requis",
+      emailRequired: "L'e-mail est requis",
+      emailInvalid: "Adresse e-mail invalide",
+      phoneInvalid: "Numéro de téléphone invalide",
+      websiteInvalid: "URL de site web invalide",
+      businessNameRequired: "Le nom de l'entreprise est requis",
+    },
+
+    // Clés héritées (maintenir la compatibilité ascendante)
     address: "Adresse",
     businessName: "Nom de l'Entreprise",
     updateProfile: "Mettre à Jour le Profil",
@@ -1124,6 +1289,178 @@ export const fr = {
           description: "Échec de l'enregistrement des ajustements en masse. Veuillez réessayer.",
         },
       },
+    },
+    // Recipe Production Tab
+    recipeProduction: {
+      description: "Démarrer de nouveaux lots de production et surveiller la production active",
+      availableRecipes: "Recettes Disponibles",
+      selectRecipeToStart: "Sélectionnez une recette pour commencer la production",
+      searchRecipes: "Rechercher des recettes...",
+      noRecipesFound: "Aucune recette trouvée",
+      selectRecipe: "Sélectionner une Recette",
+      selectRecipeHint: "Choisissez une recette dans la liste pour voir les détails et commencer la production",
+
+      // Recipe Details
+      yield: "Rendement",
+      productionTime: "Temps de Production",
+      minutes: "minutes",
+      costPerBatch: "Coût par Lot",
+      costPerUnit: "Coût par Unité",
+      startProduction: "Démarrer la Production",
+      insufficientMaterials: "Matériaux insuffisants pour démarrer la production",
+      insufficientMaterialsWarning: "Certains matériaux sont en dessous des niveaux requis",
+      insufficientMaterialsHint: "Veuillez réapprovisionner les matériaux insuffisants avant de commencer la production",
+
+      // Material Availability
+      materialAvailability: "Disponibilité des Matériaux",
+      materialAvailabilityDescription: "Vérifier la disponibilité des ingrédients pour cette recette",
+      material: "Matériau",
+      required: "Requis",
+      available: "Disponible",
+      status: "Statut",
+      allMaterialsAvailable: "Tous Disponibles",
+      materialShortage: "Pénurie",
+      noIngredientsFound: "Aucun ingrédient trouvé pour cette recette",
+
+      availability: {
+        sufficient: "Suffisant",
+        low: "Stock Faible",
+        insufficient: "Insuffisant",
+      },
+
+      // Active Batches
+      activeBatches: "Lots Actifs",
+      activeBatchesDescription: "Lots de production actuellement en cours",
+      started: "Démarré",
+      completed: "Terminé",
+      quantity: "Quantité",
+      qualityScore: "Score de Qualité",
+
+      // Batch Statuses
+      statuses: {
+        pending: "En Attente",
+        inProgress: "En Cours",
+        qualityCheck: "Contrôle Qualité",
+        completed: "Terminé",
+        failed: "Échoué",
+      },
+
+      // Start Production Dialog
+      dialogs: {
+        startProduction: {
+          title: "Démarrer un Lot de Production",
+          description: "Créer un nouveau lot de production pour cette recette",
+        },
+      },
+
+      recipe: "Recette",
+      yieldPerBatch: "Rendement par Lot",
+      timePerBatch: "Temps par Lot",
+      batchQuantity: "Nombre de Lots",
+      batchQuantityHint: "Combien de lots voulez-vous produire?",
+      productionSummary: "Résumé de Production",
+      totalYield: "Rendement Total",
+      totalTime: "Temps Total",
+      totalCost: "Coût Total",
+      targetCompletionDate: "Date de Fin Prévue",
+      targetCompletionDateHint: "Quand cette production devrait-elle être terminée?",
+      notes: "Notes de Production",
+      notesPlaceholder: "Ajoutez des instructions ou notes spéciales...",
+      notesHint: "Notes facultatives sur ce lot de production",
+
+      // Toast Messages
+      toasts: {
+        productionStarted: {
+          title: "Production Démarrée",
+          description: "Le lot {batchNumber} a été créé avec succès",
+        },
+        productionFailed: {
+          title: "Échec du Démarrage de la Production",
+          description: "Une erreur s'est produite lors du démarrage du lot de production. Veuillez réessayer.",
+        },
+      },
+    },
+
+    // Production History Tab
+    productionHistory: {
+      description: "Voir et analyser les lots de production terminés",
+      filters: "Filtres",
+      filtersDescription: "Filtrer les lots par statut, recette ou plage de dates",
+      searchBatches: "Rechercher par numéro de lot...",
+      selectStatus: "Sélectionner le statut",
+      allStatuses: "Tous les Statuts",
+      selectRecipe: "Sélectionner la recette",
+      allRecipes: "Toutes les Recettes",
+      activeFilters: "Filtres actifs",
+      search: "Recherche",
+      status: "Statut",
+      recipe: "Recette",
+      dateRange: "Plage de dates",
+
+      // Table
+      batchesList: "Lots",
+      rowsPerPage: "Lignes par page",
+      noBatchesFound: "Aucun lot trouvé",
+      batchNumber: "Numéro de Lot",
+      quantity: "Quantité",
+      qualityScore: "Score de Qualité",
+      startedAt: "Démarré le",
+      actions: "Actions",
+      showing: "Affichage",
+
+      // Batch Statuses
+      statuses: {
+        pending: "En Attente",
+        inProgress: "En Cours",
+        qualityCheck: "Contrôle Qualité",
+        completed: "Terminé",
+        failed: "Échoué",
+      },
+
+      // Metrics
+      metrics: {
+        totalBatches: "Total des Lots",
+        totalBatchesDescription: "Tous les lots de production",
+        averageQuality: "Qualité Moy.",
+        averageQualityDescription: "Score de qualité moyen",
+        efficiency: "Efficacité",
+        efficiencyDescription: "Production réelle vs prévue",
+        totalOutput: "Production Totale",
+        totalOutputDescription: "Total des unités produites",
+      },
+
+      // Batch Details Dialog
+      dialogs: {
+        batchDetails: {
+          title: "Détails du Lot",
+          description: "Informations complètes sur ce lot de production",
+        },
+      },
+
+      recipeInformation: "Informations sur la Recette",
+      recipeName: "Nom de la Recette",
+      category: "Catégorie",
+      expectedYield: "Rendement Prévu",
+      expectedTime: "Temps Prévu",
+
+      ingredientConsumption: "Consommation d'Ingrédients",
+      material: "Matériau",
+      quantityUsed: "Quantité Utilisée",
+      costPerUnit: "Coût/Unité",
+      totalCost: "Coût Total",
+
+      productionTimeline: "Chronologie de Production",
+      completedAt: "Terminé le",
+      duration: "Durée",
+      totalDuration: "Durée Totale",
+      expected: "prévu",
+
+      qualityNotes: "Notes de Qualité",
+
+      costAnalysis: "Analyse des Coûts",
+      estimatedCost: "Coût Estimé",
+      actualCost: "Coût Réel",
+      variance: "Variance",
     },
   },
   tracking: {

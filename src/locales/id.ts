@@ -836,6 +836,171 @@ export const id = {
     orderId: "ID Pesanan",
   },
   profile: {
+    // Judul halaman
+    title: "Pengaturan Profil",
+
+    // Bagian
+    sections: {
+      personal: "Informasi Pribadi",
+      business: "Informasi Bisnis",
+      subscription: "Langganan",
+      notifications: "Preferensi Notifikasi",
+      activity: "Log Aktivitas",
+    },
+
+    // Info pribadi
+    personal: {
+      name: "Nama Lengkap",
+      email: "Alamat Email",
+      phone: "Nomor Telepon",
+      language: "Bahasa",
+      timezone: "Zona Waktu",
+      currency: "Mata Uang",
+      memberSince: "Anggota sejak",
+      avatar: "Foto Profil",
+      changeAvatar: "Ubah Avatar",
+      uploadAvatar: "Unggah Avatar",
+    },
+
+    // Info bisnis
+    business: {
+      name: "Nama Bisnis",
+      email: "Email Bisnis",
+      phone: "Telepon Bisnis",
+      website: "Website",
+      address: "Alamat",
+      city: "Kota",
+      country: "Negara",
+      logo: "Logo Bisnis",
+      uploadLogo: "Unggah Logo",
+      changeLogo: "Ubah Logo",
+      noBusinessInfo: "Belum ada informasi bisnis",
+      addBusinessInfo: "Tambahkan Informasi Bisnis",
+    },
+
+    // Langganan
+    subscription: {
+      plan: "Paket Saat Ini",
+      status: "Status",
+      billingPeriod: "Periode Tagihan",
+      periodStart: "Mulai Periode",
+      periodEnd: "Akhir Periode",
+      changePlan: "Ubah Paket",
+      manageBilling: "Kelola Tagihan",
+      noSubscription: "Tidak ada langganan aktif",
+      viewPlans: "Lihat Paket",
+      cancelingSoon: "Langganan Berakhir",
+      cancelMessage: "Langganan Anda tidak akan diperpanjang di akhir periode saat ini.",
+      pastDue: "Pembayaran Diperlukan",
+      pastDueMessage: "Pembayaran Anda tertunda. Silakan perbarui metode pembayaran Anda.",
+    },
+
+    // Notifikasi
+    notifications: {
+      title: "Preferensi Notifikasi",
+      description: "Pilih cara Anda ingin diberi tahu",
+      email: "Notifikasi Email",
+      push: "Notifikasi Push",
+      inApp: "Notifikasi In-App",
+      categories: {
+        alerts: "Peringatan Stok",
+        alertsDesc: "Dapatkan notifikasi saat tingkat stok rendah atau kritis",
+        orders: "Pembaruan Pesanan",
+        ordersDesc: "Terima pembaruan tentang perubahan status pesanan",
+        production: "Pembaruan Produksi",
+        productionDesc: "Dapatkan notifikasi tentang progres batch produksi",
+      },
+    },
+
+    // Log aktivitas
+    activity: {
+      title: "Aktivitas Terkini",
+      description: "Tindakan dan perubahan terkini Anda",
+      login: "Masuk",
+      logout: "Keluar",
+      updated: "{field} diperbarui",
+      created: "{entity} dibuat",
+      deleted: "{entity} dihapus",
+      noActivity: "Tidak ada aktivitas terkini",
+      viewAll: "Lihat Semua Aktivitas",
+      actions: {
+        login: "Masuk",
+        logout: "Keluar",
+        updateProfile: "Profil diperbarui",
+        updateBusiness: "Informasi bisnis diperbarui",
+        createMaterial: "Material dibuat",
+        updateMaterial: "Material diperbarui",
+        deleteMaterial: "Material dihapus",
+        createRecipe: "Resep dibuat",
+        updateRecipe: "Resep diperbarui",
+        deleteRecipe: "Resep dihapus",
+        createOrder: "Pesanan dibuat",
+        updateOrder: "Pesanan diperbarui",
+        createProduction: "Batch produksi dimulai",
+      },
+    },
+
+    // Formulir & Tindakan
+    forms: {
+      editPersonalInfo: "Edit Informasi Pribadi",
+      editBusinessInfo: "Edit Informasi Bisnis",
+      namePlaceholder: "Masukkan nama lengkap Anda",
+      emailPlaceholder: "email@anda.com",
+      phonePlaceholder: "+62 812 3456 7890",
+      websitePlaceholder: "https://bisnis-anda.com",
+      addressPlaceholder: "Alamat jalan",
+      cityPlaceholder: "Kota",
+      countryPlaceholder: "Negara",
+    },
+
+    // Tindakan
+    actions: {
+      edit: "Edit",
+      save: "Simpan Perubahan",
+      cancel: "Batal",
+      update: "Perbarui Profil",
+      delete: "Hapus",
+    },
+
+    // Pesan toast
+    toasts: {
+      profileUpdated: {
+        title: "Profil Diperbarui",
+        description: "Profil Anda telah berhasil diperbarui.",
+      },
+      businessUpdated: {
+        title: "Info Bisnis Diperbarui",
+        description: "Informasi bisnis berhasil diperbarui.",
+      },
+      businessCreated: {
+        title: "Info Bisnis Ditambahkan",
+        description: "Informasi bisnis berhasil ditambahkan.",
+      },
+      avatarUploaded: {
+        title: "Avatar Diperbarui",
+        description: "Foto profil berhasil diperbarui.",
+      },
+      logoUploaded: {
+        title: "Logo Diperbarui",
+        description: "Logo bisnis berhasil diperbarui.",
+      },
+      preferencesUpdated: {
+        title: "Preferensi Diperbarui",
+        description: "Preferensi notifikasi tersimpan.",
+      },
+    },
+
+    // Pesan validasi
+    validation: {
+      nameRequired: "Nama diperlukan",
+      emailRequired: "Email diperlukan",
+      emailInvalid: "Alamat email tidak valid",
+      phoneInvalid: "Nomor telepon tidak valid",
+      websiteInvalid: "URL website tidak valid",
+      businessNameRequired: "Nama bisnis diperlukan",
+    },
+
+    // Kunci warisan (menjaga kompatibilitas mundur)
     address: "Alamat",
     businessName: "Nama Bisnis",
     updateProfile: "Perbarui Profil",
@@ -1121,6 +1286,178 @@ export const id = {
           description: "Gagal mencatat penyesuaian massal. Silakan coba lagi.",
         },
       },
+    },
+    // Recipe Production Tab
+    recipeProduction: {
+      description: "Memulai batch produksi baru dan memantau produksi aktif",
+      availableRecipes: "Resep Tersedia",
+      selectRecipeToStart: "Pilih resep untuk memulai produksi",
+      searchRecipes: "Cari resep...",
+      noRecipesFound: "Tidak ada resep ditemukan",
+      selectRecipe: "Pilih Resep",
+      selectRecipeHint: "Pilih resep dari daftar untuk melihat detail dan memulai produksi",
+
+      // Recipe Details
+      yield: "Hasil",
+      productionTime: "Waktu Produksi",
+      minutes: "menit",
+      costPerBatch: "Biaya per Batch",
+      costPerUnit: "Biaya per Unit",
+      startProduction: "Mulai Produksi",
+      insufficientMaterials: "Bahan tidak mencukupi untuk memulai produksi",
+      insufficientMaterialsWarning: "Beberapa bahan di bawah level yang diperlukan",
+      insufficientMaterialsHint: "Mohon restock bahan yang kurang sebelum memulai produksi",
+
+      // Material Availability
+      materialAvailability: "Ketersediaan Bahan",
+      materialAvailabilityDescription: "Periksa ketersediaan bahan untuk resep ini",
+      material: "Bahan",
+      required: "Diperlukan",
+      available: "Tersedia",
+      status: "Status",
+      allMaterialsAvailable: "Semua Tersedia",
+      materialShortage: "Kekurangan",
+      noIngredientsFound: "Tidak ada bahan ditemukan untuk resep ini",
+
+      availability: {
+        sufficient: "Cukup",
+        low: "Stok Rendah",
+        insufficient: "Tidak Cukup",
+      },
+
+      // Active Batches
+      activeBatches: "Batch Aktif",
+      activeBatchesDescription: "Batch produksi yang sedang berlangsung",
+      started: "Dimulai",
+      completed: "Selesai",
+      quantity: "Kuantitas",
+      qualityScore: "Skor Kualitas",
+
+      // Batch Statuses
+      statuses: {
+        pending: "Menunggu",
+        inProgress: "Sedang Berjalan",
+        qualityCheck: "Pemeriksaan Kualitas",
+        completed: "Selesai",
+        failed: "Gagal",
+      },
+
+      // Start Production Dialog
+      dialogs: {
+        startProduction: {
+          title: "Mulai Batch Produksi",
+          description: "Buat batch produksi baru untuk resep ini",
+        },
+      },
+
+      recipe: "Resep",
+      yieldPerBatch: "Hasil per Batch",
+      timePerBatch: "Waktu per Batch",
+      batchQuantity: "Jumlah Batch",
+      batchQuantityHint: "Berapa banyak batch yang ingin Anda produksi?",
+      productionSummary: "Ringkasan Produksi",
+      totalYield: "Total Hasil",
+      totalTime: "Total Waktu",
+      totalCost: "Total Biaya",
+      targetCompletionDate: "Target Tanggal Selesai",
+      targetCompletionDateHint: "Kapan produksi ini harus selesai?",
+      notes: "Catatan Produksi",
+      notesPlaceholder: "Tambahkan instruksi atau catatan khusus...",
+      notesHint: "Catatan opsional tentang batch produksi ini",
+
+      // Toast Messages
+      toasts: {
+        productionStarted: {
+          title: "Produksi Dimulai",
+          description: "Batch {batchNumber} berhasil dibuat",
+        },
+        productionFailed: {
+          title: "Gagal Memulai Produksi",
+          description: "Terjadi kesalahan saat memulai batch produksi. Silakan coba lagi.",
+        },
+      },
+    },
+
+    // Production History Tab
+    productionHistory: {
+      description: "Lihat dan analisis batch produksi yang telah selesai",
+      filters: "Filter",
+      filtersDescription: "Filter batch berdasarkan status, resep, atau rentang tanggal",
+      searchBatches: "Cari berdasarkan nomor batch...",
+      selectStatus: "Pilih status",
+      allStatuses: "Semua Status",
+      selectRecipe: "Pilih resep",
+      allRecipes: "Semua Resep",
+      activeFilters: "Filter aktif",
+      search: "Pencarian",
+      status: "Status",
+      recipe: "Resep",
+      dateRange: "Rentang tanggal",
+
+      // Table
+      batchesList: "Batch",
+      rowsPerPage: "Baris per halaman",
+      noBatchesFound: "Tidak ada batch ditemukan",
+      batchNumber: "Nomor Batch",
+      quantity: "Kuantitas",
+      qualityScore: "Skor Kualitas",
+      startedAt: "Dimulai Pada",
+      actions: "Aksi",
+      showing: "Menampilkan",
+
+      // Batch Statuses
+      statuses: {
+        pending: "Menunggu",
+        inProgress: "Sedang Berjalan",
+        qualityCheck: "Pemeriksaan Kualitas",
+        completed: "Selesai",
+        failed: "Gagal",
+      },
+
+      // Metrics
+      metrics: {
+        totalBatches: "Total Batch",
+        totalBatchesDescription: "Semua batch produksi",
+        averageQuality: "Rata-rata Kualitas",
+        averageQualityDescription: "Skor kualitas rata-rata",
+        efficiency: "Efisiensi",
+        efficiencyDescription: "Output aktual vs target",
+        totalOutput: "Total Output",
+        totalOutputDescription: "Total unit yang diproduksi",
+      },
+
+      // Batch Details Dialog
+      dialogs: {
+        batchDetails: {
+          title: "Detail Batch",
+          description: "Informasi lengkap tentang batch produksi ini",
+        },
+      },
+
+      recipeInformation: "Informasi Resep",
+      recipeName: "Nama Resep",
+      category: "Kategori",
+      expectedYield: "Hasil yang Diharapkan",
+      expectedTime: "Waktu yang Diharapkan",
+
+      ingredientConsumption: "Konsumsi Bahan",
+      material: "Bahan",
+      quantityUsed: "Kuantitas Digunakan",
+      costPerUnit: "Biaya/Unit",
+      totalCost: "Total Biaya",
+
+      productionTimeline: "Timeline Produksi",
+      completedAt: "Selesai Pada",
+      duration: "Durasi",
+      totalDuration: "Durasi Total",
+      expected: "diharapkan",
+
+      qualityNotes: "Catatan Kualitas",
+
+      costAnalysis: "Analisis Biaya",
+      estimatedCost: "Biaya Estimasi",
+      actualCost: "Biaya Aktual",
+      variance: "Varian",
     },
   },
   tracking: {

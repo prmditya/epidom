@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Loader2 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -12,8 +15,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useI18n } from "@/components/lang/i18n-provider";
-import type { ApiErrorResponse } from "@/types/api";
+import { updateProfileSchema } from "@/lib/validation/auth.schemas";
+import { useToast } from "@/hooks/use-toast";
 
 interface EditPersonalInfoDialogProps {
   open: boolean;
@@ -30,9 +43,7 @@ interface EditPersonalInfoDialogProps {
   onUpdate: () => void;
 }
 
-interface FieldErrors {
-  [key: string]: string;
-}
+type FormData = z.infer<typeof updateProfileSchema>;
 
 export function EditPersonalInfoDialog({
   open,
@@ -41,54 +52,74 @@ export function EditPersonalInfoDialog({
   onUpdate,
 }: EditPersonalInfoDialogProps) {
   const { t } = useI18n();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const { toast } = useToast();
 
-  async function handleSubmit(formData: FormData) {
-    setLoading(true);
-    setError("");
-    setFieldErrors({});
+  const form = useForm<FormData>({
+    resolver: zodResolver(updateProfileSchema),
+    defaultValues: {
+      name: user.name || "",
+      phone: user.phone || "",
+      locale: user.locale,
+      timezone: user.timezone,
+      currency: user.currency,
+      image: "",
+    },
+  });
 
+  // Reset form when user data changes
+  useEffect(() => {
+    if (open) {
+      form.reset({
+        name: user.name || "",
+        phone: user.phone || "",
+        locale: user.locale,
+        timezone: user.timezone,
+        currency: user.currency,
+        image: "",
+      });
+    }
+  }, [open, user, form]);
+
+  async function onSubmit(data: FormData) {
     try {
+      // TODO: Replace with actual API call using TanStack Query
       const response = await fetch("/api/user/profile", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          phone: formData.get("phone"),
-          locale: formData.get("locale"),
-          timezone: formData.get("timezone"),
-          currency: formData.get("currency"),
-        }),
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        // Handle validation errors with field-level details
+        // Handle validation errors
         if (result.error?.code === "VALIDATION_ERROR" && result.error?.details) {
-          const errors: FieldErrors = {};
-          if (Array.isArray(result.error.details)) {
-            result.error.details.forEach((detail: { field: string; message: string }) => {
-              errors[detail.field] = detail.message;
+          result.error.details.forEach((detail: { field: string; message: string }) => {
+            form.setError(detail.field as keyof FormData, {
+              type: "manual",
+              message: detail.message,
             });
-          }
-          setFieldErrors(errors);
-          setError(result.error.message || "Please fix the errors below");
-        } else {
-          setError(result.error?.message || "Failed to update profile. Please try again.");
+          });
+          return;
         }
-        return;
+
+        throw new Error(result.error?.message || "Failed to update profile");
       }
+
+      toast({
+        title: t("profile.toasts.profileUpdated.title"),
+        description: t("profile.toasts.profileUpdated.description"),
+      });
 
       onUpdate();
       onOpenChange(false);
-    } catch (err) {
-      console.error("Error updating profile:", err);
-      setError("Failed to update profile. Please try again.");
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to update profile. Please try again.",
+        variant: "destructive",
+      });
     }
   }
 
@@ -96,121 +127,172 @@ export function EditPersonalInfoDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Edit Personal Information</DialogTitle>
+          <DialogTitle>{t("profile.forms.editPersonalInfo")}</DialogTitle>
+          <DialogDescription>
+            Update your personal information and preferences
+          </DialogDescription>
         </DialogHeader>
 
-        <form action={handleSubmit} className="space-y-4">
-          {error && (
-            <div className="bg-destructive/10 text-destructive border-destructive/20 rounded-md border p-3 text-sm">
-              {error}
-            </div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="name">{t("auth.name")}</Label>
-            <Input
-              id="name"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
               name="name"
-              defaultValue={user.name || ""}
-              disabled={loading}
-              className={fieldErrors.name ? "border-destructive" : ""}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("profile.personal.name")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("profile.forms.namePlaceholder")}
+                      {...field}
+                      value={field.value || ""}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {fieldErrors.name && (
-              <p className="text-destructive text-sm">{fieldErrors.name}</p>
-            )}
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">{t("auth.email")}</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              defaultValue={user.email}
-              disabled
-              className="bg-muted"
-            />
-            <p className="text-muted-foreground text-xs">Email cannot be changed</p>
-          </div>
+            <FormItem>
+              <FormLabel>{t("profile.personal.email")}</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  value={user.email}
+                  disabled
+                  className="bg-muted"
+                />
+              </FormControl>
+              <FormDescription>
+                Email cannot be changed
+              </FormDescription>
+            </FormItem>
 
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone</Label>
-            <Input
-              id="phone"
+            <FormField
+              control={form.control}
               name="phone"
-              type="tel"
-              defaultValue={user.phone || ""}
-              placeholder="+1 234 567 8900"
-              disabled={loading}
-              className={fieldErrors.phone ? "border-destructive" : ""}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("profile.personal.phone")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="tel"
+                      placeholder={t("profile.forms.phonePlaceholder")}
+                      {...field}
+                      value={field.value || ""}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {fieldErrors.phone && (
-              <p className="text-destructive text-sm">{fieldErrors.phone}</p>
-            )}
-          </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="locale">Language</Label>
-              <Select name="locale" defaultValue={user.locale} disabled={loading}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="en">English</SelectItem>
-                  <SelectItem value="fr">Français</SelectItem>
-                  <SelectItem value="id">Bahasa</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="locale"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("profile.personal.language")}</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="en">English</SelectItem>
+                        <SelectItem value="fr">Français</SelectItem>
+                        <SelectItem value="id">Bahasa</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="currency"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("profile.personal.currency")}</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="EUR">EUR (€)</SelectItem>
+                        <SelectItem value="USD">USD ($)</SelectItem>
+                        <SelectItem value="GBP">GBP (£)</SelectItem>
+                        <SelectItem value="IDR">IDR (Rp)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="currency">Currency</Label>
-              <Select name="currency" defaultValue={user.currency} disabled={loading}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="EUR">EUR (€)</SelectItem>
-                  <SelectItem value="USD">USD ($)</SelectItem>
-                  <SelectItem value="GBP">GBP (£)</SelectItem>
-                  <SelectItem value="IDR">IDR (Rp)</SelectItem>
-                </SelectContent>
-              </Select>
+            <FormField
+              control={form.control}
+              name="timezone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("profile.personal.timezone")}</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="UTC">UTC</SelectItem>
+                      <SelectItem value="Europe/Paris">Europe/Paris</SelectItem>
+                      <SelectItem value="America/New_York">America/New York</SelectItem>
+                      <SelectItem value="Asia/Jakarta">Asia/Jakarta</SelectItem>
+                      <SelectItem value="Asia/Tokyo">Asia/Tokyo</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="flex gap-2 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => onOpenChange(false)}
+                disabled={form.formState.isSubmitting}
+                className="flex-1"
+              >
+                {t("profile.actions.cancel")}
+              </Button>
+              <Button
+                type="submit"
+                disabled={form.formState.isSubmitting}
+                className="flex-1"
+              >
+                {form.formState.isSubmitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                {t("profile.actions.save")}
+              </Button>
             </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="timezone">Timezone</Label>
-            <Select name="timezone" defaultValue={user.timezone} disabled={loading}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="UTC">UTC</SelectItem>
-                <SelectItem value="Europe/Paris">Europe/Paris</SelectItem>
-                <SelectItem value="America/New_York">America/New York</SelectItem>
-                <SelectItem value="Asia/Jakarta">Asia/Jakarta</SelectItem>
-                <SelectItem value="Asia/Tokyo">Asia/Tokyo</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex gap-2 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => onOpenChange(false)}
-              disabled={loading}
-              className="flex-1"
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={loading} className="flex-1">
-              {loading ? "Saving..." : "Save Changes"}
-            </Button>
-          </div>
-        </form>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

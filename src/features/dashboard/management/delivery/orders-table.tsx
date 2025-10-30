@@ -47,7 +47,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -338,7 +338,8 @@ export function OrdersTable({
   };
 
   return (
-    <Card className="overflow-hidden shadow-md transition-shadow hover:shadow-lg lg:col-span-2">
+    <TooltipProvider>
+      <Card className="overflow-hidden shadow-md transition-shadow hover:shadow-lg lg:col-span-2">
       <CardHeader className="border-b pb-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle className="text-lg">
@@ -410,11 +411,11 @@ export function OrdersTable({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Statuses</SelectItem>
-                <SelectItem value="PENDING">Pending</SelectItem>
-                <SelectItem value="PROCESSING">Processing</SelectItem>
-                <SelectItem value="IN_STOCK">Ready</SelectItem>
-                <SelectItem value="DELIVERED">Delivered</SelectItem>
-                <SelectItem value="CANCELLED">Cancelled</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="processing">Processing</SelectItem>
+                <SelectItem value="in_stock">Ready</SelectItem>
+                <SelectItem value="delivered">Delivered</SelectItem>
+                <SelectItem value="cancelled">Cancelled</SelectItem>
               </SelectContent>
             </Select>
 
@@ -426,10 +427,10 @@ export function OrdersTable({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Payments</SelectItem>
-                <SelectItem value="PENDING">Pending</SelectItem>
-                <SelectItem value="PARTIAL">Partial</SelectItem>
-                <SelectItem value="PAID">Paid</SelectItem>
-                <SelectItem value="REFUNDED">Refunded</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="partial">Partial</SelectItem>
+                <SelectItem value="paid">Paid</SelectItem>
+                <SelectItem value="refunded">Refunded</SelectItem>
               </SelectContent>
             </Select>
 
@@ -685,5 +686,6 @@ export function OrdersTable({
         )}
       </CardContent>
     </Card>
+    </TooltipProvider>
   );
 }

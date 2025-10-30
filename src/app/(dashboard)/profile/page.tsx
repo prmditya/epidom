@@ -6,6 +6,8 @@ import { ProfileHeader } from "@/features/dashboard/profile/components/profile-h
 import { PersonalInfoCard } from "@/features/dashboard/profile/components/personal-info-card";
 import { BusinessInfoCard } from "@/features/dashboard/profile/components/business-info-card";
 import { SubscriptionInfoCard } from "@/features/dashboard/profile/components/subscription-info-card";
+import { NotificationPreferencesCard } from "@/features/dashboard/profile/components/notification-preferences-card";
+import { ActivityLogCard } from "@/features/dashboard/profile/components/activity-log-card";
 
 interface ProfileData {
   id: string;
@@ -96,6 +98,10 @@ export default function ProfilePage() {
         userId={profileData.id}
         onUpdate={fetchProfileData}
       />
+
+      <NotificationPreferencesCard />
+
+      <ActivityLogCard />
     </div>
   );
 }

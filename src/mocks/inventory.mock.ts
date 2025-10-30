@@ -336,6 +336,7 @@ export const MOCK_RECIPES: Recipe[] = [
     instructions:
       "1. Mix flour, water, salt, and yeast\n2. Knead for 10 minutes\n3. First rise for 90 minutes\n4. Shape into baguettes\n5. Second rise for 60 minutes\n6. Score and bake at 230°C for 25 minutes",
     costPerBatch: 2.4,
+    costPerUnit: 0.8,
     storeId: "STORE-001",
     ingredients: MOCK_RECIPE_INGREDIENTS.filter((ri) => ri.recipeId === "REC-001"),
     createdAt: new Date("2024-01-15"),
@@ -352,6 +353,7 @@ export const MOCK_RECIPES: Recipe[] = [
     instructions:
       "1. Prepare dough\n2. Laminate with butter (3 folds)\n3. Rest overnight\n4. Shape croissants\n5. Proof for 2 hours\n6. Egg wash and bake at 200°C for 18 minutes",
     costPerBatch: 8.5,
+    costPerUnit: 0.71, // 8.5 / 12 units
     storeId: "STORE-001",
     ingredients: MOCK_RECIPE_INGREDIENTS.filter((ri) => ri.recipeId === "REC-002"),
     createdAt: new Date("2024-01-20"),
@@ -368,6 +370,7 @@ export const MOCK_RECIPES: Recipe[] = [
     instructions:
       "1. Mix ingredients\n2. Knead until smooth and elastic\n3. First rise for 2 hours\n4. Shape into loaves\n5. Second rise for 90 minutes\n6. Egg wash and bake at 180°C for 35 minutes",
     costPerBatch: 5.2,
+    costPerUnit: 2.6, // 5.2 / 2 loaves
     storeId: "STORE-001",
     ingredients: MOCK_RECIPE_INGREDIENTS.filter((ri) => ri.recipeId === "REC-003"),
     createdAt: new Date("2024-02-01"),
@@ -383,6 +386,7 @@ export const MOCK_RECIPES: Recipe[] = [
     productionTimeMinutes: 360,
     instructions: "Similar to croissant dough with chocolate filling",
     costPerBatch: 12.0,
+    costPerUnit: 1.2, // 12.0 / 10 units
     storeId: "STORE-001",
     ingredients: [],
     createdAt: new Date("2024-03-10"),

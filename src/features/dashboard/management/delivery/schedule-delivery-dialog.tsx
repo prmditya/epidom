@@ -33,11 +33,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Truck, Calendar, Clock, Package, Bell } from "lucide-react";
+import { Loader2, Truck, Calendar as CalendarIcon, Package, Bell } from "lucide-react";
 import { useI18n } from "@/components/lang/i18n-provider";
 import type { Order } from "@/types/entities";
 import { formatCurrency, formatDate } from "@/lib/utils/formatting";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 // Delivery method types
 enum DeliveryMethod {
@@ -250,19 +254,65 @@ export default function ScheduleDeliveryDialog({
             <FormField
               control={form.control}
               name="deliveryDateTime"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    Delivery Date & Time *
-                  </FormLabel>
-                  <FormControl>
-                    <Input type="datetime-local" {...field} />
-                  </FormControl>
-                  <FormDescription>Select the date and time for delivery</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              render={({ field }) => {
+                const dateValue = field.value ? new Date(field.value) : undefined;
+                const timeValue = field.value ? field.value.slice(11, 16) : "";
+
+                return (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="flex items-center gap-2">
+                      <CalendarIcon className="h-4 w-4" />
+                      Delivery Date & Time *
+                    </FormLabel>
+                    <div className="flex gap-2">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              className={cn(
+                                "w-[240px] pl-3 text-left font-normal",
+                                !dateValue && "text-muted-foreground"
+                              )}
+                            >
+                              {dateValue ? format(dateValue, "PPP") : <span>Pick a date</span>}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <CalendarComponent
+                            mode="single"
+                            selected={dateValue}
+                            onSelect={(date) => {
+                              if (date) {
+                                const dateStr = format(date, "yyyy-MM-dd");
+                                const time = timeValue || "00:00";
+                                field.onChange(`${dateStr}T${time}`);
+                              }
+                            }}
+                            disabled={(date) => date < new Date()}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <Input
+                        type="time"
+                        value={timeValue}
+                        onChange={(e) => {
+                          const time = e.target.value;
+                          if (dateValue) {
+                            const dateStr = format(dateValue, "yyyy-MM-dd");
+                            field.onChange(`${dateStr}T${time}`);
+                          }
+                        }}
+                        className="w-[120px]"
+                      />
+                    </div>
+                    <FormDescription>Select the date and time for delivery</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
 
             {/* Delivery Method */}

@@ -16,7 +16,8 @@
       "Bash(mkdir:*)",
       "Bash(tee:*)",
       "Bash(npx prisma migrate:*)",
-      "Bash(npx shadcn@latest add:*)"
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

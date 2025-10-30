@@ -46,7 +46,7 @@ export function Sidebar({ mode = "desktop", navigation = dashboardNavigation }: 
 
   return (
     <aside className={cn(isMobile(mode))}>
-      <div className="bg-card flex h-[100%] w-full flex-col overflow-y-auto rounded-xl border shadow-sm">
+      <div className="bg-card flex h-svh w-full flex-col overflow-y-auto rounded-xl border shadow-sm">
         {mode === "mobile" && (
           <div className="border-b p-3">
             <div className="relative">

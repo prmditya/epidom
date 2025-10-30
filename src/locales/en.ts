@@ -825,6 +825,173 @@ export const en = {
     orderId: "Order ID",
   },
   profile: {
+    // Page title
+    title: "Profile Settings",
+
+    // Sections
+    sections: {
+      personal: "Personal Information",
+      business: "Business Information",
+      subscription: "Subscription",
+      notifications: "Notification Preferences",
+      activity: "Activity Log",
+    },
+
+    // Personal info
+    personal: {
+      name: "Full Name",
+      email: "Email Address",
+      phone: "Phone Number",
+      language: "Language",
+      timezone: "Timezone",
+      currency: "Currency",
+      memberSince: "Member since",
+      avatar: "Profile Picture",
+      changeAvatar: "Change Avatar",
+      uploadAvatar: "Upload Avatar",
+    },
+
+    // Business info
+    business: {
+      name: "Business Name",
+      email: "Business Email",
+      phone: "Business Phone",
+      website: "Website",
+      address: "Address",
+      city: "City",
+      country: "Country",
+      logo: "Business Logo",
+      uploadLogo: "Upload Logo",
+      changeLogo: "Change Logo",
+      noBusinessInfo: "No business information added yet",
+      addBusinessInfo: "Add Business Information",
+    },
+
+    // Subscription
+    subscription: {
+      plan: "Current Plan",
+      status: "Status",
+      billingPeriod: "Billing Period",
+      periodStart: "Period Start",
+      periodEnd: "Period End",
+      changePlan: "Change Plan",
+      manageBilling: "Manage Billing",
+      noSubscription: "No active subscription",
+      viewPlans: "View Plans",
+      cancelingSoon: "Subscription Ending",
+      cancelMessage: "Your subscription will not renew at the end of the current period.",
+      pastDue: "Payment Required",
+      pastDueMessage: "Your payment is past due. Please update your payment method.",
+    },
+
+    // Notifications
+    notifications: {
+      title: "Notification Preferences",
+      description: "Choose how you want to be notified",
+      email: "Email Notifications",
+      push: "Push Notifications",
+      inApp: "In-App Notifications",
+      categories: {
+        alerts: "Stock Alerts",
+        alertsDesc: "Get notified when stock levels are low or critical",
+        orders: "Order Updates",
+        ordersDesc: "Receive updates on order status changes",
+        production: "Production Updates",
+        productionDesc: "Get notified about production batch progress",
+      },
+    },
+
+    // Activity log
+    activity: {
+      title: "Recent Activity",
+      description: "Your recent actions and changes",
+      login: "Logged in",
+      logout: "Logged out",
+      updated: "Updated {field}",
+      created: "Created {entity}",
+      deleted: "Deleted {entity}",
+      noActivity: "No recent activity",
+      viewAll: "View All Activity",
+      actions: {
+        login: "Logged in",
+        logout: "Logged out",
+        updateProfile: "Updated profile",
+        updateBusiness: "Updated business information",
+        createMaterial: "Created material",
+        updateMaterial: "Updated material",
+        deleteMaterial: "Deleted material",
+        createRecipe: "Created recipe",
+        updateRecipe: "Updated recipe",
+        deleteRecipe: "Deleted recipe",
+        createOrder: "Created order",
+        updateOrder: "Updated order",
+        createProduction: "Started production batch",
+      },
+    },
+
+    // Forms & Actions
+    forms: {
+      editPersonalInfo: "Edit Personal Information",
+      editBusinessInfo: "Edit Business Information",
+      namePlaceholder: "Enter your full name",
+      emailPlaceholder: "your@email.com",
+      phonePlaceholder: "+1 234 567 8900",
+      websitePlaceholder: "https://yourbusiness.com",
+      addressPlaceholder: "Street address",
+      cityPlaceholder: "City",
+      countryPlaceholder: "Country",
+    },
+
+    // Actions
+    actions: {
+      edit: "Edit",
+      save: "Save Changes",
+      cancel: "Cancel",
+      update: "Update Profile",
+      delete: "Delete",
+      invite: "Invite",
+      remove: "Remove",
+    },
+
+    // Toast messages
+    toasts: {
+      profileUpdated: {
+        title: "Profile Updated",
+        description: "Your profile has been updated successfully.",
+      },
+      businessUpdated: {
+        title: "Business Info Updated",
+        description: "Business information updated successfully.",
+      },
+      businessCreated: {
+        title: "Business Info Added",
+        description: "Business information added successfully.",
+      },
+      avatarUploaded: {
+        title: "Avatar Updated",
+        description: "Profile picture updated successfully.",
+      },
+      logoUploaded: {
+        title: "Logo Updated",
+        description: "Business logo updated successfully.",
+      },
+      preferencesUpdated: {
+        title: "Preferences Updated",
+        description: "Notification preferences saved.",
+      },
+    },
+
+    // Validation messages
+    validation: {
+      nameRequired: "Name is required",
+      emailRequired: "Email is required",
+      emailInvalid: "Invalid email address",
+      phoneInvalid: "Invalid phone number",
+      websiteInvalid: "Invalid website URL",
+      businessNameRequired: "Business name is required",
+    },
+
+    // Legacy keys (maintain backward compatibility)
     address: "Address",
     businessName: "Business Name",
     updateProfile: "Update Profile",
@@ -1110,6 +1277,178 @@ export const en = {
           description: "Failed to record bulk adjustments. Please try again.",
         },
       },
+    },
+    // Recipe Production Tab
+    recipeProduction: {
+      description: "Start new production batches and monitor active production",
+      availableRecipes: "Available Recipes",
+      selectRecipeToStart: "Select a recipe to start production",
+      searchRecipes: "Search recipes...",
+      noRecipesFound: "No recipes found",
+      selectRecipe: "Select a Recipe",
+      selectRecipeHint: "Choose a recipe from the list to view details and start production",
+
+      // Recipe Details
+      yield: "Yield",
+      productionTime: "Production Time",
+      minutes: "minutes",
+      costPerBatch: "Cost per Batch",
+      costPerUnit: "Cost per Unit",
+      startProduction: "Start Production",
+      insufficientMaterials: "Insufficient materials to start production",
+      insufficientMaterialsWarning: "Some materials are below required levels",
+      insufficientMaterialsHint: "Please restock insufficient materials before starting production",
+
+      // Material Availability
+      materialAvailability: "Material Availability",
+      materialAvailabilityDescription: "Check ingredient availability for this recipe",
+      material: "Material",
+      required: "Required",
+      available: "Available",
+      status: "Status",
+      allMaterialsAvailable: "All Available",
+      materialShortage: "Shortage",
+      noIngredientsFound: "No ingredients found for this recipe",
+
+      availability: {
+        sufficient: "Sufficient",
+        low: "Low Stock",
+        insufficient: "Insufficient",
+      },
+
+      // Active Batches
+      activeBatches: "Active Batches",
+      activeBatchesDescription: "Production batches currently in progress",
+      started: "Started",
+      completed: "Completed",
+      quantity: "Quantity",
+      qualityScore: "Quality Score",
+
+      // Batch Statuses
+      statuses: {
+        pending: "Pending",
+        inProgress: "In Progress",
+        qualityCheck: "Quality Check",
+        completed: "Completed",
+        failed: "Failed",
+      },
+
+      // Start Production Dialog
+      dialogs: {
+        startProduction: {
+          title: "Start Production Batch",
+          description: "Create a new production batch for this recipe",
+        },
+      },
+
+      recipe: "Recipe",
+      yieldPerBatch: "Yield per Batch",
+      timePerBatch: "Time per Batch",
+      batchQuantity: "Number of Batches",
+      batchQuantityHint: "How many batches do you want to produce?",
+      productionSummary: "Production Summary",
+      totalYield: "Total Yield",
+      totalTime: "Total Time",
+      totalCost: "Total Cost",
+      targetCompletionDate: "Target Completion Date",
+      targetCompletionDateHint: "When should this production be completed?",
+      notes: "Production Notes",
+      notesPlaceholder: "Add any special instructions or notes...",
+      notesHint: "Optional notes about this production batch",
+
+      // Toast Messages
+      toasts: {
+        productionStarted: {
+          title: "Production Started",
+          description: "Batch {batchNumber} has been created successfully",
+        },
+        productionFailed: {
+          title: "Failed to Start Production",
+          description: "There was an error starting the production batch. Please try again.",
+        },
+      },
+    },
+
+    // Production History Tab
+    productionHistory: {
+      description: "View and analyze completed production batches",
+      filters: "Filters",
+      filtersDescription: "Filter batches by status, recipe, or date range",
+      searchBatches: "Search by batch number...",
+      selectStatus: "Select status",
+      allStatuses: "All Statuses",
+      selectRecipe: "Select recipe",
+      allRecipes: "All Recipes",
+      activeFilters: "Active filters",
+      search: "Search",
+      status: "Status",
+      recipe: "Recipe",
+      dateRange: "Date range",
+
+      // Table
+      batchesList: "Batches",
+      rowsPerPage: "Rows per page",
+      noBatchesFound: "No batches found",
+      batchNumber: "Batch Number",
+      quantity: "Quantity",
+      qualityScore: "Quality Score",
+      startedAt: "Started At",
+      actions: "Actions",
+      showing: "Showing",
+
+      // Batch Statuses
+      statuses: {
+        pending: "Pending",
+        inProgress: "In Progress",
+        qualityCheck: "Quality Check",
+        completed: "Completed",
+        failed: "Failed",
+      },
+
+      // Metrics
+      metrics: {
+        totalBatches: "Total Batches",
+        totalBatchesDescription: "All production batches",
+        averageQuality: "Avg. Quality",
+        averageQualityDescription: "Average quality score",
+        efficiency: "Efficiency",
+        efficiencyDescription: "Actual vs target output",
+        totalOutput: "Total Output",
+        totalOutputDescription: "Total units produced",
+      },
+
+      // Batch Details Dialog
+      dialogs: {
+        batchDetails: {
+          title: "Batch Details",
+          description: "Complete information about this production batch",
+        },
+      },
+
+      recipeInformation: "Recipe Information",
+      recipeName: "Recipe Name",
+      category: "Category",
+      expectedYield: "Expected Yield",
+      expectedTime: "Expected Time",
+
+      ingredientConsumption: "Ingredient Consumption",
+      material: "Material",
+      quantityUsed: "Quantity Used",
+      costPerUnit: "Cost/Unit",
+      totalCost: "Total Cost",
+
+      productionTimeline: "Production Timeline",
+      completedAt: "Completed At",
+      duration: "Duration",
+      totalDuration: "Total Duration",
+      expected: "expected",
+
+      qualityNotes: "Quality Notes",
+
+      costAnalysis: "Cost Analysis",
+      estimatedCost: "Estimated Cost",
+      actualCost: "Actual Cost",
+      variance: "Variance",
     },
   },
   tracking: {

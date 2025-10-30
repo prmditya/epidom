@@ -1,10 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Loader2, Building2 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useI18n } from "@/components/lang/i18n-provider";
+import { updateBusinessSchema } from "@/lib/validation/business.schemas";
+import { useToast } from "@/hooks/use-toast";
 
 interface EditBusinessInfoDialogProps {
   open: boolean;
@@ -23,9 +37,7 @@ interface EditBusinessInfoDialogProps {
   onUpdate: () => void;
 }
 
-interface FieldErrors {
-  [key: string]: string;
-}
+type FormData = z.infer<typeof updateBusinessSchema>;
 
 export function EditBusinessInfoDialog({
   open,
@@ -34,57 +46,88 @@ export function EditBusinessInfoDialog({
   userId,
   onUpdate,
 }: EditBusinessInfoDialogProps) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const { t } = useI18n();
+  const { toast } = useToast();
+  const isCreating = !business;
 
-  async function handleSubmit(formData: FormData) {
-    setLoading(true);
-    setError("");
-    setFieldErrors({});
+  const form = useForm<FormData>({
+    resolver: zodResolver(updateBusinessSchema),
+    defaultValues: {
+      name: business?.name || "",
+      email: business?.email || "",
+      phone: business?.phone || "",
+      website: business?.website || "",
+      address: business?.address || "",
+      city: business?.city || "",
+      country: business?.country || "",
+    },
+  });
 
+  // Reset form when business data changes or dialog opens
+  useEffect(() => {
+    if (open) {
+      form.reset({
+        name: business?.name || "",
+        email: business?.email || "",
+        phone: business?.phone || "",
+        website: business?.website || "",
+        address: business?.address || "",
+        city: business?.city || "",
+        country: business?.country || "",
+      });
+    }
+  }, [open, business, form]);
+
+  async function onSubmit(data: FormData) {
     try {
+      // TODO: Replace with actual API call using TanStack Query
       const response = await fetch("/api/user/business", {
         method: business ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId,
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          website: formData.get("website"),
-          address: formData.get("address"),
-          city: formData.get("city"),
-          country: formData.get("country"),
+          ...data,
         }),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        // Handle validation errors with field-level details
+        // Handle validation errors
         if (result.error?.code === "VALIDATION_ERROR" && result.error?.details) {
-          const errors: FieldErrors = {};
-          if (Array.isArray(result.error.details)) {
-            result.error.details.forEach((detail: { field: string; message: string }) => {
-              errors[detail.field] = detail.message;
+          result.error.details.forEach((detail: { field: string; message: string }) => {
+            form.setError(detail.field as keyof FormData, {
+              type: "manual",
+              message: detail.message,
             });
-          }
-          setFieldErrors(errors);
-          setError(result.error.message || "Please fix the errors below");
-        } else {
-          setError(result.error?.message || "Failed to update business information. Please try again.");
+          });
+          return;
         }
-        return;
+
+        throw new Error(result.error?.message || "Failed to update business information");
       }
+
+      toast({
+        title: business
+          ? t("profile.toasts.businessUpdated.title")
+          : t("profile.toasts.businessCreated.title"),
+        description: business
+          ? t("profile.toasts.businessUpdated.description")
+          : t("profile.toasts.businessCreated.description"),
+      });
 
       onUpdate();
       onOpenChange(false);
-    } catch (err) {
-      console.error("Error updating business:", err);
-      setError("Failed to update business information. Please try again.");
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error("Error updating business:", error);
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to update business information. Please try again.",
+        variant: "destructive",
+      });
     }
   }
 
@@ -93,135 +136,183 @@ export function EditBusinessInfoDialog({
       <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
-            {business ? "Edit Business Information" : "Add Business Information"}
+            {business
+              ? t("profile.forms.editBusinessInfo")
+              : t("profile.business.addBusinessInfo")}
           </DialogTitle>
+          <DialogDescription>
+            {business
+              ? "Update your business contact information and details"
+              : "Add your business information to complete your profile"}
+          </DialogDescription>
         </DialogHeader>
 
-        <form action={handleSubmit} className="space-y-4">
-          {error && (
-            <div className="bg-destructive/10 text-destructive border-destructive/20 rounded-md border p-3 text-sm">
-              {error}
-            </div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="name">
-              Business Name <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="name"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
               name="name"
-              defaultValue={business?.name || ""}
-              required
-              disabled={loading}
-              placeholder="Epidom Bakery"
-              className={fieldErrors.name ? "border-destructive" : ""}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {t("profile.business.name")} <span className="text-destructive">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Building2 className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        placeholder="Epidom Bakery"
+                        className="pl-9"
+                        {...field}
+                        value={field.value || ""}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {fieldErrors.name && (
-              <p className="text-destructive text-sm">{fieldErrors.name}</p>
-            )}
-          </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="email">Business Email</Label>
-              <Input
-                id="email"
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
                 name="email"
-                type="email"
-                defaultValue={business?.email || ""}
-                disabled={loading}
-                placeholder="contact@business.com"
-                className={fieldErrors.email ? "border-destructive" : ""}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("profile.business.email")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder={t("profile.forms.emailPlaceholder")}
+                        {...field}
+                        value={field.value || ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {fieldErrors.email && (
-                <p className="text-destructive text-sm">{fieldErrors.email}</p>
-              )}
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="phone">Business Phone</Label>
-              <Input
-                id="phone"
+              <FormField
+                control={form.control}
                 name="phone"
-                type="tel"
-                defaultValue={business?.phone || ""}
-                disabled={loading}
-                placeholder="+1 234 567 8900"
-                className={fieldErrors.phone ? "border-destructive" : ""}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("profile.business.phone")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="tel"
+                        placeholder={t("profile.forms.phonePlaceholder")}
+                        {...field}
+                        value={field.value || ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {fieldErrors.phone && (
-                <p className="text-destructive text-sm">{fieldErrors.phone}</p>
-              )}
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="website">Website</Label>
-            <Input
-              id="website"
+            <FormField
+              control={form.control}
               name="website"
-              type="url"
-              defaultValue={business?.website || ""}
-              disabled={loading}
-              placeholder="https://www.yourbusiness.com"
-              className={fieldErrors.website ? "border-destructive" : ""}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("profile.business.website")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="url"
+                      placeholder={t("profile.forms.websitePlaceholder")}
+                      {...field}
+                      value={field.value || ""}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {fieldErrors.website && (
-              <p className="text-destructive text-sm">{fieldErrors.website}</p>
-            )}
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="address">Address</Label>
-            <Input
-              id="address"
+            <FormField
+              control={form.control}
               name="address"
-              defaultValue={business?.address || ""}
-              disabled={loading}
-              placeholder="123 Main Street"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("profile.business.address")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("profile.forms.addressPlaceholder")}
+                      {...field}
+                      value={field.value || ""}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="city">City</Label>
-              <Input
-                id="city"
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
                 name="city"
-                defaultValue={business?.city || ""}
-                disabled={loading}
-                placeholder="Paris"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("profile.business.city")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={t("profile.forms.cityPlaceholder")}
+                        {...field}
+                        value={field.value || ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="country">Country</Label>
-              <Input
-                id="country"
+              <FormField
+                control={form.control}
                 name="country"
-                defaultValue={business?.country || ""}
-                disabled={loading}
-                placeholder="France"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("profile.business.country")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={t("profile.forms.countryPlaceholder")}
+                        {...field}
+                        value={field.value || ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
-          </div>
 
-          <div className="flex gap-2 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => onOpenChange(false)}
-              disabled={loading}
-              className="flex-1"
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={loading} className="flex-1">
-              {loading ? "Saving..." : business ? "Save Changes" : "Create Business"}
-            </Button>
-          </div>
-        </form>
+            <div className="flex gap-2 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => onOpenChange(false)}
+                disabled={form.formState.isSubmitting}
+                className="flex-1"
+              >
+                {t("profile.actions.cancel")}
+              </Button>
+              <Button
+                type="submit"
+                disabled={form.formState.isSubmitting}
+                className="flex-1"
+              >
+                {form.formState.isSubmitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                {isCreating
+                  ? t("profile.business.addBusinessInfo")
+                  : t("profile.actions.save")}
+              </Button>
+            </div>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

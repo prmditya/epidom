@@ -116,13 +116,14 @@ export interface Material {
 export interface Recipe {
   id: string;
   name: string;
-  description?: string;
-  category?: string;
+  description: string | "";
+  category: string | "";
   yieldQuantity: number;
   yieldUnit: string;
   productionTimeMinutes: number;
-  instructions?: string;
-  costPerBatch: number;
+  instructions: string | "";
+  costPerUnit: number | 0;
+  costPerBatch: number | 0;
   storeId: string;
   ingredients: RecipeIngredient[];
   createdAt: Date;
