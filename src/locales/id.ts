@@ -26,6 +26,8 @@ export const id = {
       edit: "Edit",
       view: "Lihat",
       delete: "Hapus",
+      back: "Kembali",
+      next: "Selanjutnya",
     },
   },
   hero: {
@@ -737,7 +739,35 @@ export const id = {
   },
   data: {
     materials: "Bahan",
-    recipes: "Resep",
+    recipes: {
+      title: "Resep",
+      form: {
+        name: "Nama Resep",
+        description: "Deskripsi",
+        category: "Kategori",
+      },
+      duplicateDialog: {
+        title: "Duplikasi Resep",
+        description:
+          "Buat salinan resep ini dengan nama baru. Semua bahan dan instruksi akan disalin.",
+        nameLabel: "Nama Resep Baru",
+        nameDescription: "Masukkan nama unik untuk resep yang diduplikasi",
+        duplicateButton: "Duplikasi Resep",
+      },
+      productsUsingRecipe: {
+        title: "Produk yang Menggunakan Resep Ini",
+        emptyState: "Tidak ada produk yang saat ini menggunakan resep ini",
+        stockLabel: "Stok",
+        retailPrice: "Harga Eceran",
+        wholesale: "Grosir",
+      },
+      toasts: {
+        duplicated: {
+          title: "Resep Berhasil Diduplikasi",
+          description: "Resep telah berhasil dibuat.",
+        },
+      },
+    },
     products: "Produk",
     suppliers: "Pemasok",
     productDesignation: "Penamaan Produk",

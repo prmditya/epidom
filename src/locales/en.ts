@@ -26,6 +26,8 @@ export const en = {
       edit: "Edit",
       view: "View",
       delete: "Delete",
+      back: "Back",
+      next: "Next",
     },
   },
   hero: {
@@ -726,7 +728,35 @@ export const en = {
   },
   data: {
     materials: "Materials",
-    recipes: "Recipes",
+    recipes: {
+      title: "Recipes",
+      form: {
+        name: "Recipe Name",
+        description: "Description",
+        category: "Category",
+      },
+      duplicateDialog: {
+        title: "Duplicate Recipe",
+        description:
+          "Create a copy of this recipe with a new name. All ingredients and instructions will be copied.",
+        nameLabel: "New Recipe Name",
+        nameDescription: "Enter a unique name for the duplicated recipe",
+        duplicateButton: "Duplicate Recipe",
+      },
+      productsUsingRecipe: {
+        title: "Products Using This Recipe",
+        emptyState: "No products are currently using this recipe",
+        stockLabel: "Stock",
+        retailPrice: "Retail Price",
+        wholesale: "Wholesale",
+      },
+      toasts: {
+        duplicated: {
+          title: "Recipe Duplicated",
+          description: "Recipe has been created successfully.",
+        },
+      },
+    },
     products: "Products",
     suppliers: "Suppliers",
     productDesignation: "Product Designation",

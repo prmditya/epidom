@@ -16,6 +16,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useI18n } from "@/components/lang/i18n-provider";
 import RecipeDetailsDialog from "./recipe-details-dialog";
 import EditRecipeDialog from "./edit-recipe-dialog";
+import DuplicateRecipeDialog from "./duplicate-recipe-dialog";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { ExportButton } from "@/components/ui/export-button";
 import AddRecipeDialog from "./add-recipe-dialog";
@@ -29,13 +30,14 @@ import {
   Trash2,
   X,
   CheckSquare,
-  Square,
   ChefHat,
   Clock,
   DollarSign,
+  Copy,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { formatCurrency, formatDuration } from "@/lib/utils/formatting";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface RecipesSectionProps {
   recipes: Recipe[];
@@ -66,6 +68,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [viewDialogOpen, setViewDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [bulkSelectMode, setBulkSelectMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -151,6 +154,11 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
   const handleEdit = (recipe: Recipe) => {
     setSelectedRecipe(recipe);
     setEditDialogOpen(true);
+  };
+
+  const handleDuplicate = (recipe: Recipe) => {
+    setSelectedRecipe(recipe);
+    setDuplicateDialogOpen(true);
   };
 
   const handleDeleteClick = (recipe: Recipe) => {
@@ -414,32 +422,66 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                     {/* Hover Actions */}
                     {!bulkSelectMode && (
                       <div className="mt-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleView(recipe)}
-                        >
-                          <Eye className="mr-1 h-3 w-3" />
-                          View
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleEdit(recipe)}
-                        >
-                          <Pencil className="mr-1 h-3 w-3" />
-                          Edit
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
-                          onClick={() => handleDeleteClick(recipe)}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
+                        <Tooltip>
+                          <TooltipTrigger className="w-full">
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full text-xs"
+                              onClick={() => handleView(recipe)}
+                            >
+                              <Eye className="mr-1 h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View Recipe</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger className="w-full">
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full flex-1 text-xs"
+                              onClick={() => handleEdit(recipe)}
+                            >
+                              <Pencil className="mr-1 h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Edit Recipe</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger className="w-full">
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full flex-1 text-xs"
+                              onClick={() => handleDuplicate(recipe)}
+                            >
+                              <Copy className="mr-1 h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Duplicate Recipe</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger className="w-full">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-destructive bg-destructive/10 hover:bg-destructive/30 h-8 w-full flex-1 text-xs"
+                              onClick={() => handleDeleteClick(recipe)}
+                            >
+                              <Trash2 className="mr-1 h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Delete Recipe</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
                     )}
                   </div>
@@ -485,6 +527,11 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
             recipe={selectedRecipe}
             open={editDialogOpen}
             onOpenChange={setEditDialogOpen}
+          />
+          <DuplicateRecipeDialog
+            recipe={selectedRecipe}
+            open={duplicateDialogOpen}
+            onOpenChange={setDuplicateDialogOpen}
           />
         </>
       )}

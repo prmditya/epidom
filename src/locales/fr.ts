@@ -26,6 +26,8 @@ export const fr = {
       edit: "Modifier",
       view: "Voir",
       delete: "Supprimer",
+      back: "Retour",
+      next: "Suivant",
     },
   },
   hero: {
@@ -740,7 +742,35 @@ export const fr = {
   },
   data: {
     materials: "Matériaux",
-    recipes: "Recettes",
+    recipes: {
+      title: "Recettes",
+      form: {
+        name: "Nom de la Recette",
+        description: "Description",
+        category: "Catégorie",
+      },
+      duplicateDialog: {
+        title: "Dupliquer la Recette",
+        description:
+          "Créer une copie de cette recette avec un nouveau nom. Tous les ingrédients et instructions seront copiés.",
+        nameLabel: "Nouveau Nom de Recette",
+        nameDescription: "Entrez un nom unique pour la recette dupliquée",
+        duplicateButton: "Dupliquer la Recette",
+      },
+      productsUsingRecipe: {
+        title: "Produits Utilisant Cette Recette",
+        emptyState: "Aucun produit n'utilise actuellement cette recette",
+        stockLabel: "Stock",
+        retailPrice: "Prix de Détail",
+        wholesale: "Gros",
+      },
+      toasts: {
+        duplicated: {
+          title: "Recette Dupliquée",
+          description: "La recette a été créée avec succès.",
+        },
+      },
+    },
     products: "Produits",
     suppliers: "Fournisseurs",
     productDesignation: "Désignation du Produit",

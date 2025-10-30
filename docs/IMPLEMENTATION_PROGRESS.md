@@ -119,8 +119,8 @@
 - [x] Integration with ConfirmationDialog for deletes ✅
 - [x] Export functionality (CSV/Excel/PDF) ✅
 - [x] Real-time cost analysis & pricing calculator ✅
-- [ ] Create `duplicate-recipe-dialog.tsx`
-- [ ] Show products using recipe
+- [x] Create `duplicate-recipe-dialog.tsx` ✅
+- [x] Show products using recipe ✅
 
 #### Data Page - Products Tab
 
@@ -233,15 +233,15 @@
 - **Dashboard Page:** 100% ✅ (8/8 features completed)
 - **Tracking Page:** 100% ✅ (14/14 features completed)
 - **Data Page - Materials:** 100% ✅ (8/8 features completed)
-- **Data Page - Recipes:** 90% ✅ (9/11 features completed)
+- **Data Page - Recipes:** 100% ✅ (11/11 features completed)
 - **Data Page - Products:** 100% ✅ (12/12 features completed)
 - **Data Page - Suppliers:** 100% ✅ (13/13 features completed)
 - **Management Page:** 0%
 - **Alerts Page:** 0%
 - **Profile Page:** 0%
-- **Translations:** Partial (Tracking + Dashboard keys added)
+- **Translations:** Partial (Tracking + Dashboard + Recipes keys added)
 
-**Overall Progress:** ~65% complete
+**Overall Progress:** ~67% complete
 
 ---
 
@@ -885,6 +885,7 @@ For implementing remaining features:
 ### Key Features Implemented
 
 **Stock Levels Tab:**
+
 - ✅ Product-based stock table with search
 - ✅ Progress bars for stock visualization
 - ✅ Status icons (CheckCircle, AlertCircle, XCircle)
@@ -892,6 +893,7 @@ For implementing remaining features:
 - ✅ Export to CSV/Excel/PDF
 
 **Movement History Tab:**
+
 - ✅ Advanced filtering (search, types, date range)
 - ✅ Sortable table columns with indicators
 - ✅ Pagination with customizable page size
@@ -902,6 +904,7 @@ For implementing remaining features:
 - ✅ Empty and loading states
 
 **Dialogs:**
+
 - ✅ Add Movement - Full CRUD form with validation
 - ✅ Movement Details - Read-only comprehensive view
 - ✅ Context-aware UX (dynamic reasons, unit display)
@@ -909,6 +912,7 @@ For implementing remaining features:
 ### Backend Integration Readiness
 
 All components structured for TanStack Query:
+
 - Query keys defined for cache management
 - Mutation patterns for create/update/delete
 - Query invalidation strategies documented
@@ -916,10 +920,11 @@ All components structured for TanStack Query:
 - Loading and error state handling in place
 
 **Example TanStack Query Pattern:**
+
 ```typescript
 // useQuery for fetching filtered movements
 const { data, isLoading, error } = useQuery({
-  queryKey: ['movements', filters, page, pageSize],
+  queryKey: ["movements", filters, page, pageSize],
   queryFn: () => fetchMovements(params),
 });
 
@@ -927,7 +932,7 @@ const { data, isLoading, error } = useQuery({
 const mutation = useMutation({
   mutationFn: createMovement,
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['movements'] });
+    queryClient.invalidateQueries({ queryKey: ["movements"] });
   },
 });
 ```
@@ -1042,6 +1047,7 @@ Completed the remaining 4 features to bring Tracking Page from 75% → 100%:
 ### Key Features Implemented
 
 **Stock History:**
+
 - ✅ Complete movement timeline with running balance
 - ✅ Date range filtering
 - ✅ Export to CSV/Excel/PDF
@@ -1049,6 +1055,7 @@ Completed the remaining 4 features to bring Tracking Page from 75% → 100%:
 - ✅ Empty state handling
 
 **Bulk Restock:**
+
 - ✅ Multi-item form with dynamic fields
 - ✅ Flexible supplier selection (global or per-item)
 - ✅ Priority and delivery date management
@@ -1056,6 +1063,7 @@ Completed the remaining 4 features to bring Tracking Page from 75% → 100%:
 - ✅ Full form validation
 
 **Stock Levels Enhancement:**
+
 - ✅ Bulk selection with checkboxes
 - ✅ Bulk actions toolbar
 - ✅ Export selected items
@@ -1064,6 +1072,7 @@ Completed the remaining 4 features to bring Tracking Page from 75% → 100%:
 ### Backend Integration Readiness
 
 All new components follow TanStack Query patterns:
+
 - useMutation for restock order creation
 - useQuery for fetching stock history
 - Query invalidation for cache management
@@ -1071,12 +1080,13 @@ All new components follow TanStack Query patterns:
 - Error handling in place
 
 **Example Pattern:**
+
 ```typescript
 const mutation = useMutation({
   mutationFn: createRestockOrder,
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['stock-levels'] });
-    queryClient.invalidateQueries({ queryKey: ['orders'] });
+    queryClient.invalidateQueries({ queryKey: ["stock-levels"] });
+    queryClient.invalidateQueries({ queryKey: ["orders"] });
     toast({ title: t("tracking.toasts.restockInitiated.title") });
   },
 });
@@ -1120,5 +1130,95 @@ const mutation = useMutation({
 
 ---
 
-**Last Updated:** October 30, 2025 (Session 7)
-**Version:** 1.6.0
+## 🚀 Session 8 Accomplishments (Latest)
+
+### Data Page - Recipes Tab - Complete Implementation (100% ✅)
+
+Completed the final 2 features to bring Recipes Tab from 90% → 100%:
+
+1. **duplicate-recipe-dialog.tsx** (450 lines)
+   - 2-step wizard: Basic Info → Review & Confirm
+   - Pre-filled form with recipe data
+   - Auto-appends " (Copy)" to recipe name
+   - Editable name, description, and category
+   - All ingredients and instructions copied from original
+   - React Hook Form + Zod validation
+   - Cost summary and ingredient count in review step
+   - Comparison display: Original vs New recipe name
+   - Success toast notifications
+   - TODO markers for API integration (POST /api/recipes)
+   - Full internationalization support (en/fr/id)
+
+2. **Products Using This Recipe Section** (recipe-details-dialog.tsx)
+   - New Card section between Cost Analysis and Instructions
+   - Filters products by recipeId
+   - Displays product list with:
+     - Product name and SKU
+     - Current stock with progress indicators
+     - Stock status badges (In Stock, Low Stock, Critical, Overstocked)
+     - Retail and wholesale prices
+     - Stock level display (current/max)
+   - Empty state handling with message
+   - Count display in card title
+   - Clean card-based layout with separators
+   - Color-coded status icons (CheckCircle, AlertCircle, XCircle)
+
+3. **Integration Updates** (recipes-section.tsx)
+   - Added duplicate action button to recipe cards
+   - Positioned between Edit and Delete buttons
+   - Copy icon from lucide-react
+   - State management for duplicate dialog
+   - Dialog integration with full functionality
+   - Hover actions expanded to 4 buttons (View, Edit, Duplicate, Delete)
+
+4. **Translation Keys Added**
+   - **English (en.ts):**
+     - data.recipes.duplicateDialog (title, description, labels)
+     - data.recipes.productsUsingRecipe (title, emptyState, labels)
+     - data.recipes.toasts.duplicated
+     - common.actions.back and next
+   - **French (fr.ts):**
+     - Complete French translations for all recipe features
+     - Proper localization for duplicate dialog
+     - Products section translations
+   - **Indonesian (id.ts):**
+     - Complete Indonesian translations
+     - Full language support for new features
+
+### Key Achievements
+
+- ✅ Data Page - Recipes Tab 100% complete (11/11 features implemented)
+- ✅ Duplicate recipe functionality with 2-step wizard
+- ✅ Products-recipe relationship visibility
+- ✅ Consistent design patterns with existing components
+- ✅ Full TypeScript type safety throughout
+- ✅ Multilingual support (en/fr/id) for all new features
+- ✅ Export functionality maintained
+- ✅ Professional UI/UX with hover states and transitions
+- ✅ Ready for API integration with TODO markers
+- ✅ No linting errors
+
+### Files Created (1 New File)
+
+1. `src/features/dashboard/data/recipes/components/duplicate-recipe-dialog.tsx`
+
+### Files Modified (6)
+
+1. `src/features/dashboard/data/recipes/components/recipe-details-dialog.tsx` - Added Products Using Recipe section
+2. `src/features/dashboard/data/recipes/components/recipes-section.tsx` - Integrated duplicate button
+3. `src/locales/en.ts` - Added recipe translation keys
+4. `src/locales/fr.ts` - Added recipe translation keys (French)
+5. `src/locales/id.ts` - Added recipe translation keys (Indonesian)
+6. `docs/IMPLEMENTATION_PROGRESS.md` - Updated progress tracking
+
+### Progress Jump
+
+- **Previous Session:** ~65% overall completion
+- **This Session:** ~67% overall completion
+- **Data Page - Recipes:** 90% → 100% ✅
+- **Increment:** +2% overall, +10% for Recipes Tab
+
+---
+
+**Last Updated:** October 30, 2025 (Session 8)
+**Version:** 1.7.0
