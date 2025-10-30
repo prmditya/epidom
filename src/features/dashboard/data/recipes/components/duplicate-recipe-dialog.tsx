@@ -438,7 +438,7 @@ export default function DuplicateRecipeDialog({
             )}
 
             {/* Navigation Buttons */}
-            <DialogFooter className="gap-2 sm:gap-0">
+            <DialogFooter className="gap-2">
               {currentStep > 1 && (
                 <Button
                   type="button"

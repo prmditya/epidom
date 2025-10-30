@@ -34,6 +34,8 @@ import {
   Square,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Separator } from "@/components/ui/separator";
 
 interface MaterialsSectionProps {
   materials: Material[];
@@ -251,7 +253,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4 p-6">
+        <CardContent className="space-y-4">
           {/* Search and Filters */}
           <div className="flex flex-col gap-3">
             {/* Search */}
@@ -380,7 +382,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
               return (
                 <div
                   key={material.id}
-                  className={`group bg-card relative rounded-lg border p-4 shadow-sm transition-all hover:shadow-md ${
+                  className={`group bg-card relative rounded-lg border p-4 px-6 shadow-sm transition-all hover:shadow-md ${
                     isSelected ? "ring-primary ring-2" : ""
                   }`}
                 >
@@ -396,12 +398,11 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
                   {/* Material Content */}
                   <div className={bulkSelectMode ? "pl-6" : ""}>
-                    <div className="mb-2 flex items-start justify-between">
+                    <div className="flex items-end justify-between">
                       <div className="flex-1">
-                        <h3 className="text-sm leading-tight font-semibold">{material.name}</h3>
-                        {material.sku && (
-                          <p className="text-muted-foreground text-xs">SKU: {material.sku}</p>
-                        )}
+                        <h3 className="w-[80px] truncate text-sm leading-tight font-semibold">
+                          {material.name}
+                        </h3>
                       </div>
 
                       {/* Stock Status Badge */}
@@ -420,6 +421,15 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                         {stockStatus.replace("_", " ")}
                       </Badge>
                     </div>
+                    <div>
+                      {material.sku && (
+                        <p className="text-muted-foreground mt-1 truncate text-xs">
+                          SKU: {material.sku}
+                        </p>
+                      )}
+                    </div>
+
+                    <Separator className="my-2" />
 
                     {/* Material Info */}
                     <div className="text-muted-foreground space-y-1 text-xs">
@@ -445,33 +455,52 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
                     {/* Hover Actions */}
                     {!bulkSelectMode && (
-                      <div className="mt-4 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleView(material)}
-                        >
-                          <Eye className="mr-1 h-3 w-3" />
-                          View
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleEdit(material)}
-                        >
-                          <Pencil className="mr-1 h-3 w-3" />
-                          Edit
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
-                          onClick={() => handleDeleteClick(material)}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
+                      <div className="mt-2 grid grid-cols-3 gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full text-xs"
+                              onClick={() => handleView(material)}
+                            >
+                              <Eye className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View Material</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full flex-1 text-xs"
+                              onClick={() => handleEdit(material)}
+                            >
+                              <Pencil className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Edit Material</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-destructive bg-destructive/10 hover:bg-destructive/30 h-8 w-full flex-1 text-xs"
+                              onClick={() => handleDeleteClick(material)}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Delete Material</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
                     )}
                   </div>

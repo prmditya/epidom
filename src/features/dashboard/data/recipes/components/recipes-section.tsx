@@ -38,6 +38,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { formatCurrency, formatDuration } from "@/lib/utils/formatting";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Separator } from "@/components/ui/separator";
 
 interface RecipesSectionProps {
   recipes: Recipe[];
@@ -246,7 +247,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4 p-6">
+        <CardContent className="space-y-4">
           {/* Search and Filters */}
           <div className="flex flex-col gap-3">
             {/* Search */}
@@ -346,7 +347,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
               return (
                 <div
                   key={recipe.id}
-                  className={`group bg-card relative rounded-lg border p-4 shadow-sm transition-all hover:shadow-md ${
+                  className={`group bg-card relative rounded-lg border p-4 px-6 shadow-sm transition-all hover:shadow-md ${
                     isSelected ? "ring-primary ring-2" : ""
                   }`}
                 >
@@ -379,10 +380,14 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                     </div>
 
                     {recipe.description && (
-                      <p className="text-muted-foreground mb-3 line-clamp-2 text-xs">
-                        {recipe.description}
-                      </p>
+                      <div className="h-[2rem]">
+                        <p className="text-muted-foreground line-clamp-2 text-xs">
+                          {recipe.description}
+                        </p>
+                      </div>
                     )}
+
+                    <Separator className="mt-2 mb-3" />
 
                     {/* Recipe Metrics */}
                     <div className="space-y-2">
@@ -421,16 +426,16 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
 
                     {/* Hover Actions */}
                     {!bulkSelectMode && (
-                      <div className="mt-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                      <div className="mt-3 grid grid-cols-4 gap-1 opacity-0 transition-opacity group-hover:opacity-100">
                         <Tooltip>
-                          <TooltipTrigger className="w-full">
+                          <TooltipTrigger asChild>
                             <Button
                               variant="secondary"
                               size="sm"
                               className="h-8 w-full text-xs"
                               onClick={() => handleView(recipe)}
                             >
-                              <Eye className="mr-1 h-3 w-3" />
+                              <Eye className="h-3 w-3" />
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
@@ -438,14 +443,14 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                           </TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="w-full">
+                          <TooltipTrigger asChild>
                             <Button
                               variant="secondary"
                               size="sm"
                               className="h-8 w-full flex-1 text-xs"
                               onClick={() => handleEdit(recipe)}
                             >
-                              <Pencil className="mr-1 h-3 w-3" />
+                              <Pencil className="h-3 w-3" />
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
@@ -453,14 +458,14 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                           </TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="w-full">
+                          <TooltipTrigger asChild>
                             <Button
                               variant="secondary"
                               size="sm"
                               className="h-8 w-full flex-1 text-xs"
                               onClick={() => handleDuplicate(recipe)}
                             >
-                              <Copy className="mr-1 h-3 w-3" />
+                              <Copy className="h-3 w-3" />
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
@@ -468,14 +473,14 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                           </TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="w-full">
+                          <TooltipTrigger asChild>
                             <Button
                               variant="ghost"
                               size="sm"
                               className="text-destructive bg-destructive/10 hover:bg-destructive/30 h-8 w-full flex-1 text-xs"
                               onClick={() => handleDeleteClick(recipe)}
                             >
-                              <Trash2 className="mr-1 h-3 w-3" />
+                              <Trash2 className="h-3 w-3" />
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>

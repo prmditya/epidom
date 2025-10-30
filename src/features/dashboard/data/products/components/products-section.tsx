@@ -34,6 +34,8 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { formatCurrency, formatNumber } from "@/lib/utils/formatting";
+import { Separator } from "@/components/ui/separator";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface ProductsSectionProps {
   products: Product[];
@@ -375,15 +377,15 @@ export function ProductsSection({ products }: ProductsSectionProps) {
               const recipe = MOCK_RECIPES.find((r) => r.id === product.recipeId);
 
               return (
-                <div
+                <Card
                   key={product.id}
-                  className={`group bg-card relative rounded-lg border p-4 shadow-sm transition-all hover:shadow-md ${
+                  className={`group bg-card relative rounded-lg border px-0 py-4 shadow-sm transition-all hover:shadow-md ${
                     isSelected ? "ring-primary ring-2" : ""
                   }`}
                 >
                   {/* Bulk Select Checkbox */}
                   {bulkSelectMode && (
-                    <div className="absolute top-2 left-2">
+                    <div className="absolute top-4 left-2">
                       <Checkbox
                         checked={isSelected}
                         onCheckedChange={() => toggleSelectItem(product.id)}
@@ -392,10 +394,12 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                   )}
 
                   {/* Product Content */}
-                  <div className={bulkSelectMode ? "pl-6" : ""}>
+                  <CardContent className={`${bulkSelectMode ? "pl-6" : ""}`}>
                     <div className="mb-2 flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="text-sm leading-tight font-semibold">{product.name}</h3>
+                        <h3 className="w-[85px] truncate text-sm leading-tight font-semibold">
+                          {product.name}
+                        </h3>
                         {product.sku && (
                           <p className="text-muted-foreground text-xs">SKU: {product.sku}</p>
                         )}
@@ -412,14 +416,16 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                                 ? "secondary"
                                 : "outline"
                         }
-                        className="ml-2 text-xs"
+                        className="ml-auto text-xs"
                       >
                         {stockStatus.replace("_", " ")}
                       </Badge>
                     </div>
 
+                    <Separator />
+
                     {/* Product Info */}
-                    <div className="text-muted-foreground space-y-1 text-xs">
+                    <div className="text-muted-foreground my-2 space-y-1 text-xs">
                       {product.category && (
                         <div className="flex justify-between">
                           <span>Category:</span>
@@ -462,40 +468,77 @@ export function ProductsSection({ products }: ProductsSectionProps) {
 
                     {/* Hover Actions */}
                     {!bulkSelectMode && (
-                      <div className="mt-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleView(product)}
-                        >
-                          <Eye className="mr-1 h-3 w-3" />
-                          View
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleEdit(product)}
-                        >
-                          <Pencil className="mr-1 h-3 w-3" />
-                          Edit
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
-                          onClick={() => handleDeleteClick(product)}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
+                      <div className="mt-2 grid grid-cols-3 gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full text-xs"
+                              onClick={() => handleView(product)}
+                            >
+                              <Eye className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View product</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full flex-1 text-xs"
+                              onClick={() => handleEdit(product)}
+                            >
+                              <Pencil className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Edit Product</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-destructive bg-destructive/10 hover:bg-destructive/30 h-8 w-full flex-1 text-xs"
+                              onClick={() => handleDeleteClick(product)}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Delete Product</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
                     )}
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               );
             })}
-
+            {/* Empty State */}
+            {processedProducts.length === 0 && (
+              <div className="col-span-full flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
+                <PackageOpen className="text-muted-foreground/50 mb-4 h-12 w-12" />
+                <h3 className="mb-2 text-lg font-semibold">No products found</h3>
+                <p className="text-muted-foreground mb-4 text-sm">
+                  {hasActiveFilters
+                    ? "Try adjusting your filters or search query"
+                    : "Get started by adding your first product"}
+                </p>
+                {hasActiveFilters ? (
+                  <Button variant="outline" onClick={clearFilters}>
+                    Clear Filters
+                  </Button>
+                ) : (
+                  <AddProductDialog />
+                )}
+              </div>
+            )}
             {/* Empty State */}
             {processedProducts.length === 0 && (
               <div className="col-span-full flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">

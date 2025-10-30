@@ -88,8 +88,7 @@ export function EditStockCard() {
 
     const query = searchQuery.toLowerCase();
     return allStockItems.filter(
-      (item) =>
-        item.name.toLowerCase().includes(query) || item.sku.toLowerCase().includes(query)
+      (item) => item.name.toLowerCase().includes(query) || item.sku.toLowerCase().includes(query)
     );
   }, [allStockItems, searchQuery]);
 
@@ -198,12 +197,8 @@ export function EditStockCard() {
         {/* Header with Actions */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              {t("management.editStock.title")}
-            </h2>
-            <p className="text-muted-foreground text-sm">
-              {t("management.editStock.description")}
-            </p>
+            <h2 className="text-2xl font-bold tracking-tight">{t("management.editStock.title")}</h2>
+            <p className="text-muted-foreground text-sm">{t("management.editStock.description")}</p>
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -226,19 +221,11 @@ export function EditStockCard() {
                 </span>
               </div>
               <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setBulkAdjustmentOpen(true)}
-                >
+                <Button variant="outline" size="sm" onClick={() => setBulkAdjustmentOpen(true)}>
                   <Edit3 className="mr-2 h-4 w-4" />
                   {t("management.editStock.bulkAdjust")}
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSelectedItems([])}
-                >
+                <Button variant="ghost" size="sm" onClick={() => setSelectedItems([])}>
                   {t("common.clear")}
                 </Button>
               </div>
@@ -249,12 +236,12 @@ export function EditStockCard() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[400px_1fr]">
           {/* Items List */}
           <Card className="p-4">
-            <div className="mb-4">
+            <div>
               <Label htmlFor="search" className="sr-only">
                 {t("management.editStock.searchItems")}
               </Label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                 <Input
                   id="search"
                   value={searchQuery}
@@ -264,8 +251,6 @@ export function EditStockCard() {
                 />
               </div>
             </div>
-
-            <Separator className="my-4" />
 
             <div className="space-y-2">
               <div className="mb-2 flex items-center justify-between">
@@ -302,10 +287,8 @@ export function EditStockCard() {
                     return (
                       <div
                         key={item.id}
-                        className={`group flex items-center gap-3 rounded-lg border p-3 transition-colors hover:border-primary/50 ${
-                          selectedItemId === item.id
-                            ? "border-primary bg-primary/5"
-                            : ""
+                        className={`group hover:border-primary/50 flex items-center gap-3 rounded-lg border p-3 transition-colors ${
+                          selectedItemId === item.id ? "border-primary bg-primary/5" : ""
                         } ${isSelected ? "bg-muted/50" : ""}`}
                       >
                         <Checkbox
@@ -349,7 +332,7 @@ export function EditStockCard() {
                                 {Math.round(getStockPercentage(item))}%
                               </span>
                             </div>
-                            <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                            <div className="bg-muted mt-1 h-1.5 w-full overflow-hidden rounded-full">
                               <div
                                 className={`h-full transition-all ${
                                   status.variant === "destructive"
@@ -401,9 +384,7 @@ export function EditStockCard() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() =>
-                      viewAdjustmentHistory(selectedItem.id, selectedItem.type)
-                    }
+                    onClick={() => viewAdjustmentHistory(selectedItem.id, selectedItem.type)}
                   >
                     <History className="mr-2 h-4 w-4" />
                     {t("management.editStock.viewHistory")}
@@ -431,9 +412,7 @@ export function EditStockCard() {
                         {t("management.editStock.stockValue")}
                       </p>
                       <p className="text-2xl font-bold">
-                        {formatCurrency(
-                          selectedItem.currentStock * selectedItem.costPerUnit
-                        )}
+                        {formatCurrency(selectedItem.currentStock * selectedItem.costPerUnit)}
                       </p>
                     </div>
 
@@ -477,9 +456,7 @@ export function EditStockCard() {
 
                     <Button
                       variant="outline"
-                      onClick={() =>
-                        viewAdjustmentHistory(selectedItem.id, selectedItem.type)
-                      }
+                      onClick={() => viewAdjustmentHistory(selectedItem.id, selectedItem.type)}
                     >
                       <History className="mr-2 h-4 w-4" />
                       {t("management.editStock.viewHistory")}

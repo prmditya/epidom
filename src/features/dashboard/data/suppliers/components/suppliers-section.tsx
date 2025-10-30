@@ -35,6 +35,8 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Separator } from "@/components/ui/separator";
 
 interface SuppliersSectionProps {
   suppliers: Supplier[];
@@ -246,7 +248,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4 p-6">
+        <CardContent className="space-y-4">
           {/* Search and Filters */}
           <div className="flex flex-col gap-3">
             {/* Search */}
@@ -377,7 +379,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
 
                   {/* Supplier Content */}
                   <div className={bulkSelectMode ? "pl-6" : ""}>
-                    <div className="mb-2 flex items-start justify-between">
+                    <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <h3 className="text-sm leading-tight font-semibold">{supplier.name}</h3>
                         {supplier.contactPerson && (
@@ -402,6 +404,8 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                         </Badge>
                       )}
                     </div>
+
+                    <Separator className="my-2" />
 
                     {/* Supplier Info */}
                     <div className="text-muted-foreground space-y-1 text-xs">
@@ -456,33 +460,52 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
 
                     {/* Hover Actions */}
                     {!bulkSelectMode && (
-                      <div className="mt-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleView(supplier)}
-                        >
-                          <Eye className="mr-1 h-3 w-3" />
-                          View
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 flex-1 text-xs"
-                          onClick={() => handleEdit(supplier)}
-                        >
-                          <Pencil className="mr-1 h-3 w-3" />
-                          Edit
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-destructive hover:bg-destructive/10 h-8 text-xs"
-                          onClick={() => handleDeleteClick(supplier)}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
+                      <div className="mt-2 grid grid-cols-3 gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full text-xs"
+                              onClick={() => handleView(supplier)}
+                            >
+                              <Eye className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View Supplier</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="h-8 w-full flex-1 text-xs"
+                              onClick={() => handleEdit(supplier)}
+                            >
+                              <Pencil className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Edit Supplier</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-destructive bg-destructive/10 hover:bg-destructive/30 h-8 w-full flex-1 text-xs"
+                              onClick={() => handleDeleteClick(supplier)}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Delete Supplier</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
                     )}
                   </div>

@@ -82,7 +82,7 @@ export function CreateStoreButton() {
               />
             </div>
           </div>
-          <DialogFooter className="flex-col gap-2 sm:flex-row sm:gap-0">
+          <DialogFooter className="flex-col gap-2 sm:flex-row">
             <Button
               type="button"
               variant="outline"
