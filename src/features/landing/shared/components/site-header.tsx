@@ -9,6 +9,7 @@ import { WaitlistDialog } from "@/features/landing/shared/components/waitlist-di
 import { usePathname } from "next/navigation";
 import LangSwitcher from "@/components/lang/lang-switcher";
 import { useI18n } from "@/components/lang/i18n-provider";
+import { ChevronRight } from "lucide-react";
 
 interface SiteHeaderProps {
   variant?: "landing" | "authenticated";
@@ -181,23 +182,14 @@ export const SiteHeader = memo(function SiteHeader({
 
                 {/* Close Button */}
                 <SheetClose asChild>
-                  <button
-                    className="hover:bg-muted/50 bg-muted/20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8"
                     aria-label={t("common.nav.closeMenu")}
                   >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
-                  </button>
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
                 </SheetClose>
               </div>
 
