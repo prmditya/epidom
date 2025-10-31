@@ -22,7 +22,7 @@ export default function LangSwitcher({ className = "" }: { className?: string })
 
   return (
     <Select value={locale} onValueChange={setLocale}>
-      <SelectTrigger className="bg-background text-foreground rounded-full">
+      <SelectTrigger className="bg-background text-foreground rounded-full font-semibold">
         <Languages className="h-4 w-4" />
         <SelectValue>{currentLang?.short || "EN"}</SelectValue>
       </SelectTrigger>

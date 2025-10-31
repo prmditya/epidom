@@ -36,6 +36,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Plus, Loader2, ChefHat } from "lucide-react";
 import { MOCK_RECIPES } from "@/mocks";
 import { Separator } from "@/components/ui/separator";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 // Zod validation schema
 const productSchema = z.object({
@@ -68,6 +69,7 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema),
@@ -154,13 +156,13 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
         {children || (
           <Button size="sm">
             <Plus className="mr-2 h-4 w-4" />
-            Add Product
+            {t("common.actions.add") || "Add Product"}
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl [&>button]:hidden">
         <DialogHeader>
-          <DialogTitle>Add New Product</DialogTitle>
+          <DialogTitle>{t("data.products.addTitle") || "Add New Product"}</DialogTitle>
           <DialogDescription>
             Add a new product to your inventory. Link it to a recipe for automatic cost calculation.
           </DialogDescription>
@@ -443,11 +445,11 @@ export default function AddProductDialog({ children }: AddProductDialogProps) {
                 onClick={() => setOpen(false)}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("actions.cancel") || "Cancel"}
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Add Product
+                {t("common.actions.add") || "Add Product"}
               </Button>
             </DialogFooter>
           </form>

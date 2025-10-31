@@ -32,6 +32,7 @@ import { formatCurrency, formatDate, formatDuration } from "@/lib/utils/formatti
 import { MOCK_MATERIALS, MOCK_PRODUCTS } from "@/mocks";
 import { useState } from "react";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 interface RecipeDetailsDialogProps {
   open: boolean;
@@ -49,6 +50,7 @@ export default function RecipeDetailsDialog({
   onDelete,
 }: RecipeDetailsDialogProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const { t } = useI18n();
 
   // Calculate total cost from ingredients
   const calculateTotalCost = () => {

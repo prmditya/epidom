@@ -36,6 +36,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Plus, Loader2 } from "lucide-react";
 import { PaymentTerms } from "@/types/entities";
 import { Separator } from "@/components/ui/separator";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 // Zod validation schema
 const supplierSchema = z.object({
@@ -63,6 +64,7 @@ export default function AddSupplierDialog({ children }: AddSupplierDialogProps) 
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const form = useForm<SupplierFormValues>({
     resolver: zodResolver(supplierSchema),
@@ -116,13 +118,13 @@ export default function AddSupplierDialog({ children }: AddSupplierDialogProps) 
         {children || (
           <Button size="sm">
             <Plus className="mr-2 h-4 w-4" />
-            Add Supplier
+            {t("common.actions.add") || "Add Supplier"}
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl [&>button]:hidden">
         <DialogHeader>
-          <DialogTitle>Add New Supplier</DialogTitle>
+          <DialogTitle>{t("data.suppliers.addTitle") || "Add New Supplier"}</DialogTitle>
           <DialogDescription>
             Add a new supplier to your contact list. Fill in as much information as possible.
           </DialogDescription>
@@ -374,11 +376,11 @@ export default function AddSupplierDialog({ children }: AddSupplierDialogProps) 
                 onClick={() => setOpen(false)}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("actions.cancel") || "Cancel"}
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Add Supplier
+                {t("") || "Add Supplier"}
               </Button>
             </DialogFooter>
           </form>

@@ -49,6 +49,7 @@ import {
 } from "lucide-react";
 import { MOCK_MATERIALS } from "@/mocks";
 import { Separator } from "@/components/ui/separator";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 // Ingredient item schema
 const ingredientSchema = z.object({
@@ -103,6 +104,7 @@ export default function AddRecipeDialog({ trigger }: AddRecipeDialogProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const form = useForm<RecipeFormValues>({
     resolver: zodResolver(recipeSchema),
@@ -235,13 +237,13 @@ export default function AddRecipeDialog({ trigger }: AddRecipeDialogProps) {
         {trigger || (
           <Button size="sm" className="gap-2">
             <Plus className="h-4 w-4" />
-            Add Recipe
+            {t("common.actions.add") || "Add Recipe"}
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[700px] [&>button]:hidden">
         <DialogHeader>
-          <DialogTitle>Create New Recipe</DialogTitle>
+          <DialogTitle>{t("data.recipes.addTitle") || "Create New Recipe"}</DialogTitle>
           <DialogDescription>
             Create a new recipe with ingredients and instructions. Step {currentStep} of{" "}
             {STEPS.length}
@@ -739,23 +741,23 @@ export default function AddRecipeDialog({ trigger }: AddRecipeDialogProps) {
                 onClick={() => setOpen(false)}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("actions.cancel") || "Cancel"}
               </Button>
               {currentStep > 1 && (
                 <Button type="button" variant="outline" onClick={prevStep}>
                   <ChevronLeft className="mr-2 h-4 w-4" />
-                  Previous
+                  {t("actions.previous") || "Previous"}
                 </Button>
               )}
               {currentStep < 4 ? (
                 <Button type="button" onClick={nextStep}>
-                  Next
+                  {t("actions.next") || "Next"}
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               ) : (
                 <Button type="submit" disabled={isSubmitting}>
                   {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Create Recipe
+                  {t("data.recipes.create") || "Create Recipe"}
                 </Button>
               )}
             </DialogFooter>

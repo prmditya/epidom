@@ -94,7 +94,7 @@ export function Topbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="text-primary-foreground gap-2 hover:bg-white/10 hover:text-white"
+                  className="text-primary-foreground flex items-center gap-2 rounded-2xl hover:bg-white/10 hover:text-white"
                 >
                   <Avatar className="size-6">
                     <AvatarFallback className="text-foreground bg-white text-xs">
@@ -119,7 +119,8 @@ export function Topbar() {
             </DropdownMenu>
             <Button
               size="sm"
-              variant="destructive"
+              variant="ghost"
+              className="rounded-xl hover:bg-red-500"
               onClick={() => {
                 signOut();
               }}
