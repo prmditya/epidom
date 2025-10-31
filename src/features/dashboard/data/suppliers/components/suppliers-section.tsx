@@ -212,7 +212,9 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
       <Card className="overflow-hidden shadow-md">
         <CardHeader className="border-b pb-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <CardTitle className="text-lg">Suppliers</CardTitle>
+            <CardTitle className="text-lg">
+              {t("data.suppliers.pageTitle") || "Suppliers"}
+            </CardTitle>
             <div className="flex flex-wrap items-center gap-2">
               <ExportButton
                 data={processedSuppliers}
@@ -224,7 +226,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
               {bulkSelectMode && selectedIds.size > 0 && (
                 <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
                   <Trash2 className="mr-2 h-4 w-4" />
-                  Delete ({selectedIds.size})
+                  {t("actions.delete") || "Delete"} ({selectedIds.size})
                 </Button>
               )}
               <Button
@@ -235,12 +237,12 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                 {bulkSelectMode ? (
                   <>
                     <X className="mr-2 h-4 w-4" />
-                    Cancel
+                    {t("actions.cancel") || "Cancel"}
                   </>
                 ) : (
                   <>
                     <CheckSquare className="mr-2 h-4 w-4" />
-                    Select
+                    {t("common.actions.view") || "Select"}
                   </>
                 )}
               </Button>
@@ -271,12 +273,20 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                   <SelectValue placeholder="Payment Terms" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Terms</SelectItem>
-                  <SelectItem value={PaymentTerms.COD}>COD</SelectItem>
-                  <SelectItem value={PaymentTerms.NET15}>Net 15</SelectItem>
-                  <SelectItem value={PaymentTerms.NET30}>Net 30</SelectItem>
-                  <SelectItem value={PaymentTerms.NET60}>Net 60</SelectItem>
-                  <SelectItem value={PaymentTerms.NET90}>Net 90</SelectItem>
+                  <SelectItem value="all">{t("filters.allTerms") || "All Terms"}</SelectItem>
+                  <SelectItem value={PaymentTerms.COD}>{t("filters.cod") || "COD"}</SelectItem>
+                  <SelectItem value={PaymentTerms.NET15}>
+                    {t("filters.net15") || "Net 15"}
+                  </SelectItem>
+                  <SelectItem value={PaymentTerms.NET30}>
+                    {t("filters.net30") || "Net 30"}
+                  </SelectItem>
+                  <SelectItem value={PaymentTerms.NET60}>
+                    {t("filters.net60") || "Net 60"}
+                  </SelectItem>
+                  <SelectItem value={PaymentTerms.NET90}>
+                    {t("filters.net90") || "Net 90"}
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -290,11 +300,15 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                   <SelectValue placeholder="Rating" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Ratings</SelectItem>
-                  <SelectItem value="excellent">Excellent (4.5+)</SelectItem>
-                  <SelectItem value="good">Good (4.0+)</SelectItem>
-                  <SelectItem value="average">Average (3.0+)</SelectItem>
-                  <SelectItem value="poor">Poor (&lt;3.0)</SelectItem>
+                  <SelectItem value="all">{t("filters.allRatings") || "All Ratings"}</SelectItem>
+                  <SelectItem value="excellent">
+                    {t("filters.excellent") || "Excellent (4.5+)"}
+                  </SelectItem>
+                  <SelectItem value="good">{t("filters.good") || "Good (4.0+)"}</SelectItem>
+                  <SelectItem value="average">
+                    {t("filters.average") || "Average (3.0+)"}
+                  </SelectItem>
+                  <SelectItem value="poor">{t("filters.poor") || "Poor (<3.0)"}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -312,14 +326,22 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="name-asc">Name (A-Z)</SelectItem>
-                  <SelectItem value="name-desc">Name (Z-A)</SelectItem>
-                  <SelectItem value="rating-asc">Rating (Low-High)</SelectItem>
-                  <SelectItem value="rating-desc">Rating (High-Low)</SelectItem>
-                  <SelectItem value="deliveryRate-asc">Delivery (Low-High)</SelectItem>
-                  <SelectItem value="deliveryRate-desc">Delivery (High-Low)</SelectItem>
-                  <SelectItem value="city-asc">City (A-Z)</SelectItem>
-                  <SelectItem value="city-desc">City (Z-A)</SelectItem>
+                  <SelectItem value="name-asc">{t("sort.nameAZ") || "Name (A-Z)"}</SelectItem>
+                  <SelectItem value="name-desc">{t("sort.nameZA") || "Name (Z-A)"}</SelectItem>
+                  <SelectItem value="rating-asc">
+                    {t("sort.ratingLowHigh") || "Rating (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="rating-desc">
+                    {t("sort.ratingHighLow") || "Rating (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="deliveryRate-asc">
+                    {t("sort.deliveryLowHigh") || "Delivery (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="deliveryRate-desc">
+                    {t("sort.deliveryHighLow") || "Delivery (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="city-asc">{t("sort.cityAZ") || "City (A-Z)"}</SelectItem>
+                  <SelectItem value="city-desc">{t("sort.cityZA") || "City (Z-A)"}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -327,7 +349,7 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
               {hasActiveFilters && (
                 <Button variant="ghost" size="sm" onClick={clearFilters}>
                   <X className="mr-2 h-4 w-4" />
-                  Clear Filters
+                  {t("common.actions.clearFilters") || "Clear Filters"}
                 </Button>
               )}
             </div>
@@ -342,7 +364,9 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
                   onCheckedChange={toggleSelectAll}
                 />
                 <span className="text-sm font-medium">
-                  Select All ({selectedIds.size} of {processedSuppliers.length} selected)
+                  {t("common.selectAll") || "Select All"} ({selectedIds.size}{" "}
+                  {t("common.of") || "of"} {processedSuppliers.length}{" "}
+                  {t("common.selected") || "selected"})
                 </span>
               </div>
             )}
@@ -351,7 +375,8 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
           {/* Results Count */}
           <div className="flex items-center justify-between border-b pb-2">
             <p className="text-muted-foreground text-sm">
-              Showing {processedSuppliers.length} of {suppliers.length} suppliers
+              {t("common.showing") || "Showing"} {processedSuppliers.length}{" "}
+              {t("common.of") || "of"} {suppliers.length} {t("data.suppliers") || "suppliers"}
             </p>
           </div>
 
@@ -517,15 +542,19 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
             {processedSuppliers.length === 0 && (
               <div className="col-span-full flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
                 <Store className="text-muted-foreground/50 mb-4 h-12 w-12" />
-                <h3 className="mb-2 text-lg font-semibold">No suppliers found</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  {t("messages.noSuppliersFound") || "No suppliers found"}
+                </h3>
                 <p className="text-muted-foreground mb-4 text-sm">
                   {hasActiveFilters
-                    ? "Try adjusting your filters or search query"
-                    : "Get started by adding your first supplier"}
+                    ? t("messages.noMatchingFilters") ||
+                      "Try adjusting your filters or search query"
+                    : t("messages.getStartedSupplier") ||
+                      "Get started by adding your first supplier"}
                 </p>
                 {hasActiveFilters ? (
                   <Button variant="outline" onClick={clearFilters}>
-                    Clear Filters
+                    {t("common.actions.clearFilters") || "Clear Filters"}
                   </Button>
                 ) : (
                   <AddSupplierDialog />

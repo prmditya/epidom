@@ -29,6 +29,7 @@ import { formatCurrency, formatDate, formatNumber } from "@/lib/utils/formatting
 import { MOCK_RECIPES } from "@/mocks";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { useState } from "react";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 interface ProductDetailsDialogProps {
   open: boolean;
@@ -46,6 +47,7 @@ export default function ProductDetailsDialog({
   onDelete,
 }: ProductDetailsDialogProps) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const { t } = useI18n();
   // Calculate profit margins
   const calculateMargins = () => {
     if (!product.retailPrice || !product.costPrice) {
@@ -120,7 +122,7 @@ export default function ProductDetailsDialog({
               {onEdit && (
                 <Button variant="outline" size="sm" onClick={onEdit}>
                   <Edit className="mr-2 h-4 w-4" />
-                  Edit
+                  {t("actions.edit") || "Edit"}
                 </Button>
               )}
               {onDelete && (

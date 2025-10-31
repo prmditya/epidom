@@ -217,7 +217,9 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
       <Card className="overflow-hidden shadow-md">
         <CardHeader className="border-b pb-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <CardTitle className="text-lg">Materials</CardTitle>
+            <CardTitle className="text-lg">
+              {t("data.materials.pageTitle") || "Materials"}
+            </CardTitle>
             <div className="flex items-center gap-2">
               <ExportButton
                 data={processedMaterials}
@@ -229,7 +231,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
               {bulkSelectMode && selectedIds.size > 0 && (
                 <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
                   <Trash2 className="mr-2 h-4 w-4" />
-                  Delete ({selectedIds.size})
+                  {t("actions.delete") || "Delete"} ({selectedIds.size})
                 </Button>
               )}
               <Button
@@ -240,12 +242,12 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                 {bulkSelectMode ? (
                   <>
                     <X className="mr-2 h-4 w-4" />
-                    Cancel
+                    {t("actions.cancel") || "Cancel"}
                   </>
                 ) : (
                   <>
                     <CheckSquare className="mr-2 h-4 w-4" />
-                    Select
+                    {t("common.actions.view") || "Select"}
                   </>
                 )}
               </Button>
@@ -260,7 +262,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
             <div className="relative">
               <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <Input
-                placeholder="Search by name, SKU, or description..."
+                placeholder={t("actions.searchPlaceholder") || "Search..."}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-9"
@@ -276,7 +278,9 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="all">
+                    {t("common.actions.filter") || "All Categories"}
+                  </SelectItem>
                   {Object.values(MaterialCategory).map((category) => (
                     <SelectItem key={category} value={category}>
                       {category.replace("_", " ")}
@@ -292,7 +296,9 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   <SelectValue placeholder="Supplier" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Suppliers</SelectItem>
+                  <SelectItem value="all">
+                    {t("filters.allSuppliers") || "All Suppliers"}
+                  </SelectItem>
                   {MOCK_SUPPLIERS.map((supplier) => (
                     <SelectItem key={supplier.id} value={supplier.id}>
                       {supplier.name}
@@ -308,11 +314,13 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   <SelectValue placeholder="Stock Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Stock</SelectItem>
-                  <SelectItem value="in_stock">In Stock</SelectItem>
-                  <SelectItem value="low_stock">Low Stock</SelectItem>
-                  <SelectItem value="critical">Critical</SelectItem>
-                  <SelectItem value="overstocked">Overstocked</SelectItem>
+                  <SelectItem value="all">{t("filters.allStock") || "All Stock"}</SelectItem>
+                  <SelectItem value="in_stock">{t("filters.inStock") || "In Stock"}</SelectItem>
+                  <SelectItem value="low_stock">{t("filters.lowStock") || "Low Stock"}</SelectItem>
+                  <SelectItem value="critical">{t("filters.critical") || "Critical"}</SelectItem>
+                  <SelectItem value="overstocked">
+                    {t("filters.overstocked") || "Overstocked"}
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -330,14 +338,26 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="name-asc">Name (A-Z)</SelectItem>
-                  <SelectItem value="name-desc">Name (Z-A)</SelectItem>
-                  <SelectItem value="stock-asc">Stock (Low-High)</SelectItem>
-                  <SelectItem value="stock-desc">Stock (High-Low)</SelectItem>
-                  <SelectItem value="cost-asc">Cost (Low-High)</SelectItem>
-                  <SelectItem value="cost-desc">Cost (High-Low)</SelectItem>
-                  <SelectItem value="category-asc">Category (A-Z)</SelectItem>
-                  <SelectItem value="category-desc">Category (Z-A)</SelectItem>
+                  <SelectItem value="name-asc">{t("sort.nameAZ") || "Name (A-Z)"}</SelectItem>
+                  <SelectItem value="name-desc">{t("sort.nameZA") || "Name (Z-A)"}</SelectItem>
+                  <SelectItem value="stock-asc">
+                    {t("sort.stockLowHigh") || "Stock (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="stock-desc">
+                    {t("sort.stockHighLow") || "Stock (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="cost-asc">
+                    {t("sort.costLowHigh") || "Cost (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="cost-desc">
+                    {t("sort.costHighLow") || "Cost (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="category-asc">
+                    {t("sort.categoryAZ") || "Category (A-Z)"}
+                  </SelectItem>
+                  <SelectItem value="category-desc">
+                    {t("sort.categoryZA") || "Category (Z-A)"}
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -345,7 +365,7 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
               {hasActiveFilters && (
                 <Button variant="ghost" size="sm" onClick={clearFilters}>
                   <X className="mr-2 h-4 w-4" />
-                  Clear Filters
+                  {t("common.actions.clearFilters") || "Clear Filters"}
                 </Button>
               )}
             </div>
@@ -360,7 +380,9 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
                   onCheckedChange={toggleSelectAll}
                 />
                 <span className="text-sm font-medium">
-                  Select All ({selectedIds.size} of {processedMaterials.length} selected)
+                  {t("common.selectAll") || "Select All"} ({selectedIds.size}{" "}
+                  {t("common.of") || "of"} {processedMaterials.length}{" "}
+                  {t("common.selected") || "selected"})
                 </span>
               </div>
             )}
@@ -369,7 +391,8 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
           {/* Results Count */}
           <div className="flex items-center justify-between border-b pb-2">
             <p className="text-muted-foreground text-sm">
-              Showing {processedMaterials.length} of {materials.length} materials
+              Showing {processedMaterials.length} of {materials.length}{" "}
+              {t("data.materials") || "materials"}
             </p>
           </div>
 
@@ -512,11 +535,13 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
             {processedMaterials.length === 0 && (
               <div className="col-span-full py-12 text-center">
                 <p className="text-muted-foreground">
-                  {hasActiveFilters ? "No materials match your filters" : "No materials found"}
+                  {hasActiveFilters
+                    ? t("messages.noMatchingFilters") || "No materials match your filters"
+                    : t("messages.noMaterialsFound") || "No materials found"}
                 </p>
                 {hasActiveFilters && (
                   <Button variant="link" onClick={clearFilters} className="mt-2">
-                    Clear all filters
+                    {t("common.actions.clearAllFilters") || "Clear all filters"}
                   </Button>
                 )}
               </div>

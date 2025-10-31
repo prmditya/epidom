@@ -6,7 +6,6 @@ import { ProfileHeader } from "@/features/dashboard/profile/components/profile-h
 import { PersonalInfoCard } from "@/features/dashboard/profile/components/personal-info-card";
 import { BusinessInfoCard } from "@/features/dashboard/profile/components/business-info-card";
 import { SubscriptionInfoCard } from "@/features/dashboard/profile/components/subscription-info-card";
-import { NotificationPreferencesCard } from "@/features/dashboard/profile/components/notification-preferences-card";
 import { ActivityLogCard } from "@/features/dashboard/profile/components/activity-log-card";
 import type { ProfileData } from "@/features/dashboard/profile/types";
 
@@ -42,7 +41,7 @@ export default function ProfilePage() {
 
   if (sessionLoading || loading) {
     return (
-      <div className="flex w-full items-center justify-center py-12">
+      <div className="flex min-h-[calc(100vh-150px)] w-full items-center justify-center py-12">
         <p className="text-muted-foreground">Loading profile...</p>
       </div>
     );
@@ -50,14 +49,14 @@ export default function ProfilePage() {
 
   if (!sessionUser || !profileData) {
     return (
-      <div className="flex w-full items-center justify-center py-12">
+      <div className="flex min-h-[calc(100vh-150px)] w-full items-center justify-center py-12">
         <p className="text-muted-foreground">Failed to load profile</p>
       </div>
     );
   }
 
   return (
-    <div className="w-full space-y-6">
+    <div className="min-h-[calc(100vh-150px)] w-full space-y-6">
       <ProfileHeader user={profileData} subscription={profileData.subscription} />
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -70,8 +69,6 @@ export default function ProfilePage() {
         userId={profileData.id}
         onUpdate={fetchProfileData}
       />
-
-      <NotificationPreferencesCard />
 
       <ActivityLogCard />
     </div>

@@ -223,10 +223,10 @@ export function ProductsSection({ products }: ProductsSectionProps) {
 
   return (
     <>
-      <Card className="overflow-hidden shadow-md">
-        <CardHeader className="border-b pb-4">
+      <Card className="min-h-[calc(100vh-150px)] overflow-hidden shadow-md">
+        <CardHeader className="border-b">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <CardTitle className="text-lg">Products</CardTitle>
+            <CardTitle className="text-lg">{t("data.products.pageTitle") || "Products"}</CardTitle>
             <div className="flex items-center gap-2">
               <ExportButton
                 data={processedProducts}
@@ -238,7 +238,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
               {bulkSelectMode && selectedIds.size > 0 && (
                 <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
                   <Trash2 className="mr-2 h-4 w-4" />
-                  Delete ({selectedIds.size})
+                  {t("actions.delete") || "Delete"} ({selectedIds.size})
                 </Button>
               )}
               <Button
@@ -249,12 +249,12 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                 {bulkSelectMode ? (
                   <>
                     <X className="mr-2 h-4 w-4" />
-                    Cancel
+                    {t("actions.cancel") || "Cancel"}
                   </>
                 ) : (
                   <>
                     <CheckSquare className="mr-2 h-4 w-4" />
-                    Select
+                    {t("common.actions.view") || "Select"}
                   </>
                 )}
               </Button>
@@ -262,7 +262,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4 p-6">
+        <CardContent className="space-y-4 pb-6">
           {/* Search and Filters */}
           <div className="flex flex-col gap-3">
             {/* Search */}
@@ -285,7 +285,9 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="all">
+                    {t("filters.allCategories") || "All Categories"}
+                  </SelectItem>
                   {categories.map((category) => (
                     <SelectItem key={category} value={category ?? "none"}>
                       {category}
@@ -301,11 +303,13 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                   <SelectValue placeholder="Stock Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Stock</SelectItem>
-                  <SelectItem value="in_stock">In Stock</SelectItem>
-                  <SelectItem value="low_stock">Low Stock</SelectItem>
-                  <SelectItem value="critical">Critical</SelectItem>
-                  <SelectItem value="overstocked">Overstocked</SelectItem>
+                  <SelectItem value="all">{t("filters.allStock") || "All Stock"}</SelectItem>
+                  <SelectItem value="in_stock">{t("filters.inStock") || "In Stock"}</SelectItem>
+                  <SelectItem value="low_stock">{t("filters.lowStock") || "Low Stock"}</SelectItem>
+                  <SelectItem value="critical">{t("filters.critical") || "Critical"}</SelectItem>
+                  <SelectItem value="overstocked">
+                    {t("filters.overstocked") || "Overstocked"}
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -323,16 +327,32 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="name-asc">Name (A-Z)</SelectItem>
-                  <SelectItem value="name-desc">Name (Z-A)</SelectItem>
-                  <SelectItem value="stock-asc">Stock (Low-High)</SelectItem>
-                  <SelectItem value="stock-desc">Stock (High-Low)</SelectItem>
-                  <SelectItem value="price-asc">Price (Low-High)</SelectItem>
-                  <SelectItem value="price-desc">Price (High-Low)</SelectItem>
-                  <SelectItem value="profit-asc">Profit (Low-High)</SelectItem>
-                  <SelectItem value="profit-desc">Profit (High-Low)</SelectItem>
-                  <SelectItem value="category-asc">Category (A-Z)</SelectItem>
-                  <SelectItem value="category-desc">Category (Z-A)</SelectItem>
+                  <SelectItem value="name-asc">{t("sort.nameAZ") || "Name (A-Z)"}</SelectItem>
+                  <SelectItem value="name-desc">{t("sort.nameZA") || "Name (Z-A)"}</SelectItem>
+                  <SelectItem value="stock-asc">
+                    {t("sort.stockLowHigh") || "Stock (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="stock-desc">
+                    {t("sort.stockHighLow") || "Stock (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="price-asc">
+                    {t("sort.priceLowHigh") || "Price (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="price-desc">
+                    {t("sort.priceHighLow") || "Price (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="profit-asc">
+                    {t("sort.profitLowHigh") || "Profit (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="profit-desc">
+                    {t("sort.profitHighLow") || "Profit (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="category-asc">
+                    {t("sort.categoryAZ") || "Category (A-Z)"}
+                  </SelectItem>
+                  <SelectItem value="category-desc">
+                    {t("sort.categoryZA") || "Category (Z-A)"}
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -340,7 +360,7 @@ export function ProductsSection({ products }: ProductsSectionProps) {
               {hasActiveFilters && (
                 <Button variant="ghost" size="sm" onClick={clearFilters}>
                   <X className="mr-2 h-4 w-4" />
-                  Clear Filters
+                  {t("common.actions.clearFilters") || "Clear Filters"}
                 </Button>
               )}
             </div>
@@ -355,7 +375,9 @@ export function ProductsSection({ products }: ProductsSectionProps) {
                   onCheckedChange={toggleSelectAll}
                 />
                 <span className="text-sm font-medium">
-                  Select All ({selectedIds.size} of {processedProducts.length} selected)
+                  {t("common.selectAll") || "Select All"} ({selectedIds.size}{" "}
+                  {t("common.of") || "of"} {processedProducts.length}{" "}
+                  {t("common.selected") || "selected"})
                 </span>
               </div>
             )}
@@ -364,7 +386,8 @@ export function ProductsSection({ products }: ProductsSectionProps) {
           {/* Results Count */}
           <div className="flex items-center justify-between border-b pb-2">
             <p className="text-muted-foreground text-sm">
-              Showing {processedProducts.length} of {products.length} products
+              {t("common.showing") || "Showing"} {processedProducts.length} {t("common.of") || "of"}{" "}
+              {products.length} {t("data.products") || "products"}
             </p>
           </div>
 
@@ -524,34 +547,18 @@ export function ProductsSection({ products }: ProductsSectionProps) {
             {processedProducts.length === 0 && (
               <div className="col-span-full flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
                 <PackageOpen className="text-muted-foreground/50 mb-4 h-12 w-12" />
-                <h3 className="mb-2 text-lg font-semibold">No products found</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  {t("messages.noProductsFound") || "No products found"}
+                </h3>
                 <p className="text-muted-foreground mb-4 text-sm">
                   {hasActiveFilters
-                    ? "Try adjusting your filters or search query"
-                    : "Get started by adding your first product"}
+                    ? t("messages.noMatchingFilters") ||
+                      "Try adjusting your filters or search query"
+                    : t("messages.getStartedProduct") || "Get started by adding your first product"}
                 </p>
                 {hasActiveFilters ? (
                   <Button variant="outline" onClick={clearFilters}>
-                    Clear Filters
-                  </Button>
-                ) : (
-                  <AddProductDialog />
-                )}
-              </div>
-            )}
-            {/* Empty State */}
-            {processedProducts.length === 0 && (
-              <div className="col-span-full flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
-                <PackageOpen className="text-muted-foreground/50 mb-4 h-12 w-12" />
-                <h3 className="mb-2 text-lg font-semibold">No products found</h3>
-                <p className="text-muted-foreground mb-4 text-sm">
-                  {hasActiveFilters
-                    ? "Try adjusting your filters or search query"
-                    : "Get started by adding your first product"}
-                </p>
-                {hasActiveFilters ? (
-                  <Button variant="outline" onClick={clearFilters}>
-                    Clear Filters
+                    {t("common.actions.clearFilters") || "Clear Filters"}
                   </Button>
                 ) : (
                   <AddProductDialog />

@@ -211,7 +211,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
       <Card className="overflow-hidden shadow-md">
         <CardHeader className="border-b pb-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <CardTitle className="text-lg">Recipes</CardTitle>
+            <CardTitle className="text-lg">{t("data.recipes.pageTitle") || "Recipes"}</CardTitle>
             <div className="flex flex-wrap items-center gap-2">
               <ExportButton
                 data={processedRecipes}
@@ -223,7 +223,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
               {bulkSelectMode && selectedIds.size > 0 && (
                 <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
                   <Trash2 className="mr-2 h-4 w-4" />
-                  Delete ({selectedIds.size})
+                  {t("actions.delete") || "Delete"} ({selectedIds.size})
                 </Button>
               )}
               <Button
@@ -234,12 +234,12 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                 {bulkSelectMode ? (
                   <>
                     <X className="mr-2 h-4 w-4" />
-                    Cancel
+                    {t("actions.cancel") || "Cancel"}
                   </>
                 ) : (
                   <>
                     <CheckSquare className="mr-2 h-4 w-4" />
-                    Select
+                    {t("common.actions.view") || "Select"}
                   </>
                 )}
               </Button>
@@ -270,7 +270,9 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="all">
+                    {t("filters.allCategories") || "All Categories"}
+                  </SelectItem>
                   {RECIPE_CATEGORIES.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
@@ -293,16 +295,32 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="name-asc">Name (A-Z)</SelectItem>
-                  <SelectItem value="name-desc">Name (Z-A)</SelectItem>
-                  <SelectItem value="time-asc">Time (Shortest)</SelectItem>
-                  <SelectItem value="time-desc">Time (Longest)</SelectItem>
-                  <SelectItem value="cost-asc">Cost (Low-High)</SelectItem>
-                  <SelectItem value="cost-desc">Cost (High-Low)</SelectItem>
-                  <SelectItem value="yield-asc">Yield (Low-High)</SelectItem>
-                  <SelectItem value="yield-desc">Yield (High-Low)</SelectItem>
-                  <SelectItem value="category-asc">Category (A-Z)</SelectItem>
-                  <SelectItem value="category-desc">Category (Z-A)</SelectItem>
+                  <SelectItem value="name-asc">{t("sort.nameAZ") || "Name (A-Z)"}</SelectItem>
+                  <SelectItem value="name-desc">{t("sort.nameZA") || "Name (Z-A)"}</SelectItem>
+                  <SelectItem value="time-asc">
+                    {t("sort.timeShortest") || "Time (Shortest)"}
+                  </SelectItem>
+                  <SelectItem value="time-desc">
+                    {t("sort.timeLongest") || "Time (Longest)"}
+                  </SelectItem>
+                  <SelectItem value="cost-asc">
+                    {t("sort.costLowHigh") || "Cost (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="cost-desc">
+                    {t("sort.costHighLow") || "Cost (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="yield-asc">
+                    {t("sort.yieldLowHigh") || "Yield (Low-High)"}
+                  </SelectItem>
+                  <SelectItem value="yield-desc">
+                    {t("sort.yieldHighLow") || "Yield (High-Low)"}
+                  </SelectItem>
+                  <SelectItem value="category-asc">
+                    {t("sort.categoryAZ") || "Category (A-Z)"}
+                  </SelectItem>
+                  <SelectItem value="category-desc">
+                    {t("sort.categoryZA") || "Category (Z-A)"}
+                  </SelectItem>
                 </SelectContent>
               </Select>
 
@@ -310,7 +328,7 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
               {hasActiveFilters && (
                 <Button variant="ghost" size="sm" onClick={clearFilters}>
                   <X className="mr-2 h-4 w-4" />
-                  Clear Filters
+                  {t("common.actions.clearFilters") || "Clear Filters"}
                 </Button>
               )}
             </div>
@@ -325,7 +343,9 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
                   onCheckedChange={toggleSelectAll}
                 />
                 <span className="text-sm font-medium">
-                  Select All ({selectedIds.size} of {processedRecipes.length} selected)
+                  {t("common.selectAll") || "Select All"} ({selectedIds.size}{" "}
+                  {t("common.of") || "of"} {processedRecipes.length}{" "}
+                  {t("common.selected") || "selected"})
                 </span>
               </div>
             )}
@@ -499,11 +519,13 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
               <div className="col-span-full py-12 text-center">
                 <ChefHat className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                 <p className="text-muted-foreground">
-                  {hasActiveFilters ? "No recipes match your filters" : "No recipes found"}
+                  {hasActiveFilters
+                    ? t("messages.noMatchingFilters") || "No recipes match your filters"
+                    : t("messages.noRecipesFound") || "No recipes found"}
                 </p>
                 {hasActiveFilters && (
                   <Button variant="link" onClick={clearFilters} className="mt-2">
-                    Clear all filters
+                    {t("common.actions.clearAllFilters") || "Clear all filters"}
                   </Button>
                 )}
               </div>

@@ -35,6 +35,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2, ChefHat } from "lucide-react";
 import { MOCK_RECIPES } from "@/mocks";
 import type { Product } from "@/types/entities";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 // Zod validation schema
 const productSchema = z.object({
@@ -72,6 +73,7 @@ export default function EditProductDialog({
 }: EditProductDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema),
@@ -169,7 +171,7 @@ export default function EditProductDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Edit Product</DialogTitle>
+          <DialogTitle>{t("data.products.editTitle") || "Edit Product"}</DialogTitle>
           <DialogDescription>
             Update product information. Changes will be saved to your inventory.
           </DialogDescription>
@@ -451,11 +453,11 @@ export default function EditProductDialog({
                 onClick={() => onOpenChange(false)}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("actions.cancel") || "Cancel"}
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Update Product
+                {t("data.products.update") || "Update Product"}
               </Button>
             </DialogFooter>
           </form>
