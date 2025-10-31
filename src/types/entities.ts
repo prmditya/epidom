@@ -88,6 +88,18 @@ export enum PaymentTerms {
   PREPAID = "prepaid",
 }
 
+export enum DeliveryType {
+  INCOMING = "incoming",
+  OUTGOING = "outgoing",
+}
+
+export enum SupplierDeliveryStatus {
+  PENDING = "pending",
+  IN_TRANSIT = "in_transit",
+  RECEIVED = "received",
+  CANCELLED = "cancelled",
+}
+
 // ============================================================================
 // CORE ENTITIES
 // ============================================================================
@@ -192,6 +204,43 @@ export interface Supplier {
   onTimeDeliveryRate?: number;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface SupplierDelivery {
+  id: string;
+  deliveryReference: string;
+  supplierId: string;
+  supplier?: Supplier;
+  deliveryType: DeliveryType;
+  status: SupplierDeliveryStatus;
+  expectedDate: Date;
+  receivedDate?: Date;
+  notes?: string;
+  storeId: string;
+  items: SupplierDeliveryItem[];
+  statusHistory?: SupplierDeliveryStatusHistory[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface SupplierDeliveryItem {
+  id: string;
+  deliveryId: string;
+  materialId: string;
+  material?: Material;
+  quantity: number;
+  unit: string;
+  notes?: string;
+}
+
+export interface SupplierDeliveryStatusHistory {
+  id: string;
+  deliveryId: string;
+  status: SupplierDeliveryStatus;
+  notes?: string;
+  userId?: string;
+  userName?: string;
+  createdAt: Date;
 }
 
 export interface Order {

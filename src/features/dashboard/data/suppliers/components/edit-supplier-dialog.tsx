@@ -35,6 +35,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { PaymentTerms } from "@/types/entities";
 import type { Supplier } from "@/types/entities";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 // Zod validation schema
 const supplierSchema = z.object({
@@ -67,6 +68,7 @@ export default function EditSupplierDialog({
 }: EditSupplierDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const form = useForm<SupplierFormValues>({
     resolver: zodResolver(supplierSchema),
@@ -134,7 +136,7 @@ export default function EditSupplierDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Edit Supplier</DialogTitle>
+          <DialogTitle>{t("data.suppliers.editTitle") || "Edit Supplier"}</DialogTitle>
           <DialogDescription>
             Update supplier information. Changes will be saved to your contacts.
           </DialogDescription>
@@ -388,11 +390,11 @@ export default function EditSupplierDialog({
                 onClick={() => onOpenChange(false)}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("actions.cancel") || "Cancel"}
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Update Supplier
+                {t("data.suppliers.update") || "Update Supplier"}
               </Button>
             </DialogFooter>
           </form>
