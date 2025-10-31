@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { I18nProvider } from "@/components/lang/i18n-provider";
-import { SiteHeader } from "@/features/landing/shared/components/site-header";
+import { SiteHeader } from "@/features/marketing/shared/components/site-header";
 
 export const metadata: Metadata = {
   title: "Your Stores - EPIDOM",

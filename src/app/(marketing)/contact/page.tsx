@@ -1,5 +1,5 @@
-import { ContactInfo } from "@/features/landing/contact/components/contact-info";
-import { ContactMap } from "@/features/landing/contact/components/contact-map";
+import { ContactInfo } from "@/features/marketing/contact/components/contact-info";
+import { ContactMap } from "@/features/marketing/contact/components/contact-map";
 
 export default function ContactPage() {
   return (

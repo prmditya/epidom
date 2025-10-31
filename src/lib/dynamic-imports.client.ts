@@ -7,7 +7,7 @@ import React from "react";
 // Lazy load heavy components
 export const LazyCountdownComponent = dynamic(
   () =>
-    import("@/features/landing/shared/components/countdown").then((mod) => ({
+    import("@/features/marketing/shared/components/countdown").then((mod) => ({
       default: mod.CountdownComponent,
     })),
   {
@@ -27,7 +27,7 @@ export const LazyCountdownComponent = dynamic(
 
 export const LazyHero = dynamic(
   () =>
-    import("@/features/landing/shared/components/hero").then((mod) => ({
+    import("@/features/marketing/shared/components/hero").then((mod) => ({
       default: mod.Hero,
     })),
   {
@@ -56,7 +56,7 @@ export const LazyHero = dynamic(
 
 export const DynamicWaitlistDialog = dynamic(
   () =>
-    import("@/features/landing/shared/components/waitlist-dialog").then((mod) => ({
+    import("@/features/marketing/shared/components/waitlist-dialog").then((mod) => ({
       default: mod.WaitlistDialog,
     })),
   { ssr: false, loading: () => null }
@@ -64,7 +64,7 @@ export const DynamicWaitlistDialog = dynamic(
 
 export const LazyWaitlistDialog = dynamic(
   () =>
-    import("@/features/landing/shared/components/waitlist-dialog").then((mod) => ({
+    import("@/features/marketing/shared/components/waitlist-dialog").then((mod) => ({
       default: mod.WaitlistDialog,
     })),
   {
@@ -86,7 +86,7 @@ export const LazyWaitlistDialog = dynamic(
 // Note: Chart and Carousel components are not available in this project
 
 // Lazy load pages
-export const LazyPricingPage = dynamic(() => import("@/app/(landing)/pricing/page"), {
+export const LazyPricingPage = dynamic(() => import("@/app/(marketing)/pricing/page"), {
   loading: () =>
     React.createElement(
       "div",
@@ -99,7 +99,7 @@ export const LazyPricingPage = dynamic(() => import("@/app/(landing)/pricing/pag
     ),
 });
 
-export const LazyServicesPage = dynamic(() => import("@/app/(landing)/services/page"), {
+export const LazyServicesPage = dynamic(() => import("@/app/(marketing)/services/page"), {
   loading: () =>
     React.createElement(
       "div",

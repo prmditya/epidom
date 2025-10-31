@@ -3,7 +3,7 @@
 import { memo } from "react";
 import Countdown from "react-countdown";
 import { useI18n } from "@/components/lang/i18n-provider";
-import { WaitlistDialog } from "@/features/landing/shared/components/waitlist-dialog";
+import { WaitlistDialog } from "@/features/marketing/shared/components/waitlist-dialog";
 import { Mail, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 

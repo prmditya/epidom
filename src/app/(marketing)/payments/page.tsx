@@ -1,8 +1,8 @@
-import { PaymentHero } from "@/features/landing/payments/components/payment-hero";
-import { PaymentForm } from "@/features/landing/payments/components/payment-form";
-import { PaymentSummary } from "@/features/landing/payments/components/payment-summary";
-import { PaymentSecurity } from "@/features/landing/payments/components/payment-security";
-import { ContactSalesForm } from "@/features/landing/payments/components/contact-sales-form";
+import { PaymentHero } from "@/features/marketing/payments/components/payment-hero";
+import { PaymentForm } from "@/features/marketing/payments/components/payment-form";
+import { PaymentSummary } from "@/features/marketing/payments/components/payment-summary";
+import { PaymentSecurity } from "@/features/marketing/payments/components/payment-security";
+import { ContactSalesForm } from "@/features/marketing/payments/components/contact-sales-form";
 
 interface PaymentsPageProps {
   searchParams: Promise<{

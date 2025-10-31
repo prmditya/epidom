@@ -1,11 +1,11 @@
-import { HeroSection } from "@/features/landing/services/components/hero-section";
-import { DashboardPreviewSection } from "@/features/landing/services/components/dashboard-preview-section";
-import { ManagementRowOne } from "@/features/landing/services/components/management-row-one";
-import { ManagementRowTwo } from "@/features/landing/services/components/management-row-two";
-import { TrackingPreviewSection } from "@/features/landing/services/components/tracking-preview-section";
-import { DataRowOne } from "@/features/landing/services/components/data-row-one";
-import { DataRowTwo } from "@/features/landing/services/components/data-row-two";
-import { AlertsPreviewSection } from "@/features/landing/services/components/alerts-preview-section";
+import { HeroSection } from "@/features/marketing/services/components/hero-section";
+import { DashboardPreviewSection } from "@/features/marketing/services/components/dashboard-preview-section";
+import { ManagementRowOne } from "@/features/marketing/services/components/management-row-one";
+import { ManagementRowTwo } from "@/features/marketing/services/components/management-row-two";
+import { TrackingPreviewSection } from "@/features/marketing/services/components/tracking-preview-section";
+import { DataRowOne } from "@/features/marketing/services/components/data-row-one";
+import { DataRowTwo } from "@/features/marketing/services/components/data-row-two";
+import { AlertsPreviewSection } from "@/features/marketing/services/components/alerts-preview-section";
 
 export default function ServicesPage() {
   return (

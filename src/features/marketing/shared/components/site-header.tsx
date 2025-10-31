@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
-import { WaitlistDialog } from "@/features/landing/shared/components/waitlist-dialog";
+import { WaitlistDialog } from "@/features/marketing/shared/components/waitlist-dialog";
 import { usePathname } from "next/navigation";
 import LangSwitcher from "@/components/lang/lang-switcher";
 import { useI18n } from "@/components/lang/i18n-provider";
