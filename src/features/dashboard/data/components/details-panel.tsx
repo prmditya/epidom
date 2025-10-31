@@ -2,8 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useI18n } from "@/components/lang/i18n-provider";
-
-type Item = { id: string; name: string; note?: string };
+import type { Item } from "@/mocks";
 
 interface DetailsPanelProps {
   item?: Item;

@@ -26,6 +26,9 @@ export const id = {
       edit: "Edit",
       view: "Lihat",
       delete: "Hapus",
+      back: "Kembali",
+      next: "Selanjutnya",
+      close: "Tutup",
     },
   },
   hero: {
@@ -737,7 +740,35 @@ export const id = {
   },
   data: {
     materials: "Bahan",
-    recipes: "Resep",
+    recipes: {
+      title: "Resep",
+      form: {
+        name: "Nama Resep",
+        description: "Deskripsi",
+        category: "Kategori",
+      },
+      duplicateDialog: {
+        title: "Duplikasi Resep",
+        description:
+          "Buat salinan resep ini dengan nama baru. Semua bahan dan instruksi akan disalin.",
+        nameLabel: "Nama Resep Baru",
+        nameDescription: "Masukkan nama unik untuk resep yang diduplikasi",
+        duplicateButton: "Duplikasi Resep",
+      },
+      productsUsingRecipe: {
+        title: "Produk yang Menggunakan Resep Ini",
+        emptyState: "Tidak ada produk yang saat ini menggunakan resep ini",
+        stockLabel: "Stok",
+        retailPrice: "Harga Eceran",
+        wholesale: "Grosir",
+      },
+      toasts: {
+        duplicated: {
+          title: "Resep Berhasil Diduplikasi",
+          description: "Resep telah berhasil dibuat.",
+        },
+      },
+    },
     products: "Produk",
     suppliers: "Pemasok",
     productDesignation: "Penamaan Produk",
@@ -800,12 +831,269 @@ export const id = {
     registrationFailed: "Registrasi gagal. Silakan coba lagi.",
   },
   alerts: {
-    orderPlaced: "Pesanan berhasil dibuat",
+    // Page titles
+    title: "Peringatan Stok",
+    ordersToPlace: "Pesanan yang Perlu Dibuat",
+    ordersDescription: "Hubungi pemasok untuk mengisi ulang barang dengan stok rendah",
+
+    // Alert states
+    noActiveAlerts: "Tidak Ada Peringatan Aktif",
+    noActiveAlertsDescription: "Semua tingkat persediaan Anda sehat",
+    showing: "Menampilkan",
+    activeAlerts: "peringatan aktif",
+
+    // Table headers
+    table: {
+      material: "Bahan",
+      currentStock: "Stok Saat Ini",
+      minStock: "Stok Min",
+      stockLevel: "Tingkat Stok",
+      supplier: "Pemasok",
+      priority: "Prioritas",
+      actions: "Aksi",
+      lowStock: "Stok Rendah",
+    },
+
+    // Priorities
+    priorities: {
+      low: "Rendah",
+      medium: "Sedang",
+      high: "Tinggi",
+      urgent: "Mendesak",
+    },
+
+    // Actions
+    actions: {
+      viewDetails: "Lihat Detail",
+      createOrder: "Buat Pesanan",
+      callSupplier: "Telepon",
+      emailSupplier: "Email",
+    },
+
+    // Details Dialog
+    detailsDialog: {
+      title: "Detail Peringatan",
+      description: "Lihat informasi detail tentang peringatan stok ini",
+      alertInfo: "Informasi Peringatan",
+      materialInfo: "Informasi Bahan",
+      supplierInfo: "Informasi Pemasok",
+      stockLevel: "Tingkat Stok",
+      ofMinimum: "dari minimum",
+      message: "Pesan",
+      created: "Dibuat",
+      alertId: "ID Peringatan",
+      current: "Saat Ini",
+      minimum: "Minimum",
+      needed: "Dibutuhkan",
+      phone: "Telepon",
+      email: "Email",
+      address: "Alamat",
+    },
+
+    // Create Order Dialog
+    createOrderDialog: {
+      title: "Buat Pengingat Pesanan",
+      description: "Buat pengingat untuk memesan bahan dari pemasok",
+      supplier: "Pemasok",
+      selectSupplier: "Pilih pemasok",
+      material: "Bahan",
+      selectMaterial: "Pilih bahan",
+      quantity: "Jumlah",
+      suggested: "Disarankan",
+      expectedDelivery: "Tanggal Pengiriman yang Diharapkan",
+      expectedDeliveryHint: "Kapan Anda mengharapkan menerima pesanan ini",
+      priority: "Prioritas",
+      notes: "Catatan",
+      notesPlaceholder: "Tambahkan instruksi khusus atau catatan...",
+      notesHint: "Catatan opsional untuk pengingat pesanan ini",
+      submit: "Buat Pesanan",
+    },
+
+    // Orders view
+    contactInfo: "Informasi Kontak",
+    materialsToOrder: "Bahan yang Perlu Dipesan",
+    item: "item",
+    items: "items",
+    current: "Saat Ini",
+    required: "Diperlukan",
+    toOrder: "Perlu Dipesan",
+    noOrdersToPlace: "Tidak Ada Pesanan yang Perlu Dibuat",
+    noOrdersDescription: "Anda tidak memiliki pesanan yang tertunda saat ini",
+
+    // Toasts
+    toasts: {
+      orderCreated: "Pengingat pesanan berhasil dibuat",
+    },
   },
   labels: {
     orderId: "ID Pesanan",
   },
   profile: {
+    // Judul halaman
+    title: "Pengaturan Profil",
+
+    // Bagian
+    sections: {
+      personal: "Informasi Pribadi",
+      business: "Informasi Bisnis",
+      subscription: "Langganan",
+      notifications: "Preferensi Notifikasi",
+      activity: "Log Aktivitas",
+    },
+
+    // Info pribadi
+    personal: {
+      name: "Nama Lengkap",
+      email: "Alamat Email",
+      phone: "Nomor Telepon",
+      language: "Bahasa",
+      timezone: "Zona Waktu",
+      currency: "Mata Uang",
+      memberSince: "Anggota sejak",
+      avatar: "Foto Profil",
+      changeAvatar: "Ubah Avatar",
+      uploadAvatar: "Unggah Avatar",
+    },
+
+    // Info bisnis
+    business: {
+      name: "Nama Bisnis",
+      email: "Email Bisnis",
+      phone: "Telepon Bisnis",
+      website: "Website",
+      address: "Alamat",
+      city: "Kota",
+      country: "Negara",
+      logo: "Logo Bisnis",
+      uploadLogo: "Unggah Logo",
+      changeLogo: "Ubah Logo",
+      noBusinessInfo: "Belum ada informasi bisnis",
+      addBusinessInfo: "Tambahkan Informasi Bisnis",
+    },
+
+    // Langganan
+    subscription: {
+      plan: "Paket Saat Ini",
+      status: "Status",
+      billingPeriod: "Periode Tagihan",
+      periodStart: "Mulai Periode",
+      periodEnd: "Akhir Periode",
+      changePlan: "Ubah Paket",
+      manageBilling: "Kelola Tagihan",
+      noSubscription: "Tidak ada langganan aktif",
+      viewPlans: "Lihat Paket",
+      cancelingSoon: "Langganan Berakhir",
+      cancelMessage: "Langganan Anda tidak akan diperpanjang di akhir periode saat ini.",
+      pastDue: "Pembayaran Diperlukan",
+      pastDueMessage: "Pembayaran Anda tertunda. Silakan perbarui metode pembayaran Anda.",
+    },
+
+    // Notifikasi
+    notifications: {
+      title: "Preferensi Notifikasi",
+      description: "Pilih cara Anda ingin diberi tahu",
+      email: "Notifikasi Email",
+      push: "Notifikasi Push",
+      inApp: "Notifikasi In-App",
+      categories: {
+        alerts: "Peringatan Stok",
+        alertsDesc: "Dapatkan notifikasi saat tingkat stok rendah atau kritis",
+        orders: "Pembaruan Pesanan",
+        ordersDesc: "Terima pembaruan tentang perubahan status pesanan",
+        production: "Pembaruan Produksi",
+        productionDesc: "Dapatkan notifikasi tentang progres batch produksi",
+      },
+    },
+
+    // Log aktivitas
+    activity: {
+      title: "Aktivitas Terkini",
+      description: "Tindakan dan perubahan terkini Anda",
+      login: "Masuk",
+      logout: "Keluar",
+      updated: "{field} diperbarui",
+      created: "{entity} dibuat",
+      deleted: "{entity} dihapus",
+      noActivity: "Tidak ada aktivitas terkini",
+      viewAll: "Lihat Semua Aktivitas",
+      actions: {
+        login: "Masuk",
+        logout: "Keluar",
+        updateProfile: "Profil diperbarui",
+        updateBusiness: "Informasi bisnis diperbarui",
+        createMaterial: "Material dibuat",
+        updateMaterial: "Material diperbarui",
+        deleteMaterial: "Material dihapus",
+        createRecipe: "Resep dibuat",
+        updateRecipe: "Resep diperbarui",
+        deleteRecipe: "Resep dihapus",
+        createOrder: "Pesanan dibuat",
+        updateOrder: "Pesanan diperbarui",
+        createProduction: "Batch produksi dimulai",
+      },
+    },
+
+    // Formulir & Tindakan
+    forms: {
+      editPersonalInfo: "Edit Informasi Pribadi",
+      editBusinessInfo: "Edit Informasi Bisnis",
+      namePlaceholder: "Masukkan nama lengkap Anda",
+      emailPlaceholder: "email@anda.com",
+      phonePlaceholder: "+62 812 3456 7890",
+      websitePlaceholder: "https://bisnis-anda.com",
+      addressPlaceholder: "Alamat jalan",
+      cityPlaceholder: "Kota",
+      countryPlaceholder: "Negara",
+    },
+
+    // Tindakan
+    actions: {
+      edit: "Edit",
+      save: "Simpan Perubahan",
+      cancel: "Batal",
+      update: "Perbarui Profil",
+      delete: "Hapus",
+    },
+
+    // Pesan toast
+    toasts: {
+      profileUpdated: {
+        title: "Profil Diperbarui",
+        description: "Profil Anda telah berhasil diperbarui.",
+      },
+      businessUpdated: {
+        title: "Info Bisnis Diperbarui",
+        description: "Informasi bisnis berhasil diperbarui.",
+      },
+      businessCreated: {
+        title: "Info Bisnis Ditambahkan",
+        description: "Informasi bisnis berhasil ditambahkan.",
+      },
+      avatarUploaded: {
+        title: "Avatar Diperbarui",
+        description: "Foto profil berhasil diperbarui.",
+      },
+      logoUploaded: {
+        title: "Logo Diperbarui",
+        description: "Logo bisnis berhasil diperbarui.",
+      },
+      preferencesUpdated: {
+        title: "Preferensi Diperbarui",
+        description: "Preferensi notifikasi tersimpan.",
+      },
+    },
+
+    // Pesan validasi
+    validation: {
+      nameRequired: "Nama diperlukan",
+      emailRequired: "Email diperlukan",
+      emailInvalid: "Alamat email tidak valid",
+      phoneInvalid: "Nomor telepon tidak valid",
+      websiteInvalid: "URL website tidak valid",
+      businessNameRequired: "Nama bisnis diperlukan",
+    },
+
+    // Kunci warisan (menjaga kompatibilitas mundur)
     address: "Alamat",
     businessName: "Nama Bisnis",
     updateProfile: "Perbarui Profil",
@@ -824,6 +1112,645 @@ export const id = {
     productionHistory: "Riwayat Produksi",
     editStock: "Edit Stok",
     managePermissions: "Kelola Izin",
+    stockLevels: "Level Stok",
+    movementHistory: "Riwayat Pergerakan",
+  },
+  management: {
+    // Delivery Tab
+    delivery: {
+      title: "Manajemen Pengiriman Pesanan",
+      searchPlaceholder: "Cari berdasarkan nomor, pelanggan, atau status...",
+      filters: {
+        status: "Status",
+        allStatuses: "Semua Status",
+        paymentStatus: "Pembayaran",
+        allPayments: "Semua Pembayaran",
+        dateRange: "Rentang Tanggal",
+        from: "Dari",
+        to: "Sampai",
+        clearFilters: "Hapus Filter",
+      },
+      table: {
+        order: "Pesanan",
+        customer: "Pelanggan",
+        date: "Tanggal",
+        items: "Item",
+        amount: "Jumlah",
+        status: "Status",
+        payment: "Pembayaran",
+        actions: "Aksi",
+        noResults: "Tidak ada pesanan ditemukan",
+        noResultsDesc: "Coba sesuaikan kriteria pencarian atau filter Anda",
+        selected: "dipilih",
+      },
+      actions: {
+        edit: "Edit",
+        schedule: "Jadwalkan Pengiriman",
+        updateStatus: "Perbarui Status",
+        print: "Cetak",
+        delete: "Hapus",
+        bulkMarkProcessing: "Tandai sebagai Diproses",
+        bulkMarkReady: "Tandai sebagai Siap",
+        bulkExport: "Ekspor Pilihan",
+        bulkDelete: "Hapus Pilihan",
+      },
+      details: {
+        title: "Detail Pesanan",
+        selectOrder: "Pilih pesanan untuk melihat detail",
+        orderInfo: "Informasi Pesanan",
+        customerInfo: "Informasi Pelanggan",
+        deliveryInfo: "Informasi Pengiriman",
+        items: "Item Pesanan",
+        timeline: "Timeline Pesanan",
+        notes: "Catatan",
+        quickActions: "Aksi Cepat",
+        financial: "Ringkasan Keuangan",
+        subtotal: "Subtotal",
+        tax: "Pajak",
+        total: "Total",
+        noNotes: "Tidak ada catatan ditambahkan",
+      },
+      dialogs: {
+        scheduleDelivery: {
+          title: "Jadwalkan Pengiriman",
+          description: "Jadwalkan pengiriman untuk pesanan",
+          deliveryDate: "Tanggal Pengiriman",
+          deliveryTime: "Waktu Pengiriman",
+          deliveryMethod: "Metode Pengiriman",
+          ownFleet: "Armada Sendiri",
+          externalCarrier: "Kurir Eksternal",
+          carrier: "Kurir/Perusahaan Pengiriman",
+          trackingNumber: "Nomor Resi",
+          driverName: "Nama Pengemudi",
+          vehicleNumber: "Nomor Kendaraan",
+          notes: "Catatan Pengiriman",
+          customerNotification: "Beritahu Pelanggan",
+          scheduleButton: "Jadwalkan Pengiriman",
+          success: "Pengiriman berhasil dijadwalkan",
+        },
+        updateStatus: {
+          title: "Perbarui Status Pesanan",
+          description: "Perbarui status untuk pesanan",
+          currentStatus: "Status Saat Ini",
+          newStatus: "Status Baru",
+          notes: "Catatan Tambahan",
+          customerNotification: "Beritahu Pelanggan",
+          notifyDesc: "Kirim notifikasi pembaruan status ke email pelanggan",
+          estimatedCompletion: "Estimasi Waktu Selesai",
+          estimatedDesc: "Kapan pesanan ini akan siap untuk dikirim?",
+          readyTimestamp: "Waktu Siap",
+          readyDesc: "Kapan pesanan selesai dan siap?",
+          deliveryConfirmation: "Kode Konfirmasi Pengiriman",
+          deliveryConfirmationDesc: "Kode konfirmasi atau referensi bukti pengiriman",
+          recipientName: "Nama Penerima",
+          signatureUrl: "URL Tanda Tangan",
+          signatureUrlDesc: "URL ke tanda tangan digital atau gambar bukti pengiriman",
+          cancellationReason: "Alasan Pembatalan",
+          cancellationReasonDesc: "Ini akan dicatat dalam riwayat pesanan",
+          cannotUpdate: "Status pesanan ini tidak dapat diubah",
+          updateButton: "Perbarui Status",
+          success: "Status berhasil diperbarui",
+        },
+        editOrder: {
+          title: "Edit Pesanan",
+          description: "Perbarui detail pesanan untuk",
+          orderInfo: "Informasi Pesanan",
+          customerInfo: "Informasi Pelanggan",
+          deliveryAddress: "Alamat Pengiriman",
+          orderItems: "Item Pesanan",
+          additionalNotes: "Catatan Tambahan",
+          orderNumber: "Nomor Pesanan",
+          orderNumberDesc: "Nomor pesanan tidak dapat diubah",
+          orderDate: "Tanggal Pesanan",
+          deliveryDate: "Tanggal Pengiriman",
+          supplier: "Pemasok",
+          status: "Status Pesanan",
+          paymentStatus: "Status Pembayaran",
+          paymentMethod: "Metode Pembayaran",
+          customerName: "Nama Pelanggan",
+          customerEmail: "Alamat Email",
+          customerPhone: "Nomor Telepon",
+          streetAddress: "Alamat Jalan",
+          city: "Kota",
+          postalCode: "Kode Pos",
+          country: "Negara",
+          product: "Produk",
+          quantity: "Jumlah",
+          unitPrice: "Harga Satuan",
+          subtotal: "Subtotal",
+          totalAmount: "Jumlah Total",
+          addItem: "Tambah Item",
+          noItems: "Belum ada item ditambahkan. Klik \"Tambah Item\" untuk mulai.",
+          saveChanges: "Simpan Perubahan",
+          success: "Pesanan berhasil diperbarui",
+        },
+        printOrder: {
+          title: "Cetak Pesanan",
+          description: "Pilih template dan cetak atau unduh pesanan",
+          template: "Template",
+          invoice: "Faktur",
+          deliveryNote: "Nota Pengiriman",
+          packingSlip: "Slip Packing",
+          downloadPDF: "Unduh PDF",
+          print: "Cetak",
+          companyName: "Epidom Foods",
+          billTo: "Tagihan Kepada",
+          deliverTo: "Kirim Ke",
+          thankYou: "Terima kasih atas pesanan Anda!",
+          contactInfo: "Untuk pertanyaan tentang",
+        },
+      },
+    },
+    // Edit Stock Tab
+    editStock: {
+      title: "Manajemen Stok",
+      description: "Kelola level inventori dan catat penyesuaian stok",
+      searchItems: "Cari berdasarkan nama atau SKU...",
+      items: "item",
+      itemsSelected: "item dipilih",
+      selectItem: "Pilih Item",
+      selectItemDescription: "Pilih item dari daftar untuk melihat detail dan melakukan penyesuaian",
+      noItemsFound: "Tidak ada item ditemukan",
+      selectAll: "Pilih Semua",
+      deselectAll: "Batalkan Semua",
+
+      // Item Types
+      itemType: "Tipe Item",
+      selectItemType: "Pilih tipe item",
+      material: "Bahan",
+      product: "Produk",
+      selectMaterial: "Pilih Bahan",
+      selectProduct: "Pilih Produk",
+
+      // Stock Status
+      inStock: "Tersedia",
+      lowStock: "Stok Rendah",
+      critical: "Kritis",
+      outOfStock: "Habis",
+      stockInfo: "Informasi Stok",
+      currentStock: "Stok Saat Ini",
+      minStock: "Stok Minimum",
+      maxStock: "Stok Maksimum",
+      stockValue: "Nilai Stok",
+      current: "Saat Ini",
+
+      // Actions
+      quickActions: "Aksi Cepat",
+      adjustStock: "Sesuaikan Stok",
+      bulkAdjust: "Penyesuaian Massal",
+      viewHistory: "Lihat Riwayat",
+      importCSV: "Impor CSV",
+      importCSVDescription: "Fitur impor CSV akan segera hadir",
+
+      // Adjustment Types
+      adjustmentType: "Tipe Penyesuaian",
+      increaseStock: "Tambah Stok",
+      decreaseStock: "Kurangi Stok",
+      increaseDescription: "Tambahkan jumlah ke stok saat ini",
+      decreaseDescription: "Kurangi jumlah dari stok saat ini",
+      quantity: "Jumlah",
+      reason: "Alasan",
+      selectReason: "Pilih alasan",
+      referenceId: "ID Referensi",
+      referenceIdPlaceholder: "PO#, Invoice#, dll.",
+      referenceIdDescription: "Nomor referensi opsional untuk pelacakan",
+      notes: "Catatan",
+      notesPlaceholder: "Detail tambahan tentang penyesuaian ini...",
+
+      // Adjustment Reasons
+      reasons: {
+        countCorrection: "Koreksi Perhitungan Fisik",
+        foundItems: "Item Ditemukan",
+        systemError: "Koreksi Kesalahan Sistem",
+        returned: "Dikembalikan dari Pelanggan",
+        damaged: "Barang Rusak",
+        expired: "Item Kadaluarsa",
+        stolen: "Hilang/Dicuri",
+      },
+
+      // Dialogs
+      adjustmentDialog: {
+        title: "Catat Penyesuaian Stok",
+        description: "Sesuaikan level stok untuk bahan atau produk",
+      },
+      bulkAdjustmentDialog: {
+        title: "Penyesuaian Stok Massal",
+        description: "Sesuaikan level stok untuk beberapa item sekaligus",
+      },
+      adjustmentHistoryDialog: {
+        title: "Riwayat Penyesuaian",
+        description: "Lihat semua penyesuaian stok untuk item ini",
+      },
+
+      // Bulk Operations
+      globalSettings: "Pengaturan Global",
+      useSameReason: "Gunakan alasan yang sama untuk semua item",
+      useSameReasonDescription: "Terapkan satu alasan ke semua penyesuaian",
+      itemsToAdjust: "Item yang Akan Disesuaikan",
+      noItemsSelected: "Tidak ada item dipilih untuk penyesuaian",
+      recordAdjustment: "Catat Penyesuaian",
+      recordAdjustments: "Catat Penyesuaian",
+
+      // History
+      adjustmentTimeline: "Timeline Penyesuaian",
+      noAdjustmentHistory: "Tidak ada riwayat penyesuaian ditemukan",
+      totalAdjustments: "Total Penyesuaian",
+      increases: "Penambahan",
+      decreases: "Pengurangan",
+      increase: "Penambahan",
+      decrease: "Pengurangan",
+      runningBalance: "Saldo Berjalan",
+      clearFilters: "Hapus Filter",
+
+      // Toast Messages
+      toasts: {
+        adjustmentRecorded: {
+          title: "Penyesuaian Tercatat",
+          description: "Penyesuaian stok berhasil disimpan",
+        },
+        adjustmentFailed: {
+          description: "Gagal mencatat penyesuaian. Silakan coba lagi.",
+        },
+        bulkAdjustmentRecorded: {
+          title: "Penyesuaian Tercatat",
+          description: "penyesuaian berhasil disimpan",
+        },
+        bulkAdjustmentFailed: {
+          description: "Gagal mencatat penyesuaian massal. Silakan coba lagi.",
+        },
+      },
+    },
+    // Recipe Production Tab
+    recipeProduction: {
+      description: "Memulai batch produksi baru dan memantau produksi aktif",
+      availableRecipes: "Resep Tersedia",
+      selectRecipeToStart: "Pilih resep untuk memulai produksi",
+      searchRecipes: "Cari resep...",
+      noRecipesFound: "Tidak ada resep ditemukan",
+      selectRecipe: "Pilih Resep",
+      selectRecipeHint: "Pilih resep dari daftar untuk melihat detail dan memulai produksi",
+
+      // Recipe Details
+      yield: "Hasil",
+      productionTime: "Waktu Produksi",
+      minutes: "menit",
+      costPerBatch: "Biaya per Batch",
+      costPerUnit: "Biaya per Unit",
+      startProduction: "Mulai Produksi",
+      insufficientMaterials: "Bahan tidak mencukupi untuk memulai produksi",
+      insufficientMaterialsWarning: "Beberapa bahan di bawah level yang diperlukan",
+      insufficientMaterialsHint: "Mohon restock bahan yang kurang sebelum memulai produksi",
+
+      // Material Availability
+      materialAvailability: "Ketersediaan Bahan",
+      materialAvailabilityDescription: "Periksa ketersediaan bahan untuk resep ini",
+      material: "Bahan",
+      required: "Diperlukan",
+      available: "Tersedia",
+      status: "Status",
+      allMaterialsAvailable: "Semua Tersedia",
+      materialShortage: "Kekurangan",
+      noIngredientsFound: "Tidak ada bahan ditemukan untuk resep ini",
+
+      availability: {
+        sufficient: "Cukup",
+        low: "Stok Rendah",
+        insufficient: "Tidak Cukup",
+      },
+
+      // Active Batches
+      activeBatches: "Batch Aktif",
+      activeBatchesDescription: "Batch produksi yang sedang berlangsung",
+      started: "Dimulai",
+      completed: "Selesai",
+      quantity: "Kuantitas",
+      qualityScore: "Skor Kualitas",
+
+      // Batch Statuses
+      statuses: {
+        pending: "Menunggu",
+        inProgress: "Sedang Berjalan",
+        qualityCheck: "Pemeriksaan Kualitas",
+        completed: "Selesai",
+        failed: "Gagal",
+      },
+
+      // Start Production Dialog
+      dialogs: {
+        startProduction: {
+          title: "Mulai Batch Produksi",
+          description: "Buat batch produksi baru untuk resep ini",
+        },
+      },
+
+      recipe: "Resep",
+      yieldPerBatch: "Hasil per Batch",
+      timePerBatch: "Waktu per Batch",
+      batchQuantity: "Jumlah Batch",
+      batchQuantityHint: "Berapa banyak batch yang ingin Anda produksi?",
+      productionSummary: "Ringkasan Produksi",
+      totalYield: "Total Hasil",
+      totalTime: "Total Waktu",
+      totalCost: "Total Biaya",
+      targetCompletionDate: "Target Tanggal Selesai",
+      targetCompletionDateHint: "Kapan produksi ini harus selesai?",
+      notes: "Catatan Produksi",
+      notesPlaceholder: "Tambahkan instruksi atau catatan khusus...",
+      notesHint: "Catatan opsional tentang batch produksi ini",
+
+      // Toast Messages
+      toasts: {
+        productionStarted: {
+          title: "Produksi Dimulai",
+          description: "Batch {batchNumber} berhasil dibuat",
+        },
+        productionFailed: {
+          title: "Gagal Memulai Produksi",
+          description: "Terjadi kesalahan saat memulai batch produksi. Silakan coba lagi.",
+        },
+      },
+    },
+
+    // Production History Tab
+    productionHistory: {
+      description: "Lihat dan analisis batch produksi yang telah selesai",
+      filters: "Filter",
+      filtersDescription: "Filter batch berdasarkan status, resep, atau rentang tanggal",
+      searchBatches: "Cari berdasarkan nomor batch...",
+      selectStatus: "Pilih status",
+      allStatuses: "Semua Status",
+      selectRecipe: "Pilih resep",
+      allRecipes: "Semua Resep",
+      activeFilters: "Filter aktif",
+      search: "Pencarian",
+      status: "Status",
+      recipe: "Resep",
+      dateRange: "Rentang tanggal",
+
+      // Table
+      batchesList: "Batch",
+      rowsPerPage: "Baris per halaman",
+      noBatchesFound: "Tidak ada batch ditemukan",
+      batchNumber: "Nomor Batch",
+      quantity: "Kuantitas",
+      qualityScore: "Skor Kualitas",
+      startedAt: "Dimulai Pada",
+      actions: "Aksi",
+      showing: "Menampilkan",
+
+      // Batch Statuses
+      statuses: {
+        pending: "Menunggu",
+        inProgress: "Sedang Berjalan",
+        qualityCheck: "Pemeriksaan Kualitas",
+        completed: "Selesai",
+        failed: "Gagal",
+      },
+
+      // Metrics
+      metrics: {
+        totalBatches: "Total Batch",
+        totalBatchesDescription: "Semua batch produksi",
+        averageQuality: "Rata-rata Kualitas",
+        averageQualityDescription: "Skor kualitas rata-rata",
+        efficiency: "Efisiensi",
+        efficiencyDescription: "Output aktual vs target",
+        totalOutput: "Total Output",
+        totalOutputDescription: "Total unit yang diproduksi",
+      },
+
+      // Batch Details Dialog
+      dialogs: {
+        batchDetails: {
+          title: "Detail Batch",
+          description: "Informasi lengkap tentang batch produksi ini",
+        },
+      },
+
+      recipeInformation: "Informasi Resep",
+      recipeName: "Nama Resep",
+      category: "Kategori",
+      expectedYield: "Hasil yang Diharapkan",
+      expectedTime: "Waktu yang Diharapkan",
+
+      ingredientConsumption: "Konsumsi Bahan",
+      material: "Bahan",
+      quantityUsed: "Kuantitas Digunakan",
+      costPerUnit: "Biaya/Unit",
+      totalCost: "Total Biaya",
+
+      productionTimeline: "Timeline Produksi",
+      completedAt: "Selesai Pada",
+      duration: "Durasi",
+      totalDuration: "Durasi Total",
+      expected: "diharapkan",
+
+      qualityNotes: "Catatan Kualitas",
+
+      costAnalysis: "Analisis Biaya",
+      estimatedCost: "Biaya Estimasi",
+      actualCost: "Biaya Aktual",
+      variance: "Varian",
+    },
+  },
+  tracking: {
+    // Page titles
+    stockLevels: "Level Stok",
+    movementHistory: "Riwayat Pergerakan",
+    analytics: "Analitik",
+
+    // Movement types
+    movements: {
+      in: "Masuk Stok",
+      out: "Keluar Stok",
+      adjustment: "Penyesuaian",
+      production: "Produksi",
+      waste: "Limbah",
+      return: "Pengembalian",
+    },
+
+    // Table headers
+    dateTime: "Tanggal & Waktu",
+    material: "Material",
+    product: "Produk",
+    type: "Tipe",
+    quantity: "Jumlah",
+    reason: "Alasan",
+    user: "Pengguna",
+    reference: "Referensi",
+    notes: "Catatan",
+
+    // Filters
+    filterByType: "Filter berdasarkan Tipe",
+    filterByDate: "Filter berdasarkan Tanggal",
+    selectDateRange: "Pilih Rentang Tanggal",
+    allMovements: "Semua Pergerakan",
+    allTypes: "Semua Tipe",
+    searchMovements: "Cari pergerakan...",
+    clearFilters: "Hapus Filter",
+    filterActive: "filter aktif",
+    filtersActive: "filter aktif",
+
+    // Actions
+    addMovement: "Tambah Pergerakan",
+    viewMovement: "Lihat Pergerakan",
+    recordMovement: "Catat Pergerakan",
+    exportMovements: "Ekspor Pergerakan",
+    viewHistory: "Lihat Riwayat",
+    restock: "Isi Ulang",
+    bulkRestock: "Isi Ulang Massal",
+    bulkExport: "Ekspor Massal",
+    selectAll: "Pilih Semua",
+    deselectAll: "Batalkan Semua",
+    selected: "terpilih",
+    bulkActions: "Aksi Massal",
+
+    // Status
+    showingMovements: "Menampilkan {count} pergerakan",
+    showingResults: "Menampilkan {count} dari {total} hasil",
+    noMovements: "Tidak ada pergerakan ditemukan",
+    noResults: "Tidak ada hasil yang cocok dengan filter Anda",
+    recentMovements: "Pergerakan Terakhir",
+    stockStatus: "Status Stok",
+    currentStock: "Stok Saat Ini",
+
+    // Forms
+    selectMaterial: "Pilih Material",
+    selectProduct: "Pilih Produk",
+    selectItem: "Pilih Item",
+    movementType: "Tipe Pergerakan",
+    enterQuantity: "Masukkan Jumlah",
+    selectReason: "Pilih Alasan",
+    additionalNotes: "Catatan Tambahan",
+    referenceNumber: "Nomor Referensi",
+    itemType: "Tipe Item",
+    materialType: "Material",
+    productType: "Produk",
+
+    // Reasons
+    reasons: {
+      purchase: "Pesanan Pembelian",
+      production: "Digunakan dalam Produksi",
+      sale: "Penjualan",
+      damage: "Rusak",
+      expired: "Kadaluarsa",
+      theft: "Kehilangan/Dicuri",
+      count: "Koreksi Perhitungan Fisik",
+      return: "Pengembalian Pemasok",
+      transfer: "Transfer Toko",
+      other: "Lainnya",
+    },
+
+    // Stock levels
+    stockLevel: "Level Stok",
+    minLevel: "Level Minimum",
+    maxLevel: "Level Maksimum",
+    reorderLevel: "Level Pesan Ulang",
+    lastMovement: "Pergerakan Terakhir",
+    recentActivity: "Aktivitas Terakhir",
+
+    // Stock History
+    stockHistory: "Riwayat Stok",
+    runningBalance: "Saldo Berjalan",
+    exportHistory: "Ekspor Riwayat",
+    noHistory: "Tidak ada riwayat pergerakan",
+    movementTimeline: "Timeline Pergerakan",
+
+    // Bulk Selection
+    selectItems: "Pilih Item",
+    itemsSelected: "{count} item terpilih",
+    restockSelected: "Isi Ulang Terpilih",
+    clearSelection: "Hapus Pilihan",
+
+    // Restock
+    restockItem: "Isi Ulang Item",
+    suggestedQuantity: "Jumlah yang Disarankan",
+    reorderQuantity: "Jumlah Pesan Ulang",
+    selectSupplier: "Pilih Pemasok",
+    deliveryDate: "Tanggal Pengiriman",
+    priority: "Prioritas",
+    restockNotes: "Catatan Isi Ulang",
+    createOrder: "Buat Pesanan",
+    createOrders: "Buat Pesanan",
+
+    // Priority levels
+    priorities: {
+      low: "Rendah",
+      medium: "Sedang",
+      high: "Tinggi",
+      urgent: "Mendesak",
+    },
+
+    // Pagination
+    page: "Halaman",
+    of: "dari",
+    rowsPerPage: "Baris per halaman",
+    previous: "Sebelumnya",
+    next: "Berikutnya",
+
+    // Toast messages
+    toasts: {
+      movementAdded: {
+        title: "Pergerakan Tercatat",
+        desc: "Pergerakan stok telah berhasil dicatat.",
+      },
+      movementDeleted: {
+        title: "Pergerakan Dihapus",
+        desc: "Pergerakan stok telah dihapus.",
+      },
+      bulkExported: {
+        title: "Ekspor Berhasil",
+        desc: "{count} item berhasil diekspor.",
+      },
+      restockInitiated: {
+        title: "Isi Ulang Dimulai",
+        desc: "Pesanan isi ulang telah dibuat.",
+      },
+    },
+
+    // Dialogs
+    dialogs: {
+      addMovement: {
+        title: "Catat Pergerakan Stok",
+        description: "Tambahkan catatan pergerakan stok baru untuk melacak perubahan inventori.",
+      },
+      viewMovement: {
+        title: "Detail Pergerakan",
+        description: "Lihat informasi lengkap tentang pergerakan stok ini.",
+      },
+      deleteMovement: {
+        title: "Hapus Pergerakan",
+        description: "Apakah Anda yakin ingin menghapus catatan pergerakan ini? Tindakan ini tidak dapat dibatalkan.",
+      },
+      stockHistory: {
+        title: "Riwayat Stok",
+        description: "Lihat riwayat pergerakan lengkap untuk item ini.",
+      },
+      restock: {
+        title: "Isi Ulang Item",
+        description: "Buat pesanan isi ulang untuk item ini.",
+      },
+      bulkRestock: {
+        title: "Isi Ulang Massal",
+        description: "Buat pesanan isi ulang untuk item yang dipilih.",
+      },
+    },
+
+    // Empty states
+    emptyStates: {
+      noMovements: {
+        title: "Belum ada pergerakan",
+        description: "Mulai lacak inventori Anda dengan mencatat pergerakan stok pertama.",
+      },
+      noResults: {
+        title: "Tidak ada hasil ditemukan",
+        description: "Coba sesuaikan filter atau istilah pencarian Anda.",
+      },
+      noStock: {
+        title: "Tidak ada item stok",
+        description: "Tambahkan material atau produk untuk mulai melacak inventori.",
+      },
+    },
   },
   footer: {
     tagline: "SOLUSI UNTUK MANAJEMEN STOK MAKANAN ANDA",

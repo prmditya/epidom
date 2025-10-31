@@ -33,8 +33,10 @@ export default function RootLayout({
         <ErrorBoundary>
           <QueryProvider>
             <SessionProvider>
-              {children}
-              <Analytics />
+              <section>
+                {children}
+                <Analytics />
+              </section>
             </SessionProvider>
           </QueryProvider>
         </ErrorBoundary>

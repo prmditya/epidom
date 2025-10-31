@@ -26,6 +26,9 @@ export const fr = {
       edit: "Modifier",
       view: "Voir",
       delete: "Supprimer",
+      back: "Retour",
+      next: "Suivant",
+      close: "Fermer",
     },
   },
   hero: {
@@ -300,7 +303,7 @@ export const fr = {
       cvv: "CVV",
     },
     terms: {
-      title: "Syarat dan Ketentuan",
+      title: "Termes et Conditions",
       text: "J'accepte les",
       link: "Conditions d'Utilisation et Politique de Confidentialité",
       billing:
@@ -740,7 +743,35 @@ export const fr = {
   },
   data: {
     materials: "Matériaux",
-    recipes: "Recettes",
+    recipes: {
+      title: "Recettes",
+      form: {
+        name: "Nom de la Recette",
+        description: "Description",
+        category: "Catégorie",
+      },
+      duplicateDialog: {
+        title: "Dupliquer la Recette",
+        description:
+          "Créer une copie de cette recette avec un nouveau nom. Tous les ingrédients et instructions seront copiés.",
+        nameLabel: "Nouveau Nom de Recette",
+        nameDescription: "Entrez un nom unique pour la recette dupliquée",
+        duplicateButton: "Dupliquer la Recette",
+      },
+      productsUsingRecipe: {
+        title: "Produits Utilisant Cette Recette",
+        emptyState: "Aucun produit n'utilise actuellement cette recette",
+        stockLabel: "Stock",
+        retailPrice: "Prix de Détail",
+        wholesale: "Gros",
+      },
+      toasts: {
+        duplicated: {
+          title: "Recette Dupliquée",
+          description: "La recette a été créée avec succès.",
+        },
+      },
+    },
     products: "Produits",
     suppliers: "Fournisseurs",
     productDesignation: "Désignation du Produit",
@@ -803,12 +834,269 @@ export const fr = {
     registrationFailed: "L'inscription a échoué. Veuillez réessayer.",
   },
   alerts: {
-    orderPlaced: "Commande passée avec succès",
+    // Page titles
+    title: "Alertes de Stock",
+    ordersToPlace: "Commandes à Passer",
+    ordersDescription: "Contacter les fournisseurs pour réapprovisionner les articles en faible stock",
+
+    // Alert states
+    noActiveAlerts: "Aucune Alerte Active",
+    noActiveAlertsDescription: "Tous vos niveaux de stock sont sains",
+    showing: "Affichage de",
+    activeAlerts: "alertes actives",
+
+    // Table headers
+    table: {
+      material: "Matériau",
+      currentStock: "Stock Actuel",
+      minStock: "Stock Min",
+      stockLevel: "Niveau de Stock",
+      supplier: "Fournisseur",
+      priority: "Priorité",
+      actions: "Actions",
+      lowStock: "Stock Faible",
+    },
+
+    // Priorities
+    priorities: {
+      low: "Faible",
+      medium: "Moyen",
+      high: "Élevé",
+      urgent: "Urgent",
+    },
+
+    // Actions
+    actions: {
+      viewDetails: "Voir Détails",
+      createOrder: "Créer Commande",
+      callSupplier: "Appeler",
+      emailSupplier: "Email",
+    },
+
+    // Details Dialog
+    detailsDialog: {
+      title: "Détails de l'Alerte",
+      description: "Voir les informations détaillées sur cette alerte de stock",
+      alertInfo: "Informations sur l'Alerte",
+      materialInfo: "Informations sur le Matériau",
+      supplierInfo: "Informations sur le Fournisseur",
+      stockLevel: "Niveau de Stock",
+      ofMinimum: "du minimum",
+      message: "Message",
+      created: "Créé",
+      alertId: "ID Alerte",
+      current: "Actuel",
+      minimum: "Minimum",
+      needed: "Nécessaire",
+      phone: "Téléphone",
+      email: "Email",
+      address: "Adresse",
+    },
+
+    // Create Order Dialog
+    createOrderDialog: {
+      title: "Créer un Rappel de Commande",
+      description: "Créer un rappel pour commander des matériaux auprès du fournisseur",
+      supplier: "Fournisseur",
+      selectSupplier: "Sélectionner le fournisseur",
+      material: "Matériau",
+      selectMaterial: "Sélectionner le matériau",
+      quantity: "Quantité",
+      suggested: "Suggéré",
+      expectedDelivery: "Date de Livraison Prévue",
+      expectedDeliveryHint: "Quand vous vous attendez à recevoir cette commande",
+      priority: "Priorité",
+      notes: "Notes",
+      notesPlaceholder: "Ajoutez des instructions spéciales ou des notes...",
+      notesHint: "Notes optionnelles pour ce rappel de commande",
+      submit: "Créer Commande",
+    },
+
+    // Orders view
+    contactInfo: "Informations de Contact",
+    materialsToOrder: "Matériaux à Commander",
+    item: "article",
+    items: "articles",
+    current: "Actuel",
+    required: "Requis",
+    toOrder: "À Commander",
+    noOrdersToPlace: "Aucune Commande à Passer",
+    noOrdersDescription: "Vous n'avez aucune commande en attente pour le moment",
+
+    // Toasts
+    toasts: {
+      orderCreated: "Rappel de commande créé avec succès",
+    },
   },
   labels: {
     orderId: "ID de Commande",
   },
   profile: {
+    // Titre de la page
+    title: "Paramètres du Profil",
+
+    // Sections
+    sections: {
+      personal: "Informations Personnelles",
+      business: "Informations sur l'Entreprise",
+      subscription: "Abonnement",
+      notifications: "Préférences de Notification",
+      activity: "Journal d'Activité",
+    },
+
+    // Infos personnelles
+    personal: {
+      name: "Nom Complet",
+      email: "Adresse E-mail",
+      phone: "Numéro de Téléphone",
+      language: "Langue",
+      timezone: "Fuseau Horaire",
+      currency: "Devise",
+      memberSince: "Membre depuis",
+      avatar: "Photo de Profil",
+      changeAvatar: "Changer l'Avatar",
+      uploadAvatar: "Télécharger l'Avatar",
+    },
+
+    // Infos entreprise
+    business: {
+      name: "Nom de l'Entreprise",
+      email: "E-mail Professionnel",
+      phone: "Téléphone Professionnel",
+      website: "Site Web",
+      address: "Adresse",
+      city: "Ville",
+      country: "Pays",
+      logo: "Logo de l'Entreprise",
+      uploadLogo: "Télécharger le Logo",
+      changeLogo: "Changer le Logo",
+      noBusinessInfo: "Aucune information d'entreprise ajoutée",
+      addBusinessInfo: "Ajouter les Informations d'Entreprise",
+    },
+
+    // Abonnement
+    subscription: {
+      plan: "Forfait Actuel",
+      status: "Statut",
+      billingPeriod: "Période de Facturation",
+      periodStart: "Début de Période",
+      periodEnd: "Fin de Période",
+      changePlan: "Changer de Forfait",
+      manageBilling: "Gérer la Facturation",
+      noSubscription: "Aucun abonnement actif",
+      viewPlans: "Voir les Forfaits",
+      cancelingSoon: "Abonnement se Termine",
+      cancelMessage: "Votre abonnement ne sera pas renouvelé à la fin de la période actuelle.",
+      pastDue: "Paiement Requis",
+      pastDueMessage: "Votre paiement est en retard. Veuillez mettre à jour votre moyen de paiement.",
+    },
+
+    // Notifications
+    notifications: {
+      title: "Préférences de Notification",
+      description: "Choisissez comment vous souhaitez être notifié",
+      email: "Notifications par E-mail",
+      push: "Notifications Push",
+      inApp: "Notifications In-App",
+      categories: {
+        alerts: "Alertes de Stock",
+        alertsDesc: "Recevez des notifications lorsque les niveaux de stock sont faibles ou critiques",
+        orders: "Mises à Jour des Commandes",
+        ordersDesc: "Recevez des mises à jour sur les changements d'état des commandes",
+        production: "Mises à Jour de Production",
+        productionDesc: "Soyez notifié de l'avancement des lots de production",
+      },
+    },
+
+    // Journal d'activité
+    activity: {
+      title: "Activité Récente",
+      description: "Vos actions et modifications récentes",
+      login: "Connecté",
+      logout: "Déconnecté",
+      updated: "{field} mis à jour",
+      created: "{entity} créé",
+      deleted: "{entity} supprimé",
+      noActivity: "Aucune activité récente",
+      viewAll: "Voir Toute l'Activité",
+      actions: {
+        login: "Connecté",
+        logout: "Déconnecté",
+        updateProfile: "Profil mis à jour",
+        updateBusiness: "Informations d'entreprise mises à jour",
+        createMaterial: "Matériau créé",
+        updateMaterial: "Matériau mis à jour",
+        deleteMaterial: "Matériau supprimé",
+        createRecipe: "Recette créée",
+        updateRecipe: "Recette mise à jour",
+        deleteRecipe: "Recette supprimée",
+        createOrder: "Commande créée",
+        updateOrder: "Commande mise à jour",
+        createProduction: "Lot de production démarré",
+      },
+    },
+
+    // Formulaires & Actions
+    forms: {
+      editPersonalInfo: "Modifier les Informations Personnelles",
+      editBusinessInfo: "Modifier les Informations d'Entreprise",
+      namePlaceholder: "Entrez votre nom complet",
+      emailPlaceholder: "votre@email.com",
+      phonePlaceholder: "+33 1 23 45 67 89",
+      websitePlaceholder: "https://votreentreprise.com",
+      addressPlaceholder: "Adresse",
+      cityPlaceholder: "Ville",
+      countryPlaceholder: "Pays",
+    },
+
+    // Actions
+    actions: {
+      edit: "Modifier",
+      save: "Enregistrer les Modifications",
+      cancel: "Annuler",
+      update: "Mettre à Jour le Profil",
+      delete: "Supprimer",
+    },
+
+    // Messages toast
+    toasts: {
+      profileUpdated: {
+        title: "Profil Mis à Jour",
+        description: "Votre profil a été mis à jour avec succès.",
+      },
+      businessUpdated: {
+        title: "Infos Entreprise Mises à Jour",
+        description: "Les informations d'entreprise ont été mises à jour avec succès.",
+      },
+      businessCreated: {
+        title: "Infos Entreprise Ajoutées",
+        description: "Les informations d'entreprise ont été ajoutées avec succès.",
+      },
+      avatarUploaded: {
+        title: "Avatar Mis à Jour",
+        description: "Photo de profil mise à jour avec succès.",
+      },
+      logoUploaded: {
+        title: "Logo Mis à Jour",
+        description: "Logo de l'entreprise mis à jour avec succès.",
+      },
+      preferencesUpdated: {
+        title: "Préférences Mises à Jour",
+        description: "Préférences de notification enregistrées.",
+      },
+    },
+
+    // Messages de validation
+    validation: {
+      nameRequired: "Le nom est requis",
+      emailRequired: "L'e-mail est requis",
+      emailInvalid: "Adresse e-mail invalide",
+      phoneInvalid: "Numéro de téléphone invalide",
+      websiteInvalid: "URL de site web invalide",
+      businessNameRequired: "Le nom de l'entreprise est requis",
+    },
+
+    // Clés héritées (maintenir la compatibilité ascendante)
     address: "Adresse",
     businessName: "Nom de l'Entreprise",
     updateProfile: "Mettre à Jour le Profil",
@@ -827,6 +1115,645 @@ export const fr = {
     productionHistory: "Historique de Production",
     editStock: "Modifier le Stock",
     managePermissions: "Gérer les Permissions",
+    stockLevels: "Niveaux de Stock",
+    movementHistory: "Historique des Mouvements",
+  },
+  management: {
+    // Delivery Tab
+    delivery: {
+      title: "Gestion des Livraisons de Commandes",
+      searchPlaceholder: "Rechercher par numéro, client ou statut...",
+      filters: {
+        status: "Statut",
+        allStatuses: "Tous les Statuts",
+        paymentStatus: "Paiement",
+        allPayments: "Tous les Paiements",
+        dateRange: "Période",
+        from: "De",
+        to: "À",
+        clearFilters: "Effacer les Filtres",
+      },
+      table: {
+        order: "Commande",
+        customer: "Client",
+        date: "Date",
+        items: "Articles",
+        amount: "Montant",
+        status: "Statut",
+        payment: "Paiement",
+        actions: "Actions",
+        noResults: "Aucune commande trouvée",
+        noResultsDesc: "Essayez d'ajuster vos critères de recherche ou de filtre",
+        selected: "sélectionné(s)",
+      },
+      actions: {
+        edit: "Modifier",
+        schedule: "Planifier la Livraison",
+        updateStatus: "Mettre à Jour le Statut",
+        print: "Imprimer",
+        delete: "Supprimer",
+        bulkMarkProcessing: "Marquer comme En Cours",
+        bulkMarkReady: "Marquer comme Prêt",
+        bulkExport: "Exporter la Sélection",
+        bulkDelete: "Supprimer la Sélection",
+      },
+      details: {
+        title: "Détails de la Commande",
+        selectOrder: "Sélectionnez une commande pour voir les détails",
+        orderInfo: "Informations de la Commande",
+        customerInfo: "Informations du Client",
+        deliveryInfo: "Informations de Livraison",
+        items: "Articles de la Commande",
+        timeline: "Chronologie de la Commande",
+        notes: "Notes",
+        quickActions: "Actions Rapides",
+        financial: "Résumé Financier",
+        subtotal: "Sous-total",
+        tax: "Taxe",
+        total: "Total",
+        noNotes: "Aucune note ajoutée",
+      },
+      dialogs: {
+        scheduleDelivery: {
+          title: "Planifier la Livraison",
+          description: "Planifier la livraison pour la commande",
+          deliveryDate: "Date de Livraison",
+          deliveryTime: "Heure de Livraison",
+          deliveryMethod: "Méthode de Livraison",
+          ownFleet: "Flotte Propre",
+          externalCarrier: "Transporteur Externe",
+          carrier: "Transporteur/Compagnie",
+          trackingNumber: "Numéro de Suivi",
+          driverName: "Nom du Chauffeur",
+          vehicleNumber: "Numéro du Véhicule",
+          notes: "Notes de Livraison",
+          customerNotification: "Notifier le Client",
+          scheduleButton: "Planifier la Livraison",
+          success: "Livraison planifiée avec succès",
+        },
+        updateStatus: {
+          title: "Mettre à Jour le Statut de la Commande",
+          description: "Mettre à jour le statut pour la commande",
+          currentStatus: "Statut Actuel",
+          newStatus: "Nouveau Statut",
+          notes: "Notes Supplémentaires",
+          customerNotification: "Notifier le Client",
+          notifyDesc: "Envoyer une notification de mise à jour du statut par email au client",
+          estimatedCompletion: "Heure d'Achèvement Estimée",
+          estimatedDesc: "Quand cette commande sera-t-elle prête pour la livraison?",
+          readyTimestamp: "Horodatage Prêt",
+          readyDesc: "Quand la commande a-t-elle été terminée et prête?",
+          deliveryConfirmation: "Code de Confirmation de Livraison",
+          deliveryConfirmationDesc: "Code de confirmation ou référence de preuve de livraison",
+          recipientName: "Nom du Destinataire",
+          signatureUrl: "URL de Signature",
+          signatureUrlDesc: "URL vers la signature numérique ou l'image de preuve de livraison",
+          cancellationReason: "Raison de l'Annulation",
+          cancellationReasonDesc: "Cela sera enregistré dans l'historique de la commande",
+          cannotUpdate: "Le statut de cette commande ne peut pas être modifié",
+          updateButton: "Mettre à Jour le Statut",
+          success: "Statut mis à jour avec succès",
+        },
+        editOrder: {
+          title: "Modifier la Commande",
+          description: "Mettre à jour les détails de la commande pour",
+          orderInfo: "Informations de la Commande",
+          customerInfo: "Informations du Client",
+          deliveryAddress: "Adresse de Livraison",
+          orderItems: "Articles de la Commande",
+          additionalNotes: "Notes Supplémentaires",
+          orderNumber: "Numéro de Commande",
+          orderNumberDesc: "Le numéro de commande ne peut pas être modifié",
+          orderDate: "Date de Commande",
+          deliveryDate: "Date de Livraison",
+          supplier: "Fournisseur",
+          status: "Statut de la Commande",
+          paymentStatus: "Statut du Paiement",
+          paymentMethod: "Méthode de Paiement",
+          customerName: "Nom du Client",
+          customerEmail: "Adresse Email",
+          customerPhone: "Numéro de Téléphone",
+          streetAddress: "Adresse",
+          city: "Ville",
+          postalCode: "Code Postal",
+          country: "Pays",
+          product: "Produit",
+          quantity: "Quantité",
+          unitPrice: "Prix Unitaire",
+          subtotal: "Sous-total",
+          totalAmount: "Montant Total",
+          addItem: "Ajouter un Article",
+          noItems: "Aucun article ajouté. Cliquez sur \"Ajouter un Article\" pour commencer.",
+          saveChanges: "Enregistrer les Modifications",
+          success: "Commande mise à jour avec succès",
+        },
+        printOrder: {
+          title: "Imprimer la Commande",
+          description: "Sélectionnez un modèle et imprimez ou téléchargez la commande",
+          template: "Modèle",
+          invoice: "Facture",
+          deliveryNote: "Bon de Livraison",
+          packingSlip: "Bordereau d'Expédition",
+          downloadPDF: "Télécharger PDF",
+          print: "Imprimer",
+          companyName: "Epidom Foods",
+          billTo: "Facturer à",
+          deliverTo: "Livrer à",
+          thankYou: "Merci pour votre commande!",
+          contactInfo: "Pour des questions concernant ce",
+        },
+      },
+    },
+    // Edit Stock Tab
+    editStock: {
+      title: "Gestion des Stocks",
+      description: "Gérer les niveaux d'inventaire et enregistrer les ajustements de stock",
+      searchItems: "Rechercher par nom ou SKU...",
+      items: "articles",
+      itemsSelected: "articles sélectionnés",
+      selectItem: "Sélectionner un Article",
+      selectItemDescription: "Choisissez un article dans la liste pour voir les détails et effectuer des ajustements",
+      noItemsFound: "Aucun article trouvé",
+      selectAll: "Tout Sélectionner",
+      deselectAll: "Tout Désélectionner",
+
+      // Item Types
+      itemType: "Type d'Article",
+      selectItemType: "Sélectionner le type d'article",
+      material: "Matière",
+      product: "Produit",
+      selectMaterial: "Sélectionner une Matière",
+      selectProduct: "Sélectionner un Produit",
+
+      // Stock Status
+      inStock: "En Stock",
+      lowStock: "Stock Faible",
+      critical: "Critique",
+      outOfStock: "Rupture de Stock",
+      stockInfo: "Informations sur le Stock",
+      currentStock: "Stock Actuel",
+      minStock: "Stock Minimum",
+      maxStock: "Stock Maximum",
+      stockValue: "Valeur du Stock",
+      current: "Actuel",
+
+      // Actions
+      quickActions: "Actions Rapides",
+      adjustStock: "Ajuster le Stock",
+      bulkAdjust: "Ajustement en Masse",
+      viewHistory: "Voir l'Historique",
+      importCSV: "Importer CSV",
+      importCSVDescription: "Fonctionnalité d'importation CSV à venir",
+
+      // Adjustment Types
+      adjustmentType: "Type d'Ajustement",
+      increaseStock: "Augmenter le Stock",
+      decreaseStock: "Diminuer le Stock",
+      increaseDescription: "Ajouter une quantité au stock actuel",
+      decreaseDescription: "Retirer une quantité du stock actuel",
+      quantity: "Quantité",
+      reason: "Raison",
+      selectReason: "Sélectionner une raison",
+      referenceId: "ID de Référence",
+      referenceIdPlaceholder: "BC#, Facture#, etc.",
+      referenceIdDescription: "Numéro de référence optionnel pour le suivi",
+      notes: "Notes",
+      notesPlaceholder: "Détails supplémentaires sur cet ajustement...",
+
+      // Adjustment Reasons
+      reasons: {
+        countCorrection: "Correction de Comptage Physique",
+        foundItems: "Articles Trouvés",
+        systemError: "Correction d'Erreur Système",
+        returned: "Retourné par le Client",
+        damaged: "Marchandises Endommagées",
+        expired: "Articles Expirés",
+        stolen: "Volé/Manquant",
+      },
+
+      // Dialogs
+      adjustmentDialog: {
+        title: "Enregistrer un Ajustement de Stock",
+        description: "Ajuster les niveaux de stock pour les matières ou produits",
+      },
+      bulkAdjustmentDialog: {
+        title: "Ajustement de Stock en Masse",
+        description: "Ajuster les niveaux de stock pour plusieurs articles à la fois",
+      },
+      adjustmentHistoryDialog: {
+        title: "Historique des Ajustements",
+        description: "Voir tous les ajustements de stock pour cet article",
+      },
+
+      // Bulk Operations
+      globalSettings: "Paramètres Globaux",
+      useSameReason: "Utiliser la même raison pour tous les articles",
+      useSameReasonDescription: "Appliquer une raison à tous les ajustements",
+      itemsToAdjust: "Articles à Ajuster",
+      noItemsSelected: "Aucun article sélectionné pour l'ajustement",
+      recordAdjustment: "Enregistrer l'Ajustement",
+      recordAdjustments: "Enregistrer les Ajustements",
+
+      // History
+      adjustmentTimeline: "Chronologie des Ajustements",
+      noAdjustmentHistory: "Aucun historique d'ajustement trouvé",
+      totalAdjustments: "Ajustements Totaux",
+      increases: "Augmentations",
+      decreases: "Diminutions",
+      increase: "Augmentation",
+      decrease: "Diminution",
+      runningBalance: "Solde Courant",
+      clearFilters: "Effacer les Filtres",
+
+      // Toast Messages
+      toasts: {
+        adjustmentRecorded: {
+          title: "Ajustement Enregistré",
+          description: "L'ajustement de stock a été enregistré avec succès",
+        },
+        adjustmentFailed: {
+          description: "Échec de l'enregistrement de l'ajustement. Veuillez réessayer.",
+        },
+        bulkAdjustmentRecorded: {
+          title: "Ajustements Enregistrés",
+          description: "ajustements ont été enregistrés avec succès",
+        },
+        bulkAdjustmentFailed: {
+          description: "Échec de l'enregistrement des ajustements en masse. Veuillez réessayer.",
+        },
+      },
+    },
+    // Recipe Production Tab
+    recipeProduction: {
+      description: "Démarrer de nouveaux lots de production et surveiller la production active",
+      availableRecipes: "Recettes Disponibles",
+      selectRecipeToStart: "Sélectionnez une recette pour commencer la production",
+      searchRecipes: "Rechercher des recettes...",
+      noRecipesFound: "Aucune recette trouvée",
+      selectRecipe: "Sélectionner une Recette",
+      selectRecipeHint: "Choisissez une recette dans la liste pour voir les détails et commencer la production",
+
+      // Recipe Details
+      yield: "Rendement",
+      productionTime: "Temps de Production",
+      minutes: "minutes",
+      costPerBatch: "Coût par Lot",
+      costPerUnit: "Coût par Unité",
+      startProduction: "Démarrer la Production",
+      insufficientMaterials: "Matériaux insuffisants pour démarrer la production",
+      insufficientMaterialsWarning: "Certains matériaux sont en dessous des niveaux requis",
+      insufficientMaterialsHint: "Veuillez réapprovisionner les matériaux insuffisants avant de commencer la production",
+
+      // Material Availability
+      materialAvailability: "Disponibilité des Matériaux",
+      materialAvailabilityDescription: "Vérifier la disponibilité des ingrédients pour cette recette",
+      material: "Matériau",
+      required: "Requis",
+      available: "Disponible",
+      status: "Statut",
+      allMaterialsAvailable: "Tous Disponibles",
+      materialShortage: "Pénurie",
+      noIngredientsFound: "Aucun ingrédient trouvé pour cette recette",
+
+      availability: {
+        sufficient: "Suffisant",
+        low: "Stock Faible",
+        insufficient: "Insuffisant",
+      },
+
+      // Active Batches
+      activeBatches: "Lots Actifs",
+      activeBatchesDescription: "Lots de production actuellement en cours",
+      started: "Démarré",
+      completed: "Terminé",
+      quantity: "Quantité",
+      qualityScore: "Score de Qualité",
+
+      // Batch Statuses
+      statuses: {
+        pending: "En Attente",
+        inProgress: "En Cours",
+        qualityCheck: "Contrôle Qualité",
+        completed: "Terminé",
+        failed: "Échoué",
+      },
+
+      // Start Production Dialog
+      dialogs: {
+        startProduction: {
+          title: "Démarrer un Lot de Production",
+          description: "Créer un nouveau lot de production pour cette recette",
+        },
+      },
+
+      recipe: "Recette",
+      yieldPerBatch: "Rendement par Lot",
+      timePerBatch: "Temps par Lot",
+      batchQuantity: "Nombre de Lots",
+      batchQuantityHint: "Combien de lots voulez-vous produire?",
+      productionSummary: "Résumé de Production",
+      totalYield: "Rendement Total",
+      totalTime: "Temps Total",
+      totalCost: "Coût Total",
+      targetCompletionDate: "Date de Fin Prévue",
+      targetCompletionDateHint: "Quand cette production devrait-elle être terminée?",
+      notes: "Notes de Production",
+      notesPlaceholder: "Ajoutez des instructions ou notes spéciales...",
+      notesHint: "Notes facultatives sur ce lot de production",
+
+      // Toast Messages
+      toasts: {
+        productionStarted: {
+          title: "Production Démarrée",
+          description: "Le lot {batchNumber} a été créé avec succès",
+        },
+        productionFailed: {
+          title: "Échec du Démarrage de la Production",
+          description: "Une erreur s'est produite lors du démarrage du lot de production. Veuillez réessayer.",
+        },
+      },
+    },
+
+    // Production History Tab
+    productionHistory: {
+      description: "Voir et analyser les lots de production terminés",
+      filters: "Filtres",
+      filtersDescription: "Filtrer les lots par statut, recette ou plage de dates",
+      searchBatches: "Rechercher par numéro de lot...",
+      selectStatus: "Sélectionner le statut",
+      allStatuses: "Tous les Statuts",
+      selectRecipe: "Sélectionner la recette",
+      allRecipes: "Toutes les Recettes",
+      activeFilters: "Filtres actifs",
+      search: "Recherche",
+      status: "Statut",
+      recipe: "Recette",
+      dateRange: "Plage de dates",
+
+      // Table
+      batchesList: "Lots",
+      rowsPerPage: "Lignes par page",
+      noBatchesFound: "Aucun lot trouvé",
+      batchNumber: "Numéro de Lot",
+      quantity: "Quantité",
+      qualityScore: "Score de Qualité",
+      startedAt: "Démarré le",
+      actions: "Actions",
+      showing: "Affichage",
+
+      // Batch Statuses
+      statuses: {
+        pending: "En Attente",
+        inProgress: "En Cours",
+        qualityCheck: "Contrôle Qualité",
+        completed: "Terminé",
+        failed: "Échoué",
+      },
+
+      // Metrics
+      metrics: {
+        totalBatches: "Total des Lots",
+        totalBatchesDescription: "Tous les lots de production",
+        averageQuality: "Qualité Moy.",
+        averageQualityDescription: "Score de qualité moyen",
+        efficiency: "Efficacité",
+        efficiencyDescription: "Production réelle vs prévue",
+        totalOutput: "Production Totale",
+        totalOutputDescription: "Total des unités produites",
+      },
+
+      // Batch Details Dialog
+      dialogs: {
+        batchDetails: {
+          title: "Détails du Lot",
+          description: "Informations complètes sur ce lot de production",
+        },
+      },
+
+      recipeInformation: "Informations sur la Recette",
+      recipeName: "Nom de la Recette",
+      category: "Catégorie",
+      expectedYield: "Rendement Prévu",
+      expectedTime: "Temps Prévu",
+
+      ingredientConsumption: "Consommation d'Ingrédients",
+      material: "Matériau",
+      quantityUsed: "Quantité Utilisée",
+      costPerUnit: "Coût/Unité",
+      totalCost: "Coût Total",
+
+      productionTimeline: "Chronologie de Production",
+      completedAt: "Terminé le",
+      duration: "Durée",
+      totalDuration: "Durée Totale",
+      expected: "prévu",
+
+      qualityNotes: "Notes de Qualité",
+
+      costAnalysis: "Analyse des Coûts",
+      estimatedCost: "Coût Estimé",
+      actualCost: "Coût Réel",
+      variance: "Variance",
+    },
+  },
+  tracking: {
+    // Page titles
+    stockLevels: "Niveaux de Stock",
+    movementHistory: "Historique des Mouvements",
+    analytics: "Analytique",
+
+    // Movement types
+    movements: {
+      in: "Entrée de Stock",
+      out: "Sortie de Stock",
+      adjustment: "Ajustement",
+      production: "Production",
+      waste: "Perte",
+      return: "Retour",
+    },
+
+    // Table headers
+    dateTime: "Date et Heure",
+    material: "Matériel",
+    product: "Produit",
+    type: "Type",
+    quantity: "Quantité",
+    reason: "Raison",
+    user: "Utilisateur",
+    reference: "Référence",
+    notes: "Notes",
+
+    // Filters
+    filterByType: "Filtrer par Type",
+    filterByDate: "Filtrer par Date",
+    selectDateRange: "Sélectionner la Période",
+    allMovements: "Tous les Mouvements",
+    allTypes: "Tous les Types",
+    searchMovements: "Rechercher des mouvements...",
+    clearFilters: "Effacer les Filtres",
+    filterActive: "filtre actif",
+    filtersActive: "filtres actifs",
+
+    // Actions
+    addMovement: "Ajouter un Mouvement",
+    viewMovement: "Voir le Mouvement",
+    recordMovement: "Enregistrer le Mouvement",
+    exportMovements: "Exporter les Mouvements",
+    viewHistory: "Voir l'Historique",
+    restock: "Réapprovisionner",
+    bulkRestock: "Réapprovisionnement en Masse",
+    bulkExport: "Exportation en Masse",
+    selectAll: "Tout Sélectionner",
+    deselectAll: "Tout Désélectionner",
+    selected: "sélectionné(s)",
+    bulkActions: "Actions en Masse",
+
+    // Status
+    showingMovements: "Affichage de {count} mouvements",
+    showingResults: "Affichage de {count} sur {total} résultats",
+    noMovements: "Aucun mouvement trouvé",
+    noResults: "Aucun résultat ne correspond à vos filtres",
+    recentMovements: "Mouvements Récents",
+    stockStatus: "État du Stock",
+    currentStock: "Stock Actuel",
+
+    // Forms
+    selectMaterial: "Sélectionner le Matériel",
+    selectProduct: "Sélectionner le Produit",
+    selectItem: "Sélectionner l'Article",
+    movementType: "Type de Mouvement",
+    enterQuantity: "Entrer la Quantité",
+    selectReason: "Sélectionner la Raison",
+    additionalNotes: "Notes Additionnelles",
+    referenceNumber: "Numéro de Référence",
+    itemType: "Type d'Article",
+    materialType: "Matériel",
+    productType: "Produit",
+
+    // Reasons
+    reasons: {
+      purchase: "Bon de Commande",
+      production: "Utilisé en Production",
+      sale: "Vente",
+      damage: "Endommagé",
+      expired: "Expiré",
+      theft: "Vol/Perte",
+      count: "Correction d'Inventaire Physique",
+      return: "Retour Fournisseur",
+      transfer: "Transfert de Magasin",
+      other: "Autre",
+    },
+
+    // Stock levels
+    stockLevel: "Niveau de Stock",
+    minLevel: "Niveau Minimum",
+    maxLevel: "Niveau Maximum",
+    reorderLevel: "Niveau de Réapprovisionnement",
+    lastMovement: "Dernier Mouvement",
+    recentActivity: "Activité Récente",
+
+    // Stock History
+    stockHistory: "Historique du Stock",
+    runningBalance: "Solde Courant",
+    exportHistory: "Exporter l'Historique",
+    noHistory: "Aucun historique de mouvement",
+    movementTimeline: "Chronologie des Mouvements",
+
+    // Bulk Selection
+    selectItems: "Sélectionner les Articles",
+    itemsSelected: "{count} articles sélectionnés",
+    restockSelected: "Réapprovisionner Sélectionnés",
+    clearSelection: "Effacer la Sélection",
+
+    // Restock
+    restockItem: "Réapprovisionner l'Article",
+    suggestedQuantity: "Quantité Suggérée",
+    reorderQuantity: "Quantité de Réapprovisionnement",
+    selectSupplier: "Sélectionner le Fournisseur",
+    deliveryDate: "Date de Livraison",
+    priority: "Priorité",
+    restockNotes: "Notes de Réapprovisionnement",
+    createOrder: "Créer la Commande",
+    createOrders: "Créer les Commandes",
+
+    // Priority levels
+    priorities: {
+      low: "Bas",
+      medium: "Moyen",
+      high: "Élevé",
+      urgent: "Urgent",
+    },
+
+    // Pagination
+    page: "Page",
+    of: "de",
+    rowsPerPage: "Lignes par page",
+    previous: "Précédent",
+    next: "Suivant",
+
+    // Toast messages
+    toasts: {
+      movementAdded: {
+        title: "Mouvement Enregistré",
+        desc: "Le mouvement de stock a été enregistré avec succès.",
+      },
+      movementDeleted: {
+        title: "Mouvement Supprimé",
+        desc: "Le mouvement de stock a été supprimé.",
+      },
+      bulkExported: {
+        title: "Exportation Réussie",
+        desc: "{count} articles exportés avec succès.",
+      },
+      restockInitiated: {
+        title: "Réapprovisionnement Initié",
+        desc: "La commande de réapprovisionnement a été créée.",
+      },
+    },
+
+    // Dialogs
+    dialogs: {
+      addMovement: {
+        title: "Enregistrer un Mouvement de Stock",
+        description: "Ajouter un nouveau mouvement de stock pour suivre les changements d'inventaire.",
+      },
+      viewMovement: {
+        title: "Détails du Mouvement",
+        description: "Voir les informations complètes sur ce mouvement de stock.",
+      },
+      deleteMovement: {
+        title: "Supprimer le Mouvement",
+        description: "Êtes-vous sûr de vouloir supprimer cet enregistrement de mouvement ? Cette action ne peut pas être annulée.",
+      },
+      stockHistory: {
+        title: "Historique du Stock",
+        description: "Voir l'historique complet des mouvements pour cet article.",
+      },
+      restock: {
+        title: "Réapprovisionner l'Article",
+        description: "Créer une commande de réapprovisionnement pour cet article.",
+      },
+      bulkRestock: {
+        title: "Réapprovisionnement en Masse",
+        description: "Créer des commandes de réapprovisionnement pour les articles sélectionnés.",
+      },
+    },
+
+    // Empty states
+    emptyStates: {
+      noMovements: {
+        title: "Aucun mouvement pour le moment",
+        description: "Commencez à suivre votre inventaire en enregistrant votre premier mouvement de stock.",
+      },
+      noResults: {
+        title: "Aucun résultat trouvé",
+        description: "Essayez d'ajuster vos filtres ou votre terme de recherche.",
+      },
+      noStock: {
+        title: "Aucun article en stock",
+        description: "Ajoutez des matériels ou des produits pour commencer le suivi de l'inventaire.",
+      },
+    },
   },
   footer: {
     tagline: "UNE SOLUTION POUR LA GESTION DE VOTRE STOCK ALIMENTAIRE",

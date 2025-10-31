@@ -15,7 +15,12 @@
       "Bash(tree:*)",
       "Bash(mkdir:*)",
       "Bash(tee:*)",
-      "Bash(npx prisma migrate:*)"
+      "Bash(npx prisma migrate:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

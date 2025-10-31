@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PillsList } from "./pills-list";
 import { DetailsPanel } from "./details-panel";
-
-type Item = { id: string; name: string; note?: string };
+import type { Item } from "@/mocks";
 
 interface SectionProps {
   items: Item[];
@@ -18,7 +17,7 @@ export function Section({ items, label }: SectionProps) {
 
   return (
     <div className="grid w-full gap-4 lg:grid-cols-[1fr_380px]">
-      <Card className="overflow-hidden shadow-md transition-shadow hover:shadow-lg">
+      <Card className="shadow-md transition-shadow hover:shadow-lg">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg">{label}</CardTitle>
         </CardHeader>

@@ -142,20 +142,92 @@ Dashboard layout (src/app/(dashboard)/layout.tsx)
 
 ### Component Organization
 
-The codebase follows a **clean architecture** with feature-based organization:
+The codebase follows a **clean architecture** with **feature driven architecture (FDA)**:
 
-**Folder Structure Pattern:**
+**FDA Pattern:**
 
 ```
 src/
-├── components/
-│   ├── ui/              # shadcn/ui primitives (do not modify)
-│   └── lang/            # Shared i18n providers
-├── features/
-│   ├── [feature-area]/
-│   │   ├── components/  # Shared components across feature
-│   │   └── [page-name]/
-│   │       └── components/  # Page-specific components
+├── app/                            # Next.js App Router entrypoint
+│   ├── (marketing)/                # Public marketing routes
+│   │   ├── layout.tsx
+│   │   ├── page.tsx                # /
+│   │   ├── services/page.tsx
+│   │   ├── pricing/page.tsx
+│   │   └── contact/page.tsx
+│   │
+│   ├── (app)/                      # Authenticated app area
+│   │   ├── (auth)/                 # Login/Register routes
+│   │   │   ├── layout.tsx
+│   │   │   ├── login/page.tsx
+│   │   │   └── register/page.tsx
+│   │   │
+│   │   ├── (stores)/               # Store selection
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx
+│   │   │
+│   │   └── (dashboard)/            # Main dashboard routes
+│   │       ├── layout.tsx          # Contains Sidebar + Topbar
+│   │       ├── page.tsx            # /dashboard
+│   │       ├── tracking/page.tsx
+│   │       ├── data/page.tsx
+│   │       ├── management/page.tsx
+│   │       ├── alerts/page.tsx
+│   │       └── profile/page.tsx
+│   │
+│   ├── api/                        # Route handlers
+│   │   ├── auth/
+│   │   │   └── [...nextauth]/route.ts
+│   │   ├── posts/
+│   │   │   └── route.ts
+│   │   └── stores/
+│   │       └── route.ts
+│   │
+│   ├── layout.tsx                  # Root layout (global providers)
+│   └── globals.css
+│
+├── components/                     # Truly shared UI (cross-feature)
+│   ├── ui/                         # Shadcn or atomic UI
+│   ├── layout/                     # Shared layout elements (e.g., SiteHeader)
+│   ├── feedback/                   # Toast, modal, spinner
+│   └── icons/                      # Reusable icons or SVGs
+│
+├── features/                       # Feature-driven modules
+│   ├── auth/
+│   │   ├── components/             # LoginForm, RegisterForm
+│   │   ├── hooks/                  # useLogin, useLogout
+│   │   ├── services/               # auth.api.ts, session.ts
+│   │   └── types/                  # auth.types.ts
+│   │
+│   ├── posts/
+│   │   ├── components/             # PostCard, PostList
+│   │   ├── hooks/                  # usePosts, useCreatePost
+│   │   ├── services/               # posts.api.ts
+│   │   └── types/                  # post.types.ts
+│   │
+│   ├── stores/
+│   │   ├── components/             # StoreList, StoreSelector
+│   │   ├── hooks/                  # useStores, useSelectStore
+│   │   ├── services/               # stores.api.ts
+│   │   └── types/                  # store.types.ts
+│   │
+│   └── shared/                     # Cross-feature helpers
+│       ├── hooks/                  # useDebounce, useFetch
+│       ├── components/             # Shared feature components
+│       ├── services/               # Common API logic
+│       └── utils/                  # Feature-specific utilities
+│
+├── lib/                            # Core app-level utilities
+│   ├── api/                        # Fetch wrappers, axios configs
+│   ├── utils/                      # Common helpers (formatDate, clsx)
+│   ├── auth/                       # NextAuth config
+│   └── i18n/                       # Internationalization setup
+│
+└── types/                          # Global types
+    ├── env.d.ts
+    ├── next.d.ts
+    └── index.d.ts
+
 ```
 
 **Key Principles:**
@@ -188,6 +260,25 @@ src/
 Configured in `tsconfig.json`:
 
 - `@/*` maps to `./src/*`
+
+### Mock Data Organization
+
+Centralized mock data in `src/mocks/` directory:
+
+- `alerts.mock.ts` - Alert suppliers and alert items
+- `orders.mock.ts` - Orders and order suppliers
+- `inventory.mock.ts` - Materials, recipes, products, suppliers, stock tracking data
+- `users.mock.ts` - User management data
+- `stores.mock.ts` - Store/location data
+- `index.ts` - Central export for all mock data
+
+**Usage:**
+
+```typescript
+import { MOCK_ALERTS, MOCK_ORDERS, MOCK_MATERIALS } from "@/mocks";
+```
+
+All mock data includes TypeScript types and TODO comments indicating where API integration is needed.
 
 ### Component Library
 
@@ -316,8 +407,9 @@ PATCH  /api/user/business            # Update business (session required)
 
 **Current Data Fetching:**
 
-- Most components use **mock data** with TODO comments
-- Example: `useAlertsCount()` hook uses `MOCK_ALERTS` array
+- Most components use **mock data** from centralized `src/mocks/` directory
+- Mock data organized by domain: alerts.mock.ts, orders.mock.ts, inventory.mock.ts, users.mock.ts, stores.mock.ts
+- All exported from `src/mocks/index.ts` for easy importing
 - Future: Replace with API calls or add a proper data fetching library
 
 **Adding New State:**
@@ -328,12 +420,35 @@ PATCH  /api/user/business            # Update business (session required)
 
 ### Utilities
 
-**Validation** (`src/lib/validation.ts`):
+**Validation Strategy:**
 
-- Email validation with regex
-- Name validation (2-50 characters)
-- Waitlist form validation
-- RateLimiter class for brute force protection
+The app uses a dual validation approach:
+
+1. **Legacy Utilities** (`src/lib/validation.ts`):
+   - Simple helper functions for email, name validation
+   - RateLimiter class for brute force protection
+   - Used for basic client-side validation in older components
+   - Will be gradually migrated to Zod schemas
+
+2. **Modern Zod Schemas** (`src/lib/validation/`):
+   - Type-safe validation schemas with TypeScript inference
+   - Organized by domain: auth.schemas.ts, business.schemas.ts, common.schemas.ts, inventory.schemas.ts, orders.schemas.ts
+   - Exported centrally from `src/lib/validation/index.ts`
+   - Used for API route validation and will become the standard
+
+**Usage (Modern Approach):**
+
+```typescript
+import { z, loginSchema } from "@/lib/validation";
+
+// Validate input
+const result = loginSchema.safeParse(data);
+if (!result.success) {
+  // Handle errors: result.error.errors
+}
+```
+
+**Migration Path:** New forms and API routes should use Zod schemas. Legacy validation.ts functions are maintained for backward compatibility.
 
 **Logger** (`src/lib/logger.ts`):
 
@@ -376,7 +491,7 @@ Following the clean architecture pattern:
 3. **Extract components**: Create page-specific components in the components directory
 4. **Import in page**: Import and compose components in the page file
 5. **Add navigation**: Update `src/features/dashboard/components/sidebar.tsx`
-6. **Add translations**: Update `src/components/lang/i18n-dictionaries.ts`
+6. **Add translations**: Update `src/locales/` files (en.ts, fr.ts, id.ts)
 
 **Example structure:**
 
@@ -453,7 +568,7 @@ async function onSubmit(formData: FormData) {
 </form>
 ```
 
-**Note:** react-hook-form and zod are in package.json but not currently used. Consider migrating forms to use these libraries for better validation and type safety.
+**Note:** Zod schemas are available in `src/lib/validation/` for type-safe validation. react-hook-form is installed but not yet widely adopted. Future forms should use react-hook-form + Zod for better validation and type safety. Current forms use FormData API with manual validation.
 
 ## Important Notes
 
