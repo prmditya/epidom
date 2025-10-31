@@ -142,20 +142,92 @@ Dashboard layout (src/app/(dashboard)/layout.tsx)
 
 ### Component Organization
 
-The codebase follows a **clean architecture** with feature-based organization:
+The codebase follows a **clean architecture** with **feature driven architecture (FDA)**:
 
-**Folder Structure Pattern:**
+**FDA Pattern:**
 
 ```
 src/
-├── components/
-│   ├── ui/              # shadcn/ui primitives (do not modify)
-│   └── lang/            # Shared i18n providers
-├── features/
-│   ├── [feature-area]/
-│   │   ├── components/  # Shared components across feature
-│   │   └── [page-name]/
-│   │       └── components/  # Page-specific components
+├── app/                            # Next.js App Router entrypoint
+│   ├── (marketing)/                # Public marketing routes
+│   │   ├── layout.tsx
+│   │   ├── page.tsx                # /
+│   │   ├── services/page.tsx
+│   │   ├── pricing/page.tsx
+│   │   └── contact/page.tsx
+│   │
+│   ├── (app)/                      # Authenticated app area
+│   │   ├── (auth)/                 # Login/Register routes
+│   │   │   ├── layout.tsx
+│   │   │   ├── login/page.tsx
+│   │   │   └── register/page.tsx
+│   │   │
+│   │   ├── (stores)/               # Store selection
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx
+│   │   │
+│   │   └── (dashboard)/            # Main dashboard routes
+│   │       ├── layout.tsx          # Contains Sidebar + Topbar
+│   │       ├── page.tsx            # /dashboard
+│   │       ├── tracking/page.tsx
+│   │       ├── data/page.tsx
+│   │       ├── management/page.tsx
+│   │       ├── alerts/page.tsx
+│   │       └── profile/page.tsx
+│   │
+│   ├── api/                        # Route handlers
+│   │   ├── auth/
+│   │   │   └── [...nextauth]/route.ts
+│   │   ├── posts/
+│   │   │   └── route.ts
+│   │   └── stores/
+│   │       └── route.ts
+│   │
+│   ├── layout.tsx                  # Root layout (global providers)
+│   └── globals.css
+│
+├── components/                     # Truly shared UI (cross-feature)
+│   ├── ui/                         # Shadcn or atomic UI
+│   ├── layout/                     # Shared layout elements (e.g., SiteHeader)
+│   ├── feedback/                   # Toast, modal, spinner
+│   └── icons/                      # Reusable icons or SVGs
+│
+├── features/                       # Feature-driven modules
+│   ├── auth/
+│   │   ├── components/             # LoginForm, RegisterForm
+│   │   ├── hooks/                  # useLogin, useLogout
+│   │   ├── services/               # auth.api.ts, session.ts
+│   │   └── types/                  # auth.types.ts
+│   │
+│   ├── posts/
+│   │   ├── components/             # PostCard, PostList
+│   │   ├── hooks/                  # usePosts, useCreatePost
+│   │   ├── services/               # posts.api.ts
+│   │   └── types/                  # post.types.ts
+│   │
+│   ├── stores/
+│   │   ├── components/             # StoreList, StoreSelector
+│   │   ├── hooks/                  # useStores, useSelectStore
+│   │   ├── services/               # stores.api.ts
+│   │   └── types/                  # store.types.ts
+│   │
+│   └── shared/                     # Cross-feature helpers
+│       ├── hooks/                  # useDebounce, useFetch
+│       ├── components/             # Shared feature components
+│       ├── services/               # Common API logic
+│       └── utils/                  # Feature-specific utilities
+│
+├── lib/                            # Core app-level utilities
+│   ├── api/                        # Fetch wrappers, axios configs
+│   ├── utils/                      # Common helpers (formatDate, clsx)
+│   ├── auth/                       # NextAuth config
+│   └── i18n/                       # Internationalization setup
+│
+└── types/                          # Global types
+    ├── env.d.ts
+    ├── next.d.ts
+    └── index.d.ts
+
 ```
 
 **Key Principles:**

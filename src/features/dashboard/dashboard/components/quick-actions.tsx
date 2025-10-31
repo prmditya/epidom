@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/components/lang/i18n-provider";
-import AddMaterialDialog from "./add-material-dialog";
+import AddMaterialDialog from "../../data/materials/components/add-material-dialog";
 import AddOrderDialog from "./add-order-dialog";
 import AddRecipeDialog from "./add-recipe-dialog";
 import UpdateStockDialog from "./update-stock-dialog";

@@ -28,6 +28,7 @@ export const id = {
       delete: "Hapus",
       back: "Kembali",
       next: "Selanjutnya",
+      close: "Tutup",
     },
   },
   hero: {
@@ -830,7 +831,99 @@ export const id = {
     registrationFailed: "Registrasi gagal. Silakan coba lagi.",
   },
   alerts: {
-    orderPlaced: "Pesanan berhasil dibuat",
+    // Page titles
+    title: "Peringatan Stok",
+    ordersToPlace: "Pesanan yang Perlu Dibuat",
+    ordersDescription: "Hubungi pemasok untuk mengisi ulang barang dengan stok rendah",
+
+    // Alert states
+    noActiveAlerts: "Tidak Ada Peringatan Aktif",
+    noActiveAlertsDescription: "Semua tingkat persediaan Anda sehat",
+    showing: "Menampilkan",
+    activeAlerts: "peringatan aktif",
+
+    // Table headers
+    table: {
+      material: "Bahan",
+      currentStock: "Stok Saat Ini",
+      minStock: "Stok Min",
+      stockLevel: "Tingkat Stok",
+      supplier: "Pemasok",
+      priority: "Prioritas",
+      actions: "Aksi",
+      lowStock: "Stok Rendah",
+    },
+
+    // Priorities
+    priorities: {
+      low: "Rendah",
+      medium: "Sedang",
+      high: "Tinggi",
+      urgent: "Mendesak",
+    },
+
+    // Actions
+    actions: {
+      viewDetails: "Lihat Detail",
+      createOrder: "Buat Pesanan",
+      callSupplier: "Telepon",
+      emailSupplier: "Email",
+    },
+
+    // Details Dialog
+    detailsDialog: {
+      title: "Detail Peringatan",
+      description: "Lihat informasi detail tentang peringatan stok ini",
+      alertInfo: "Informasi Peringatan",
+      materialInfo: "Informasi Bahan",
+      supplierInfo: "Informasi Pemasok",
+      stockLevel: "Tingkat Stok",
+      ofMinimum: "dari minimum",
+      message: "Pesan",
+      created: "Dibuat",
+      alertId: "ID Peringatan",
+      current: "Saat Ini",
+      minimum: "Minimum",
+      needed: "Dibutuhkan",
+      phone: "Telepon",
+      email: "Email",
+      address: "Alamat",
+    },
+
+    // Create Order Dialog
+    createOrderDialog: {
+      title: "Buat Pengingat Pesanan",
+      description: "Buat pengingat untuk memesan bahan dari pemasok",
+      supplier: "Pemasok",
+      selectSupplier: "Pilih pemasok",
+      material: "Bahan",
+      selectMaterial: "Pilih bahan",
+      quantity: "Jumlah",
+      suggested: "Disarankan",
+      expectedDelivery: "Tanggal Pengiriman yang Diharapkan",
+      expectedDeliveryHint: "Kapan Anda mengharapkan menerima pesanan ini",
+      priority: "Prioritas",
+      notes: "Catatan",
+      notesPlaceholder: "Tambahkan instruksi khusus atau catatan...",
+      notesHint: "Catatan opsional untuk pengingat pesanan ini",
+      submit: "Buat Pesanan",
+    },
+
+    // Orders view
+    contactInfo: "Informasi Kontak",
+    materialsToOrder: "Bahan yang Perlu Dipesan",
+    item: "item",
+    items: "items",
+    current: "Saat Ini",
+    required: "Diperlukan",
+    toOrder: "Perlu Dipesan",
+    noOrdersToPlace: "Tidak Ada Pesanan yang Perlu Dibuat",
+    noOrdersDescription: "Anda tidak memiliki pesanan yang tertunda saat ini",
+
+    // Toasts
+    toasts: {
+      orderCreated: "Pengingat pesanan berhasil dibuat",
+    },
   },
   labels: {
     orderId: "ID Pesanan",

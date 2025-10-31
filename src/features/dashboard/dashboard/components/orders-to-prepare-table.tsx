@@ -20,6 +20,7 @@ import type { Order } from "@/types/entities";
 import { formatDate, formatCurrency } from "@/lib/utils/formatting";
 import { CheckSquare, Trash2, FileEdit } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 interface OrdersToPrepareTableProps {
   orders: Order[];
@@ -99,65 +100,75 @@ export default function OrdersToPrepareTable({ orders }: OrdersToPrepareTablePro
   return (
     <>
       <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-        <CardHeader className="pb-3">
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">{t("pages.ordersToPrepare")}</CardTitle>
-            {selectedIds.length === 0 && (
-              <div className="text-muted-foreground text-sm">
-                {orders.length} {orders.length === 1 ? "order" : "orders"}
-              </div>
-            )}
-          </div>
+        <CardHeader className="flex items-center justify-between">
+          <CardTitle className="text-lg">{t("pages.ordersToPrepare")}</CardTitle>
+          {selectedIds.length === 0 && (
+            <div className="text-muted-foreground text-sm">
+              {orders.length} {orders.length === 1 ? "order" : "orders"}
+            </div>
+          )}
         </CardHeader>
 
         {/* Bulk Actions Toolbar */}
-        {selectedIds.length > 0 && (
-          <div className="bg-muted/50 border-b px-6 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <span className="text-sm font-medium">{selectedIds.length} selected</span>
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="gap-2"
-                    onClick={handleMarkAsProcessing}
-                  >
-                    <CheckSquare className="h-4 w-4" />
-                    Mark as Processing
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="gap-2"
-                    onClick={handleAssignToProduction}
-                  >
-                    <FileEdit className="h-4 w-4" />
-                    Assign to Production
-                  </Button>
-                  <ExportButton
-                    data={handleExportSelected()}
-                    filename="selected-orders"
-                    variant="outline"
-                    size="sm"
-                  />
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    className="gap-2"
-                    onClick={() => setIsDeleteDialogOpen(true)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                    Delete
-                  </Button>
-                </div>
+        <div className="bg-muted/50 flex h-[65px] items-center justify-between border-y px-6 py-3">
+          <div className="scrollbar-hide flex w-full items-center justify-between overflow-auto">
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium">{selectedIds.length} selected</span>
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className={cn(
+                    "gap-2",
+                    selectedIds.length === 0 && "pointer-events-none opacity-50"
+                  )}
+                  onClick={handleMarkAsProcessing}
+                >
+                  <CheckSquare className="h-4 w-4" />
+                  Mark as Processing
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className={cn(
+                    "gap-2",
+                    selectedIds.length === 0 && "pointer-events-none opacity-50"
+                  )}
+                  onClick={handleAssignToProduction}
+                >
+                  <FileEdit className="h-4 w-4" />
+                  Assign to Production
+                </Button>
+                <ExportButton
+                  data={handleExportSelected()}
+                  filename="selected-orders"
+                  variant="outline"
+                  size="sm"
+                />
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  className={cn(
+                    "gap-2",
+                    selectedIds.length === 0 && "pointer-events-none opacity-50"
+                  )}
+                  onClick={() => setIsDeleteDialogOpen(true)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                  Delete
+                </Button>
               </div>
-              <Button size="sm" variant="ghost" onClick={() => setSelectedIds([])}>
-                Clear Selection
-              </Button>
             </div>
+            <Button
+              size="sm"
+              variant="ghost"
+              className={cn("pointer-events-none opacity-50", selectedIds.length === 0 && "hidden")}
+              onClick={() => setSelectedIds([])}
+            >
+              Clear Selection
+            </Button>
           </div>
-        )}
+        </div>
 
         <CardContent className="-mx-4 overflow-x-auto sm:mx-0">
           <div className="min-w-[700px] px-4 sm:px-0">

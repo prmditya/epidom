@@ -24,6 +24,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hide scrollbar but still scrollable */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 /* Prevent navbar from inheriting any transitions */
 header.navbar-no-transition,
 header.navbar-no-transition *,

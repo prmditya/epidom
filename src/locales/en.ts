@@ -28,6 +28,7 @@ export const en = {
       delete: "Delete",
       back: "Back",
       next: "Next",
+      close: "Close",
     },
   },
   hero: {
@@ -819,7 +820,99 @@ export const en = {
     registrationFailed: "Registration failed. Please try again.",
   },
   alerts: {
-    orderPlaced: "Order placed successfully",
+    // Page titles
+    title: "Stock Alerts",
+    ordersToPlace: "Orders to Place",
+    ordersDescription: "Contact suppliers to restock low inventory items",
+
+    // Alert states
+    noActiveAlerts: "No Active Alerts",
+    noActiveAlertsDescription: "All your inventory levels are healthy",
+    showing: "Showing",
+    activeAlerts: "active alerts",
+
+    // Table headers
+    table: {
+      material: "Material",
+      currentStock: "Current Stock",
+      minStock: "Min Stock",
+      stockLevel: "Stock Level",
+      supplier: "Supplier",
+      priority: "Priority",
+      actions: "Actions",
+      lowStock: "Low Stock",
+    },
+
+    // Priorities
+    priorities: {
+      low: "Low",
+      medium: "Medium",
+      high: "High",
+      urgent: "Urgent",
+    },
+
+    // Actions
+    actions: {
+      viewDetails: "View Details",
+      createOrder: "Create Order",
+      callSupplier: "Call",
+      emailSupplier: "Email",
+    },
+
+    // Details Dialog
+    detailsDialog: {
+      title: "Alert Details",
+      description: "View detailed information about this stock alert",
+      alertInfo: "Alert Information",
+      materialInfo: "Material Information",
+      supplierInfo: "Supplier Information",
+      stockLevel: "Stock Level",
+      ofMinimum: "of minimum",
+      message: "Message",
+      created: "Created",
+      alertId: "Alert ID",
+      current: "Current",
+      minimum: "Minimum",
+      needed: "Needed",
+      phone: "Phone",
+      email: "Email",
+      address: "Address",
+    },
+
+    // Create Order Dialog
+    createOrderDialog: {
+      title: "Create Order Reminder",
+      description: "Create a reminder to order materials from supplier",
+      supplier: "Supplier",
+      selectSupplier: "Select supplier",
+      material: "Material",
+      selectMaterial: "Select material",
+      quantity: "Quantity",
+      suggested: "Suggested",
+      expectedDelivery: "Expected Delivery Date",
+      expectedDeliveryHint: "When you expect to receive this order",
+      priority: "Priority",
+      notes: "Notes",
+      notesPlaceholder: "Add any special instructions or notes...",
+      notesHint: "Optional notes for this order reminder",
+      submit: "Create Order",
+    },
+
+    // Orders view
+    contactInfo: "Contact Information",
+    materialsToOrder: "Materials to Order",
+    item: "item",
+    items: "items",
+    current: "Current",
+    required: "Required",
+    toOrder: "To Order",
+    noOrdersToPlace: "No Orders to Place",
+    noOrdersDescription: "You don't have any pending orders at the moment",
+
+    // Toasts
+    toasts: {
+      orderCreated: "Order reminder created successfully",
+    },
   },
   labels: {
     orderId: "Order ID",

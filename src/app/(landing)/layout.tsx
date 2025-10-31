@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { SiteHeader } from "@/features/landing/components/site-header";
-import { SiteFooter } from "@/features/landing/components/site-footer";
+import { SiteHeader } from "@/features/landing/shared/components/site-header";
+import { SiteFooter } from "@/features/landing/shared/components/site-footer";
 import { Suspense } from "react";
 import { I18nProvider } from "@/components/lang/i18n-provider";
-import { CookieConsentBar } from "@/features/landing/components/cookie-consent-bar";
+import { CookieConsentBar } from "@/features/landing/shared/components/cookie-consent-bar";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { Lato } from "next/font/google";
 

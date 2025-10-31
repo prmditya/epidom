@@ -7,7 +7,7 @@ import React from "react";
 // Lazy load heavy components
 export const LazyCountdownComponent = dynamic(
   () =>
-    import("@/features/landing/components/countdown").then((mod) => ({
+    import("@/features/landing/shared/components/countdown").then((mod) => ({
       default: mod.CountdownComponent,
     })),
   {
@@ -27,7 +27,7 @@ export const LazyCountdownComponent = dynamic(
 
 export const LazyHero = dynamic(
   () =>
-    import("@/features/landing/components/hero").then((mod) => ({
+    import("@/features/landing/shared/components/hero").then((mod) => ({
       default: mod.Hero,
     })),
   {
@@ -56,7 +56,7 @@ export const LazyHero = dynamic(
 
 export const DynamicWaitlistDialog = dynamic(
   () =>
-    import("@/features/landing/components/waitlist-dialog").then((mod) => ({
+    import("@/features/landing/shared/components/waitlist-dialog").then((mod) => ({
       default: mod.WaitlistDialog,
     })),
   { ssr: false, loading: () => null }
@@ -64,7 +64,7 @@ export const DynamicWaitlistDialog = dynamic(
 
 export const LazyWaitlistDialog = dynamic(
   () =>
-    import("@/features/landing/components/waitlist-dialog").then((mod) => ({
+    import("@/features/landing/shared/components/waitlist-dialog").then((mod) => ({
       default: mod.WaitlistDialog,
     })),
   {

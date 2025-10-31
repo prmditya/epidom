@@ -28,6 +28,7 @@ export const fr = {
       delete: "Supprimer",
       back: "Retour",
       next: "Suivant",
+      close: "Fermer",
     },
   },
   hero: {
@@ -833,7 +834,99 @@ export const fr = {
     registrationFailed: "L'inscription a échoué. Veuillez réessayer.",
   },
   alerts: {
-    orderPlaced: "Commande passée avec succès",
+    // Page titles
+    title: "Alertes de Stock",
+    ordersToPlace: "Commandes à Passer",
+    ordersDescription: "Contacter les fournisseurs pour réapprovisionner les articles en faible stock",
+
+    // Alert states
+    noActiveAlerts: "Aucune Alerte Active",
+    noActiveAlertsDescription: "Tous vos niveaux de stock sont sains",
+    showing: "Affichage de",
+    activeAlerts: "alertes actives",
+
+    // Table headers
+    table: {
+      material: "Matériau",
+      currentStock: "Stock Actuel",
+      minStock: "Stock Min",
+      stockLevel: "Niveau de Stock",
+      supplier: "Fournisseur",
+      priority: "Priorité",
+      actions: "Actions",
+      lowStock: "Stock Faible",
+    },
+
+    // Priorities
+    priorities: {
+      low: "Faible",
+      medium: "Moyen",
+      high: "Élevé",
+      urgent: "Urgent",
+    },
+
+    // Actions
+    actions: {
+      viewDetails: "Voir Détails",
+      createOrder: "Créer Commande",
+      callSupplier: "Appeler",
+      emailSupplier: "Email",
+    },
+
+    // Details Dialog
+    detailsDialog: {
+      title: "Détails de l'Alerte",
+      description: "Voir les informations détaillées sur cette alerte de stock",
+      alertInfo: "Informations sur l'Alerte",
+      materialInfo: "Informations sur le Matériau",
+      supplierInfo: "Informations sur le Fournisseur",
+      stockLevel: "Niveau de Stock",
+      ofMinimum: "du minimum",
+      message: "Message",
+      created: "Créé",
+      alertId: "ID Alerte",
+      current: "Actuel",
+      minimum: "Minimum",
+      needed: "Nécessaire",
+      phone: "Téléphone",
+      email: "Email",
+      address: "Adresse",
+    },
+
+    // Create Order Dialog
+    createOrderDialog: {
+      title: "Créer un Rappel de Commande",
+      description: "Créer un rappel pour commander des matériaux auprès du fournisseur",
+      supplier: "Fournisseur",
+      selectSupplier: "Sélectionner le fournisseur",
+      material: "Matériau",
+      selectMaterial: "Sélectionner le matériau",
+      quantity: "Quantité",
+      suggested: "Suggéré",
+      expectedDelivery: "Date de Livraison Prévue",
+      expectedDeliveryHint: "Quand vous vous attendez à recevoir cette commande",
+      priority: "Priorité",
+      notes: "Notes",
+      notesPlaceholder: "Ajoutez des instructions spéciales ou des notes...",
+      notesHint: "Notes optionnelles pour ce rappel de commande",
+      submit: "Créer Commande",
+    },
+
+    // Orders view
+    contactInfo: "Informations de Contact",
+    materialsToOrder: "Matériaux à Commander",
+    item: "article",
+    items: "articles",
+    current: "Actuel",
+    required: "Requis",
+    toOrder: "À Commander",
+    noOrdersToPlace: "Aucune Commande à Passer",
+    noOrdersDescription: "Vous n'avez aucune commande en attente pour le moment",
+
+    // Toasts
+    toasts: {
+      orderCreated: "Rappel de commande créé avec succès",
+    },
   },
   labels: {
     orderId: "ID de Commande",
