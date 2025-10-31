@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
-import { Sidebar } from "@/features/dashboard/components/sidebar";
-import { Topbar } from "@/features/dashboard/components/topbar";
+import { Sidebar } from "@/features/dashboard/shared/sidebar";
+import { Topbar } from "@/features/dashboard/shared/topbar";
 
 /**
  * PageShell Component
@@ -21,7 +21,7 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
           <Sidebar mode="desktop" />
 
           {/* Content */}
-          <main className="bg-card/80 page-content w-full min-w-0 rounded-xl border p-4 shadow-lg backdrop-blur-md sm:p-6">
+          <main className="bg-card/80 page-content mt-14 w-full min-w-0 rounded-xl border p-4 shadow-lg backdrop-blur-md sm:p-6">
             {children}
           </main>
         </div>
