@@ -20,6 +20,7 @@ export const en = {
       id: "Bahasa",
     },
     status: { Active: "Active", Canceled: "Canceled", Trial: "Trial" },
+    clear: "Clear",
     actions: {
       cancel: "Cancel",
       save: "Save",
@@ -29,6 +30,7 @@ export const en = {
       back: "Back",
       next: "Next",
       close: "Close",
+      clearFilters: "Clear Filters",
     },
   },
   hero: {

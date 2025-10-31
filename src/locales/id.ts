@@ -20,6 +20,7 @@ export const id = {
       id: "Bahasa",
     },
     status: { Active: "Aktif", Canceled: "Dibatalkan", Trial: "Trial" },
+    clear: "Bersihkan",
     actions: {
       cancel: "Batalkan",
       save: "Simpan",
@@ -29,6 +30,7 @@ export const id = {
       back: "Kembali",
       next: "Selanjutnya",
       close: "Tutup",
+      clearFilters: "Bersihkan Filter",
     },
   },
   hero: {
