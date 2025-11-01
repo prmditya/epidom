@@ -4,14 +4,16 @@ import ProductionHistoryChart from "../production-history/production-history-cha
 import AlertsCard from "../alerts/alerts-card";
 import TrackingCard from "../tracking/tracking-card";
 import SupplierCard from "../supplier/supplier-card";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 export function DashboardView() {
+  const { t } = useI18n();
+
   return (
     <div className="grid min-h-[calc(100vh-120px)] w-full gap-6">
       <PageHeader
-        pageTitle="Dashboard"
-        pageDescription="Welcome to the dashboard. Here you can see the current status of your orders, recipes, and
-          stock."
+        pageTitle={t("dashboard.title")}
+        pageDescription={t("dashboard.description")}
       />
 
       {/* Top Stats */}

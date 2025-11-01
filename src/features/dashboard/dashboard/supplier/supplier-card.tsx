@@ -22,7 +22,7 @@ export default function SupplierCard() {
     <div className="h-full overflow-auto">
       {topSuppliers.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full text-center py-8">
-          <p className="text-sm text-muted-foreground">No suppliers available</p>
+          <p className="text-sm text-muted-foreground">{t("dashboard.supplierCard.noSuppliersAvailable")}</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -83,15 +83,15 @@ export default function SupplierCard() {
   const cardOther = (
     <Link href="/dashboard/data">
       <Button variant="ghost" size="sm" className="h-8">
-        Manage
+        {t("dashboard.supplierCard.manage")}
       </Button>
     </Link>
   );
 
   return (
     <DashboardCard
-      cardTitle="Suppliers"
-      cardDescription="Quick contact list"
+      cardTitle={t("dashboard.supplierCard.title")}
+      cardDescription={t("dashboard.supplierCard.description")}
       cardOther={cardOther}
       cardContent={cardContent}
     />
