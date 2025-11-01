@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -10,6 +10,51 @@ import { usePathname } from "next/navigation";
 import LangSwitcher from "@/components/lang/lang-switcher";
 import { useI18n } from "@/components/lang/i18n-provider";
 import { ChevronRight } from "lucide-react";
+
+function LogoWithSkeleton({
+  src,
+  alt,
+  width = 120,
+  height = 32,
+  className = "h-8 w-auto",
+  filter,
+  sizes,
+}: {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+  filter?: string;
+  sizes?: string;
+}) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <div className="relative h-8 w-[120px] flex items-center justify-center">
+      {isLoading && (
+        <div className="absolute inset-0 animate-pulse rounded bg-gray-200" />
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        className={`relative ${className}`}
+        style={{
+          width: "auto",
+          height: "auto",
+          ...(filter && { filter }),
+          opacity: isLoading ? 0 : 1,
+          transition: "opacity 0.3s ease-in-out",
+        }}
+        sizes={sizes}
+        onLoad={() => setIsLoading(false)}
+        onError={() => setIsLoading(false)}
+      />
+    </div>
+  );
+}
 
 interface SiteHeaderProps {
   variant?: "landing" | "authenticated";
@@ -163,18 +208,13 @@ export const SiteHeader = memo(function SiteHeader({
               {/* Header Section */}
               <div className="border-border/20 flex items-center justify-between border-b p-6">
                 <Link href="/" aria-label={t("common.nav.homepage")} className="flex items-center">
-                  <Image
+                  <LogoWithSkeleton
                     src="/images/logo-black.png"
                     alt="EPIDOM logo"
                     width={120}
                     height={32}
                     className="h-8 w-auto"
-                    style={{
-                      width: "auto",
-                      height: "auto",
-                      filter:
-                        "invert(27%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(96%) contrast(80%)",
-                    }}
+                    filter="invert(27%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(96%) contrast(80%)"
                     sizes="(max-width: 768px) 120px, 120px"
                   />
                   <span className="sr-only">{t("common.brand")}</span>

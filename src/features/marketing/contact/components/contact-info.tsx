@@ -47,34 +47,34 @@ export function ContactInfo() {
 
         <div className="space-y-4 sm:space-y-5">
           <ContactItem icon={MapPin} label={t("contact.labels.address")}>
-            <div className="space-y-0.5">
-              <p className="text-sm sm:text-base md:text-lg" style={{ color: "#444444" }}>
-                {t("contact.info.address.line1")}
-              </p>
-              <p className="text-sm sm:text-base md:text-lg" style={{ color: "#444444" }}>
-                {t("contact.info.address.line2")}
-              </p>
-            </div>
+              <div className="space-y-0.5">
+                <p className="text-sm sm:text-base md:text-lg" style={{ color: "#444444" }}>
+                  {t("contact.info.address.line1")}
+                </p>
+                <p className="text-sm sm:text-base md:text-lg" style={{ color: "#444444" }}>
+                  {t("contact.info.address.line2")}
+                </p>
+              </div>
           </ContactItem>
 
           <ContactItem icon={Phone} label={t("contact.labels.phone")}>
-            <a
-              href={`tel:${t("contact.info.phone.number").replace(/[^\d+]/g, "")}`}
-              className="block text-sm transition-opacity hover:opacity-70 sm:text-base md:text-lg"
-              style={{ color: "var(--color-brand-primary)" }}
-            >
-              {t("contact.info.phone.number")}
-            </a>
+              <a
+                href={`tel:${t("contact.info.phone.number").replace(/[^\d+]/g, "")}`}
+                className="block text-sm transition-opacity hover:opacity-70 sm:text-base md:text-lg"
+                style={{ color: "var(--color-brand-primary)" }}
+              >
+                {t("contact.info.phone.number")}
+              </a>
           </ContactItem>
 
           <ContactItem icon={Mail} label={t("contact.labels.email")}>
-            <a
-              href={`mailto:${t("contact.info.email.address")}`}
-              className="text-sm transition-opacity hover:opacity-70 sm:text-base md:text-lg"
-              style={{ color: "var(--color-brand-primary)" }}
-            >
-              {t("contact.info.email.address")}
-            </a>
+                <a
+                  href={`mailto:${t("contact.info.email.address")}`}
+                  className="text-sm transition-opacity hover:opacity-70 sm:text-base md:text-lg"
+                  style={{ color: "var(--color-brand-primary)" }}
+                >
+                  {t("contact.info.email.address")}
+                </a>
           </ContactItem>
         </div>
       </div>
