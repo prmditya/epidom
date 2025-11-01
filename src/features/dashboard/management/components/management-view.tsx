@@ -5,76 +5,60 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RecipeProductionCard } from "../recipe-production/recipe-production";
 import { ProductionHistoryCard } from "../production-history/production-history";
 import { EditStockCard } from "../edit-stock/edit-stock";
-import { OrdersTable } from "../delivery/orders-table";
-import { OrderDetails } from "../delivery/order-details";
-import ScheduleDeliveryDialog from "../delivery/schedule-delivery-dialog";
-import UpdateOrderStatusDialog from "../delivery/update-order-status-dialog";
-import EditOrderDialog from "../delivery/edit-order-dialog";
-import PrintOrderDialog from "../delivery/print-order-dialog";
+import { SupplierDeliveriesTable } from "../delivery/supplier-deliveries-table";
+import { SupplierDeliveryDetails } from "../delivery/supplier-delivery-details";
+import UpdateDeliveryStatusDialog from "../delivery/update-delivery-status-dialog";
+import PrintDeliveryDialog from "../delivery/print-delivery-dialog";
+import AddEditDeliveryDialog from "../delivery/add-edit-delivery-dialog";
 import { useI18n } from "@/components/lang/i18n-provider";
-import { MOCK_ORDERS } from "@/mocks";
-import type { Order } from "@/types/entities";
+import { MOCK_SUPPLIER_DELIVERIES } from "@/mocks";
+import type { SupplierDelivery } from "@/types/entities";
 
 export function ManagementView() {
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(MOCK_ORDERS[0] || null);
-  const [scheduleDialogOpen, setScheduleDialogOpen] = useState(false);
+  const [selectedDelivery, setSelectedDelivery] = useState<SupplierDelivery | null>(
+    MOCK_SUPPLIER_DELIVERIES[0] || null
+  );
   const [updateStatusDialogOpen, setUpdateStatusDialogOpen] = useState(false);
-  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [printDialogOpen, setPrintDialogOpen] = useState(false);
-  const [orderToSchedule, setOrderToSchedule] = useState<Order | null>(null);
-  const [orderToUpdate, setOrderToUpdate] = useState<Order | null>(null);
-  const [orderToEdit, setOrderToEdit] = useState<Order | null>(null);
-  const [orderToPrint, setOrderToPrint] = useState<Order | null>(null);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [deliveryToUpdate, setDeliveryToUpdate] = useState<SupplierDelivery | null>(null);
+  const [deliveryToPrint, setDeliveryToPrint] = useState<SupplierDelivery | null>(null);
+  const [deliveryToEdit, setDeliveryToEdit] = useState<SupplierDelivery | null>(null);
   const { t } = useI18n();
 
-  // Handler for scheduling delivery
-  const handleScheduleDelivery = (order: Order) => {
-    setOrderToSchedule(order);
-    setScheduleDialogOpen(true);
-  };
-
   // Handler for updating status
-  const handleUpdateStatus = (order: Order) => {
-    setOrderToUpdate(order);
+  const handleUpdateStatus = (delivery: SupplierDelivery) => {
+    setDeliveryToUpdate(delivery);
     setUpdateStatusDialogOpen(true);
   };
 
-  // Handler for editing order
-  const handleEditOrder = (order: Order) => {
-    setOrderToEdit(order);
+  // Handler for editing delivery
+  const handleEditDelivery = (delivery: SupplierDelivery) => {
+    setDeliveryToEdit(delivery);
     setEditDialogOpen(true);
   };
 
-  // Handler for printing order
-  const handlePrintOrder = (order: Order) => {
-    setOrderToPrint(order);
+  // Handler for printing delivery
+  const handlePrintDelivery = (delivery: SupplierDelivery) => {
+    setDeliveryToPrint(delivery);
     setPrintDialogOpen(true);
   };
 
-  // Handler for deleting order (placeholder for now)
-  const handleDeleteOrder = (orderId: string) => {
+  // Handler for deleting delivery (placeholder for now)
+  const handleDeleteDelivery = (deliveryId: string) => {
     // TODO: Implement delete confirmation
-    console.log("Delete order:", orderId);
-  };
-
-  // Handler for cancelling order
-  const handleCancelOrder = (orderId: string) => {
-    // This will open the update status dialog with CANCELLED status
-    const order = MOCK_ORDERS.find((o) => o.id === orderId);
-    if (order) {
-      handleUpdateStatus(order);
-    }
+    console.log("Delete delivery:", deliveryId);
   };
 
   return (
-    <>
+    <section className="min-h-[calc(100vh-150px)]">
       <Tabs defaultValue="delivery" className="grid w-full gap-6">
         <TabsList className="bg-muted/50 -mx-4 w-full justify-start overflow-x-auto rounded-lg p-1.5 px-4 whitespace-nowrap shadow-sm backdrop-blur-sm sm:mx-0 sm:px-1.5">
           <TabsTrigger
             className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
             value="delivery"
           >
-            {t("tabs.delivery") || "Delivery"}
+            {t("tabs.supplierDeliveries") || "Supplier Deliveries"}
           </TabsTrigger>
           <TabsTrigger
             className="data-[state=active]:bg-card shrink-0 transition-all data-[state=active]:shadow-md"
@@ -97,23 +81,20 @@ export function ManagementView() {
         </TabsList>
 
         <TabsContent value="delivery" className="grid w-full gap-4 lg:grid-cols-3">
-          <OrdersTable
-            orders={MOCK_ORDERS}
-            selectedOrder={selectedOrder}
-            onOrderSelect={setSelectedOrder}
-            onEditOrder={handleEditOrder}
-            onScheduleDelivery={handleScheduleDelivery}
+          <SupplierDeliveriesTable
+            deliveries={MOCK_SUPPLIER_DELIVERIES}
+            selectedDelivery={selectedDelivery}
+            onDeliverySelect={setSelectedDelivery}
+            onEditDelivery={handleEditDelivery}
             onUpdateStatus={handleUpdateStatus}
-            onPrintOrder={handlePrintOrder}
-            onDeleteOrder={handleDeleteOrder}
+            onPrintDelivery={handlePrintDelivery}
+            onDeleteDelivery={handleDeleteDelivery}
           />
-          <OrderDetails
-            selectedOrder={selectedOrder}
-            onEdit={handleEditOrder}
-            onScheduleDelivery={handleScheduleDelivery}
+          <SupplierDeliveryDetails
+            selectedDelivery={selectedDelivery}
+            onEdit={handleEditDelivery}
             onUpdateStatus={handleUpdateStatus}
-            onPrintOrder={handlePrintOrder}
-            onCancelOrder={handleCancelOrder}
+            onPrintDelivery={handlePrintDelivery}
           />
         </TabsContent>
 
@@ -131,22 +112,22 @@ export function ManagementView() {
       </Tabs>
 
       {/* Dialogs */}
-      <ScheduleDeliveryDialog
-        open={scheduleDialogOpen}
-        onOpenChange={setScheduleDialogOpen}
-        order={orderToSchedule}
-      />
-      <UpdateOrderStatusDialog
+      <UpdateDeliveryStatusDialog
         open={updateStatusDialogOpen}
         onOpenChange={setUpdateStatusDialogOpen}
-        order={orderToUpdate}
+        delivery={deliveryToUpdate}
       />
-      <EditOrderDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} order={orderToEdit} />
-      <PrintOrderDialog
+      <PrintDeliveryDialog
         open={printDialogOpen}
         onOpenChange={setPrintDialogOpen}
-        order={orderToPrint}
+        delivery={deliveryToPrint}
       />
-    </>
+      <AddEditDeliveryDialog
+        open={editDialogOpen}
+        onOpenChange={setEditDialogOpen}
+        delivery={deliveryToEdit}
+        mode="edit"
+      />
+    </section>
   );
 }

@@ -21,6 +21,10 @@ export const fr = {
     },
     status: { Active: "Actif", Canceled: "Annulé", Trial: "Essai" },
     clear: "Effacer",
+    selectAll: "Tout Sélectionner",
+    of: "sur",
+    selected: "sélectionné(s)",
+    showing: "Affichage",
     actions: {
       cancel: "Annuler",
       save: "Enregistrer",
@@ -31,6 +35,11 @@ export const fr = {
       next: "Suivant",
       close: "Fermer",
       clearFilters: "Effacer les filtres",
+      add: "Ajouter",
+      previous: "Précédent",
+      saving: "Enregistrement...",
+      saveChanges: "Enregistrer les modifications",
+      filter: "Filtrer",
     },
   },
   hero: {
@@ -729,6 +738,8 @@ export const fr = {
     usersList: "Liste des Utilisateurs",
     orderDetails: "Détails de la Commande",
     ordersSectionTitle: "Commandes",
+    supplierDeliveriesSectionTitle: "Livraisons Fournisseurs",
+    deliveryDetails: "Détails de la Livraison",
   },
   chart: {
     stockUtilization: "Utilisation du stock",
@@ -744,22 +755,226 @@ export const fr = {
     upFromLastWeek: "+12% par rapport à la semaine dernière",
   },
   data: {
-    materials: "Matériaux",
+    productDesignation: "Désignation du Produit",
+    supplierEmail: "Email",
+    supplierName: "Nom",
+    supplierPhone: "Téléphone",
+
+    // Materials section
+    materials: {
+      pageTitle: "Matériaux Premiers",
+      addTitle: "Ajouter un Nouveau Matériau",
+      addDescription:
+        "Ajoutez un nouveau matériau à votre inventaire. Remplissez tous les champs obligatoires.",
+      editTitle: "Modifier le Matériau",
+      editDescription: "Mettre à jour les informations du matériau",
+      detailsTitle: "Détails du Matériau",
+      detailsDescription: "Voir les informations complètes sur ce matériau",
+
+      // Form fields
+      form: {
+        name: "Nom du Matériau",
+        namePlaceholder: "ex : Farine, Sucre, Beurre",
+        category: "Catégorie",
+        selectCategory: "Sélectionner une catégorie",
+        supplier: "Fournisseur",
+        selectSupplier: "Sélectionner un fournisseur",
+        quantity: "Quantité",
+        unit: "Unité",
+        selectUnit: "Unité",
+        minStock: "Stock Min.",
+        cost: "Coût par Unité ($)",
+        costPlaceholder: "25.00",
+        notes: "Notes (Optionnel)",
+        notesPlaceholder: "Informations supplémentaires sur ce matériau...",
+      },
+
+      // Categories
+      categories: {
+        raw: "Matières Premières",
+        packaging: "Emballage",
+        dairy: "Produits Laitiers",
+        grains: "Céréales & Farine",
+        spices: "Épices & Assaisonnements",
+        other: "Autre",
+      },
+
+      // Units
+      units: {
+        kg: "Kilogrammes (kg)",
+        g: "Grammes (g)",
+        l: "Litres (L)",
+        ml: "Millilitres (mL)",
+        pcs: "Pièces",
+        box: "Boîte",
+      },
+
+      // Toasts
+      toasts: {
+        added: {
+          title: "Matériau Ajouté avec Succès",
+          description: "{name} a été ajouté à votre inventaire.",
+        },
+        updated: {
+          title: "Matériau Mis à Jour avec Succès",
+          description: "{name} a été mis à jour.",
+        },
+      },
+    },
+
+    // Recipes section
     recipes: {
-      title: "Recettes",
+      pageTitle: "Recettes",
+      addTitle: "Créer une Nouvelle Recette",
+      editTitle: "Modifier la Recette",
+      detailsTitle: "Détails de la Recette",
+      duplicateTitle: "Dupliquer la Recette",
+      addDescription:
+        "Créez une nouvelle recette avec ingrédients et instructions. Étape {step} sur {total}",
+      editDescription: "Mettre à jour les détails, ingrédients et instructions de la recette.",
+      detailsDescription: "Voir les informations complètes sur cette recette",
+      duplicateDescription:
+        "Créer une copie de cette recette avec un nouveau nom. Tous les ingrédients et instructions seront copiés.",
+
+      // Form sections
+      sections: {
+        basicInfo: "Informations de Base",
+        ingredients: "Ingrédients",
+        instructions: "Instructions",
+      },
+
+      // Form fields
       form: {
         name: "Nom de la Recette",
+        namePlaceholder: "Pain au Levain Artisanal",
         description: "Description",
+        descriptionPlaceholder: "Pain au levain traditionnel avec une croûte croustillante...",
+        descriptionHint: "Brève description de la recette",
         category: "Catégorie",
+        selectCategory: "Sélectionner une catégorie",
+        yieldQuantity: "Quantité Produite",
+        yieldUnit: "Unité de Production",
+        selectUnit: "Sélectionner une unité",
+        productionTime: "Temps de Production (minutes)",
+        productionTimePlaceholder: "180",
+        productionTimeHint: "Temps total pour produire cette recette",
+        instructions: "Instructions de Cuisson",
+        instructionsPlaceholder:
+          "1. Préchauffer le four à 220°C\n2. Mélanger les ingrédients secs dans un grand bol\n3. Ajouter l'eau et pétrir pendant 10 minutes\n4. Laisser reposer pendant 1 heure\n5. Façonner en pains\n6. Cuire pendant 35-40 minutes",
+        instructionsHint: "Fournir des instructions étape par étape pour réaliser cette recette",
       },
+
+      // Steps
+      steps: {
+        basicInfo: "Infos de Base",
+        ingredients: "Ingrédients",
+        instructions: "Instructions",
+        review: "Révision",
+      },
+
+      // Ingredients
+      ingredients: {
+        title: "Ingrédients",
+        description: "Ajouter les matériaux nécessaires pour cette recette",
+        addIngredient: "Ajouter un Ingrédient",
+        noIngredients:
+          'Aucun ingrédient ajouté. Cliquez sur "Ajouter un Ingrédient" pour commencer.',
+        material: "Matériau",
+        selectMaterial: "Sélectionner un matériau",
+        quantity: "Quantité",
+        unit: "Unité",
+        notes: "Notes (optionnel)",
+        notesPlaceholder: "ex : tamisé, température ambiante",
+        costEstimate: "Estimation du Coût",
+        ingredientNumber: "Ingrédient {number}",
+      },
+
+      // Instructions tips
+      instructionsTips: {
+        title: "Conseils pour rédiger les instructions :",
+        tip1: "Numérotez chaque étape pour plus de clarté",
+        tip2: "Incluez les températures et temps spécifiques",
+        tip3: "Mentionnez les techniques ou équipements spéciaux nécessaires",
+        tip4: "Notez les contrôles de qualité ou repères visuels",
+      },
+
+      // Review
+      review: {
+        title: "Vérifier Votre Recette",
+        yield: "Rendement",
+        productionTime: "Temps de Production",
+        minutes: "minutes",
+        ingredientsCount: "Ingrédients ({count})",
+        costAnalysis: "Analyse des Coûts",
+        totalCostPerBatch: "Coût Total par Lot",
+        costPerUnit: "Coût par {unit}",
+        instructionsPreview: "Instructions",
+      },
+
+      // Duplicate dialog
       duplicateDialog: {
         title: "Dupliquer la Recette",
         description:
           "Créer une copie de cette recette avec un nouveau nom. Tous les ingrédients et instructions seront copiés.",
         nameLabel: "Nouveau Nom de Recette",
         nameDescription: "Entrez un nom unique pour la recette dupliquée",
+        originalRecipe: "Recette Originale",
+        comparison: "Comparaison de Recette",
+        originalName: "Nom Original",
+        newName: "Nouveau Nom",
+        recipeDetails: "Détails de la Recette (Copiés)",
+        quickStats: "Statistiques Rapides",
+        ingredientsSummary: "Résumé des Ingrédients",
+        costSummary: "Résumé des Coûts",
+        totalBatchCost: "Coût Total du Lot",
+        note: "Note : Tous les ingrédients, instructions, rendement et temps de production seront copiés de la recette originale.",
         duplicateButton: "Dupliquer la Recette",
       },
+
+      // Categories
+      categories: {
+        breadPastries: "Pains & Pâtisseries",
+        cakesDesserts: "Gâteaux & Desserts",
+        confectionery: "Confiserie",
+        dairyProducts: "Produits Laitiers",
+        beverages: "Boissons",
+        saucesCondiments: "Sauces & Condiments",
+        other: "Autre",
+      },
+
+      // Units
+      units: {
+        kg: "Kilogrammes (kg)",
+        g: "Grammes (g)",
+        l: "Litres (L)",
+        ml: "Millilitres (mL)",
+        units: "Unités",
+        loaves: "Pains",
+        pieces: "Pièces",
+      },
+
+      // Toasts
+      toasts: {
+        created: {
+          title: "Recette Créée avec Succès",
+          description: "{name} a été ajouté à vos recettes.",
+        },
+        updated: {
+          title: "Recette Mise à Jour avec Succès",
+          description: "{name} a été mis à jour.",
+        },
+        duplicated: {
+          title: "Recette Dupliquée",
+          description: "{name} a été créé avec succès.",
+        },
+      },
+
+      // Actions
+      create: "Créer une Recette",
+      update: "Mettre à Jour la Recette",
+      duplicate: "Dupliquer la Recette",
+
+      // Legacy keys (for backward compatibility)
       productsUsingRecipe: {
         title: "Produits Utilisant Cette Recette",
         emptyState: "Aucun produit n'utilise actuellement cette recette",
@@ -767,19 +982,214 @@ export const fr = {
         retailPrice: "Prix de Détail",
         wholesale: "Gros",
       },
+    },
+
+    // Products section
+    products: {
+      pageTitle: "Produits",
+      addTitle: "Ajouter un Nouveau Produit",
+      editTitle: "Modifier le Produit",
+      detailsTitle: "Détails du Produit",
+      addDescription:
+        "Ajoutez un nouveau produit à votre inventaire. Liez-le à une recette pour un calcul automatique des coûts.",
+      editDescription: "Mettre à jour les informations du produit",
+      detailsDescription: "Voir les informations complètes sur ce produit",
+
+      // Form sections
+      sections: {
+        basicInfo: "Informations de Base",
+        pricing: "Tarification",
+        stockManagement: "Gestion des Stocks",
+      },
+
+      // Form fields
+      form: {
+        name: "Nom du Produit",
+        namePlaceholder: "ex : Baguette Tradition",
+        sku: "SKU",
+        skuPlaceholder: "ex : BAG-TRD",
+        skuHint: "Unité de Gestion de Stock (optionnel)",
+        description: "Description",
+        descriptionPlaceholder: "Description du produit...",
+        linkedRecipe: "Recette Liée",
+        selectRecipe: "Sélectionner une recette (optionnel)",
+        noRecipe: "Aucune recette",
+        recipeHint: "Lier à une recette de production",
+        category: "Catégorie",
+        categoryPlaceholder: "ex : Pain, Pâtisserie",
+        imageUrl: "URL de l'Image",
+        imageUrlPlaceholder: "https://example.com/image.jpg",
+        imageUrlHint: "URL de l'image du produit (optionnel)",
+        costPrice: "Prix de Revient",
+        costPriceHint: "Coût de production",
+        wholesalePrice: "Prix de Gros",
+        wholesalePriceHint: "Prix B2B (optionnel)",
+        retailPrice: "Prix de Vente",
+        retailPriceHint: "Prix client",
+        unit: "Unité",
+        currentStock: "Stock Actuel",
+        minStock: "Stock Min",
+        minStockHint: "Point de réapprovisionnement",
+        maxStock: "Stock Max",
+        maxStockHint: "Limite de stockage",
+      },
+
+      // Units
+      units: {
+        unit: "Unité",
+        loaf: "Pain",
+        piece: "Pièce",
+        dozen: "Douzaine",
+        box: "Boîte",
+        kg: "Kilogramme",
+        g: "Gramme",
+      },
+
+      // Pricing suggestions
+      pricingSuggestions: {
+        title: "Tarification Suggérée :",
+        wholesale: "Gros : ${price} (marge de 1,8x)",
+        retail: "Détail : ${price} (marge de 2,5x)",
+      },
+
+      // Toasts
       toasts: {
-        duplicated: {
-          title: "Recette Dupliquée",
-          description: "La recette a été créée avec succès.",
+        added: {
+          title: "Produit Ajouté avec Succès",
+          description: "{name} a été ajouté à vos produits.",
+        },
+        updated: {
+          title: "Produit Mis à Jour avec Succès",
+          description: "{name} a été mis à jour.",
         },
       },
     },
-    products: "Produits",
-    suppliers: "Fournisseurs",
-    productDesignation: "Désignation du Produit",
-    supplierEmail: "Email",
-    supplierName: "Nom",
-    supplierPhone: "Téléphone",
+
+    // Suppliers section
+    suppliers: {
+      pageTitle: "Fournisseurs",
+      addTitle: "Ajouter un Nouveau Fournisseur",
+      editTitle: "Modifier le Fournisseur",
+      detailsTitle: "Détails du Fournisseur",
+      addDescription:
+        "Ajoutez un nouveau fournisseur à votre liste de contacts. Remplissez autant d'informations que possible.",
+      editDescription: "Mettre à jour les informations du fournisseur",
+      detailsDescription: "Voir les informations complètes sur ce fournisseur",
+
+      // Form sections
+      sections: {
+        basicInfo: "Informations de Base",
+        address: "Adresse",
+        businessTerms: "Conditions Commerciales",
+        performanceMetrics: "Métriques de Performance (Optionnel)",
+        additionalNotes: "Notes Supplémentaires",
+      },
+
+      // Form fields
+      form: {
+        name: "Nom du Fournisseur",
+        namePlaceholder: "ex : Grain & Co",
+        contactPerson: "Personne de Contact",
+        contactPersonPlaceholder: "ex : Jean Dupont",
+        contactPersonHint: "Nom du contact principal",
+        email: "Email",
+        emailPlaceholder: "contact@fournisseur.com",
+        emailHint: "Email professionnel",
+        phone: "Téléphone",
+        phonePlaceholder: "+33 1 23 45 67 89",
+        phoneHint: "Numéro de téléphone professionnel",
+        address: "Adresse",
+        addressPlaceholder: "15 Rue de la Boulangerie",
+        city: "Ville",
+        cityPlaceholder: "Paris",
+        country: "Pays",
+        countryPlaceholder: "France",
+        paymentTerms: "Conditions de Paiement",
+        selectPaymentTerms: "Sélectionner les conditions de paiement",
+        paymentTermsHint: "Délai de paiement",
+        deliverySchedule: "Calendrier de Livraison",
+        deliverySchedulePlaceholder: "Lundi, Mercredi, Vendredi",
+        deliveryScheduleHint: "Jours de livraison réguliers",
+        rating: "Évaluation de la Qualité",
+        ratingPlaceholder: "4.5",
+        ratingHint: "Évaluation sur 5.0",
+        onTimeDeliveryRate: "Taux de Livraison à Temps",
+        onTimeDeliveryRatePlaceholder: "95",
+        onTimeDeliveryRateHint: "Pourcentage (0-100)",
+        notes: "Notes",
+        notesPlaceholder: "Toute information supplémentaire sur ce fournisseur...",
+        notesHint: "Exigences spéciales, préférences ou détails importants",
+      },
+
+      // Payment terms
+      paymentTerms: {
+        cod: "Paiement à la Livraison",
+        net15: "Net 15 Jours",
+        net30: "Net 30 Jours",
+        net60: "Net 60 Jours",
+        net90: "Net 90 Jours",
+      },
+
+      // Toasts
+      toasts: {
+        added: {
+          title: "Fournisseur Ajouté avec Succès",
+          description: "{name} a été ajouté à vos fournisseurs.",
+        },
+        updated: {
+          title: "Fournisseur Mis à Jour avec Succès",
+          description: "{name} a été mis à jour.",
+        },
+      },
+    },
+  },
+  filters: {
+    allSuppliers: "Tous les Fournisseurs",
+    allStock: "Tout le Stock",
+    inStock: "En Stock",
+    lowStock: "Stock Faible",
+    critical: "Critique",
+    overstocked: "Surstock",
+    allCategories: "Toutes les Catégories",
+    allTerms: "Toutes les Conditions",
+    allRatings: "Toutes les Notes",
+    cod: "Paiement Comptant",
+    net15: "Net 15",
+    net30: "Net 30",
+    net60: "Net 60",
+    net90: "Net 90",
+    excellent: "Excellent (4,5+)",
+    good: "Bien (4,0+)",
+    average: "Moyen (3,0+)",
+    poor: "Faible (<3,0)",
+  },
+  sort: {
+    nameAZ: "Nom (A-Z)",
+    nameZA: "Nom (Z-A)",
+    stockLowHigh: "Stock (Bas-Haut)",
+    stockHighLow: "Stock (Haut-Bas)",
+    priceLowHigh: "Prix (Bas-Haut)",
+    priceHighLow: "Prix (Haut-Bas)",
+    costLowHigh: "Coût (Bas-Haut)",
+    costHighLow: "Coût (Haut-Bas)",
+    profitLowHigh: "Profit (Bas-Haut)",
+    profitHighLow: "Profit (Haut-Bas)",
+    categoryAZ: "Catégorie (A-Z)",
+    categoryZA: "Catégorie (Z-A)",
+    ratingLowHigh: "Note (Bas-Haut)",
+    ratingHighLow: "Note (Haut-Bas)",
+    deliveryLowHigh: "Livraison (Bas-Haut)",
+    deliveryHighLow: "Livraison (Haut-Bas)",
+    cityAZ: "Ville (A-Z)",
+    cityZA: "Ville (Z-A)",
+    yieldLowHigh: "Rendement (Bas-Haut)",
+    yieldHighLow: "Rendement (Haut-Bas)",
+    ingredientsLowHigh: "Ingrédients (Bas-Haut)",
+    ingredientsHighLow: "Ingrédients (Haut-Bas)",
+    difficultyLowHigh: "Difficulté (Bas-Haut)",
+    difficultyHighLow: "Difficulté (Haut-Bas)",
+    prepTimeLowHigh: "Temps Prépa (Bas-Haut)",
+    prepTimeHighLow: "Temps Prépa (Haut-Bas)",
   },
   tables: {
     order: "Commande",
@@ -828,18 +1238,30 @@ export const fr = {
     noResults: "Aucun résultat trouvé",
     profileUpdated: "Profil mis à jour avec succès",
     selectOrder: "Sélectionnez une commande pour voir les détails",
+    selectDelivery: "Sélectionnez une livraison pour voir les détails",
     invalidCredentials: "Email ou mot de passe invalide",
     loginFailed: "La connexion a échoué. Veuillez réessayer.",
     loggingIn: "Connexion en cours...",
     registrationSuccessful: "Inscription réussie ! Veuillez vous connecter.",
     userAlreadyExists: "Un utilisateur avec cet email existe déjà.",
     registrationFailed: "L'inscription a échoué. Veuillez réessayer.",
+    noMatchingFilters:
+      "Aucun élément ne correspond à vos filtres. Essayez d'ajuster votre recherche.",
+    noMaterialsFound: "Aucun matériau trouvé",
+    noRecipesFound: "Aucune recette trouvée",
+    noProductsFound: "Aucun produit trouvé",
+    noSuppliersFound: "Aucun fournisseur trouvé",
+    getStartedMaterial: "Commencez par ajouter votre premier matériau",
+    getStartedRecipe: "Commencez par créer votre première recette",
+    getStartedProduct: "Commencez par ajouter votre premier produit",
+    getStartedSupplier: "Commencez par ajouter votre premier fournisseur",
   },
   alerts: {
     // Page titles
     title: "Alertes de Stock",
     ordersToPlace: "Commandes à Passer",
-    ordersDescription: "Contacter les fournisseurs pour réapprovisionner les articles en faible stock",
+    ordersDescription:
+      "Contacter les fournisseurs pour réapprovisionner les articles en faible stock",
 
     // Alert states
     noActiveAlerts: "Aucune Alerte Active",
@@ -990,7 +1412,8 @@ export const fr = {
       cancelingSoon: "Abonnement se Termine",
       cancelMessage: "Votre abonnement ne sera pas renouvelé à la fin de la période actuelle.",
       pastDue: "Paiement Requis",
-      pastDueMessage: "Votre paiement est en retard. Veuillez mettre à jour votre moyen de paiement.",
+      pastDueMessage:
+        "Votre paiement est en retard. Veuillez mettre à jour votre moyen de paiement.",
     },
 
     // Notifications
@@ -1002,7 +1425,8 @@ export const fr = {
       inApp: "Notifications In-App",
       categories: {
         alerts: "Alertes de Stock",
-        alertsDesc: "Recevez des notifications lorsque les niveaux de stock sont faibles ou critiques",
+        alertsDesc:
+          "Recevez des notifications lorsque les niveaux de stock sont faibles ou critiques",
         orders: "Mises à Jour des Commandes",
         ordersDesc: "Recevez des mises à jour sur les changements d'état des commandes",
         production: "Mises à Jour de Production",
@@ -1113,6 +1537,7 @@ export const fr = {
   },
   tabs: {
     delivery: "Livraison",
+    supplierDeliveries: "Livraisons Fournisseurs",
     recipeProduction: "Production de Recettes",
     productionHistory: "Historique de Production",
     editStock: "Modifier le Stock",
@@ -1123,146 +1548,120 @@ export const fr = {
   management: {
     // Delivery Tab
     delivery: {
-      title: "Gestion des Livraisons de Commandes",
-      searchPlaceholder: "Rechercher par numéro, client ou statut...",
+      title: "Livraisons Fournisseurs",
+      searchPlaceholder: "Rechercher par référence, fournisseur ou notes...",
       filters: {
         status: "Statut",
         allStatuses: "Tous les Statuts",
-        paymentStatus: "Paiement",
-        allPayments: "Tous les Paiements",
+        deliveryType: "Type de Livraison",
+        allTypes: "Tous les Types",
         dateRange: "Période",
         from: "De",
         to: "À",
         clearFilters: "Effacer les Filtres",
       },
-      table: {
-        order: "Commande",
-        customer: "Client",
-        date: "Date",
-        items: "Articles",
-        amount: "Montant",
-        status: "Statut",
-        payment: "Paiement",
-        actions: "Actions",
-        noResults: "Aucune commande trouvée",
-        noResultsDesc: "Essayez d'ajuster vos critères de recherche ou de filtre",
-        selected: "sélectionné(s)",
+      status: {
+        pending: "En Attente",
+        inTransit: "En Transit",
+        received: "Reçu",
+        cancelled: "Annulé",
       },
+      type: {
+        incoming: "Entrant",
+        outgoing: "Sortant",
+      },
+      table: {
+        reference: "Référence",
+        supplier: "Fournisseur",
+        type: "Type",
+        expectedDate: "Date Prévue",
+        status: "Statut",
+        items: "Articles",
+        actions: "Actions",
+      },
+      noMatches: "Aucune livraison ne correspond à vos filtres",
+      noDeliveries: "Aucune livraison pour le moment",
       actions: {
         edit: "Modifier",
-        schedule: "Planifier la Livraison",
         updateStatus: "Mettre à Jour le Statut",
         print: "Imprimer",
         delete: "Supprimer",
-        bulkMarkProcessing: "Marquer comme En Cours",
-        bulkMarkReady: "Marquer comme Prêt",
-        bulkExport: "Exporter la Sélection",
-        bulkDelete: "Supprimer la Sélection",
       },
       details: {
-        title: "Détails de la Commande",
-        selectOrder: "Sélectionnez une commande pour voir les détails",
-        orderInfo: "Informations de la Commande",
-        customerInfo: "Informations du Client",
-        deliveryInfo: "Informations de Livraison",
-        items: "Articles de la Commande",
-        timeline: "Chronologie de la Commande",
+        title: "Détails de la Livraison",
+        selectDelivery: "Sélectionnez une livraison pour voir les détails",
+        deliveryId: "ID de Livraison",
+        supplier: "Fournisseur",
+        deliveryDetails: "Détails de la Livraison",
+        expected: "Prévu",
+        received: "Reçu",
+        items: "Articles",
+        material: "Matière",
+        quantity: "Quantité",
+        unit: "Unité",
         notes: "Notes",
+        timeline: "Chronologie",
+        by: "par",
         quickActions: "Actions Rapides",
-        financial: "Résumé Financier",
-        subtotal: "Sous-total",
-        tax: "Taxe",
-        total: "Total",
-        noNotes: "Aucune note ajoutée",
+        updateStatus: "Mettre à Jour le Statut",
+        editDelivery: "Modifier la Livraison",
+        printDelivery: "Imprimer la Livraison",
+        created: "Créé",
+        updated: "Mis à jour",
       },
       dialogs: {
-        scheduleDelivery: {
-          title: "Planifier la Livraison",
-          description: "Planifier la livraison pour la commande",
-          deliveryDate: "Date de Livraison",
-          deliveryTime: "Heure de Livraison",
-          deliveryMethod: "Méthode de Livraison",
-          ownFleet: "Flotte Propre",
-          externalCarrier: "Transporteur Externe",
-          carrier: "Transporteur/Compagnie",
-          trackingNumber: "Numéro de Suivi",
-          driverName: "Nom du Chauffeur",
-          vehicleNumber: "Numéro du Véhicule",
-          notes: "Notes de Livraison",
-          customerNotification: "Notifier le Client",
-          scheduleButton: "Planifier la Livraison",
-          success: "Livraison planifiée avec succès",
-        },
         updateStatus: {
-          title: "Mettre à Jour le Statut de la Commande",
-          description: "Mettre à jour le statut pour la commande",
+          title: "Mettre à Jour le Statut de la Livraison",
+          description: "Mettre à jour le statut de cette livraison",
           currentStatus: "Statut Actuel",
           newStatus: "Nouveau Statut",
-          notes: "Notes Supplémentaires",
-          customerNotification: "Notifier le Client",
-          notifyDesc: "Envoyer une notification de mise à jour du statut par email au client",
-          estimatedCompletion: "Heure d'Achèvement Estimée",
-          estimatedDesc: "Quand cette commande sera-t-elle prête pour la livraison?",
-          readyTimestamp: "Horodatage Prêt",
-          readyDesc: "Quand la commande a-t-elle été terminée et prête?",
-          deliveryConfirmation: "Code de Confirmation de Livraison",
-          deliveryConfirmationDesc: "Code de confirmation ou référence de preuve de livraison",
-          recipientName: "Nom du Destinataire",
-          signatureUrl: "URL de Signature",
-          signatureUrlDesc: "URL vers la signature numérique ou l'image de preuve de livraison",
-          cancellationReason: "Raison de l'Annulation",
-          cancellationReasonDesc: "Cela sera enregistré dans l'historique de la commande",
-          cannotUpdate: "Le statut de cette commande ne peut pas être modifié",
+          receivedDate: "Date de Réception",
+          selectDate: "Sélectionner la date",
+          notes: "Notes",
+          notesPlaceholder: "Ajoutez des notes sur ce changement de statut...",
           updateButton: "Mettre à Jour le Statut",
           success: "Statut mis à jour avec succès",
         },
-        editOrder: {
-          title: "Modifier la Commande",
-          description: "Mettre à jour les détails de la commande pour",
-          orderInfo: "Informations de la Commande",
-          customerInfo: "Informations du Client",
-          deliveryAddress: "Adresse de Livraison",
-          orderItems: "Articles de la Commande",
-          additionalNotes: "Notes Supplémentaires",
-          orderNumber: "Numéro de Commande",
-          orderNumberDesc: "Le numéro de commande ne peut pas être modifié",
-          orderDate: "Date de Commande",
-          deliveryDate: "Date de Livraison",
-          supplier: "Fournisseur",
-          status: "Statut de la Commande",
-          paymentStatus: "Statut du Paiement",
-          paymentMethod: "Méthode de Paiement",
-          customerName: "Nom du Client",
-          customerEmail: "Adresse Email",
-          customerPhone: "Numéro de Téléphone",
-          streetAddress: "Adresse",
-          city: "Ville",
-          postalCode: "Code Postal",
-          country: "Pays",
-          product: "Produit",
-          quantity: "Quantité",
-          unitPrice: "Prix Unitaire",
-          subtotal: "Sous-total",
-          totalAmount: "Montant Total",
-          addItem: "Ajouter un Article",
-          noItems: "Aucun article ajouté. Cliquez sur \"Ajouter un Article\" pour commencer.",
-          saveChanges: "Enregistrer les Modifications",
-          success: "Commande mise à jour avec succès",
-        },
-        printOrder: {
-          title: "Imprimer la Commande",
-          description: "Sélectionnez un modèle et imprimez ou téléchargez la commande",
-          template: "Modèle",
-          invoice: "Facture",
-          deliveryNote: "Bon de Livraison",
-          packingSlip: "Bordereau d'Expédition",
+        printDelivery: {
+          title: "Imprimer la Livraison",
+          description: "Imprimer ou télécharger les informations de livraison",
+          supplierDeliveryNote: "Bon de Livraison Fournisseur",
+          expectedDate: "Date Prévue",
+          receivedDate: "Date de Réception",
+          materials: "Matières",
           downloadPDF: "Télécharger PDF",
           print: "Imprimer",
-          companyName: "Epidom Foods",
-          billTo: "Facturer à",
-          deliverTo: "Livrer à",
-          thankYou: "Merci pour votre commande!",
-          contactInfo: "Pour des questions concernant ce",
+        },
+        addEditDelivery: {
+          addTitle: "Ajouter une Nouvelle Livraison",
+          editTitle: "Modifier la Livraison",
+          addDescription: "Créer un nouvel enregistrement de livraison fournisseur",
+          editDescription: "Mettre à jour la livraison",
+          deliveryReference: "Référence de Livraison",
+          supplier: "Fournisseur",
+          selectSupplier: "Sélectionner un fournisseur",
+          deliveryType: "Type de Livraison",
+          status: "Statut",
+          expectedDate: "Date Prévue",
+          selectExpectedDate: "Sélectionner la date prévue",
+          items: "Articles",
+          addItem: "Ajouter un Article",
+          noItemsYet:
+            'Aucun article ajouté. Cliquez sur "Ajouter un Article" pour ajouter des matières.',
+          material: "Matière",
+          selectMaterial: "Sélectionner une matière",
+          quantity: "Quantité",
+          unit: "Unité",
+          notes: "Notes",
+          optionalNotes: "Notes facultatives",
+          additionalNotes: "Notes supplémentaires sur cette livraison...",
+          cancel: "Annuler",
+          createDelivery: "Créer la Livraison",
+          updateDelivery: "Mettre à Jour la Livraison",
+          creating: "Création...",
+          updating: "Mise à jour...",
+          successCreated: "Livraison créée avec succès",
+          successUpdated: "Livraison mise à jour avec succès",
         },
       },
     },
@@ -1274,7 +1673,8 @@ export const fr = {
       items: "articles",
       itemsSelected: "articles sélectionnés",
       selectItem: "Sélectionner un Article",
-      selectItemDescription: "Choisissez un article dans la liste pour voir les détails et effectuer des ajustements",
+      selectItemDescription:
+        "Choisissez un article dans la liste pour voir les détails et effectuer des ajustements",
       noItemsFound: "Aucun article trouvé",
       selectAll: "Tout Sélectionner",
       deselectAll: "Tout Désélectionner",
@@ -1393,7 +1793,8 @@ export const fr = {
       searchRecipes: "Rechercher des recettes...",
       noRecipesFound: "Aucune recette trouvée",
       selectRecipe: "Sélectionner une Recette",
-      selectRecipeHint: "Choisissez une recette dans la liste pour voir les détails et commencer la production",
+      selectRecipeHint:
+        "Choisissez une recette dans la liste pour voir les détails et commencer la production",
 
       // Recipe Details
       yield: "Rendement",
@@ -1404,11 +1805,13 @@ export const fr = {
       startProduction: "Démarrer la Production",
       insufficientMaterials: "Matériaux insuffisants pour démarrer la production",
       insufficientMaterialsWarning: "Certains matériaux sont en dessous des niveaux requis",
-      insufficientMaterialsHint: "Veuillez réapprovisionner les matériaux insuffisants avant de commencer la production",
+      insufficientMaterialsHint:
+        "Veuillez réapprovisionner les matériaux insuffisants avant de commencer la production",
 
       // Material Availability
       materialAvailability: "Disponibilité des Matériaux",
-      materialAvailabilityDescription: "Vérifier la disponibilité des ingrédients pour cette recette",
+      materialAvailabilityDescription:
+        "Vérifier la disponibilité des ingrédients pour cette recette",
       material: "Matériau",
       required: "Requis",
       available: "Disponible",
@@ -1471,7 +1874,8 @@ export const fr = {
         },
         productionFailed: {
           title: "Échec du Démarrage de la Production",
-          description: "Une erreur s'est produite lors du démarrage du lot de production. Veuillez réessayer.",
+          description:
+            "Une erreur s'est produite lors du démarrage du lot de production. Veuillez réessayer.",
         },
       },
     },
@@ -1717,7 +2121,8 @@ export const fr = {
     dialogs: {
       addMovement: {
         title: "Enregistrer un Mouvement de Stock",
-        description: "Ajouter un nouveau mouvement de stock pour suivre les changements d'inventaire.",
+        description:
+          "Ajouter un nouveau mouvement de stock pour suivre les changements d'inventaire.",
       },
       viewMovement: {
         title: "Détails du Mouvement",
@@ -1725,7 +2130,8 @@ export const fr = {
       },
       deleteMovement: {
         title: "Supprimer le Mouvement",
-        description: "Êtes-vous sûr de vouloir supprimer cet enregistrement de mouvement ? Cette action ne peut pas être annulée.",
+        description:
+          "Êtes-vous sûr de vouloir supprimer cet enregistrement de mouvement ? Cette action ne peut pas être annulée.",
       },
       stockHistory: {
         title: "Historique du Stock",
@@ -1745,7 +2151,8 @@ export const fr = {
     emptyStates: {
       noMovements: {
         title: "Aucun mouvement pour le moment",
-        description: "Commencez à suivre votre inventaire en enregistrant votre premier mouvement de stock.",
+        description:
+          "Commencez à suivre votre inventaire en enregistrant votre premier mouvement de stock.",
       },
       noResults: {
         title: "Aucun résultat trouvé",
@@ -1753,7 +2160,8 @@ export const fr = {
       },
       noStock: {
         title: "Aucun article en stock",
-        description: "Ajoutez des matériels ou des produits pour commencer le suivi de l'inventaire.",
+        description:
+          "Ajoutez des matériels ou des produits pour commencer le suivi de l'inventaire.",
       },
     },
   },

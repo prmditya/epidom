@@ -35,6 +35,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/mocks";
 import { Material, MaterialCategory } from "@/types/entities";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 // Zod validation schema (same as add-material-dialog)
 const materialSchema = z.object({
@@ -69,6 +70,7 @@ export default function EditMaterialDialog({
 }: EditMaterialDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const form = useForm<MaterialFormValues>({
     resolver: zodResolver(materialSchema),
@@ -145,9 +147,10 @@ export default function EditMaterialDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[700px]">
         <DialogHeader>
-          <DialogTitle>Edit Material</DialogTitle>
+          <DialogTitle>{t("data.materials.editTitle") || "Edit Material"}</DialogTitle>
           <DialogDescription>
-            Update material information. All fields marked with * are required.
+            {t("data.materials.editDescription") ||
+              "Update material information. All fields marked with * are required."}
           </DialogDescription>
         </DialogHeader>
 
@@ -384,11 +387,13 @@ export default function EditMaterialDialog({
                 onClick={() => onOpenChange(false)}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("actions.cancel") || "Cancel"}
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {isSubmitting ? "Saving..." : "Save Changes"}
+                {isSubmitting
+                  ? t("common.actions.saving") || "Saving..."
+                  : t("common.actions.saveChanges") || "Save Changes"}
               </Button>
             </DialogFooter>
           </form>

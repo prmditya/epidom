@@ -61,8 +61,12 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       if (typeof value === "function") {
         return value(new Date().getFullYear());
       }
-      // Convert number to string if needed
-      return String(value ?? key);
+      // Only return strings or numbers, not objects
+      if (typeof value === "string" || typeof value === "number") {
+        return String(value);
+      }
+      // If value is an object or undefined, return undefined so fallback works
+      return undefined as any;
     },
     [locale]
   );

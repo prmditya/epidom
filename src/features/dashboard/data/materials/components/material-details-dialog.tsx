@@ -34,6 +34,7 @@ import {
 import { MOCK_SUPPLIERS } from "@/mocks";
 import { useState } from "react";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 interface MaterialDetailsDialogProps {
   open: boolean;
@@ -51,6 +52,7 @@ export default function MaterialDetailsDialog({
   onDelete,
 }: MaterialDetailsDialogProps) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const { t } = useI18n();
 
   if (!material) return null;
 
@@ -276,7 +278,7 @@ export default function MaterialDetailsDialog({
 
           <DialogFooter className="gap-2">
             <Button variant="outline" onClick={() => onOpenChange(false)}>
-              Close
+              {t("common.actions.close") || "Close"}
             </Button>
             {onDelete && (
               <Button
@@ -285,13 +287,13 @@ export default function MaterialDetailsDialog({
                 className="gap-2"
               >
                 <Trash2 className="h-4 w-4" />
-                Delete
+                {t("actions.delete") || "Delete"}
               </Button>
             )}
             {onEdit && (
               <Button onClick={handleEdit} className="gap-2">
                 <Edit className="h-4 w-4" />
-                Edit Material
+                {t("data.materials.editTitle") || "Edit Material"}
               </Button>
             )}
           </DialogFooter>

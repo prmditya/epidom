@@ -30,6 +30,7 @@ import type { Supplier } from "@/types/entities";
 import { formatDate } from "@/lib/utils/formatting";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { useState } from "react";
+import { useI18n } from "@/components/lang/i18n-provider";
 
 interface SupplierDetailsDialogProps {
   open: boolean;
@@ -47,6 +48,7 @@ export default function SupplierDetailsDialog({
   onDelete,
 }: SupplierDetailsDialogProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const { t } = useI18n();
   // Helper to get rating badge color
   const getRatingColor = (rating?: number) => {
     if (!rating) return "secondary";
@@ -92,7 +94,7 @@ export default function SupplierDetailsDialog({
               {onEdit && (
                 <Button variant="outline" size="sm" onClick={onEdit}>
                   <Edit className="mr-2 h-4 w-4" />
-                  Edit
+                  {t("actions.edit") || "Edit"}
                 </Button>
               )}
               {onDelete && (
