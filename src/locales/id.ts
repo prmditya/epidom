@@ -239,6 +239,11 @@ export const id = {
     title: "Hubungi Kami",
     subtitle:
       "Baik Anda adalah klien potensial, tertarik dengan layanan kami atau sekadar penggemar karya kami, datanglah untuk menyapa!",
+    labels: {
+      address: "Alamat",
+      phone: "Telepon",
+      email: "Email",
+    },
     info: {
       address: {
         line1: "1 Av. Marcel Ramolfo Garnier",
@@ -1810,6 +1815,18 @@ export const id = {
         printDelivery: "Cetak Pengiriman",
         created: "Dibuat",
         updated: "Diperbarui",
+        unknownMaterial: "Tidak Dikenal",
+        systemNotes: {
+          deliveryScheduled: "Pengiriman dijadwalkan",
+          shipmentDeparted: "Pengiriman berangkat dari gudang supplier",
+          itemsReceived: "Semua item diterima dalam kondisi baik",
+          outForDelivery: "Sedang dalam pengiriman",
+          orderPlaced: "Pesanan dibuat, menunggu konfirmasi",
+          weeklyBulkOrder: "Pesanan besar mingguan dijadwalkan",
+          specialOrder: "Pesanan khusus untuk item spesial",
+          regularDairyDelivery: "Pengiriman produk susu rutin",
+          regularWeeklyDelivery: "Pengiriman mingguan rutin - semua item diperiksa dan disimpan dengan baik",
+        },
       },
       dialogs: {
         updateStatus: {

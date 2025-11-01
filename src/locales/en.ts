@@ -243,6 +243,11 @@ export const en = {
     title: "Contact Us",
     subtitle:
       "Whether you are a potential client, interested in our services or simply a fan of our work, come say hello!",
+    labels: {
+      address: "Address",
+      phone: "Phone",
+      email: "Email",
+    },
     info: {
       address: {
         line1: "1 Av. Marcel Ramolfo Garnier",
@@ -777,7 +782,8 @@ export const en = {
   },
   dashboard: {
     title: "Dashboard",
-    description: "Welcome to the dashboard. Here you can see the current status of your orders, recipes, and stock.",
+    description:
+      "Welcome to the dashboard. Here you can see the current status of your orders, recipes, and stock.",
     alertsCard: {
       title: "Critical Alerts",
       description: "Stock alerts requiring immediate attention",
@@ -1083,22 +1089,22 @@ export const en = {
           title: "Recipe Created Successfully",
           description: "{name} has been added to your recipes.",
         },
-          updated: {
-            title: "Recipe Updated Successfully",
-            description: "{name} has been updated.",
-          },
-          deleted: {
-            title: "Recipe Deleted",
-            description: "{name} has been deleted successfully.",
-          },
-          bulkDeleted: {
-            title: "Recipes Deleted",
-            description: "{count} recipes have been deleted successfully.",
-          },
-          duplicated: {
-            title: "Recipe Duplicated",
-            description: "{name} has been created successfully.",
-          },
+        updated: {
+          title: "Recipe Updated Successfully",
+          description: "{name} has been updated.",
+        },
+        deleted: {
+          title: "Recipe Deleted",
+          description: "{name} has been deleted successfully.",
+        },
+        bulkDeleted: {
+          title: "Recipes Deleted",
+          description: "{count} recipes have been deleted successfully.",
+        },
+        duplicated: {
+          title: "Recipe Duplicated",
+          description: "{name} has been created successfully.",
+        },
       },
 
       // Actions
@@ -1188,14 +1194,14 @@ export const en = {
           title: "Product Added Successfully",
           description: "{name} has been added to your products.",
         },
-          updated: {
-            title: "Product Updated Successfully",
-            description: "{name} has been updated.",
-          },
-          deleted: {
-            title: "Product Deleted",
-            description: "{name} has been deleted successfully.",
-          },
+        updated: {
+          title: "Product Updated Successfully",
+          description: "{name} has been updated.",
+        },
+        deleted: {
+          title: "Product Deleted",
+          description: "{name} has been deleted successfully.",
+        },
         bulkDeleted: {
           title: "Products Deleted",
           description: "{count} products have been deleted successfully.",
@@ -1281,21 +1287,21 @@ export const en = {
           title: "Supplier Added Successfully",
           description: "{name} has been added to your suppliers.",
         },
-          updated: {
-            title: "Supplier Updated Successfully",
-            description: "{name} has been updated.",
-          },
-          deleted: {
-            title: "Supplier Deleted",
-            description: "{name} has been deleted successfully.",
-          },
-          bulkDeleted: {
-            title: "Suppliers Deleted",
-            description: "{count} suppliers have been deleted successfully.",
-          },
+        updated: {
+          title: "Supplier Updated Successfully",
+          description: "{name} has been updated.",
+        },
+        deleted: {
+          title: "Supplier Deleted",
+          description: "{name} has been deleted successfully.",
+        },
+        bulkDeleted: {
+          title: "Suppliers Deleted",
+          description: "{count} suppliers have been deleted successfully.",
         },
       },
     },
+  },
   filters: {
     allSuppliers: "All Suppliers",
     allStock: "All Stock",
@@ -1823,6 +1829,18 @@ export const en = {
         created: "Created",
         updated: "Updated",
         unknownMaterial: "Unknown Material",
+        systemNotes: {
+          deliveryScheduled: "Delivery scheduled",
+          shipmentDeparted: "Shipment departed from supplier warehouse",
+          itemsReceived: "All items received in good condition",
+          outForDelivery: "Out for delivery",
+          orderPlaced: "Order placed, awaiting confirmation",
+          weeklyBulkOrder: "Weekly bulk order scheduled",
+          specialOrder: "Special order for specialty items",
+          regularDairyDelivery: "Regular dairy delivery",
+          regularWeeklyDelivery:
+            "Regular weekly delivery - all items inspected and stored properly",
+        },
       },
       dialogs: {
         updateStatus: {

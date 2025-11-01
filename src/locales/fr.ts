@@ -235,6 +235,11 @@ export const fr = {
     title: "Nous contacter",
     subtitle:
       "Que vous soyez un client potentiel, intéressé par nos services ou simplement fan de notre travail, venez nous dire bonjour !",
+    labels: {
+      address: "Adresse",
+      phone: "Téléphone",
+      email: "Email",
+    },
     info: {
       address: {
         line1: "1 Av. Marcel Ramolfo Garnier",
@@ -856,7 +861,7 @@ export const fr = {
 
     // Materials section
     materials: {
-      pageTitle: "Matériaux Premiers",
+      pageTitle: "Matières premières",
       addTitle: "Ajouter un Nouveau Matériau",
       addDescription:
         "Ajoutez un nouveau matériau à votre inventaire. Remplissez tous les champs obligatoires.",
@@ -1825,6 +1830,18 @@ export const fr = {
         printDelivery: "Imprimer la Livraison",
         created: "Créé",
         updated: "Mis à jour",
+        unknownMaterial: "Inconnu",
+        systemNotes: {
+          deliveryScheduled: "Livraison programmée",
+          shipmentDeparted: "Expédition partie de l'entrepôt du fournisseur",
+          itemsReceived: "Tous les articles reçus en bon état",
+          outForDelivery: "En cours de livraison",
+          orderPlaced: "Commande passée, en attente de confirmation",
+          weeklyBulkOrder: "Commande groupée hebdomadaire programmée",
+          specialOrder: "Commande spéciale pour articles spécialisés",
+          regularDairyDelivery: "Livraison laitière régulière",
+          regularWeeklyDelivery: "Livraison hebdomadaire régulière - tous les articles inspectés et stockés correctement",
+        },
       },
       dialogs: {
         updateStatus: {

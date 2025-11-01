@@ -31,6 +31,33 @@ export default function PrintDeliveryDialog({
   const { t } = useI18n();
   const printRef = useRef<HTMLDivElement>(null);
 
+  // Helper function to translate system notes
+  const translateSystemNote = (note: string | null | undefined): string => {
+    if (!note) return "";
+
+    // Map of English system notes to translation keys
+    const systemNoteMap: Record<string, string> = {
+      "Delivery scheduled": "management.delivery.details.systemNotes.deliveryScheduled",
+      "Shipment departed from supplier warehouse": "management.delivery.details.systemNotes.shipmentDeparted",
+      "All items received in good condition": "management.delivery.details.systemNotes.itemsReceived",
+      "Out for delivery": "management.delivery.details.systemNotes.outForDelivery",
+      "Order placed, awaiting confirmation": "management.delivery.details.systemNotes.orderPlaced",
+      "Weekly bulk order scheduled": "management.delivery.details.systemNotes.weeklyBulkOrder",
+      "Special order for specialty items": "management.delivery.details.systemNotes.specialOrder",
+      "Regular dairy delivery": "management.delivery.details.systemNotes.regularDairyDelivery",
+      "Regular weekly delivery - all items inspected and stored properly": "management.delivery.details.systemNotes.regularWeeklyDelivery",
+    };
+
+    // Check if note matches a system message
+    const translationKey = systemNoteMap[note];
+    if (translationKey) {
+      return t(translationKey) || note;
+    }
+
+    // If not a system message, return as-is (could be user input)
+    return note;
+  };
+
   const handlePrint = () => {
     if (printRef.current) {
       const printWindow = window.open("", "_blank");
@@ -228,7 +255,7 @@ export default function PrintDeliveryDialog({
             <div className="bg-muted/30 rounded-lg p-4">
               <h2 className="mb-2 text-lg font-semibold">{t("management.delivery.details.notes")}</h2>
               <Separator className="my-2" />
-              <p className="text-sm">{delivery.notes}</p>
+              <p className="text-sm">{translateSystemNote(delivery.notes)}</p>
             </div>
           )}
 
