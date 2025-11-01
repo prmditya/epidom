@@ -25,6 +25,18 @@ export const id = {
     of: "dari",
     selected: "dipilih",
     showing: "Menampilkan",
+    sku: "SKU",
+    stock: "Stok",
+    cost: "Biaya",
+    category: "Kategori",
+    recipe: "Resep",
+    price: "Harga",
+    profit: "Untung",
+    email: "Email",
+    phone: "Telepon",
+    location: "Lokasi",
+    payment: "Pembayaran",
+    delivery: "Pengiriman",
     actions: {
       cancel: "Batalkan",
       save: "Simpan",
@@ -40,6 +52,11 @@ export const id = {
       saving: "Menyimpan...",
       saveChanges: "Simpan Perubahan",
       filter: "Filter",
+      export: "Ekspor",
+      exporting: "Mengekspor...",
+      exportAsCsv: "Ekspor sebagai CSV",
+      exportAsExcel: "Ekspor sebagai Excel",
+      exportAsPdf: "Ekspor sebagai PDF",
     },
   },
   hero: {
@@ -759,6 +776,7 @@ export const id = {
 
     // Materials section
     materials: {
+      pageTitle: "Bahan",
       addTitle: "Tambah Bahan Baru",
       addDescription: "Tambahkan bahan baru ke inventaris Anda. Isi semua kolom yang wajib diisi.",
       editTitle: "Edit Bahan",
@@ -804,6 +822,13 @@ export const id = {
         box: "Kotak",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Lihat Bahan",
+        edit: "Edit Bahan",
+        delete: "Hapus Bahan",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -814,11 +839,20 @@ export const id = {
           title: "Bahan Berhasil Diperbarui",
           description: "{name} telah diperbarui.",
         },
+        deleted: {
+          title: "Bahan Berhasil Dihapus",
+          description: "{name} telah berhasil dihapus.",
+        },
+        bulkDeleted: {
+          title: "Bahan Berhasil Dihapus",
+          description: "{count} bahan telah berhasil dihapus.",
+        },
       },
     },
 
     // Recipes section
     recipes: {
+      pageTitle: "Resep",
       addTitle: "Buat Resep Baru",
       editTitle: "Edit Resep",
       detailsTitle: "Detail Resep",
@@ -942,6 +976,23 @@ export const id = {
         pieces: "Potong",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Lihat Resep",
+        edit: "Edit Resep",
+        duplicate: "Duplikasi Resep",
+        delete: "Hapus Resep",
+      },
+
+      // Card labels
+      cards: {
+        yield: "Hasil",
+        perBatch: "per batch",
+        perUnit: "Per satuan",
+        ingredient: "bahan",
+        ingredients: "bahan",
+      },
+
       // Toasts
       toasts: {
         created: {
@@ -951,6 +1002,14 @@ export const id = {
         updated: {
           title: "Resep Berhasil Diperbarui",
           description: "{name} telah diperbarui.",
+        },
+        deleted: {
+          title: "Resep Berhasil Dihapus",
+          description: "{name} telah berhasil dihapus.",
+        },
+        bulkDeleted: {
+          title: "Resep Berhasil Dihapus",
+          description: "{count} resep telah berhasil dihapus.",
         },
         duplicated: {
           title: "Resep Berhasil Diduplikasi",
@@ -975,6 +1034,7 @@ export const id = {
 
     // Products section
     products: {
+      pageTitle: "Produk",
       addTitle: "Tambah Produk Baru",
       editTitle: "Edit Produk",
       detailsTitle: "Detail Produk",
@@ -1039,6 +1099,13 @@ export const id = {
         retail: "Eceran: ${price} (markup 2,5x)",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Lihat Produk",
+        edit: "Edit Produk",
+        delete: "Hapus Produk",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -1049,11 +1116,20 @@ export const id = {
           title: "Produk Berhasil Diperbarui",
           description: "{name} telah diperbarui.",
         },
+        deleted: {
+          title: "Produk Berhasil Dihapus",
+          description: "{name} telah berhasil dihapus.",
+        },
+        bulkDeleted: {
+          title: "Produk Berhasil Dihapus",
+          description: "{count} produk telah berhasil dihapus.",
+        },
       },
     },
 
     // Suppliers section
     suppliers: {
+      pageTitle: "Pemasok",
       addTitle: "Tambah Pemasok Baru",
       editTitle: "Edit Pemasok",
       detailsTitle: "Detail Pemasok",
@@ -1115,6 +1191,13 @@ export const id = {
         net90: "Net 90 Hari",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Lihat Pemasok",
+        edit: "Edit Pemasok",
+        delete: "Hapus Pemasok",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -1124,6 +1207,14 @@ export const id = {
         updated: {
           title: "Pemasok Berhasil Diperbarui",
           description: "{name} telah diperbarui.",
+        },
+        deleted: {
+          title: "Pemasok Berhasil Dihapus",
+          description: "{name} telah berhasil dihapus.",
+        },
+        bulkDeleted: {
+          title: "Pemasok Berhasil Dihapus",
+          description: "{count} pemasok telah berhasil dihapus.",
         },
       },
     },
@@ -1239,6 +1330,11 @@ export const id = {
     getStartedRecipe: "Mulai dengan membuat resep pertama Anda",
     getStartedProduct: "Mulai dengan menambahkan produk pertama Anda",
     getStartedSupplier: "Mulai dengan menambahkan pemasok pertama Anda",
+    noDataToExport: "Tidak ada data untuk diekspor",
+    noDataToExportDesc: "Tidak ada data yang tersedia untuk diekspor.",
+    exportSuccessful: "Ekspor berhasil",
+    exportFailed: "Ekspor gagal",
+    exportFailedDesc: "Terjadi kesalahan saat mengekspor data.",
   },
   alerts: {
     // Page titles

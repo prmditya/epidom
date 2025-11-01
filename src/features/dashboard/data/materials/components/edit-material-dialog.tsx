@@ -134,8 +134,11 @@ export default function EditMaterialDialog({
     }
 
     toast({
-      title: "Material Updated Successfully",
-      description: `${data.name} has been updated.`,
+      title: t("data.materials.toasts.updated.title"),
+      description: t("data.materials.toasts.updated.description").replace(
+        "{name}",
+        data.name
+      ),
     });
 
     onOpenChange(false);
@@ -165,7 +168,7 @@ export default function EditMaterialDialog({
                   <FormItem>
                     <FormLabel>Material Name *</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Flour T55" {...field} />
+                      <Input placeholder={t("data.materials.form.namePlaceholder")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -179,7 +182,7 @@ export default function EditMaterialDialog({
                   <FormItem>
                     <FormLabel>SKU</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., FLR-T55-25KG" {...field} />
+                      <Input placeholder={t("data.products.form.skuPlaceholder")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -198,7 +201,7 @@ export default function EditMaterialDialog({
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select category" />
+                          <SelectValue placeholder={t("data.materials.form.selectCategory")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -226,7 +229,7 @@ export default function EditMaterialDialog({
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select supplier" />
+                          <SelectValue placeholder={t("data.materials.form.selectSupplier")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -296,7 +299,7 @@ export default function EditMaterialDialog({
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Unit" />
+                          <SelectValue placeholder={t("data.materials.form.selectUnit")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -338,7 +341,7 @@ export default function EditMaterialDialog({
                   <FormItem>
                     <FormLabel>Storage Location</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Storage Room A, Shelf 1" {...field} />
+                      <Input placeholder={t("data.materials.form.locationPlaceholder")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -354,7 +357,7 @@ export default function EditMaterialDialog({
                 <FormItem>
                   <FormLabel>Barcode/Product Code</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., 3456789012345" {...field} />
+                    <Input placeholder={t("data.materials.form.barcodePlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -370,7 +373,7 @@ export default function EditMaterialDialog({
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Additional information about this material..."
+                      placeholder={t("data.materials.form.notesPlaceholder")}
                       rows={3}
                       {...field}
                     />

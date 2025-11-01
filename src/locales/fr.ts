@@ -25,6 +25,18 @@ export const fr = {
     of: "sur",
     selected: "sélectionné(s)",
     showing: "Affichage",
+    sku: "SKU",
+    stock: "Stock",
+    cost: "Coût",
+    category: "Catégorie",
+    recipe: "Recette",
+    price: "Prix",
+    profit: "Bénéfice",
+    email: "E-mail",
+    phone: "Téléphone",
+    location: "Localisation",
+    payment: "Paiement",
+    delivery: "Livraison",
     actions: {
       cancel: "Annuler",
       save: "Enregistrer",
@@ -40,6 +52,11 @@ export const fr = {
       saving: "Enregistrement...",
       saveChanges: "Enregistrer les modifications",
       filter: "Filtrer",
+      export: "Exporter",
+      exporting: "Exportation...",
+      exportAsCsv: "Exporter en CSV",
+      exportAsExcel: "Exporter en Excel",
+      exportAsPdf: "Exporter en PDF",
     },
   },
   hero: {
@@ -809,6 +826,13 @@ export const fr = {
         box: "Boîte",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Voir le Matériau",
+        edit: "Modifier le Matériau",
+        delete: "Supprimer le Matériau",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -818,6 +842,14 @@ export const fr = {
         updated: {
           title: "Matériau Mis à Jour avec Succès",
           description: "{name} a été mis à jour.",
+        },
+        deleted: {
+          title: "Matériau Supprimé",
+          description: "{name} a été supprimé avec succès.",
+        },
+        bulkDeleted: {
+          title: "Matériaux Supprimés",
+          description: "{count} matériaux ont été supprimés avec succès.",
         },
       },
     },
@@ -953,6 +985,23 @@ export const fr = {
         pieces: "Pièces",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Voir la Recette",
+        edit: "Modifier la Recette",
+        duplicate: "Dupliquer la Recette",
+        delete: "Supprimer la Recette",
+      },
+
+      // Card labels
+      cards: {
+        yield: "Rendement",
+        perBatch: "par lot",
+        perUnit: "Par unité",
+        ingredient: "ingrédient",
+        ingredients: "ingrédients",
+      },
+
       // Toasts
       toasts: {
         created: {
@@ -962,6 +1011,14 @@ export const fr = {
         updated: {
           title: "Recette Mise à Jour avec Succès",
           description: "{name} a été mis à jour.",
+        },
+        deleted: {
+          title: "Recette Supprimée",
+          description: "{name} a été supprimé avec succès.",
+        },
+        bulkDeleted: {
+          title: "Recettes Supprimées",
+          description: "{count} recettes ont été supprimées avec succès.",
         },
         duplicated: {
           title: "Recette Dupliquée",
@@ -1052,6 +1109,13 @@ export const fr = {
         retail: "Détail : ${price} (marge de 2,5x)",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Voir le Produit",
+        edit: "Modifier le Produit",
+        delete: "Supprimer le Produit",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -1061,6 +1125,14 @@ export const fr = {
         updated: {
           title: "Produit Mis à Jour avec Succès",
           description: "{name} a été mis à jour.",
+        },
+        deleted: {
+          title: "Produit Supprimé",
+          description: "{name} a été supprimé avec succès.",
+        },
+        bulkDeleted: {
+          title: "Produits Supprimés",
+          description: "{count} produits ont été supprimés avec succès.",
         },
       },
     },
@@ -1130,6 +1202,13 @@ export const fr = {
         net90: "Net 90 Jours",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "Voir le Fournisseur",
+        edit: "Modifier le Fournisseur",
+        delete: "Supprimer le Fournisseur",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -1139,6 +1218,14 @@ export const fr = {
         updated: {
           title: "Fournisseur Mis à Jour avec Succès",
           description: "{name} a été mis à jour.",
+        },
+        deleted: {
+          title: "Fournisseur Supprimé",
+          description: "{name} a été supprimé avec succès.",
+        },
+        bulkDeleted: {
+          title: "Fournisseurs Supprimés",
+          description: "{count} fournisseurs ont été supprimés avec succès.",
         },
       },
     },
@@ -1255,6 +1342,11 @@ export const fr = {
     getStartedRecipe: "Commencez par créer votre première recette",
     getStartedProduct: "Commencez par ajouter votre premier produit",
     getStartedSupplier: "Commencez par ajouter votre premier fournisseur",
+    noDataToExport: "Aucune donnée à exporter",
+    noDataToExportDesc: "Il n'y a aucune donnée disponible à exporter.",
+    exportSuccessful: "Exportation réussie",
+    exportFailed: "L'exportation a échoué",
+    exportFailedDesc: "Une erreur s'est produite lors de l'exportation des données.",
   },
   alerts: {
     // Page titles

@@ -25,6 +25,18 @@ export const en = {
     of: "of",
     selected: "selected",
     showing: "Showing",
+    sku: "SKU",
+    stock: "Stock",
+    cost: "Cost",
+    category: "Category",
+    recipe: "Recipe",
+    price: "Price",
+    profit: "Profit",
+    email: "Email",
+    phone: "Phone",
+    location: "Location",
+    payment: "Payment",
+    delivery: "Delivery",
     actions: {
       cancel: "Cancel",
       save: "Save",
@@ -40,6 +52,11 @@ export const en = {
       saving: "Saving...",
       saveChanges: "Save Changes",
       filter: "Filter",
+      export: "Export",
+      exporting: "Exporting...",
+      exportAsCsv: "Export as CSV",
+      exportAsExcel: "Export as Excel",
+      exportAsPdf: "Export as PDF",
     },
   },
   hero: {
@@ -760,6 +777,8 @@ export const en = {
       form: {
         name: "Material Name",
         namePlaceholder: "e.g., Flour, Sugar, Butter",
+        sku: "SKU",
+        skuPlaceholder: "e.g., FLR-T55-25KG",
         category: "Category",
         selectCategory: "Select category",
         supplier: "Supplier",
@@ -770,6 +789,10 @@ export const en = {
         minStock: "Min. Stock",
         cost: "Cost per Unit ($)",
         costPlaceholder: "25.00",
+        location: "Storage Location",
+        locationPlaceholder: "Location",
+        barcode: "Barcode/Product Code",
+        barcodePlaceholder: "Barcode",
         notes: "Notes (Optional)",
         notesPlaceholder: "Additional information about this material...",
       },
@@ -794,6 +817,13 @@ export const en = {
         box: "Box",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "View Material",
+        edit: "Edit Material",
+        delete: "Delete Material",
+      },
+
       // Toasts
       toasts: {
         added: {
@@ -804,11 +834,20 @@ export const en = {
           title: "Material Updated Successfully",
           description: "{name} has been updated.",
         },
+        deleted: {
+          title: "Material Deleted",
+          description: "{name} has been deleted successfully.",
+        },
+        bulkDeleted: {
+          title: "Materials Deleted",
+          description: "{count} materials have been deleted successfully.",
+        },
       },
     },
 
     // Recipes section
     recipes: {
+      pageTitle: "Recipes",
       addTitle: "Create New Recipe",
       editTitle: "Edit Recipe",
       detailsTitle: "Recipe Details",
@@ -936,20 +975,45 @@ export const en = {
         pieces: "Pieces",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "View Recipe",
+        edit: "Edit Recipe",
+        duplicate: "Duplicate Recipe",
+        delete: "Delete Recipe",
+      },
+
+      // Card labels
+      cards: {
+        yield: "Yield",
+        perBatch: "per batch",
+        perUnit: "Per unit",
+        ingredient: "ingredient",
+        ingredients: "ingredients",
+      },
+
       // Toasts
       toasts: {
         created: {
           title: "Recipe Created Successfully",
           description: "{name} has been added to your recipes.",
         },
-        updated: {
-          title: "Recipe Updated Successfully",
-          description: "{name} has been updated.",
-        },
-        duplicated: {
-          title: "Recipe Duplicated",
-          description: "{name} has been created successfully.",
-        },
+          updated: {
+            title: "Recipe Updated Successfully",
+            description: "{name} has been updated.",
+          },
+          deleted: {
+            title: "Recipe Deleted",
+            description: "{name} has been deleted successfully.",
+          },
+          bulkDeleted: {
+            title: "Recipes Deleted",
+            description: "{count} recipes have been deleted successfully.",
+          },
+          duplicated: {
+            title: "Recipe Duplicated",
+            description: "{name} has been created successfully.",
+          },
       },
 
       // Actions
@@ -960,6 +1024,7 @@ export const en = {
 
     // Products section
     products: {
+      pageTitle: "Products",
       addTitle: "Add New Product",
       editTitle: "Edit Product",
       detailsTitle: "Product Details",
@@ -1025,21 +1090,37 @@ export const en = {
         retail: "Retail: ${price} (2.5x markup)",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "View Product",
+        edit: "Edit Product",
+        delete: "Delete Product",
+      },
+
       // Toasts
       toasts: {
         added: {
           title: "Product Added Successfully",
           description: "{name} has been added to your products.",
         },
-        updated: {
-          title: "Product Updated Successfully",
-          description: "{name} has been updated.",
+          updated: {
+            title: "Product Updated Successfully",
+            description: "{name} has been updated.",
+          },
+          deleted: {
+            title: "Product Deleted",
+            description: "{name} has been deleted successfully.",
+          },
+        bulkDeleted: {
+          title: "Products Deleted",
+          description: "{count} products have been deleted successfully.",
         },
       },
     },
 
     // Suppliers section
     suppliers: {
+      pageTitle: "Suppliers",
       addTitle: "Add New Supplier",
       editTitle: "Edit Supplier",
       detailsTitle: "Supplier Details",
@@ -1102,19 +1183,34 @@ export const en = {
         net90: "Net 90 Days",
       },
 
+      // Tooltips
+      tooltips: {
+        view: "View Supplier",
+        edit: "Edit Supplier",
+        delete: "Delete Supplier",
+      },
+
       // Toasts
       toasts: {
         added: {
           title: "Supplier Added Successfully",
           description: "{name} has been added to your suppliers.",
         },
-        updated: {
-          title: "Supplier Updated Successfully",
-          description: "{name} has been updated.",
+          updated: {
+            title: "Supplier Updated Successfully",
+            description: "{name} has been updated.",
+          },
+          deleted: {
+            title: "Supplier Deleted",
+            description: "{name} has been deleted successfully.",
+          },
+          bulkDeleted: {
+            title: "Suppliers Deleted",
+            description: "{count} suppliers have been deleted successfully.",
+          },
         },
       },
     },
-  },
   filters: {
     allSuppliers: "All Suppliers",
     allStock: "All Stock",
@@ -1125,6 +1221,12 @@ export const en = {
     allCategories: "All Categories",
     allTerms: "All Terms",
     allRatings: "All Ratings",
+    placeholderCategory: "Category",
+    placeholderSupplier: "Supplier",
+    placeholderStockStatus: "Stock Status",
+    placeholderSortBy: "Sort by",
+    placeholderPaymentTerms: "Payment Terms",
+    placeholderRating: "Rating",
     cod: "COD",
     net15: "Net 15",
     net30: "Net 30",
@@ -1226,6 +1328,11 @@ export const en = {
     getStartedRecipe: "Get started by creating your first recipe",
     getStartedProduct: "Get started by adding your first product",
     getStartedSupplier: "Get started by adding your first supplier",
+    noDataToExport: "No data to export",
+    noDataToExportDesc: "There is no data available to export.",
+    exportSuccessful: "Export successful",
+    exportFailed: "Export failed",
+    exportFailedDesc: "An error occurred while exporting the data.",
   },
   alerts: {
     // Page titles
