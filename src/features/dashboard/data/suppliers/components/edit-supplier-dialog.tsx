@@ -124,9 +124,10 @@ export default function EditSupplierDialog({
     console.log("Supplier data to update:", { id: supplier.id, ...data });
 
     setIsSubmitting(false);
+    const updatedDesc = t("data.suppliers.toasts.updated.description") || "{name} has been updated successfully.";
     toast({
       title: t("data.suppliers.toasts.updated.title"),
-      description: t("data.suppliers.toasts.updated.description").replace(
+      description: updatedDesc.replace(
         "{name}",
         data.name
       ),

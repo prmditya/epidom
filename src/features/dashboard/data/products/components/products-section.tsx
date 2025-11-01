@@ -193,9 +193,10 @@ export function ProductsSection({ products }: ProductsSectionProps) {
 
   const handleDeleteConfirm = () => {
     // TODO: API call to delete product
+    const deletedDesc = t("data.products.toasts.deleted.description") || "{name} has been deleted successfully.";
     toast({
       title: t("data.products.toasts.deleted.title"),
-      description: t("data.products.toasts.deleted.description").replace(
+      description: deletedDesc.replace(
         "{name}",
         selectedProduct?.name || ""
       ),
@@ -206,9 +207,10 @@ export function ProductsSection({ products }: ProductsSectionProps) {
 
   const handleBulkDelete = () => {
     // TODO: API call to bulk delete products
+    const bulkDeletedDesc = t("data.products.toasts.bulkDeleted.description") || "{count} products have been deleted successfully.";
     toast({
       title: t("data.products.toasts.bulkDeleted.title"),
-      description: t("data.products.toasts.bulkDeleted.description").replace(
+      description: bulkDeletedDesc.replace(
         "{count}",
         selectedIds.size.toString()
       ),

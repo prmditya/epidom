@@ -169,9 +169,10 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
 
   const handleDeleteConfirm = () => {
     // TODO: API call to delete recipe
+    const deletedDesc = t("data.recipes.toasts.deleted.description") || "{name} has been deleted successfully.";
     toast({
       title: t("data.recipes.toasts.deleted.title"),
-      description: t("data.recipes.toasts.deleted.description").replace(
+      description: deletedDesc.replace(
         "{name}",
         selectedRecipe?.name || ""
       ),
@@ -182,9 +183,10 @@ export function RecipesSection({ recipes }: RecipesSectionProps) {
 
   const handleBulkDelete = () => {
     // TODO: API call to bulk delete recipes
+    const bulkDeletedDesc = t("data.recipes.toasts.bulkDeleted.description") || "{count} recipes have been deleted successfully.";
     toast({
       title: t("data.recipes.toasts.bulkDeleted.title"),
-      description: t("data.recipes.toasts.bulkDeleted.description").replace(
+      description: bulkDeletedDesc.replace(
         "{count}",
         selectedIds.size.toString()
       ),

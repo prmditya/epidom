@@ -32,15 +32,15 @@ export default function TrackingCard() {
           <div className="bg-muted mb-3 rounded-full p-3">
             <Package className="text-muted-foreground h-6 w-6" />
           </div>
-          <p className="text-muted-foreground text-sm">No stock data</p>
+          <p className="text-muted-foreground text-sm">{t("dashboard.trackingCard.noStockData")}</p>
         </div>
       ) : (
         <div className="overflow-hidden rounded-lg border">
           {/* Table Header */}
           <div className="from-foreground/90 to-foreground/80 text-background flex bg-gradient-to-r px-3 py-2 text-xs font-bold">
-            <div className="w-1/5">Material</div>
-            <div className="w-3/5 text-center">Stock Level</div>
-            <div className="w-1/5 text-right">Current</div>
+            <div className="w-1/5">{t("dashboard.trackingCard.material")}</div>
+            <div className="w-3/5 text-center">{t("dashboard.trackingCard.stockLevel")}</div>
+            <div className="w-1/5 text-right">{t("dashboard.trackingCard.current")}</div>
           </div>
 
           {/* Table Body */}
@@ -87,7 +87,7 @@ export default function TrackingCard() {
   const cardOther = (
     <Link href="/tracking">
       <Button variant="ghost" size="sm" className="h-8 gap-1">
-        View All
+        {t("dashboard.trackingCard.viewAll")}
         <ArrowRight className="h-3 w-3" />
       </Button>
     </Link>
@@ -95,8 +95,8 @@ export default function TrackingCard() {
 
   return (
     <DashboardCard
-      cardTitle="Stock Levels"
-      cardDescription="Current inventory status"
+      cardTitle={t("dashboard.trackingCard.title")}
+      cardDescription={t("dashboard.trackingCard.description")}
       cardOther={cardOther}
       cardContent={cardContent}
     />

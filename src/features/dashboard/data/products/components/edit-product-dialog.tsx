@@ -142,9 +142,10 @@ export default function EditProductDialog({
     console.log("Product data to update:", { id: product.id, ...submitData });
 
     setIsSubmitting(false);
+    const updatedDesc = t("data.products.toasts.updated.description") || "{name} has been updated successfully.";
     toast({
       title: t("data.products.toasts.updated.title"),
-      description: t("data.products.toasts.updated.description").replace(
+      description: updatedDesc.replace(
         "{name}",
         data.name
       ),

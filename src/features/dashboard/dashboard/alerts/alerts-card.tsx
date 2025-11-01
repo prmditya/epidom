@@ -29,15 +29,15 @@ export default function AlertsCard() {
           <div className="mb-3 rounded-full bg-green-100 p-3 dark:bg-green-900">
             <AlertCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
           </div>
-          <p className="text-muted-foreground text-sm">No critical alerts</p>
+          <p className="text-muted-foreground text-sm">{t("dashboard.alertsCard.noCriticalAlerts")}</p>
         </div>
       ) : (
         <div className="overflow-hidden rounded-lg border">
           {/* Table Header */}
           <div className="from-foreground/90 to-foreground/80 text-background flex bg-gradient-to-r px-3 py-2 text-xs font-bold">
-            <div className="w-2/5">Material</div>
-            <div className="w-2/5 text-center">Stock Level</div>
-            <div className="w-1/5 text-right">Current</div>
+            <div className="w-2/5">{t("dashboard.alertsCard.material")}</div>
+            <div className="w-2/5 text-center">{t("dashboard.alertsCard.stockLevel")}</div>
+            <div className="w-1/5 text-right">{t("dashboard.alertsCard.current")}</div>
           </div>
 
           {/* Table Body */}
@@ -57,7 +57,7 @@ export default function AlertsCard() {
                   className="hover:bg-muted/30 flex items-center px-3 py-2.5 text-sm transition-colors"
                 >
                   <div className="w-2/5 truncate font-medium">
-                    {material?.name || "Unknown Material"}
+                    {material?.name || t("dashboard.alertsCard.unknownMaterial")}
                   </div>
                   <div className="w-2/5 px-2">
                     <Progress
@@ -80,7 +80,7 @@ export default function AlertsCard() {
   const cardOther = (
     <Link href="/alerts">
       <Button variant="ghost" size="sm" className="h-8 gap-1">
-        View All
+        {t("dashboard.alertsCard.viewAll")}
         <ArrowRight className="h-3 w-3" />
       </Button>
     </Link>
@@ -89,8 +89,8 @@ export default function AlertsCard() {
   return (
     <DashboardCard
       cardClassName="col-span-3"
-      cardTitle="Critical Alerts"
-      cardDescription="Stock alerts requiring immediate attention"
+      cardTitle={t("dashboard.alertsCard.title")}
+      cardDescription={t("dashboard.alertsCard.description")}
       cardOther={cardOther}
       cardContent={cardContent}
     />

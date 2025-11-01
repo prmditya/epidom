@@ -37,6 +37,29 @@ export const fr = {
     location: "Localisation",
     payment: "Paiement",
     delivery: "Livraison",
+    name: "Nom",
+    notAvailable: "N/A",
+    type: "Type",
+    date: "Date",
+    user: "Utilisateur",
+    reference: "Référence",
+    time: {
+      minutes: "minutes",
+      minutesShort: "min",
+      hours: "heures",
+      hoursShort: "h",
+    },
+    datePicker: {
+      pickDate: "Choisir une date",
+    },
+    metrics: {
+      plannedQuantity: "Quantité Planifiée",
+      producedQuantity: "Quantité Produite",
+    },
+    validation: {
+      error: "Erreur de Validation",
+    },
+    error: "Erreur",
     actions: {
       cancel: "Annuler",
       save: "Enregistrer",
@@ -758,6 +781,35 @@ export const fr = {
     supplierDeliveriesSectionTitle: "Livraisons Fournisseurs",
     deliveryDetails: "Détails de la Livraison",
   },
+  dashboard: {
+    title: "Tableau de Bord",
+    description: "Bienvenue sur le tableau de bord. Ici, vous pouvez voir l'état actuel de vos commandes, recettes et stocks.",
+    alertsCard: {
+      title: "Alertes Critiques",
+      description: "Alertes de stock nécessitant une attention immédiate",
+      viewAll: "Voir Tout",
+      noCriticalAlerts: "Aucune alerte critique",
+      material: "Matière",
+      stockLevel: "Niveau de Stock",
+      current: "Actuel",
+      unknownMaterial: "Matière Inconnue",
+    },
+    trackingCard: {
+      title: "Niveaux de Stock",
+      description: "État actuel de l'inventaire",
+      viewAll: "Voir Tout",
+      noStockData: "Aucune donnée de stock",
+      material: "Matière",
+      stockLevel: "Niveau de Stock",
+      current: "Actuel",
+    },
+    supplierCard: {
+      title: "Fournisseurs",
+      description: "Liste de contacts rapide",
+      manage: "Gérer",
+      noSuppliersAvailable: "Aucun fournisseur disponible",
+    },
+  },
   chart: {
     stockUtilization: "Utilisation du stock",
     percentUsed: "utilisé",
@@ -770,6 +822,31 @@ export const fr = {
     delivered: "Livré",
     recipesUsedWeek: "Recettes utilisées cette semaine",
     upFromLastWeek: "+12% par rapport à la semaine dernière",
+    quantity: "quantité",
+    week: "Semaine",
+    days: {
+      mon: "Lun",
+      tue: "Mar",
+      wed: "Mer",
+      thu: "Jeu",
+      fri: "Ven",
+      sat: "Sam",
+      sun: "Dim",
+    },
+    months: {
+      jan: "Jan",
+      feb: "Fév",
+      mar: "Mar",
+      apr: "Avr",
+      may: "Mai",
+      jun: "Juin",
+      jul: "Juil",
+      aug: "Aoû",
+      sep: "Sep",
+      oct: "Oct",
+      nov: "Nov",
+      dec: "Déc",
+    },
   },
   data: {
     productDesignation: "Désignation du Produit",
@@ -1450,6 +1527,9 @@ export const fr = {
   profile: {
     // Titre de la page
     title: "Paramètres du Profil",
+    loading: "Chargement du profil...",
+    failedToLoad: "Échec du chargement du profil",
+    user: "Utilisateur",
 
     // Sections
     sections: {
@@ -1462,6 +1542,7 @@ export const fr = {
 
     // Infos personnelles
     personal: {
+      title: "Informations Personnelles",
       name: "Nom Complet",
       email: "Adresse E-mail",
       phone: "Numéro de Téléphone",
@@ -1476,6 +1557,7 @@ export const fr = {
 
     // Infos entreprise
     business: {
+      title: "Informations sur l'Entreprise",
       name: "Nom de l'Entreprise",
       email: "E-mail Professionnel",
       phone: "Téléphone Professionnel",
@@ -1492,20 +1574,48 @@ export const fr = {
 
     // Abonnement
     subscription: {
+      title: "Abonnement",
       plan: "Forfait Actuel",
-      status: "Statut",
+      currentPlan: "Forfait Actuel",
+      statusLabel: "Statut",
       billingPeriod: "Période de Facturation",
       periodStart: "Début de Période",
       periodEnd: "Fin de Période",
       changePlan: "Changer de Forfait",
       manageBilling: "Gérer la Facturation",
       noSubscription: "Aucun abonnement actif",
+      noActiveSubscription: "Aucun abonnement actif",
       viewPlans: "Voir les Forfaits",
       cancelingSoon: "Abonnement se Termine",
       cancelMessage: "Votre abonnement ne sera pas renouvelé à la fin de la période actuelle.",
       pastDue: "Paiement Requis",
       pastDueMessage:
         "Votre paiement est en retard. Veuillez mettre à jour votre moyen de paiement.",
+      plans: {
+        starter: "Starter",
+        pro: "Pro",
+        enterprise: "Enterprise",
+      },
+      pricing: {
+        starter: "29€/mois",
+        pro: "79€/mois",
+        enterprise: "Sur mesure",
+      },
+      status: {
+        active: "Actif",
+        canceled: "Annulé",
+        pastDue: "En Retard",
+      },
+      warnings: {
+        ending: {
+          title: "Abonnement se Termine",
+          description: "Votre abonnement ne sera pas renouvelé à la fin de la période actuelle.",
+        },
+        pastDue: {
+          title: "Paiement Requis",
+          description: "Votre paiement est en retard. Veuillez mettre à jour votre moyen de paiement.",
+        },
+      },
     },
 
     // Notifications
@@ -1530,6 +1640,7 @@ export const fr = {
     activity: {
       title: "Activité Récente",
       description: "Vos actions et modifications récentes",
+      items: "éléments",
       login: "Connecté",
       logout: "Déconnecté",
       updated: "{field} mis à jour",
@@ -1537,6 +1648,8 @@ export const fr = {
       deleted: "{entity} supprimé",
       noActivity: "Aucune activité récente",
       viewAll: "Voir Toute l'Activité",
+      showLess: "Afficher Moins",
+      more: "de plus",
       actions: {
         login: "Connecté",
         logout: "Déconnecté",
@@ -1557,7 +1670,10 @@ export const fr = {
     // Formulaires & Actions
     forms: {
       editPersonalInfo: "Modifier les Informations Personnelles",
+      editPersonalInfoDescription: "Mettez à jour vos informations personnelles et préférences",
       editBusinessInfo: "Modifier les Informations d'Entreprise",
+      editBusinessInfoDescription: "Mettez à jour les informations de contact et les détails de votre entreprise",
+      addBusinessInfoDescription: "Ajoutez les informations de votre entreprise pour compléter votre profil",
       namePlaceholder: "Entrez votre nom complet",
       emailPlaceholder: "votre@email.com",
       phonePlaceholder: "+33 1 23 45 67 89",
@@ -1565,6 +1681,8 @@ export const fr = {
       addressPlaceholder: "Adresse",
       cityPlaceholder: "Ville",
       countryPlaceholder: "Pays",
+      businessNamePlaceholder: "Boulangerie Epidom",
+      emailCannotBeChanged: "L'e-mail ne peut pas être modifié",
     },
 
     // Actions
@@ -1574,6 +1692,12 @@ export const fr = {
       cancel: "Annuler",
       update: "Mettre à Jour le Profil",
       delete: "Supprimer",
+    },
+
+    // Erreurs
+    errors: {
+      updateFailed: "Échec de la mise à jour du profil. Veuillez réessayer.",
+      businessUpdateFailed: "Échec de la mise à jour des informations d'entreprise. Veuillez réessayer.",
     },
 
     // Messages toast
@@ -1692,6 +1816,7 @@ export const fr = {
         quantity: "Quantité",
         unit: "Unité",
         notes: "Notes",
+        unknownMaterial: "Inconnu",
         timeline: "Chronologie",
         by: "par",
         quickActions: "Actions Rapides",
@@ -1717,18 +1842,23 @@ export const fr = {
         printDelivery: {
           title: "Imprimer la Livraison",
           description: "Imprimer ou télécharger les informations de livraison",
+          previewDescription: "Aperçu et impression de la livraison {reference}",
           supplierDeliveryNote: "Bon de Livraison Fournisseur",
           expectedDate: "Date Prévue",
           receivedDate: "Date de Réception",
           materials: "Matières",
-          downloadPDF: "Télécharger PDF",
+          downloadPDF: "Exporter PDF",
           print: "Imprimer",
+          contactPerson: "Personne de Contact",
+          printedOn: "Imprimé le",
+          generatedBy: "Généré par : Système de Gestion EPIDOM",
+          pdfNotImplemented: "La fonctionnalité d'export PDF sera implémentée avec une bibliothèque PDF",
         },
         addEditDelivery: {
           addTitle: "Ajouter une Nouvelle Livraison",
           editTitle: "Modifier la Livraison",
           addDescription: "Créer un nouvel enregistrement de livraison fournisseur",
-          editDescription: "Mettre à jour la livraison",
+          editDescription: "Mettre à jour la livraison {reference}",
           deliveryReference: "Référence de Livraison",
           supplier: "Fournisseur",
           selectSupplier: "Sélectionner un fournisseur",
@@ -1754,6 +1884,23 @@ export const fr = {
           updating: "Mise à jour...",
           successCreated: "Livraison créée avec succès",
           successUpdated: "Livraison mise à jour avec succès",
+          validation: {
+            referenceRequired: "La référence de livraison est requise",
+            supplierRequired: "Veuillez sélectionner un fournisseur",
+            expectedDateRequired: "La date prévue est requise",
+            atLeastOneItem: "Veuillez ajouter au moins un article",
+            itemsMustHaveMaterial: "Tous les articles doivent avoir une matière et une quantité supérieure à 0",
+          },
+          toasts: {
+            created: {
+              title: "Livraison Créée",
+              description: "La livraison {reference} a été créée avec succès",
+            },
+            updated: {
+              title: "Livraison Mise à Jour",
+              description: "La livraison {reference} a été mise à jour avec succès",
+            },
+          },
         },
       },
     },
@@ -2018,6 +2165,9 @@ export const fr = {
         efficiencyDescription: "Production réelle vs prévue",
         totalOutput: "Production Totale",
         totalOutputDescription: "Total des unités produites",
+        plannedQuantity: "Quantité Planifiée",
+        producedQuantity: "Quantité Produite",
+        units: "unités",
       },
 
       // Batch Details Dialog

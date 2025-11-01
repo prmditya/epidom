@@ -133,9 +133,10 @@ export default function EditMaterialDialog({
       onSave(material.id, data);
     }
 
+    const updatedDesc = t("data.materials.toasts.updated.description") || "{name} has been updated successfully.";
     toast({
       title: t("data.materials.toasts.updated.title"),
-      description: t("data.materials.toasts.updated.description").replace(
+      description: updatedDesc.replace(
         "{name}",
         data.name
       ),

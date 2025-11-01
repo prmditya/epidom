@@ -182,9 +182,10 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
   const handleDeleteConfirm = () => {
     // TODO: API call to delete material
+    const deletedDesc = t("data.materials.toasts.deleted.description") || "{name} has been deleted successfully.";
     toast({
       title: t("data.materials.toasts.deleted.title"),
-      description: t("data.materials.toasts.deleted.description").replace(
+      description: deletedDesc.replace(
         "{name}",
         selectedMaterial?.name || ""
       ),
@@ -195,9 +196,10 @@ export function MaterialsSection({ materials }: MaterialsSectionProps) {
 
   const handleBulkDelete = () => {
     // TODO: API call to bulk delete materials
+    const bulkDeletedDesc = t("data.materials.toasts.bulkDeleted.description") || "{count} materials have been deleted successfully.";
     toast({
       title: t("data.materials.toasts.bulkDeleted.title"),
-      description: t("data.materials.toasts.bulkDeleted.description").replace(
+      description: bulkDeletedDesc.replace(
         "{count}",
         selectedIds.size.toString()
       ),

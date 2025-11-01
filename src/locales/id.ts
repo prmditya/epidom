@@ -37,6 +37,29 @@ export const id = {
     location: "Lokasi",
     payment: "Pembayaran",
     delivery: "Pengiriman",
+    name: "Nama",
+    notAvailable: "T/A",
+    type: "Tipe",
+    date: "Tanggal",
+    user: "Pengguna",
+    reference: "Referensi",
+    time: {
+      minutes: "menit",
+      minutesShort: "mnt",
+      hours: "jam",
+      hoursShort: "j",
+    },
+    datePicker: {
+      pickDate: "Pilih tanggal",
+    },
+    metrics: {
+      plannedQuantity: "Jumlah yang Direncanakan",
+      producedQuantity: "Jumlah yang Diproduksi",
+    },
+    validation: {
+      error: "Kesalahan Validasi",
+    },
+    error: "Kesalahan",
     actions: {
       cancel: "Batalkan",
       save: "Simpan",
@@ -755,6 +778,35 @@ export const id = {
     supplierDeliveriesSectionTitle: "Pengiriman Supplier",
     deliveryDetails: "Detail Pengiriman",
   },
+  dashboard: {
+    title: "Dasbor",
+    description: "Selamat datang di dasbor. Di sini Anda dapat melihat status terkini pesanan, resep, dan stok Anda.",
+    alertsCard: {
+      title: "Peringatan Kritis",
+      description: "Peringatan stok yang memerlukan perhatian segera",
+      viewAll: "Lihat Semua",
+      noCriticalAlerts: "Tidak ada peringatan kritis",
+      material: "Bahan",
+      stockLevel: "Tingkat Stok",
+      current: "Saat Ini",
+      unknownMaterial: "Bahan Tidak Dikenal",
+    },
+    trackingCard: {
+      title: "Tingkat Stok",
+      description: "Status inventori saat ini",
+      viewAll: "Lihat Semua",
+      noStockData: "Tidak ada data stok",
+      material: "Bahan",
+      stockLevel: "Tingkat Stok",
+      current: "Saat Ini",
+    },
+    supplierCard: {
+      title: "Supplier",
+      description: "Daftar kontak cepat",
+      manage: "Kelola",
+      noSuppliersAvailable: "Tidak ada supplier tersedia",
+    },
+  },
   chart: {
     stockUtilization: "Penggunaan stok",
     percentUsed: "digunakan",
@@ -767,6 +819,31 @@ export const id = {
     delivered: "Dikirim",
     recipesUsedWeek: "Resep digunakan minggu ini",
     upFromLastWeek: "+12% dari minggu lalu",
+    quantity: "kuantitas",
+    week: "Minggu",
+    days: {
+      mon: "Sen",
+      tue: "Sel",
+      wed: "Rab",
+      thu: "Kam",
+      fri: "Jum",
+      sat: "Sab",
+      sun: "Min",
+    },
+    months: {
+      jan: "Jan",
+      feb: "Feb",
+      mar: "Mar",
+      apr: "Apr",
+      may: "Mei",
+      jun: "Jun",
+      jul: "Jul",
+      aug: "Agu",
+      sep: "Sep",
+      oct: "Okt",
+      nov: "Nov",
+      dec: "Des",
+    },
   },
   data: {
     productDesignation: "Penamaan Produk",
@@ -1437,6 +1514,9 @@ export const id = {
   profile: {
     // Judul halaman
     title: "Pengaturan Profil",
+    loading: "Memuat profil...",
+    failedToLoad: "Gagal memuat profil",
+    user: "Pengguna",
 
     // Bagian
     sections: {
@@ -1449,6 +1529,7 @@ export const id = {
 
     // Info pribadi
     personal: {
+      title: "Informasi Pribadi",
       name: "Nama Lengkap",
       email: "Alamat Email",
       phone: "Nomor Telepon",
@@ -1463,6 +1544,7 @@ export const id = {
 
     // Info bisnis
     business: {
+      title: "Informasi Bisnis",
       name: "Nama Bisnis",
       email: "Email Bisnis",
       phone: "Telepon Bisnis",
@@ -1479,19 +1561,47 @@ export const id = {
 
     // Langganan
     subscription: {
+      title: "Langganan",
       plan: "Paket Saat Ini",
-      status: "Status",
+      currentPlan: "Paket Saat Ini",
+      statusLabel: "Status",
       billingPeriod: "Periode Tagihan",
       periodStart: "Mulai Periode",
       periodEnd: "Akhir Periode",
       changePlan: "Ubah Paket",
       manageBilling: "Kelola Tagihan",
       noSubscription: "Tidak ada langganan aktif",
+      noActiveSubscription: "Tidak ada langganan aktif",
       viewPlans: "Lihat Paket",
       cancelingSoon: "Langganan Berakhir",
       cancelMessage: "Langganan Anda tidak akan diperpanjang di akhir periode saat ini.",
       pastDue: "Pembayaran Diperlukan",
       pastDueMessage: "Pembayaran Anda tertunda. Silakan perbarui metode pembayaran Anda.",
+      plans: {
+        starter: "Starter",
+        pro: "Pro",
+        enterprise: "Enterprise",
+      },
+      pricing: {
+        starter: "Rp 429.000/bulan",
+        pro: "Rp 1.169.000/bulan",
+        enterprise: "Sesuai Permintaan",
+      },
+      status: {
+        active: "Aktif",
+        canceled: "Dibatalkan",
+        pastDue: "Tertunda",
+      },
+      warnings: {
+        ending: {
+          title: "Langganan Berakhir",
+          description: "Langganan Anda tidak akan diperpanjang di akhir periode saat ini.",
+        },
+        pastDue: {
+          title: "Pembayaran Diperlukan",
+          description: "Pembayaran Anda tertunda. Silakan perbarui metode pembayaran Anda.",
+        },
+      },
     },
 
     // Notifikasi
@@ -1515,6 +1625,7 @@ export const id = {
     activity: {
       title: "Aktivitas Terkini",
       description: "Tindakan dan perubahan terkini Anda",
+      items: "item",
       login: "Masuk",
       logout: "Keluar",
       updated: "{field} diperbarui",
@@ -1522,6 +1633,8 @@ export const id = {
       deleted: "{entity} dihapus",
       noActivity: "Tidak ada aktivitas terkini",
       viewAll: "Lihat Semua Aktivitas",
+      showLess: "Tampilkan Lebih Sedikit",
+      more: "lagi",
       actions: {
         login: "Masuk",
         logout: "Keluar",
@@ -1542,7 +1655,10 @@ export const id = {
     // Formulir & Tindakan
     forms: {
       editPersonalInfo: "Edit Informasi Pribadi",
+      editPersonalInfoDescription: "Perbarui informasi pribadi dan preferensi Anda",
       editBusinessInfo: "Edit Informasi Bisnis",
+      editBusinessInfoDescription: "Perbarui informasi kontak dan detail bisnis Anda",
+      addBusinessInfoDescription: "Tambahkan informasi bisnis Anda untuk melengkapi profil",
       namePlaceholder: "Masukkan nama lengkap Anda",
       emailPlaceholder: "email@anda.com",
       phonePlaceholder: "+62 812 3456 7890",
@@ -1550,6 +1666,8 @@ export const id = {
       addressPlaceholder: "Alamat jalan",
       cityPlaceholder: "Kota",
       countryPlaceholder: "Negara",
+      businessNamePlaceholder: "Toko Roti Epidom",
+      emailCannotBeChanged: "Email tidak dapat diubah",
     },
 
     // Tindakan
@@ -1559,6 +1677,12 @@ export const id = {
       cancel: "Batal",
       update: "Perbarui Profil",
       delete: "Hapus",
+    },
+
+    // Kesalahan
+    errors: {
+      updateFailed: "Gagal memperbarui profil. Silakan coba lagi.",
+      businessUpdateFailed: "Gagal memperbarui informasi bisnis. Silakan coba lagi.",
     },
 
     // Pesan toast
@@ -1677,6 +1801,7 @@ export const id = {
         quantity: "Jumlah",
         unit: "Satuan",
         notes: "Catatan",
+        unknownMaterial: "Tidak Dikenal",
         timeline: "Timeline",
         by: "oleh",
         quickActions: "Aksi Cepat",
@@ -1702,18 +1827,23 @@ export const id = {
         printDelivery: {
           title: "Cetak Pengiriman",
           description: "Cetak atau unduh informasi pengiriman",
+          previewDescription: "Pratinjau dan cetak pengiriman {reference}",
           supplierDeliveryNote: "Nota Pengiriman Supplier",
           expectedDate: "Tanggal Diharapkan",
           receivedDate: "Tanggal Diterima",
           materials: "Bahan",
-          downloadPDF: "Unduh PDF",
+          downloadPDF: "Ekspor PDF",
           print: "Cetak",
+          contactPerson: "Kontak Person",
+          printedOn: "Dicetak pada",
+          generatedBy: "Dihasilkan oleh: Sistem Manajemen EPIDOM",
+          pdfNotImplemented: "Fitur ekspor PDF akan diimplementasikan dengan library PDF",
         },
         addEditDelivery: {
           addTitle: "Tambah Pengiriman Baru",
           editTitle: "Edit Pengiriman",
           addDescription: "Buat catatan pengiriman supplier baru",
-          editDescription: "Perbarui pengiriman",
+          editDescription: "Perbarui pengiriman {reference}",
           deliveryReference: "Referensi Pengiriman",
           supplier: "Supplier",
           selectSupplier: "Pilih supplier",
@@ -1738,6 +1868,23 @@ export const id = {
           updating: "Memperbarui...",
           successCreated: "Pengiriman berhasil dibuat",
           successUpdated: "Pengiriman berhasil diperbarui",
+          validation: {
+            referenceRequired: "Referensi pengiriman wajib diisi",
+            supplierRequired: "Harap pilih supplier",
+            expectedDateRequired: "Tanggal yang diharapkan wajib diisi",
+            atLeastOneItem: "Harap tambahkan setidaknya satu item",
+            itemsMustHaveMaterial: "Semua item harus memiliki bahan dan jumlah lebih besar dari 0",
+          },
+          toasts: {
+            created: {
+              title: "Pengiriman Dibuat",
+              description: "Pengiriman {reference} berhasil dibuat",
+            },
+            updated: {
+              title: "Pengiriman Diperbarui",
+              description: "Pengiriman {reference} berhasil diperbarui",
+            },
+          },
         },
       },
     },
@@ -1998,6 +2145,9 @@ export const id = {
         efficiencyDescription: "Output aktual vs target",
         totalOutput: "Total Output",
         totalOutputDescription: "Total unit yang diproduksi",
+        plannedQuantity: "Jumlah yang Direncanakan",
+        producedQuantity: "Jumlah yang Diproduksi",
+        units: "unit",
       },
 
       // Batch Details Dialog

@@ -166,9 +166,10 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
 
   const handleDeleteConfirm = () => {
     // TODO: API call to delete supplier
+    const deletedDesc = t("data.suppliers.toasts.deleted.description") || "{name} has been deleted successfully.";
     toast({
       title: t("data.suppliers.toasts.deleted.title"),
-      description: t("data.suppliers.toasts.deleted.description").replace(
+      description: deletedDesc.replace(
         "{name}",
         selectedSupplier?.name || ""
       ),
@@ -179,9 +180,10 @@ export function SuppliersSection({ suppliers }: SuppliersSectionProps) {
 
   const handleBulkDelete = () => {
     // TODO: API call to bulk delete suppliers
+    const bulkDeletedDesc = t("data.suppliers.toasts.bulkDeleted.description") || "{count} suppliers have been deleted successfully.";
     toast({
       title: t("data.suppliers.toasts.bulkDeleted.title"),
-      description: t("data.suppliers.toasts.bulkDeleted.description").replace(
+      description: bulkDeletedDesc.replace(
         "{count}",
         selectedIds.size.toString()
       ),

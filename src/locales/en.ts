@@ -37,6 +37,7 @@ export const en = {
     location: "Location",
     payment: "Payment",
     delivery: "Delivery",
+    name: "Name",
     actions: {
       cancel: "Cancel",
       save: "Save",
@@ -57,6 +58,36 @@ export const en = {
       exportAsCsv: "Export as CSV",
       exportAsExcel: "Export as Excel",
       exportAsPdf: "Export as PDF",
+      update: "Update",
+    },
+    pagination: {
+      rowsPerPage: "Rows per page",
+      page: "Page",
+    },
+    validation: {
+      error: "Validation Error",
+    },
+    error: "Error",
+    notes: "Notes",
+    page: "Page",
+    other: "Other",
+    notAvailable: "N/A",
+    type: "Type",
+    date: "Date",
+    user: "User",
+    reference: "Reference",
+    time: {
+      minutes: "minutes",
+      minutesShort: "min",
+      hours: "hours",
+      hoursShort: "h",
+    },
+    datePicker: {
+      pickDate: "Pick a date",
+    },
+    metrics: {
+      plannedQuantity: "Planned Quantity",
+      producedQuantity: "Produced Quantity",
     },
   },
   hero: {
@@ -744,6 +775,35 @@ export const en = {
     supplierDeliveriesSectionTitle: "Supplier Deliveries",
     deliveryDetails: "Delivery Details",
   },
+  dashboard: {
+    title: "Dashboard",
+    description: "Welcome to the dashboard. Here you can see the current status of your orders, recipes, and stock.",
+    alertsCard: {
+      title: "Critical Alerts",
+      description: "Stock alerts requiring immediate attention",
+      viewAll: "View All",
+      noCriticalAlerts: "No critical alerts",
+      material: "Material",
+      stockLevel: "Stock Level",
+      current: "Current",
+      unknownMaterial: "Unknown Material",
+    },
+    trackingCard: {
+      title: "Stock Levels",
+      description: "Current inventory status",
+      viewAll: "View All",
+      noStockData: "No stock data",
+      material: "Material",
+      stockLevel: "Stock Level",
+      current: "Current",
+    },
+    supplierCard: {
+      title: "Suppliers",
+      description: "Quick contact list",
+      manage: "Manage",
+      noSuppliersAvailable: "No suppliers available",
+    },
+  },
   chart: {
     stockUtilization: "Stock utilization",
     percentUsed: "used",
@@ -756,6 +816,31 @@ export const en = {
     delivered: "Delivered",
     recipesUsedWeek: "Recipes used this week",
     upFromLastWeek: "+12% from last week",
+    quantity: "quantity",
+    week: "Week",
+    days: {
+      mon: "Mon",
+      tue: "Tue",
+      wed: "Wed",
+      thu: "Thu",
+      fri: "Fri",
+      sat: "Sat",
+      sun: "Sun",
+    },
+    months: {
+      jan: "Jan",
+      feb: "Feb",
+      mar: "Mar",
+      apr: "Apr",
+      may: "May",
+      jun: "Jun",
+      jul: "Jul",
+      aug: "Aug",
+      sep: "Sep",
+      oct: "Oct",
+      nov: "Nov",
+      dec: "Dec",
+    },
   },
   data: {
     productDesignation: "Product Designation",
@@ -1435,6 +1520,9 @@ export const en = {
   profile: {
     // Page title
     title: "Profile Settings",
+    loading: "Loading profile...",
+    failedToLoad: "Failed to load profile",
+    user: "User",
 
     // Sections
     sections: {
@@ -1447,6 +1535,7 @@ export const en = {
 
     // Personal info
     personal: {
+      title: "Personal Information",
       name: "Full Name",
       email: "Email Address",
       phone: "Phone Number",
@@ -1461,6 +1550,7 @@ export const en = {
 
     // Business info
     business: {
+      title: "Business Information",
       name: "Business Name",
       email: "Business Email",
       phone: "Business Phone",
@@ -1477,19 +1567,47 @@ export const en = {
 
     // Subscription
     subscription: {
+      title: "Subscription",
       plan: "Current Plan",
-      status: "Status",
+      currentPlan: "Current Plan",
+      statusLabel: "Status",
       billingPeriod: "Billing Period",
       periodStart: "Period Start",
       periodEnd: "Period End",
       changePlan: "Change Plan",
       manageBilling: "Manage Billing",
       noSubscription: "No active subscription",
+      noActiveSubscription: "No active subscription",
       viewPlans: "View Plans",
       cancelingSoon: "Subscription Ending",
       cancelMessage: "Your subscription will not renew at the end of the current period.",
       pastDue: "Payment Required",
       pastDueMessage: "Your payment is past due. Please update your payment method.",
+      plans: {
+        starter: "Starter",
+        pro: "Pro",
+        enterprise: "Enterprise",
+      },
+      pricing: {
+        starter: "€29/month",
+        pro: "€79/month",
+        enterprise: "Custom",
+      },
+      status: {
+        active: "Active",
+        canceled: "Canceled",
+        pastDue: "Past Due",
+      },
+      warnings: {
+        ending: {
+          title: "Subscription Ending",
+          description: "Your subscription will not renew at the end of the current period.",
+        },
+        pastDue: {
+          title: "Payment Required",
+          description: "Your payment is past due. Please update your payment method.",
+        },
+      },
     },
 
     // Notifications
@@ -1513,6 +1631,7 @@ export const en = {
     activity: {
       title: "Recent Activity",
       description: "Your recent actions and changes",
+      items: "items",
       login: "Logged in",
       logout: "Logged out",
       updated: "Updated {field}",
@@ -1520,6 +1639,8 @@ export const en = {
       deleted: "Deleted {entity}",
       noActivity: "No recent activity",
       viewAll: "View All Activity",
+      showLess: "Show Less",
+      more: "more",
       actions: {
         login: "Logged in",
         logout: "Logged out",
@@ -1540,7 +1661,10 @@ export const en = {
     // Forms & Actions
     forms: {
       editPersonalInfo: "Edit Personal Information",
+      editPersonalInfoDescription: "Update your personal information and preferences",
       editBusinessInfo: "Edit Business Information",
+      editBusinessInfoDescription: "Update your business contact information and details",
+      addBusinessInfoDescription: "Add your business information to complete your profile",
       namePlaceholder: "Enter your full name",
       emailPlaceholder: "your@email.com",
       phonePlaceholder: "+1 234 567 8900",
@@ -1548,6 +1672,8 @@ export const en = {
       addressPlaceholder: "Street address",
       cityPlaceholder: "City",
       countryPlaceholder: "Country",
+      businessNamePlaceholder: "Epidom Bakery",
+      emailCannotBeChanged: "Email cannot be changed",
     },
 
     // Actions
@@ -1559,6 +1685,12 @@ export const en = {
       delete: "Delete",
       invite: "Invite",
       remove: "Remove",
+    },
+
+    // Errors
+    errors: {
+      updateFailed: "Failed to update profile. Please try again.",
+      businessUpdateFailed: "Failed to update business information. Please try again.",
     },
 
     // Toast messages
@@ -1656,6 +1788,8 @@ export const en = {
         items: "Items",
         actions: "Actions",
       },
+      item: "item",
+      items: "items",
       noMatches: "No deliveries match your filters",
       noDeliveries: "No deliveries yet",
       actions: {
@@ -1663,6 +1797,9 @@ export const en = {
         updateStatus: "Update Status",
         print: "Print",
         delete: "Delete",
+        viewDelivery: "View Delivery",
+        editDelivery: "Edit Delivery",
+        printDelivery: "Print Delivery",
       },
       details: {
         title: "Delivery Details",
@@ -1685,35 +1822,53 @@ export const en = {
         printDelivery: "Print Delivery",
         created: "Created",
         updated: "Updated",
+        unknownMaterial: "Unknown Material",
       },
       dialogs: {
         updateStatus: {
           title: "Update Delivery Status",
-          description: "Update the status of this delivery",
+          description: "Change the status of delivery {reference}",
           currentStatus: "Current Status",
           newStatus: "New Status",
           receivedDate: "Received Date",
           selectDate: "Select date",
           notes: "Notes",
-          notesPlaceholder: "Add any notes about this status change...",
+          notesPlaceholder: "Add notes about this status change...",
           updateButton: "Update Status",
           success: "Status updated successfully",
+          selectNewStatus: "Please select a new status",
+          selectReceivedDate: "Please select a received date",
+          selectNewStatusPlaceholder: "Select new status",
+          selectReceivedDatePlaceholder: "Select received date",
+          updating: "Updating...",
+          updateStatus: "Update Status",
+          toasts: {
+            updated: {
+              title: "Status Updated",
+              description: "Delivery status has been updated to {status}",
+            },
+          },
         },
         printDelivery: {
           title: "Print Delivery",
           description: "Print or download delivery information",
+          previewDescription: "Preview and print delivery {reference}",
           supplierDeliveryNote: "Supplier Delivery Note",
           expectedDate: "Expected Date",
           receivedDate: "Received Date",
           materials: "Materials",
-          downloadPDF: "Download PDF",
+          downloadPDF: "Export PDF",
           print: "Print",
+          contactPerson: "Contact Person",
+          printedOn: "Printed on",
+          generatedBy: "Generated by: EPIDOM Management System",
+          pdfNotImplemented: "PDF export functionality will be implemented with a PDF library",
         },
         addEditDelivery: {
           addTitle: "Add New Delivery",
           editTitle: "Edit Delivery",
           addDescription: "Create a new supplier delivery record",
-          editDescription: "Update delivery",
+          editDescription: "Update delivery {reference}",
           deliveryReference: "Delivery Reference",
           supplier: "Supplier",
           selectSupplier: "Select a supplier",
@@ -1738,6 +1893,23 @@ export const en = {
           updating: "Updating...",
           successCreated: "Delivery created successfully",
           successUpdated: "Delivery updated successfully",
+          validation: {
+            referenceRequired: "Delivery reference is required",
+            supplierRequired: "Please select a supplier",
+            expectedDateRequired: "Expected date is required",
+            atLeastOneItem: "Please add at least one item",
+            itemsMustHaveMaterial: "All items must have a material and quantity greater than 0",
+          },
+          toasts: {
+            created: {
+              title: "Delivery Created",
+              description: "Delivery {reference} has been created successfully",
+            },
+            updated: {
+              title: "Delivery Updated",
+              description: "Delivery {reference} has been updated successfully",
+            },
+          },
         },
       },
     },
@@ -1773,6 +1945,8 @@ export const en = {
       maxStock: "Maximum Stock",
       stockValue: "Stock Value",
       current: "Current",
+      unit: "Unit",
+      status: "Status",
 
       // Actions
       quickActions: "Quick Actions",
@@ -1997,6 +2171,9 @@ export const en = {
         efficiencyDescription: "Actual vs target output",
         totalOutput: "Total Output",
         totalOutputDescription: "Total units produced",
+        plannedQuantity: "Planned Quantity",
+        producedQuantity: "Produced Quantity",
+        units: "units",
       },
 
       // Batch Details Dialog
